@@ -1,37 +1,25 @@
-import express from 'express';
-import webpack from 'webpack';
-import path from 'path';
-import open from 'open';
-import dotenv from 'dotenv';
-import config from './webpack.config.dev';
-import winston from 'winston';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import compression from 'compression';
-
-const port = process.env.PORT || 3003;
+const express = require('express');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config.js');
 const app = express();
-const compiler = webpack(config);
-const env = process.env.NODE_ENV || 'development';
 
-if (env === 'development') {
-  app.use(webpackDevMiddleware(compiler, {
-    noInfo: true,
-    publicPath: config.output.publicPath
-  }));
+const compiler = webpack(webpackConfig);
 
-  app.use(webpackHotMiddleware(compiler));
-  app.use(express.static(path.join(__dirname, 'dist')));
-}
-else {
-  app.use(compression());
-  app.use(express.static('dist'));
-}
+app.use(express.static(__dirname + './dist'));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join( __dirname, './dist/index.html'));
-});
+app.use(webpackDevMiddleware(compiler, {
+    hot: true,
+    filename: 'bundle.js',
+    publicPath: '/',
+    stats: {
+        colors: true,
+    },
+    historyApiFallback: true,
+}));
 
-app.listen(port, err => {
-  err ? winston.log(err) : open(`http://127.0.0.1:${port}`);
+const server = app.listen(3000, function() {
+    const host = server.address().address;
+    const port = server.address().port;
+    console.log('App listening at http://%s:%s', host, port);
 });
