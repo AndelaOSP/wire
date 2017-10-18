@@ -1,42 +1,81 @@
+/**
+ * ./webpack.config.js
+ */
+const autoprefixer = require('autoprefixer');
 const path = require('path');
-const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const eslintFormatter = require('react-dev-utils/eslintFormatter');
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+    template: './public/index.html',
+    filename: 'index.html',
+    inject: 'body'
+});
 
-// webpack.config.js
 module.exports = {
-  devtool: 'inline-source-map',
-  entry: [
-    'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
-    path.resolve(__dirname, 'src/index')
-  ],
-  target: 'web',
-  output: {
-    path: path.join(__dirname,'./dist/'), // Note: Physical files are only output by the production build task `npm run build`.
-    filename: 'bundle.js',
-    publicPath: '/'
-  },
-  module: {
-    loaders: [
-      { test: /\.tsx?$/, include: path.join(__dirname, 'src'), loaders: ['ts-loader', 'tslint-loader'] },
-      { test: /(\.css)$/, loader: 'style-loader!css-loader?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!sass-loader' },
-      { test: /(\.scss)$/, loaders: ['style-loader', 'css-loader','sass-loader'] },
-      { test: /\.(jpe?g|png|gif|svg|jpg)$/i, loaders: [ 'file-loader', 'image-webpack-loader' ] },
-      { test: /\.(js|jsx)$/, include: path.join(__dirname, 'src'),loader: 'babel-loader', query: { presets: ['es2015', 'react'] } },
-      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
-      { test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000' },
-      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' }
-    ]
-  },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: path.resolve(__dirname, 'src')
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
-  ],
-  resolve: {
-    // you can now require('file') instead of require('file.coffee')
-    extensions: ['.ts', '.tsx', '.js']
-  }
+    context: path.resolve(__dirname, '.'),
+    entry: [
+        './src/index.js'
+    ],
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                enforce: 'pre',
+                use: [
+                    {
+                        options: {
+                            formatter: eslintFormatter,
+                        },
+                        loader: require.resolve('eslint-loader'),
+                    },
+                ]
+            },
+            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+            { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
+            { test: /(\.scss)$/, loaders: ['style-loader', 'css-loader','sass-loader'] },
+            {
+                test: /\.css$/,
+                use: [
+                    require.resolve('style-loader'),
+                    {
+                        loader: require.resolve('css-loader'),
+                        options: {
+                            importLoaders: 1,
+                        },
+                    },
+                    {
+                        loader: require.resolve('postcss-loader'),
+                        options: {
+                            // Necessary for external CSS imports to work
+                            // https://github.com/facebookincubator/create-react-app/issues/2677
+                            ident: 'postcss',
+                            plugins: () => [
+                                require('postcss-flexbugs-fixes'),
+                                require('postcss-inline-rtl'),
+                                autoprefixer({
+                                    browsers: [
+                                        '>1%',
+                                        'last 4 versions',
+                                        'Firefox ESR',
+                                        'not ie < 9', // React doesn't support IE8 anyway
+                                    ],
+                                    flexbox: 'no-2009',
+                                }),
+                            ],
+                        },
+                    },
+                ],
+            }
+        ]
+    },
+    resolve: {
+        modules: [
+            path.join(__dirname, 'node_modules'),
+        ],
+    },
+    plugins: [HtmlWebpackPluginConfig]
 };
