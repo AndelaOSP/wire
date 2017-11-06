@@ -4,21 +4,27 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-    template: './public/index.html',
+    template: './src/index.html',
     filename: 'index.html',
     inject: 'body'
 });
 
+const DIST_PATH = path.resolve( __dirname, 'dist' );
+const SOURCE_PATH = path.resolve( __dirname, 'src' );
+
 module.exports = {
-    context: path.resolve(__dirname, '.'),
+    devtool: 'inline-source-map',
+    // context: path.resolve(__dirname, '.'),
     entry: [
-        './src/index.js'
+        SOURCE_PATH + '/index.js'
     ],
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        path: DIST_PATH,
+        filename: 'bundle.js',
+        publicPath: "/"
     },
     module: {
         rules: [
@@ -69,13 +75,22 @@ module.exports = {
                         },
                     },
                 ],
-            }
+            },
+            { test: /\.css$/, loader: ExtractTextPlugin.extract({ use: 'css-loader',}),},
+            //Add only image extensions, but can things like svgs, fonts and videos
+            { test: /\.(png|jpg|gif)$/, use: [ 'file-loader',],},
         ]
     },
     resolve: {
+        extensions: ['.js', '.jsx', '.json', '*'],
         modules: [
             path.join(__dirname, 'node_modules'),
         ],
     },
-    plugins: [HtmlWebpackPluginConfig]
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.join(SOURCE_PATH, 'index.html'),
+        }),
+        new ExtractTextPlugin('style.bundle.css'),
+    ]
 };
