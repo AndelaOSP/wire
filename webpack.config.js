@@ -1,6 +1,3 @@
-/**
- * ./webpack.config.js
- */
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -24,7 +21,7 @@ module.exports = {
     output: {
         path: DIST_PATH,
         filename: 'bundle.js',
-        publicPath: "/"
+        publicPath: '/'
     },
     module: {
         rules: [
