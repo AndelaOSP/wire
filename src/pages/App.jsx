@@ -2,18 +2,19 @@
  * ./Components/App.jsx
  */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // styling
 import './App.scss';
-
-// Components
-import LoginPage from '../pages/Login/LoginPage.Component';
 
 export default class App extends React.Component {
     render() {
         return (
             <div className="content">
-                < LoginPage />
+                <div className="column">
+                    <h1>Home</h1>
+                    <Link to="/">Logout</Link>
+                </div>
             </div>
         );
     }
