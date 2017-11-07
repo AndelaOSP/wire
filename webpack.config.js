@@ -84,6 +84,9 @@ module.exports = {
             path.join(__dirname, 'node_modules'),
         ],
     },
+    devServer: {
+        historyApiFallback: true,
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(SOURCE_PATH, 'index.html'),
