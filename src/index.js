@@ -6,15 +6,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+//routes
+import Routes from './routes';
+
 // store
 import store from './store/store';
 
-// Components
-import App from './Components/App.jsx';
-
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Routes />
     </Provider>,
     document.getElementById('root')
 );
