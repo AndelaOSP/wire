@@ -9,7 +9,7 @@
   "scripts": {
     "babel": "babel",
     "webpack": "webpack",
-    "start": "npm run copy:html && webpack-dev-server --inline --hot --colors --progress && lint:watch",
+    "start": "npm run copy:html && npm run copy:images && webpack-dev-server --inline --hot --colors --progress && lint:watch",
     "start:dev": "node server.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",

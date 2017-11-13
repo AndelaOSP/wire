@@ -14,7 +14,6 @@ const SOURCE_PATH = path.resolve( __dirname, 'src' );
 
 module.exports = {
     devtool: 'inline-source-map',
-    // context: path.resolve(__dirname, '.'),
     entry: [
         SOURCE_PATH + '/index.js'
     ],
@@ -88,9 +87,7 @@ module.exports = {
         historyApiFallback: true,
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: path.join(SOURCE_PATH, 'index.html'),
-        }),
+        HtmlWebpackPluginConfig,
         new ExtractTextPlugin('style.bundle.css'),
     ]
 };
