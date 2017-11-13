@@ -1,0 +1,48 @@
+@import "../../theme";
+
+.login-page {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+
+  .left-column {
+    background-color: map_get($grey, 200);
+    width: 25vw;
+
+    .logo-image {
+      margin: 1.8rem;
+      height: 2.5rem;
+      width: 4.5rem;
+    }
+  }
+
+  .right-column {
+    flex: 1;
+
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      justify-content: center;
+      margin: auto !important;
+
+      .title {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .button {
+        margin: 2rem;
+        width: 10rem;
+        padding: 1.2rem;
+        font-size: small;
+      }
+    }
+
+    .google-logo {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}

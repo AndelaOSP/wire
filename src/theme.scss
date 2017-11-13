@@ -1,5 +1,13 @@
+// Global Rule Definitions
+body, div, h1, h2, h3, h4, p, a {
+  font-family: "Primary-DINPro", serif;
+  font-weight: 400;
+}
+
 body {
-  font-family: 'Noto Serif', serif;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
 }
 
 // define primary colors
@@ -8,4 +16,13 @@ $colors : (
   secondary: #0A21A8,
   tertiary: #FFAF30,
   background: #E4EBF1,
-)
+);
+
+$grey : (
+  600: #656565,
+  500: #777777,
+  400: #7C7C7C,
+  300: #808080,
+  200: #929292,
+  100: #BCBCBC,
+);

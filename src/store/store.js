@@ -15,4 +15,5 @@ const store = createStore(
         RouteMiddleware
     )
 );
+
 export default store;
