@@ -1,15 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
 
+// History 
 import createHistory from 'history/createBrowserHistory';
 
-//Components
-import LoginPage, { authenticateUser } from './pages/Login/LoginPage.Component';
+// Components
+import LoginPage from './pages/Login/LoginPage.Component';
 import App from './pages/App';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute.Component';
 
+// create history object.
 export const history = createHistory();
 
+/**
+ * Application primary routes
+ */
 const Routes = () => (
     <Router>
         <Switch>
@@ -19,18 +24,5 @@ const Routes = () => (
         </Switch>
     </Router>
 );
-
-export const PrivateRoute = ({ component: Component, ...rest}) => {
-    return (
-        <Route
-            {...rest}
-            render = {
-                (props) => authenticateUser.isAuthenticated
-                ? <Component {...props} />
-                : <Redirect to={{pathname: '/login', state: {from: props.location}}} />
-            }
-        />
-    );
-};
 
 export default Routes;

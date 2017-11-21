@@ -5,33 +5,33 @@ import { Link, Route, Redirect } from 'react-router-dom';
 //styling
 import './LoginPage.scss';
 
+// config
+import { ConfigData } from '../../config';
+
+//helpers
+import authenticateUser from '../../helpers/auth';
+
+/**
+ * LoginPage class
+ */
 class LoginPage extends React.Component{
     constructor() {
         super();
-
-        this.state = {
-            redirectToReferrer: false
-        };
-    }
-
-    login = () => {
-        authenticateUser.authenticate(() => {
-            this.setState({ redirectToReferrer: true });
-        });
     }
 
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/' } };
-        const { redirectToReferrer } = this.state;
 
-        if (redirectToReferrer) {
-            console.log('redirect?', redirectToReferrer, 'now redirect to:', from);
+        setReferrerInlocationStorage(from.pathname);
+        const userInfo = authenticateUser.authenticate();
+        const referrer = getReferrerInlocationStorage();
+
+        if (authenticateUser.isAuthenticated) {
             return (
-              <Redirect to={from} />
+              <Redirect to={from.pathname = referrer} />
             );
         }
 
-        console.log('not authenticated, redirect?', redirectToReferrer);
         return (
             <div className="login-page">
                 <div className="left-column">
@@ -39,13 +39,12 @@ class LoginPage extends React.Component{
                 </div>
                 <div className="right-column">
                     <div className="login-container">
-                        <div>
-                            <p>You must log in to view the page at {from.pathname}</p>
-                            <button onClick={this.login}>Log in</button>
-                        </div>
                         <h2 className="title">Sign in to Wire</h2>
                         <p className="">Please use your work email</p>
-                        <a className="button">
+                        <a 
+                            className="button" 
+                            href={`${ConfigData.ANDELA_API_BASE_URL}/login?redirect_url=${ConfigData.BASE_URL}/login`}
+                        >
                             <img className="google-logo" src="/assets/images/icons8-google.svg" />
                             <span className="">Sign in with Google</span>
                         </a>
@@ -56,23 +55,28 @@ class LoginPage extends React.Component{
     }
 }
 
-// authCode
 /**
- * authenticate user
- * revoke authentication
- *  on signOut
- *      revoke authentication
- *      redirect to landing page / login page
+ * PropTypes declaration
  */
-export const authenticateUser = {
-    isAuthenticated: false,
-    authenticate(cb) {
-        this.isAuthenticated = true,
-        setTimeout(cb, 100);
-    },
-    revokeAuthentication(cb) {
-        this.isAuthenticated = false,
-        setTimeout(cb, 100);
+LoginPage.propTypes = {
+    location: PropTypes.object,
+};
+
+/**
+ * get referrer function
+ */
+const getReferrerInlocationStorage = () => {
+    const referrer = localStorage.getItem('referrer');
+    return referrer ? referrer : '/';
+};
+
+/**
+ * store referrer function
+ * @param {string} path 
+ */
+const setReferrerInlocationStorage = (path) => {
+    if(path !== '/') {
+        localStorage.setItem('referrer', path);
     }
 };
 

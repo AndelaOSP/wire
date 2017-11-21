@@ -8,27 +8,17 @@ import { Link, Route } from 'react-router-dom';
 import './App.scss';
 
 // Components
-import { authenticateUser } from './Login/LoginPage.Component';
+import authenticateUser from '../helpers/auth';
 
 const App = () => {
     return (
         <div className="content">
             <div className="column">
                 <h1>Admin Dashboard</h1>
-                <button onClick={logOut}>Log Out</button>
+                <button onClick={authenticateUser.revokeAuthentication}>Log Out</button>
             </div>
         </div>
     );
-};
-
-/**
- * Log out user
- */
-const logOut = () => {
-    authenticateUser.revokeAuthentication(() => {
-        console.log('authentication revoked,', authenticateUser.isAuthenticated);
-    });
-    location.reload();
 };
 
 export default App;
