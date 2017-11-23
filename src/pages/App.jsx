@@ -2,7 +2,6 @@
  * ./Components/App.jsx
  */
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
 
 // styling
 import './App.scss';
