@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, Route, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 //styling
 import './LoginPage.scss';
@@ -15,15 +15,12 @@ import authenticateUser from '../../helpers/auth';
  * LoginPage class
  */
 class LoginPage extends React.Component{
-    constructor() {
-        super();
-    }
 
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/' } };
 
         setReferrerInlocationStorage(from.pathname);
-        const userInfo = authenticateUser.authenticate();
+        authenticateUser.authenticate();
         const referrer = getReferrerInlocationStorage();
 
         if (authenticateUser.isAuthenticated) {

@@ -1,7 +1,7 @@
 /**
  * Login and log out user
  */
-import { ConfigData } from '../config';
+
 import decodeToken from '../helpers/decodeToken';
 import * as jscookie from 'js-cookie';
 
@@ -10,7 +10,6 @@ const authenticateUser = {
     isAuthenticated: false,
 
     authenticate() {
-        const userInfo = decodeToken();
         if(this.validateUser()) {
             this.isAuthenticated = true;
             return this.isAuthenticated;
