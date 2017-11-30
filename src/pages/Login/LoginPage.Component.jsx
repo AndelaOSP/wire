@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 
 //styling
 import './LoginPage.scss';
@@ -37,14 +38,13 @@ class LoginPage extends React.Component{
                 <div className="right-column">
                     <div className="login-container">
                         <h2 className="title">Sign in to Wire</h2>
-                        <p className="">Please use your work email</p>
-                        <a 
-                            className="button" 
+                        <p className="instructions">Please use your Andela email</p>
+                        <RaisedButton 
+                            className="button"
+                            icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg"/>}
                             href={`${ConfigData.ANDELA_API_BASE_URL}/login?redirect_url=${ConfigData.BASE_URL}/login`}
-                        >
-                            <img className="google-logo" src="/assets/images/icons8-google.svg" />
-                            <span className="">Sign in with Google</span>
-                        </a>
+                            label="Sign in with Google" 
+                        />
                     </div>
                 </div>
             </div>
