@@ -1,0 +1,146 @@
+@import "../../theme";
+
+.navbar {
+  background: map_get($colors, header);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 4rem;
+
+  .left-nav-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .logo {
+      width: 2rem;
+      height: 2rem;
+      margin: auto 1rem;
+    }
+
+    .search-input {
+      font-family: "FontAwesome";
+      width: 30rem;
+      height: 1.5rem;
+      border: none;
+      border-radius: 2rem;
+      padding-left: 1rem;
+      margin: auto 1rem;
+      outline: none;
+    }
+  }
+
+  .right-nav-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // width: 5rem;
+    margin: auto 2rem;
+
+    .notifications {
+      margin: auto .5rem;
+      cursor: pointer;
+
+      .badge {
+        padding: 1rem !important;
+        left: -1rem;
+        &>span {
+          background-color: red !important;
+          color: white !important;
+        }
+      }
+    }
+
+    .profile {
+      box-sizing: border-box !important;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      max-height: 4rem;
+      padding: 0.2rem;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #406d8b;
+      }
+
+    }
+
+    .sign-out {
+      position: absolute;
+      top: 4.0rem;
+      right: 2rem;
+      height: 2rem;
+      width: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      background-color: white;
+      border-radius: .3rem;
+      box-shadow: 0.1rem 0.1rem 1rem grey;
+      padding: 0.2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all ease-in-out 0.07s;
+    }
+
+    .sign-out-false {
+      opacity: 0;
+      z-index: -2;
+    }
+    
+    .sign-out-true {
+      opacity: 1;
+      z-index: 2;
+    }
+  }
+}
+
+.notification-icon {
+  transform: rotate(20deg);
+  color: white;
+}
+
+.profile-img {
+  background-color: white !important;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  margin: .5rem;
+}
+
+// .navbar-avatar {
+//   background-color: map_get($grey, 100);
+//   width: 2rem;
+//   height: 2rem;
+//   border-radius: 50%;
+// }
+// .banner {
+//   height: 100%;
+//   max-width: 100%;
+//   width: 7%;
+//   padding: 1em;
+// }
+// .navbar-start {
+//   margin-left: 1rem;
+// }
+// .navbar-search {
+//   input {
+//     width: 30rem;
+//     border-radius: 18px !important;
+//     height: 1.9rem;
+//     margin-right: 80%
+//   }
+// }
+
+// .bell-icon {
+//   // -ms-transform: rotate(25deg); /* IE 9 */
+//   // -webkit-transform: rotate(25deg); /* Safari */
+//   transform: rotate(25deg);
+//   color: map_get($grey, 100);
+//   margin-left: 95%;
+// }

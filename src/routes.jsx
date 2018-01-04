@@ -6,7 +6,7 @@ import createHistory from 'history/createBrowserHistory';
 
 // Components
 import LoginPage from './pages/Login/LoginPage.Component';
-import App from './pages/App';
+import Dashboard from './pages/Dashboard/Dashboard.Component';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute.Component';
 
 // create history object.
@@ -19,8 +19,8 @@ const Routes = () => (
     <Router>
         <Switch>
         <Route exact path="/login" component={LoginPage} />
-            <PrivateRoute path="/" component={App} />
-            <PrivateRoute path="/dashboard" component= {App} />
+            <PrivateRoute path="/" component={Dashboard} />
+            <PrivateRoute path="/dashboard" component= {Dashboard} />
         </Switch>
     </Router>
 );

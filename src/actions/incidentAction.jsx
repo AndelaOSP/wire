@@ -1,23 +1,29 @@
+import * as axios from 'axios';
 import { FETCH_INCIDENTS_SUCCESS } from './actionTypes';
 
 const url = () => {
-    return 'www.url.com';
+    // get all incidents
+    return 'https://private-3b686-wire3.apiary-mock.com/incidents';
 };
 
-const apiKey = 'apiKey';
+// const apiKey = 'apiKey';
 
 // load Incidents Action Creator
 export const loadIncidentsSuccess = (incidents) => {
-    return { type: FETCH_INCIDENTS_SUCCESS, incidents}
+    return { type: FETCH_INCIDENTS_SUCCESS, incidents};
 };
 
+/**
+ * loadIncident Thunk
+ */
 export const loadIncidents = () => {
     return ((dispatch) => {
-        return fetch(url(), {
+        return axios.get(url(), {
 
-        }).then((response) => {
-            dispatch(loadIncidentsSuccess(response));
-        })
-    })
+        }).then((incidents) => {
+            dispatch(loadIncidentsSuccess(incidents.data.incidents));
+        }).catch((error) => {
+            return error;
+        });
+    });
 };
-
