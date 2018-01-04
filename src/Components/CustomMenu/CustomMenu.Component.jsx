@@ -1,10 +1,7 @@
 import React from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-// import PropTypes from 'prop-types';
 
-// styles
-import './CustomMenu.scss';
 const styles = {
     customWidth: {
       width: 145,
@@ -32,7 +29,6 @@ class CustomMenu extends React.Component {
         return (
             <div>
                 <SelectField
-                    className="country-menu"
                     value={this.state.value}
                     onChange={this.handleChange}
                     style={styles.customWidth}

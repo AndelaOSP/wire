@@ -6,8 +6,6 @@ const url = () => {
     return 'https://private-3b686-wire3.apiary-mock.com/incidents';
 };
 
-// const apiKey = 'apiKey';
-
 // load Incidents Action Creator
 export const loadIncidentsSuccess = (incidents) => {
     return { type: FETCH_INCIDENTS_SUCCESS, incidents};

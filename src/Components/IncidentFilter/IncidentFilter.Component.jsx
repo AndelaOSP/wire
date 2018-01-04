@@ -33,9 +33,6 @@ export default class IncidentFilter extends Component {
           <span className="incidents-label">Show Incidents</span>
           <CustomButton label="This Week" />
           <CustomButton label="This Month" />
-          {/* <span className="this-week">This Week</span>
-          <span className="period-or"> Or </span>
-        <span className="this-month">This Month</span> */}
           <DatePicker
             className="date-filter"
             hintText="From"

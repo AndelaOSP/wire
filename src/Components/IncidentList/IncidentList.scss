@@ -1,7 +1,7 @@
 @import '../../theme.scss';
 
 .table-header {
-    background-color: map-get($colors, secondaryheader);
+    background-color: map-get($blue, 200);
     &>th {
         color: white !important;
     }
