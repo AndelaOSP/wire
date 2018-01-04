@@ -46,7 +46,7 @@
   .incident-select {
     @include flex-row;
     justify-content: space-between;
-    background-color: map-get($colors, primaryshade);
+    background-color: map-get($blue, 300);
     height: 4rem;
     padding: 0.3rem;
     color: white;
@@ -61,7 +61,6 @@
       @include flex-row;
       justify-content: space-between;
       align-items: center;
-
     }
   }
 }
