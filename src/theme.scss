@@ -15,11 +15,18 @@ body {
 $colors : (
   primary: #3359DF,
   secondary: #0A21A8,
+  primaryshade: #127dc5,
+  header: #09486f,
+  secondaryheader: #358fe2,
   tertiary: #FFAF30,
   background: #E4EBF1,
+  btn-background-inactive: #fff,
+  btn-background-hover: #ff5a56,
+  btn-border-inactive: #97c5f0,
 );
 
 $grey : (
+  700: #333333,
   600: #656565,
   500: #777777,
   400: #7C7C7C,
@@ -27,3 +34,7 @@ $grey : (
   200: #929292,
   100: #BCBCBC,
 );
+
+$light-gray : (
+  300: #f9f9f9
+)

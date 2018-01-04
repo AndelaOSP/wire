@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import incidenReducer from './incidentReducer';
+import incidents from './incidentReducer';
 
 const rootReducer = combineReducers({
-    incidenReducer,
+    incidents,
     router: routerReducer,
 });
 
