@@ -50,8 +50,6 @@ const authenticateUser = {
      */
     logoutUser() {
         this.removeToken();
-        localStorage.removeItem('user');
-        localStorage.removeItem('user_avatar');
         location.reload();
     },
 

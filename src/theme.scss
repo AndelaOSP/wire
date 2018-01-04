@@ -11,18 +11,26 @@ body {
   box-sizing: border-box;
 }
 
-// define primary colors
-$colors : (
-  primary: #3359DF,
-  secondary: #0A21A8,
-  primaryshade: #127dc5,
-  header: #09486f,
-  secondaryheader: #358fe2,
-  tertiary: #FFAF30,
-  background: #E4EBF1,
-  btn-background-inactive: #fff,
-  btn-background-hover: #ff5a56,
-  btn-border-inactive: #97c5f0,
+$orange : (
+  400: #FFAF30,
+);
+
+$red : (
+ 300: #ff5a56,
+);
+
+$white : (
+  100: #fff,
+);
+
+$blue : (
+  700: #406f8f,
+  600: #0A21A8,
+  500: #3359DF,
+  400: #083f62,
+  300: #127dc5,
+  200: #358fe2,
+  100: #97c5f0,
 );
 
 $grey : (
@@ -35,6 +43,6 @@ $grey : (
   100: #BCBCBC,
 );
 
-$light-gray : (
-  300: #f9f9f9
-)
+$black : (
+  700 : #000,
+);
