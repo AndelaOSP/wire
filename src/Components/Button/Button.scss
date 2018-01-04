@@ -1,0 +1,33 @@
+@import '../../theme.scss';
+
+.button_ {
+    background-color: map-get($colors, btn-background-inactive) !important;
+    border: 0.09rem solid map-get($colors, btn-border-inactive) !important;
+    border-radius: 6rem !important;
+    max-height: 1.7rem !important;
+    margin: 0.2rem !important;
+
+    &:hover {
+        background-color: map-get($colors, btn-background-hover) !important;
+        border: 0.09rem solid map-get($colors, btn-background-hover) !important;
+        color: map-get($colors, btn-background-inactive) !important;
+    }
+
+    &:focus {
+        background-color: map-get($colors, btn-background-hover) !important;
+    }
+
+    &>div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-height: inherit !important;
+        padding: 0 0.2rem;
+
+        &>span {
+            padding: 0 !important;
+            text-transform: capitalize !important;
+            font-size: 0.6rem !important; 
+        }
+    }
+}

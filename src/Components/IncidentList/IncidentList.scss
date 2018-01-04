@@ -1,0 +1,17 @@
+@import '../../theme.scss';
+
+.table-header {
+    background-color: map-get($colors, secondaryheader);
+    &>th {
+        color: white !important;
+    }
+}
+
+.incident-flag {
+    width: 2rem;
+    height: 2rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
