@@ -1,21 +1,28 @@
-const autoprefixer = require('autoprefixer');
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('postcss-cssnext');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: './src/index.html',
     filename: 'index.html',
     inject: 'body'
 });
 
-const DIST_PATH = path.resolve( __dirname, 'dist' );
-const SOURCE_PATH = path.resolve( __dirname, 'src' );
+const DIST_PATH = path.resolve(__dirname, 'dist');
+const SOURCE_PATH = path.resolve(__dirname, 'src');
 
 module.exports = {
-    devtool: 'inline-source-map',
     entry: [
         SOURCE_PATH + '/index.js'
+    ],
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            title: 'Production'
+        }),
+        HtmlWebpackPluginConfig,
+        new ExtractTextPlugin('style.bundle.css'),
     ],
     output: {
         path: DIST_PATH,
@@ -24,21 +31,9 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test: /\.(js|jsx)$/,
-                enforce: 'pre',
-                use: [
-                    {
-                        options: {
-                            formatter: eslintFormatter,
-                        },
-                        loader: require.resolve('eslint-loader'),
-                    },
-                ]
-            },
             { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
             { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
-            { test: /(\.scss)$/, loaders: ['style-loader', 'css-loader','sass-loader'] },
+            { test: /(\.scss)$/, loaders: ['style-loader', 'css-loader', 'sass-loader'] },
             {
                 test: /\.css$/,
                 use: [
@@ -72,9 +67,10 @@ module.exports = {
                     },
                 ],
             },
-            { test: /\.css$/, loader: ExtractTextPlugin.extract({ use: 'css-loader',}),},
-            //Add only image extensions, but can things like svgs, fonts and videos
-            { test: /\.(png|jpg|gif)$/, use: [ 'file-loader',],},
+            { test: /\.css$/, loader: ExtractTextPlugin.extract({ use: 'css-loader', }), },
+            //Add only image extensions
+            { test: /\.(png|jpg|gif|svg)$/, use: ['file-loader',], },
+            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' }
         ]
     },
     resolve: {
@@ -83,11 +79,4 @@ module.exports = {
             path.join(__dirname, 'node_modules'),
         ],
     },
-    devServer: {
-        historyApiFallback: true,
-    },
-    plugins: [
-        HtmlWebpackPluginConfig,
-        new ExtractTextPlugin('style.bundle.css'),
-    ]
 };
