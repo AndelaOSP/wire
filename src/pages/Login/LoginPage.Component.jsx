@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import './LoginPage.scss';
 
 // config
-import { ConfigData } from '../../config';
+import { config } from '../../config';
 
 //helpers
 import authenticateUser from '../../helpers/auth';
@@ -42,7 +42,7 @@ class LoginPage extends React.Component{
                         <RaisedButton 
                             className="button"
                             icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg"/>}
-                            href={`${ConfigData.ANDELA_API_BASE_URL}/login?redirect_url=${ConfigData.BASE_URL}/login`}
+                            href={`${config.ANDELA_API_BASE_URL}/login?redirect_url=${config.BASE_URL}/login`}
                             label="Sign in with Google" 
                         />
                     </div>

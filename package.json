@@ -9,18 +9,18 @@
     "scripts": {
         "babel": "babel",
         "webpack": "webpack",
-        "start": "npm run prebuild && npm run copy:html && npm run copy:images && webpack-dev-server --host wire.andela.com  --inline --hot --colors --progress && lint:watch",
+        "start": "webpack --config=webpack.dev.js && npm run copy:html && npm run copy:images && webpack-dev-server --host wire.andela.com  --inline --hot --colors --progress && lint:watch",
         "start:dev": "node server.js",
         "lint": "node_modules/.bin/esw webpack.config.* src tools",
         "lint:watch": "npm run lint -- --watch",
         "copy:html": "cp src/index.html dist/",
         "copy:images": "cp assets/images/* dist/",
-        "prebuild": "rm -rf dist && mkdir dist",
-        "build": "npm run prebuild && webpack",
+        "build": "webpack --config=webpack.prod.js",
         "test": "mocha --require babel-register \"src/**/*.test.jsx\" --require ./test/helpers.jsx --require ./test/dom.jsx --recursive"
     },
     "dependencies": {
         "axios": "^0.17.1",
+        "clean-webpack-plugin": "^0.1.17",
         "eslint-plugin-import": "^2.8.0",
         "express": "^4.16.2",
         "history": "^4.7.2",
@@ -29,6 +29,7 @@
         "jwt-decode": "^2.2.0",
         "material-ui": "^0.20.0",
         "path": "^0.12.7",
+        "postcss-cssnext": "^3.0.2",
         "react": "^16.0.0",
         "react-dom": "^16.0.0",
         "react-redux": "^5.0.6",
@@ -69,6 +70,7 @@
         "sass-loader": "^6.0.6",
         "sinon": "^4.0.1",
         "style-loader": "^0.19.0",
-        "webpack-combine-loaders": "^2.0.3"
+        "webpack-combine-loaders": "^2.0.3",
+        "webpack-merge": "^4.1.1"
     }
 }
