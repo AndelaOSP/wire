@@ -1,28 +1,22 @@
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('postcss-cssnext');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-    template: './src/index.html',
-    filename: 'index.html',
-    inject: 'body'
-});
 
 const DIST_PATH = path.resolve(__dirname, 'dist');
 const SOURCE_PATH = path.resolve(__dirname, 'src');
 
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+    template: `${SOURCE_PATH}/index.html`,
+    filename: 'index.html',
+    inject: 'body'
+});
+
 module.exports = {
     entry: [
         SOURCE_PATH + '/index.js'
-    ],
-    plugins: [
-        new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            title: 'Production'
-        }),
-        HtmlWebpackPluginConfig,
-        new ExtractTextPlugin('style.bundle.css'),
     ],
     output: {
         path: DIST_PATH,
@@ -73,6 +67,12 @@ module.exports = {
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' }
         ]
     },
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        HtmlWebpackPluginConfig,
+        new ExtractTextPlugin('style.bundle.css'),
+        new webpack.HotModuleReplacementPlugin(),
+    ],
     resolve: {
         extensions: ['.js', '.jsx', '.json', '*'],
         modules: [
