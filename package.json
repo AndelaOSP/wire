@@ -9,12 +9,10 @@
     "scripts": {
         "babel": "babel",
         "webpack": "webpack",
-        "start": "webpack --config=webpack.dev.js && npm run copy:html && npm run copy:images && webpack-dev-server --host wire.andela.com  --inline --hot --colors --progress && lint:watch",
+        "start": "npm run lint:watch && webpack-dev-server --config=webpack.dev.js --host wire.andela.com --progress",
         "start:dev": "node server.js",
-        "lint": "node_modules/.bin/esw webpack.config.* src tools",
-        "lint:watch": "npm run lint -- --watch",
-        "copy:html": "cp src/index.html dist/",
-        "copy:images": "cp assets/images/* dist/",
+        "lint": "node_modules/.bin/esw webpack.* src tools",
+        "lint:watch": "npm run lint --watch",
         "build": "webpack --config=webpack.prod.js",
         "test": "mocha --require babel-register \"src/**/*.test.jsx\" --require ./test/helpers.jsx --require ./test/dom.jsx --recursive"
     },

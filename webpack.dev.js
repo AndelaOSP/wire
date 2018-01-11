@@ -23,7 +23,8 @@ module.exports = merge(common, {
     },
     devServer: {
         historyApiFallback: true,
-        contentBase: './dist'
+        hot: true,
+        inline: true,
     },
     plugins: [
         new webpack.DefinePlugin({
