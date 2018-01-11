@@ -33,17 +33,17 @@ class LoginPage extends React.Component{
         return (
             <div className="login-page">
                 <div className="left-column">
-                    <img className="logo-image" src="/assets/images/wire_logo.svg" alt="Wire Logo" />
+                 <img className="landing-image" src="/assets/images/wire_landingpage.jpeg" alt="Wire Logo" />
                 </div>
                 <div className="right-column">
                     <div className="login-container">
-                        <h2 className="title">Sign in to Wire</h2>
-                        <p className="instructions">Please use your Andela email</p>
+                    <img className="landing-logo" src="/assets/images/wire_logo_landing.svg" />
+                        <h2 className="title">Sign in with Andela email</h2>
                         <RaisedButton 
                             className="button"
                             icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg"/>}
                             href={`${config.ANDELA_API_BASE_URL}/login?redirect_url=${config.BASE_URL}/login`}
-                            label="Sign in with Google" 
+                            label="login with google" 
                         />
                     </div>
                 </div>
