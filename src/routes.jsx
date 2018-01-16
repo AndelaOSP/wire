@@ -8,6 +8,7 @@ import createHistory from 'history/createBrowserHistory';
 import LoginPage from './pages/Login/LoginPage.Component';
 import Dashboard from './pages/Dashboard/Dashboard.Component';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute.Component';
+import SearchComponent from './pages/Search/Search.Component';
 
 // create history object.
 export const history = createHistory();
@@ -18,9 +19,10 @@ export const history = createHistory();
 const Routes = () => (
     <Router>
         <Switch>
-        <Route exact path="/login" component={LoginPage} />
-            <PrivateRoute path="/" component={Dashboard} />
+            <Route path="/login" component={LoginPage} />
+            <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateRoute path="/dashboard" component= {Dashboard} />
+            <PrivateRoute path="/search" component= {SearchComponent} />
         </Switch>
     </Router>
 );
