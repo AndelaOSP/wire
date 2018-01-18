@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import DatePicker from 'material-ui/DatePicker';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -50,7 +51,7 @@ export default class IncidentFilter extends Component {
           <CustomButton label="Red flag" />
           <CustomButton label="Yellow flag" />
           <CustomButton label="Green flag" />
-          <CustomMenu />
+          <CustomMenu changeCountryFilter={this.props.changeCountryFilter} />
         </div>
         <div className="incident-select">
           <div className="left-section">
@@ -76,3 +77,7 @@ export default class IncidentFilter extends Component {
     );
   }
 }
+
+IncidentFilter.propTypes = {
+  changeCountryFilter: PropTypes.func,
+};

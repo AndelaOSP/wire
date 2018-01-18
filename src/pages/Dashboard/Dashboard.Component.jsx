@@ -21,21 +21,40 @@ import CircularProgressIndicator from '../../Components/Progress/Progress.Compon
 class Dashboard extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      filterKey: 'All Countries'
+    };
+
   }
 
   componentDidMount() {
     this.props.loadIncidents();
   }
 
+  changeFilter() {
+    return (key) => {
+      this.setState({ filterKey: key });
+    };
+  }
+
+  filterIncidents() {
+    if (this.state.filterKey === 'All Countries') {
+      return this.props.incidents;
+    }
+    return this.props.incidents.filter((incident) => {
+      return this.state.filterKey === incident.location_name;
+    });
+  }
+
   render() {
 
-    const { incidents } = this.props;
+    const incidents = this.filterIncidents();
     
     return (
       <div>
         <NavBar />
         <div className="dashboard-container">
-          <IncidentFilter />
+          <IncidentFilter changeCountryFilter={this.changeFilter()} />
           {
             incidents.length ? <IncidentList incidents={incidents}/> : <CircularProgressIndicator />
           }
