@@ -52,7 +52,8 @@ class Dashboard extends Component {
     
     return (
       <div>
-        <NavBar />
+        <NavBar {...this.props} />
+
         <div className="dashboard-container">
           <IncidentFilter changeCountryFilter={this.changeFilter()} />
           {
