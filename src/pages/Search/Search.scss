@@ -1,0 +1,39 @@
+@import '../../theme.scss';
+
+.search-container {
+    width: 70vw;
+    margin-top: 10vh;
+    margin-right: auto;
+    margin-left: auto;
+    color: '#000';
+}
+
+.fa-times-circle:hover {
+    color: map_get($red, 300);
+}
+
+.fa-times-circle {
+    float: right;
+    position: absolute;
+    margin-top: 2.5vh;
+    color: map_get($grey, 200);
+    font-size: 1.7rem !important;
+    cursor: pointer !important;    
+}
+
+.input-style {
+    &>input {
+        box-sizing: border-box !important;
+        font-size: 3rem !important;
+        font-weight: 200 !important;
+        margin-top: 0.7rem !important;
+        color: '#929292'!important;
+        cursor: text !important;
+
+        &:focus {
+            &+div hr {
+                border-bottom: 1px solid map_get($blue, 300) !important;
+            }
+        }
+    }
+}
