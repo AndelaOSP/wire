@@ -24,8 +24,13 @@ export default class IncidentFilter extends Component {
 
   /**
    * Method to handle Dropdown Change
+   * Should display the form to add a note to a selected incident
    */
-  handleDropdownChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => {
+    this.setState({value});
+    this.props.onSelectStatus(value);
+  };
+
 
   render() {
     return (
@@ -60,14 +65,13 @@ export default class IncidentFilter extends Component {
           </div>
           <div className="right-section">
             <DropDownMenu
-            value={this.state.value}
-            onChange={this.handleChange}
+              value={this.state.value}
+              onChange={this.handleChange}
             >
               <MenuItem value={1} primaryText="Mark As" />
-              <MenuItem value={2} primaryText="Resolved" />
-              <MenuItem value={3} primaryText="Open" />
-              <MenuItem value={4} primaryText="In Progress" />
-              <MenuItem value={5} primaryText="Closed" />
+              <MenuItem value={2} primaryText="Pending" />
+              <MenuItem value={3} primaryText="In Progress" />
+              <MenuItem value={4} primaryText="Resolved" />
             </DropDownMenu>
             <CustomButton label="Reply" />
             <CustomButton label="Add Notes" />
@@ -80,4 +84,6 @@ export default class IncidentFilter extends Component {
 
 IncidentFilter.propTypes = {
   changeCountryFilter: PropTypes.func,
+  incident: PropTypes.object,
+  onSelectStatus: PropTypes.func
 };
