@@ -46,6 +46,7 @@ export default class IncidentList extends Component {
     this.setState({
         selected: selectedRows,
     });
+    this.props.onSelect(selectedRows[0]);
   };
 
   /**
@@ -107,5 +108,6 @@ export default class IncidentList extends Component {
  */
 
  IncidentList.propTypes = {
-   incidents: PropTypes.array
+   incidents: PropTypes.array,
+   onSelect: PropTypes.func
  };
