@@ -1,0 +1,22 @@
+@import '../../theme.scss';
+
+.snackbar {
+  margin-bottom: 2rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.19), 0 0.5rem 0.5rem rgba(0,0,0,0.23);
+
+  &>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: inherit !important;
+    padding: 0 0.2rem;
+    background-color: map_get($white, 100) !important;
+
+    &>div {
+      &>span {
+        padding: 0 !important;
+        font-size: 1rem !important;
+      }  
+    }
+  }  
+}
