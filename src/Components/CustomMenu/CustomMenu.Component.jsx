@@ -12,7 +12,7 @@ const styles = {
 /**
  * @class CustomMenu
  */
-class CustomMenu extends React.Component {
+export class CustomMenu extends React.Component {
   constructor() {
     super();
 
