@@ -11,6 +11,7 @@
 /build
 dist/
 package.lock.json
+__tests__/__snapshots__/*
 
 # misc
 .DS_Store
