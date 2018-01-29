@@ -22,7 +22,7 @@ import CustomButton from '../../Components/Button/Button.Component';
 /**
  * @class Dashboard
  */
-class Dashboard extends Component {
+export class Dashboard extends Component {
   constructor(props){
     super(props);
     this.state = {
