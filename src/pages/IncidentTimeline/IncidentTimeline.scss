@@ -1,0 +1,31 @@
+@import "../../theme";
+
+.timeline-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 93vh;
+
+  .timeline-sidebar {
+    justify-content: flex-start;
+    z-index: 2;
+    position: relative;
+  }
+
+  .timeline-main-content {
+    justify-content: flex-end;
+    width: 100vw;
+    padding: 0 1rem;
+    z-index: 0;
+    position: relative;
+
+      .chat-tab, .notes-tab {
+        &>div {
+          &>div {
+            height: 4rem !important; 
+            background-color: white !important;
+            color: black !important;
+          }
+        }
+      }
+  }
+}

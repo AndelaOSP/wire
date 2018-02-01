@@ -7,6 +7,7 @@ import createHistory from 'history/createBrowserHistory';
 // Components
 import LoginPage from './pages/Login/LoginPage.Component';
 import Dashboard from './pages/Dashboard/Dashboard.Component';
+import IncidentTimeline from './pages/IncidentTimeline/IncidentTimeline.Component';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute.Component';
 import SearchComponent from './pages/Search/Search.Component';
 
@@ -22,6 +23,7 @@ const Routes = () => (
       <Route path="/login" component={LoginPage} />
       <PrivateRoute exact path="/" component={Dashboard} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
+      <PrivateRoute path="/timeline/:incidentId" component={IncidentTimeline} />
       <PrivateRoute path="/search" component={SearchComponent} />
     </Switch>
   </Router>
