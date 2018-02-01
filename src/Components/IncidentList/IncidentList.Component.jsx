@@ -12,50 +12,7 @@ import './IncidentList.scss';
 export default class IncidentList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selected: [],
-      flags: {
-        green: '/assets/images/green_flag.svg',
-        yellow: '/assets/images/yellow_flag.svg',
-        red: '/assets/images/red_flag.svg'
-      }
-    };
   }
-
-  /**
-   * Method to determine if a row is selected
-   * @param {number} index - Row index
-   * @returns {boolean}
-   */
-  isSelected = index => {
-    return this.state.selected.indexOf(index) !== -1;
-  };
-
-  /**
-   * Method to set selected row(s)
-   * @param {number} selectedRows - Index of selected Row(s)
-   */
-  handleRowSelection = selectedRows => {
-    this.setState({
-      selected: selectedRows
-    });
-    this.props.onSelect(selectedRows[0]);
-  };
-
-  /**
-   * Method to get incident flag Icon
-   * @param {string} flagType - incident flag type
-   * @returns {string} flagType URL
-   */
-  getIncidentFlag = flagType => {
-    if (flagType === 'type A') {
-      return this.state.flags.green;
-    } else if (flagType === 'type B') {
-      return this.state.flags.yellow;
-    } else {
-      return this.state.flags.red;
-    }
-  };
 
   /**
    * sorts incidents by type
@@ -94,6 +51,5 @@ export default class IncidentList extends Component {
  */
 
 IncidentList.propTypes = {
-  incidents: PropTypes.array,
-  onSelect: PropTypes.func
+  incidents: PropTypes.array
 };

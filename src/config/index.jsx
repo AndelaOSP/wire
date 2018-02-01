@@ -11,7 +11,7 @@ if (isDev) {
   ANDELA_API_BASE_URL = 'https://api.andela.com';
   BASE_URL = 'http://wire.andela.com:8080';
 } else if (isStaging) {
-  API_URL = 'https://wire-api.herokuapp.com/api';
+  API_URL = 'https://wireapi-staging.herokuapp.com/api';
   ANDELA_API_BASE_URL = 'https://api.andela.com';
   BASE_URL = 'http://wire.andela.com:8080';
 } else if (isProd) {
@@ -24,7 +24,7 @@ const config = {
   ANDELA_API_BASE_URL,
   BASE_URL,
   API_URL,
-  INCIDENTS_URL: `${API_URL}/incidents/`,
+  INCIDENTS_URL: `${API_URL}/incidents`,
   USERS_URL: `${API_URL}/users`,
   NOTES_URL: `${API_URL}/notes`
 };

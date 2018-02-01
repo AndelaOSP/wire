@@ -36,6 +36,8 @@ const authenticateUser = {
       if (userInfo.roles.Andelan) {
         localStorage.setItem('user', userInfo.name);
         localStorage.setItem('user_avatar', userInfo.picture);
+        localStorage.setItem('userId', userInfo.id);
+        localStorage.setItem('email', userInfo.email);
         this.isAuthenticated = true;
         return true;
       }

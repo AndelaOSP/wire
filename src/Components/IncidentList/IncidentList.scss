@@ -51,19 +51,23 @@
 
         .incident-cards {
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 27rem;
+            min-height: 65vh;
             overflow-y: scroll;
+            justify-content: space-between;
 
             // style for no incidents message
             .no-incidents {
-                text-align: center;
                 font-weight: 100;
                 color: #b5b5b5;
                 font-size: .9rem;
                 align-items: center;
-                justify-content: space-around;
+                justify-content: center;
+                p {
+                    position: relative;
+                    text-align: center !important;
+                    vertical-align: middle !important;
+                }
             }
 
             .incident-card {
@@ -80,7 +84,10 @@
                     padding-bottom: .2rem;
                     
                     .incident-subject {
-                        
+                        a {
+                            text-decoration: none !important;
+                            color: inherit !important;
+                        }
                     }
 
                     .incident-report-date {

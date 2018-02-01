@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { List, ListItem } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
-import Subheader from 'material-ui/Subheader';
 import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
+import moment from 'moment';
 
 // styling
 import './TimelineChat.scss';
@@ -11,122 +11,68 @@ import './TimelineChat.scss';
 export default class TimelineChat extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      message: ''
+    };
   }
 
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({ message: e.target.value });
+  };
+
+  handlePostMessage = e => {
+    e.preventDefault();
+    this.props.sendMessage(this.props.incident.id, localStorage.getItem('userId'), this.refs.messageInput.getValue());
+    this.setState({ message: '' });
+  };
+
+  handleDateString = date => {
+    return moment(date).format('MMM Do YYYY [at] h:mm a');
+  };
+
   render() {
+    const { chats } = this.props.incident;
     return (
       <div className="chat-container">
         <List className="chat-list">
-          <Subheader>Yesterday</Subheader>
-          <ListItem
-            leftAvatar={<Avatar src={localStorage.getItem('user_avatar')} />}
-            primaryText="Robley Gori at 10:30 am"
-            secondaryText={
-              <p>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>
-            }
-            secondaryTextLines={2}
-            className="chat-item-left"
-          />
-
-          <ListItem
-            rightAvatar={<Avatar src={localStorage.getItem('user_avatar')} />}
-            primaryText="You at 10:30 am"
-            secondaryText={
-              <p>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>
-            }
-            secondaryTextLines={2}
-            className="chat-item-right"
-          />
-
-          <Divider inset />
-
-          <Subheader>Today</Subheader>
-          <ListItem
-            leftAvatar={<Avatar src={localStorage.getItem('user_avatar')} />}
-            primaryText="Robley Gori at 10:30 am"
-            secondaryText={
-              <p>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>
-            }
-            secondaryTextLines={2}
-            className="chat-item-left"
-          />
-
-          <ListItem
-            rightAvatar={<Avatar src={localStorage.getItem('user_avatar')} />}
-            primaryText="You at 10:30 am"
-            secondaryText={
-              <p>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>
-            }
-            secondaryTextLines={2}
-            className="chat-item-right"
-          />
-
-          <ListItem
-            leftAvatar={<Avatar src={localStorage.getItem('user_avatar')} />}
-            primaryText="Robley Gori at 10:30 am"
-            secondaryText={
-              <p>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>
-            }
-            secondaryTextLines={2}
-            className="chat-item-left"
-          />
-
-          <ListItem
-            rightAvatar={<Avatar src={localStorage.getItem('user_avatar')} />}
-            primaryText="You at 10:30 am"
-            secondaryText={
-              <p>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>
-            }
-            secondaryTextLines={2}
-            className="chat-item-right"
-          />
-
-          <ListItem
-            leftAvatar={<Avatar src={localStorage.getItem('user_avatar')} />}
-            primaryText="Robley Gori at 10:30 am"
-            secondaryText={
-              <p>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>
-            }
-            secondaryTextLines={2}
-            className="chat-item-left"
-          />
-
-          <ListItem
-            rightAvatar={<Avatar src={localStorage.getItem('user_avatar')} />}
-            primaryText="You at 10:30 am"
-            secondaryText={
-              <p>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>
-            }
-            secondaryTextLines={2}
-            className="chat-item-right"
-          />
-
-          <ListItem
-            leftAvatar={<Avatar src={localStorage.getItem('user_avatar')} />}
-            primaryText="Robley Gori at 10:30 am"
-            secondaryText={
-              <p>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>
-            }
-            secondaryTextLines={2}
-            className="chat-item-left"
-          />
-
-          <ListItem
-            rightAvatar={<Avatar src={localStorage.getItem('user_avatar')} />}
-            primaryText="You at 10:30 am"
-            secondaryText={
-              <p>I&apos;ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?</p>
-            }
-            secondaryTextLines={2}
-            className="chat-item-right"
-          />
+          {chats.length > 0 ? (
+            chats.map((chat, i) => {
+              return (
+                <ListItem
+                  leftAvatar={<Avatar src={chat.User.imageUrl} />}
+                  primaryText={`${chat.User.name} on ${this.handleDateString(chat.createdAt)}`}
+                  secondaryText={<p> {chat.chat} </p>}
+                  secondaryTextLines={2}
+                  className="chat-item"
+                  key={i}
+                  disabled
+                />
+              );
+            })
+          ) : (
+            <ListItem disabled> No messages. </ListItem>
+          )}
         </List>
 
         <div className="message-input">
-          <TextField hintText="Type a message" underlineShow={false} multiLine className="text-input" />
+          <form onSubmit={this.handlePostMessage}>
+            <TextField
+              hintText="Type a message"
+              value={this.state.message}
+              onChange={this.handleChange}
+              ref="messageInput"
+              underlineShow={false}
+              className="text-input"
+            />
+          </form>
         </div>
       </div>
     );
   }
 }
+
+TimelineChat.propTypes = {
+  incident: PropTypes.object.isRequired,
+  sendMessage: PropTypes.func.isRequired
+};

@@ -1,7 +1,7 @@
 module.exports = {
   incidents: [
     {
-      id: '1',
+      id: 1,
       createdAt: '2018-02-13T15:58:06.202Z',
       subject: 'subject 1',
       description: 'description 1',
@@ -16,7 +16,7 @@ module.exports = {
       categoryId: null
     },
     {
-      id: '2',
+      id: 2,
       createdAt: '2018-02-13T15:58:06.202Z',
       subject: 'subject 2',
       description: 'description 2',
@@ -25,13 +25,13 @@ module.exports = {
       userId: 2,
       statusId: 2,
       levelId: 2,
-      locationId: 'locationId 2',
+      locationId: 2,
       updatedAt: '2018-02-13T15:58:06.202Z',
       assigneeId: 5,
       categoryId: null
     },
     {
-      id: '3',
+      id: 3,
       createdAt: '2018-02-13T15:58:06.202Z',
       subject: 'subject 3',
       description: 'description 3',
@@ -109,46 +109,60 @@ module.exports = {
       email: 'me@example.com',
       name: 'Me Example',
       imageUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
-      roleId: 'Admin'
+      roleId: 2
     },
     {
       id: 2,
       email: 'metwo@example.com',
-      name: 'Metwo Example',
+      name: 'Metwo Ex',
       imageUrl: 'https://randomuser.me/api/portraits/med/men/83.jpg',
-      roleId: 'Admin'
+      roleId: 2
     },
     {
       id: 3,
       email: 'methree@example.com',
-      name: 'Methree Example',
+      name: 'Methree Ex',
       imageUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
-      roleId: 'Admin'
+      roleId: 3
+    },
+    {
+      id: 4,
+      email: 'another@guy.com',
+      name: 'Another Guy',
+      imageUrl: 'https://randomuser.me/api/portraits/med/men/05.jpg',
+      roleId: 1
+    },
+    {
+      id: 5,
+      email: 'another@lady.com',
+      name: 'Another Lady',
+      imageUrl: 'https://randomuser.me/api/portraits/med/women/05.jpg',
+      roleId: 1
     }
   ],
   locations: [
     {
       id: 1,
       name: 'Amphitheatre',
-      center: 'Nairobi',
+      centre: 'Nairobi',
       country: 'Kenya'
     },
     {
       id: 2,
       name: 'Game Room',
-      center: 'Nairobi',
+      centre: 'Nairobi',
       country: 'Kenya'
     },
     {
       id: 3,
       name: 'Board Room',
-      center: 'Nairobi',
+      centre: 'Nairobi',
       country: 'Kenya'
     },
     {
       id: 4,
       name: 'Quiet Room',
-      center: 'Nairobi',
+      centre: 'Nairobi',
       country: 'Kenya'
     }
   ],
@@ -170,15 +184,43 @@ module.exports = {
   statuses: [
     {
       id: 1,
-      status: 'In Progress'
+      status: 'Pending'
     },
     {
       id: 2,
-      status: 'Pending'
+      status: 'In Progress'
     },
     {
       id: 3,
       status: 'Resolved'
     }
-  ]
+  ],
+  testIncident: {
+    id: 1,
+    createdAt: '2018-02-13T15:58:06.202Z',
+    subject: 'subject 1',
+    description: 'description 1',
+    dateOccurred: '2018-02-13T15:58:06.202Z',
+    witnesses: ['@slack_name', '@slack_name'],
+    userId: 1,
+    statusId: 1,
+    levelId: 3,
+    locationId: 1,
+    updatedAt: '2018-02-13T15:58:06.202Z',
+    assigneeId: 2,
+    categoryId: null,
+    Level: { name: 'Red' },
+    User: {
+      name: 'Test User'
+    },
+    Status: {
+      status: 'Pending'
+    },
+    Assignee: {
+      id: 1,
+      name: 'Test Assignee'
+    },
+    notes: [],
+    chats: []
+  }
 };
