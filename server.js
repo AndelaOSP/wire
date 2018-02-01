@@ -37,6 +37,9 @@ if (process.env.NODE_ENV === 'development') {
     app.get('/api/incidents/:id/chats', mockMiddleware.fetchIncidentChats);
     app.put('/api/chats/:id', mockMiddleware.editIncidentChat);
     app.delete('/api/chats/:id', mockMiddleware.archiveIncidentChat);
+
+    // Staff route
+    app.get('/api/users', mockMiddleware.fetchStaff);
     
 	app.use('*', function(req, res, next) {
 		let filename = path.join(compiler.outputPath, 'index.html');

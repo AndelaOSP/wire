@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Badge from 'material-ui/Badge';
 import PropTypes from 'prop-types';
 import FontIcon from 'material-ui/FontIcon';
+import { Link } from 'react-router-dom';
 
 // styles
 import './NavBar.scss';
@@ -39,9 +40,9 @@ export class NavBar extends Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="left-nav-section">
-          <a href="/dashboard">
+          <Link to="/dashboard">
             <img className="logo" src="/assets/images/wire_logo_v1.svg" alt="Wire" />
-          </a>
+          </Link>
           <input
             className="search-input"
             onFocus={this.handleSearch}

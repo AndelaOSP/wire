@@ -10,7 +10,8 @@ const {
   archiveNote,
   archiveChat,
   changeAssignee,
-  changeStatus
+  changeStatus,
+  getStaff
 } = require('./mockControllers');
 
 module.exports = {
@@ -22,13 +23,13 @@ module.exports = {
   },
   fetchIncident: (req, res) => {
     setTimeout(() => {
-      let incidentId = req.params.id;
+      let incidentId = parseInt(req.params.id);
       res.send({ data: getIncident(incidentId), status: 'success' });
     }, 2000);
   },
   updateIncident: (req, res) => {
     setTimeout(() => {
-      let incidentId = req.params.id;
+      let incidentId = parseInt(req.params.id);
       if (req.body.statusId) {
         res.send({ data: changeStatus(incidentId, req.body.statusId), status: 'success' });
       } else if (req.body.assigneeId) {
@@ -38,48 +39,53 @@ module.exports = {
   },
   addNoteToIncident: (req, res) => {
     setTimeout(() => {
-      let incidentId = req.params.id;
+      let incidentId = parseInt(req.params.id);
       let { userId, note } = req.body;
       res.send({ data: addNote(incidentId, userId, note), status: 'success' });
     }, 2000);
   },
   fetchIncidentNotes: (req, res) => {
     setTimeout(() => {
-      res.send({ data: { Notes: getIncidentNotes(req.params.id) }, status: 'success' });
+      res.send({ data: { notes: getIncidentNotes(parseInt(req.params.id)) }, status: 'success' });
     }, 2000);
   },
   editIncidentNote: (req, res) => {
     setTimeout(() => {
-      let noteId = req.params.id;
+      let noteId = parseInt(req.params.id);
       res.send({ data: editNote(noteId, req.body.note), status: 'success' });
     }, 2000);
   },
   archiveIncidentNote: (req, res) => {
     setTimeout(() => {
-      res.send({ data: archiveNote(req.params.id), status: 'success' });
+      res.send({ data: archiveNote(parseInt(req.params.id)), status: 'success' });
     }, 2000);
   },
   addChatToIncident: (req, res) => {
     setTimeout(() => {
-      let incidentId = req.params.id;
+      let incidentId = parseInt(req.params.id);
       let { userId, chat } = req.body;
       res.send({ data: addChat(incidentId, userId, chat), status: 'success' });
     }, 2000);
   },
   fetchIncidentChats: (req, res) => {
     setTimeout(() => {
-      res.send({ data: { Chats: getIncidentChats(req.params.id) }, status: 'success' });
+      res.send({ data: { chats: getIncidentChats(parseInt(req.params.id)) }, status: 'success' });
     }, 2000);
   },
   editIncidentChat: (req, res) => {
     setTimeout(() => {
-      let chatId = req.params.id;
+      let chatId = parseInt(req.params.id);
       res.send({ data: editChat(chatId, req.body.chat), status: 'success' });
     }, 2000);
   },
   archiveIncidentChat: (req, res) => {
     setTimeout(() => {
-      res.send({ data: archiveChat(req.params.id), status: 'success' });
+      res.send({ data: archiveChat(parseInt(req.params.id)), status: 'success' });
+    }, 2000);
+  },
+  fetchStaff: (req, res) => {
+    setTimeout(() => {
+      res.send({ users: getStaff(), status: 'success' });
     }, 2000);
   }
 };
