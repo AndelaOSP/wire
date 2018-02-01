@@ -68,7 +68,7 @@ export default class IncidentFilter extends Component {
             hintText="From"
             mode="landscape"
             container="inline"
-            autoOk={true}
+            autoOk
             textFieldStyle={{ fontSize: '0.8rem', textAlign: 'center' }}
           />
 
@@ -77,7 +77,7 @@ export default class IncidentFilter extends Component {
             hintText="To"
             mode="landscape"
             container="inline"
-            autoOk={true}
+            autoOk
             textFieldStyle={{ fontSize: '0.8rem', textAlign: 'center' }}
           />
 

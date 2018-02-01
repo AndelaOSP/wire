@@ -81,8 +81,8 @@ export class Dashboard extends Component {
   render() {
     const incidents = this.filterIncidents();
     const actions = [
-      <CustomButton label="Cancel" onClick={this.handleClose} />,
-      <CustomButton label="Submit" onClick={this.handleSubmit} />
+      <CustomButton key={1} label="Cancel" onClick={this.handleClose} />,
+      <CustomButton key={2} label="Submit" onClick={this.handleSubmit} />
     ];
 
     return (
@@ -108,9 +108,9 @@ export class Dashboard extends Component {
         >
           <TextField
             hintText="Add notes"
-            fullWidth={true}
+            fullWidth
             floatingLabelText="Add notes to the incident"
-            multiLine={true}
+            multiLine
             rows={3}
             ref="notesTextField"
           />

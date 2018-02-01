@@ -1,0 +1,75 @@
+@import "../../theme";
+
+.notes-container {
+  max-height: 80vh !important;
+  overflow: auto;
+
+  .notes-list {
+    width: 85%;
+    margin: 2rem auto;
+
+    .subheader {
+      padding-left: 0 !important;
+      font-weight: 900 !important;
+    }
+
+    .notes-list-item {
+
+      &>div {
+        &>div {
+          padding: 0 !important;
+        }
+      }
+
+      .single-note-container {
+        padding: 0;
+        .note-header {
+          margin: 0.5rem 0;
+          font-weight: 700;
+        }
+
+        .note-divider {
+          width: 25% !important;
+          height: 0.25rem !important;
+        }
+
+        .note-content {
+          margin: 0.5rem 0;
+          padding: 0.5rem 0;
+          font-size: 0.75rem;
+          font-weight: 200;
+          line-height: 1.5rem;
+        }
+
+        .note-actions {
+          margin: 0.5rem;
+          padding: 1rem 0;
+          
+          svg {
+            fill: #747474 !important;
+          }
+
+          .note-action-edit, .note-action-archive {
+            padding: 0 0.25rem;
+          }
+        }
+      }
+    }
+  }
+
+  .message-input {
+    margin: 0 auto !important;
+    top: auto !important;
+    bottom: 0 !important;
+    position: absolute !important;
+    background-color: map_get($white, 100) !important;
+    width: 100% !important;
+    
+    .text-input {
+      border-top-color: map_get($grey, 700) !important; 
+      border-top-style: solid !important;
+      border-top-width: thin;
+      width: 100% !important;
+    }
+  }
+}
