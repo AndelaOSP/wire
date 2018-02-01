@@ -1,23 +1,12 @@
 @import "../../theme";
 
 .chat-container {
-  max-height: 80vh !important;
+  height: 80vh !important;
   overflow: auto;
 
   .chat-list {
     width: 90%;
     margin: 2rem auto;
-
-    .chat-item-right {
-      &>div {
-        &>div {
-            text-align: right;
-          &>div, p {
-            padding-right: 1rem;
-          }
-        }
-      } 
-    }
   }
 
   .message-input {
@@ -27,6 +16,7 @@
     position: absolute !important;
     background-color: map_get($white, 100) !important;
     width: 100% !important;
+    height: 2vh !important;
 
     .text-input {
       border-top-color: map_get($grey, 700) !important; 

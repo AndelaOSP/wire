@@ -26,13 +26,16 @@ class IncidentSection extends Component {
       <div>
         <div className="incident-title">
           <span className="incident-status">{incidentStatus}</span>
-          <span className="incident-count">{incidents.length} Incidents</span>
+          <span className="incident-count">
+            {incidents.length} {incidents.length === 1 ? 'Incident' : 'Incidents'}
+          </span>
         </div>
         <div className="incident-cards">
           {incidents.length ? (
             incidents.map(incident => (
               <IncidentCard
                 key={incident.id}
+                incidentId={incident.id}
                 incidentSubject={incident.subject}
                 incidentReportDate={`reported on ${this.getDate(incident.dateOccurred)}`}
                 incidentTime={this.getTime(incident.dateOccurred)}
@@ -41,7 +44,9 @@ class IncidentSection extends Component {
               />
             ))
           ) : (
-            <span className="no-incidents"> No Incidents {this.props.incidentStatus.toUpperCase()}</span>
+            <div className="no-incidents">
+              <p> No Incidents {this.props.incidentStatus.toUpperCase()}</p>
+            </div>
           )}
         </div>
       </div>

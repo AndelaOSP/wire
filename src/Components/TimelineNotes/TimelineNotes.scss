@@ -1,7 +1,7 @@
 @import "../../theme";
 
 .notes-container {
-  max-height: 80vh !important;
+  height: 80vh !important;
   overflow: auto;
 
   .notes-list {
@@ -14,7 +14,6 @@
     }
 
     .notes-list-item {
-
       &>div {
         &>div {
           padding: 0 !important;
@@ -25,11 +24,10 @@
         padding: 0;
         .note-header {
           margin: 0.5rem 0;
-          font-weight: 700;
         }
 
         .note-divider {
-          width: 25% !important;
+          width: 30% !important;
           height: 0.25rem !important;
         }
 
@@ -51,6 +49,7 @@
 
           .note-action-edit, .note-action-archive {
             padding: 0 0.25rem;
+            cursor: pointer;
           }
         }
       }
@@ -64,6 +63,8 @@
     position: absolute !important;
     background-color: map_get($white, 100) !important;
     width: 100% !important;
+    min-height: 2% !important;
+    max-height: 2% !important; 
     
     .text-input {
       border-top-color: map_get($grey, 700) !important; 

@@ -77,6 +77,7 @@ class SearchComponent extends Component {
             ? this.state.incidents.map(incident => (
                 <IncidentCard
                   key={incident.id}
+                  incidentId={incident.id}
                   incidentSubject={incident.subject}
                   incidentReportDate={`reported on ${this.getDate(incident.dateOccurred)}`}
                   incidentTime={this.getTime(incident.dateOccurred)}

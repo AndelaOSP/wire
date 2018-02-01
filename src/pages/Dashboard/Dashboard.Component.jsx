@@ -2,22 +2,19 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Dialog from 'material-ui/Dialog';
-import TextField from 'material-ui/TextField';
 
 // actions
-import { loadIncidents, changeStatus } from '../../actions/incidentAction';
+import { loadIncidents } from '../../actions/incidentAction';
 
 // styling
 import './Dashboard.scss';
 
 // Components
 import NavBar from '../../Common/NavBar/NavBar.Component';
+import CustomNotification from '../../Components/CustomNotification/CustomNotification.Component';
 import IncidentFilter from '../../Components/IncidentFilter/IncidentFilter.Component';
 import IncidentList from '../../Components/IncidentList/IncidentList.Component';
-import CustomButton from '../../Components/Button/Button.Component';
 import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
-import CustomNotification from '../../Components/CustomNotification/CustomNotification.Component';
 
 /**
  * @class Dashboard
@@ -50,42 +47,9 @@ export class Dashboard extends Component {
       return this.state.filterKey === incident.location_name;
     });
   }
-  handleSelectedIncident = selectedIncidentIndex => {
-    let selectedIncident = this.props.incidents[selectedIncidentIndex];
-    this.setState({ ...selectedIncident });
-  };
-
-  handleSelectedValue = value => {
-    if (!this.state.id) {
-      alert('Please select an incident first!');
-    } else {
-      this.setState({ value: value });
-      this.setState({ showNotesDialog: !this.state.showNotesDialog });
-    }
-  };
-
-  handleClose = () => {
-    this.setState({ showNotesDialog: !this.state.showNotesDialog });
-  };
-  /**
-   * Get the notes from the text field
-   * Get the updated status of the incident
-   * Send it to the API end point
-   */
-  handleSubmit = () => {
-    let noteText = this.refs.notesTextField.getValue();
-    let incidentId = this.state.id;
-    let statusId = this.state.value - 1;
-    this.props.changeStatus(statusId, incidentId);
-    this.setState({ showNotesDialog: !this.state.showNotesDialog });
-  };
 
   render() {
     const incidents = this.filterIncidents();
-    const actions = [
-      <CustomButton key={1} label="Cancel" onClick={this.handleClose} />,
-      <CustomButton key={2} label="Submit" onClick={this.handleSubmit} />
-    ];
     const isLoading = this.props.isLoading;
     const isError = this.props.isError;
     const error = this.props.errorMessage;
@@ -113,24 +77,15 @@ export class Dashboard extends Component {
           <CustomNotification type={'error'} message={error} open={false} />
         )}
 
-        <Dialog
-          title={'Subject: ' + this.state.subject || null}
-          actions={actions}
-          modal={false}
-          open={this.state.showNotesDialog}
-          onRequestClose={this.handleDialog}
-          actionsContainerClassName="dialogActions"
-          titleClassName="dialog-title"
-        >
-          <TextField
-            hintText="Add notes"
-            fullWidth
-            floatingLabelText="Add notes to the incident"
-            multiLine
-            rows={3}
-            ref="notesTextField"
+        {this.props.location.state ? (
+          <CustomNotification
+            type={this.props.location.state.type}
+            message={this.props.location.state.message}
+            open={this.props.location.state.open}
           />
-        </Dialog>
+        ) : (
+          <CustomNotification type="default" message="" open={false} />
+        )}
       </div>
     );
   }
@@ -142,7 +97,7 @@ export class Dashboard extends Component {
 Dashboard.propTypes = {
   incidents: PropTypes.array.isRequired,
   loadIncidents: PropTypes.func.isRequired,
-  changeStatus: PropTypes.func.isRequired,
+  location: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired
@@ -169,8 +124,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      loadIncidents,
-      changeStatus
+      loadIncidents
     },
     dispatch
   );

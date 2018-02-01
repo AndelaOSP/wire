@@ -1,6 +1,6 @@
 const fuzzysearch = require('fuzzysearch');
 
-let { incidents, chats, notes, users, statuses, levels } = require('./mockData');
+let { incidents, chats, notes, users, statuses, levels, locations } = require('./mockData');
 
 module.exports = {
   getIncident: incidentId => {
@@ -23,6 +23,9 @@ module.exports = {
       levels.find(level => {
         return level.id === incident.levelId;
       }) || null;
+    incident['Location'] = locations.find(location => {
+      return location.id === incident.locationId;
+    });
     return incident;
   },
   getIncidents: query => {
@@ -48,7 +51,7 @@ module.exports = {
   },
   getIncidentNotes: incidentId => {
     let incidentNotes = notes.filter(note => {
-      return note.incidentId == incidentId;
+      return note.incidentId === incidentId;
     });
     incidentNotes.map(
       note =>
@@ -60,7 +63,7 @@ module.exports = {
   },
   getIncidentChats: incidentId => {
     let incidentChats = chats.filter(chat => {
-      return chat.incidentId == incidentId;
+      return chat.incidentId === incidentId;
     });
     incidentChats.map(chat => {
       chat['User'] = users.find(user => {
@@ -70,24 +73,74 @@ module.exports = {
     return incidentChats;
   },
   changeStatus: (incidentId, statusId) => {
-    return this.getIncident(incidentId);
+    let incident = incidents.find(incident => {
+      return incident.id === parseInt(incidentId);
+    });
+    incident.statusId = statusId;
+    incident['Assignee'] =
+      users.find(user => {
+        return user.id === incident.assigneeId;
+      }) || null;
+    incident['User'] =
+      users.find(user => {
+        return user.id === incident.userId;
+      }) || null;
+    incident['Status'] =
+      statuses.find(status => {
+        return status.id === statusId;
+      }) || null;
+    incident['Level'] =
+      levels.find(level => {
+        return level.id === incident.levelId;
+      }) || null;
+    incident['Location'] = locations.find(location => {
+      return location.id === incident.locationId;
+    });
+    return incident;
   },
   changeAssignee: (incidentId, assigneeId) => {
-    return this.getIncident(incidentId);
+    let incident = incidents.find(incident => {
+      return incident.id === incidentId;
+    });
+    incident.assigneeId = assigneeId;
+    incident['Assignee'] =
+      users.find(user => {
+        return user.id === assigneeId;
+      }) || null;
+    incident['User'] =
+      users.find(user => {
+        return user.id === incident.userId;
+      }) || null;
+    incident['Status'] =
+      statuses.find(status => {
+        return status.id === incident.statusId;
+      }) || null;
+    incident['Level'] =
+      levels.find(level => {
+        return level.id === incident.levelId;
+      }) || null;
+    incident['Location'] = locations.find(location => {
+      return location.id === incident.locationId;
+    });
+    return incident;
   },
   addNote: (incidentId, userId, note) => {
     let newNote = {
-      id: chats.length++,
+      id: notes.length++,
       incidentId,
       userId,
       note
     };
     notes.push(newNote);
+    newNote['User'] =
+      users.find(user => {
+        return user.id === newNote.userId;
+      }) || {};
     return newNote;
   },
   editNote: (noteId, note) => {
     let noteToEdit = notes.find(note => {
-      return note.id == noteId;
+      return note.id === noteId;
     });
     noteToEdit.note = note;
     noteToEdit['User'] = users.find(user => {
@@ -97,12 +150,12 @@ module.exports = {
   },
   archiveNote: noteId => {
     return notes.filter(note => {
-      return note.id != noteId;
+      return note.id !== noteId;
     });
   },
   getChat: chatId => {
     return chats.find(chat => {
-      return chat.id == chatId;
+      return chat.id === chatId;
     });
   },
   addChat: (incidentId, userId, chat) => {
@@ -113,11 +166,15 @@ module.exports = {
       chat
     };
     chats.push(newChat);
+    newChat['User'] =
+      users.find(user => {
+        return user.id === newChat.userId;
+      }) || {};
     return newChat;
   },
   editChat: (chatId, chat) => {
     let chatToEdit = chats.find(chat => {
-      return chat.id == chatId;
+      return chat.id === chatId;
     });
     chatToEdit.chat = chat;
     chatToEdit['User'] = users.find(user => {
@@ -127,7 +184,12 @@ module.exports = {
   },
   archiveChat: chatId => {
     return chats.filter(chat => {
-      return chat.id != chatId;
+      return chat.id !== chatId;
+    });
+  },
+  getStaff: () => {
+    return users.filter(user => {
+      return user.roleId !== 1;
     });
   }
 };

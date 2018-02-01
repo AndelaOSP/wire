@@ -5,5 +5,10 @@ export default {
   error: {
     status: false,
     message: ''
-  }
+  },
+  selectedIncident: {
+    notes: [],
+    chats: []
+  },
+  staff: []
 };
