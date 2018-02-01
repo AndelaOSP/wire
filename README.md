@@ -54,14 +54,14 @@ Please read [CONTRIBUTING.md](https://github.com/AndelaOSP/wire/blob/develop/CON
 
 ## Authors
 
-* [Mbarak Mbigo](https://github.com/Mbarak-mbigo)
-* [James Kimani](https://github.com/jimmykimani)
-* [Rachael Njeri](github.com/RayNjeri)
-* [Robley Gori](https://github.com/Nairobley)
+* [Anthony Nandaa](https://github.com/andela-anandaa)
 * [Daniel Wangai](https://github.com/danielwangai)
 * [Humphrey Musonye](https://github.com/andela-hms)
 * [Ian Kingori](https://github.com/andela-ik)
-* [Anthony Nandaa](https://github.com/andela-anandaa)
+* [James Kimani](https://github.com/jimmykimani)
+* [Mbarak Mbigo](https://github.com/Mbarak-mbigo)
+* [Rachael Njeri](github.com/RayNjeri)
+* [Robley Gori](https://github.com/Nairobley)
 
 ## License
 
