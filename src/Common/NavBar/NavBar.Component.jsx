@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Badge from 'material-ui/Badge';
 import PropTypes from 'prop-types';
+import FontIcon from 'material-ui/FontIcon';
 
 // styles
 import './NavBar.scss';
@@ -38,7 +39,9 @@ export class NavBar extends Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="left-nav-section">
-          <img className="logo" src="/assets/images/wire_logo_v1.svg" alt="Wire" />
+          <a href="/dashboard">
+            <img className="logo" src="/assets/images/wire_logo_v1.svg" alt="Wire" />
+          </a>
           <input
             className="search-input"
             onFocus={this.handleSearch}
@@ -48,7 +51,7 @@ export class NavBar extends Component {
         </div>
         <div className="right-nav-section">
           <div className="notifications">
-            <i className="fa fa-bell-o fa-2x notification-icon" aria-hidden="true" />
+            <FontIcon className="material-icons">notifications</FontIcon>
             <Badge badgeContent={4} className="badge" />
           </div>
           <div className="profile">
