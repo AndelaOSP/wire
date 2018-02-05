@@ -2,19 +2,19 @@
 
 .button_ {
     background-color: map-get($white, 100) !important;
-    border: 0.09rem solid map-get($blue, 100) !important;
-    border-radius: 6rem !important;
-    max-height: 1.7rem !important;
+    border: 0.09rem solid map-get($grey, 500) !important;
+    border-radius: 0.5rem !important;
+    max-height: 2rem !important;
     margin: 0.2rem !important;
 
     &:hover {
-        background-color: map-get($red, 300) !important;
-        border: 0.09rem solid map-get($red, 300) !important;
+        background-color: map-get($grey, 600) !important;
+        border: 0.09rem solid map-get($grey, 600) !important;
         color: map-get($white, 100) !important;
     }
 
     &:focus {
-        background-color: map-get($red, 300) !important;
+        background-color: map-get($grey, 600) !important;
     }
 
     &>div {
