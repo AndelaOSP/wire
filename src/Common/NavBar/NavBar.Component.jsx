@@ -11,7 +11,7 @@ import authenticateUser from '../../helpers/auth';
 /**
  * @class NavBar
  */
-export default class NavBar extends Component {
+export class NavBar extends Component {
   constructor(props){
     super(props);
   }
@@ -48,12 +48,14 @@ export default class NavBar extends Component {
           </div>
           <div className="profile">
               <div className="dropdowntn">
-                <span className="user-name">{localStorage.getItem('user')}</span>
                 <img className="profile-img" src={localStorage.getItem('user_avatar')} alt="Wire"/>
+                <span className="user-name">{localStorage.getItem('user')}</span>
                 <i className="fa fa-caret-down" aria-hidden="true" />
               </div>
-              <div className="dropdown-content" onClick={this.handleSignOut}>
-                 <span>Logout</span>
+              <div className="dropdown-content">
+                <span>Profile</span>
+                <span>Settings</span>
+                <span onClick={this.handleSignOut}>Logout</span>
               </div>
           </div>
         </div>  
@@ -68,3 +70,5 @@ export default class NavBar extends Component {
 NavBar.propTypes = {
   history: PropTypes.object.isRequired,
 };
+
+export default NavBar;

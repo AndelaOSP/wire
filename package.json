@@ -21,7 +21,7 @@
         "lint:watch": "npm run lint --watch",
         "build": "webpack --config=webpack.prod.js",
         "test": "npm run test:fend",
-        "test:fend": "./node_modules/.bin/jest",
+        "test:fend": "./node_modules/.bin/jest -u",
         "test:watch": "npm run test -- --watch"
     },
     "dependencies": {
