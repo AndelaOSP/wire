@@ -33,6 +33,7 @@ export class CustomMenu extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
           style={styles.customWidth}
+          style={{ fontSize: '0.8rem', textAlign: 'center', width: '10rem' }}
         >
           <MenuItem value="All Countries" primaryText="All Countries" />
           <MenuItem value="Nairobi, Kenya" primaryText="Kenya" />

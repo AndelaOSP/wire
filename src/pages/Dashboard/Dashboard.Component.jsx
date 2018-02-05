@@ -13,7 +13,7 @@ import { addNote } from '../../actions/noteAction';
 import './Dashboard.scss';
 
 // Components
-import NavBar from '../../Components/NavBar/NavBar.Component';
+import NavBar from '../../Common/NavBar/NavBar.Component';
 import IncidentFilter from '../../Components/IncidentFilter/IncidentFilter.Component';
 import IncidentList from '../../Components/IncidentList/IncidentList.Component';
 import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
@@ -97,9 +97,9 @@ export class Dashboard extends Component {
     return (
       <div>
         <NavBar {...this.props} />
-
+        <IncidentFilter incident={this.state.selectedIncident} changeCountryFilter={this.changeFilter()} onSelectStatus={this.handleSelectedValue} />
         <div className="dashboard-container">
-          <IncidentFilter incident={this.state.selectedIncident} changeCountryFilter={this.changeFilter()} onSelectStatus={this.handleSelectedValue} />
+          
           {
             incidents.length ? <IncidentList incidents={incidents} onSelect={this.handleSelectedIncident}/> : <CircularProgressIndicator />
           }
