@@ -16,6 +16,16 @@ Please note we have a code of conduct, please follow it in all your interactions
 4. You may merge the Pull Request in once you have the sign-off of two other developers, or if you 
    do not have permission to do that, you may request the second reviewer to merge it for you.
 
+### NB: Ensure you adhere to this PR Template when requsting for a pull  request:
+
+#### What does this PR do?
+#### Description of Task to be completed?
+#### Where should the reviewer start?
+#### How should this be manually tested?
+#### Any background context you want to provide?
+#### What are the relevant pivotal tracker stories?
+#### Screenshots (if appropriate)
+
 ## Code of Conduct
 
 ### Our Pledge
