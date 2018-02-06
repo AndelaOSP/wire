@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import PropTypes from 'prop-types';
+
+import IncidentSection from './IncidentSection.Component';
 
 //styling
 import './IncidentList.scss';
@@ -65,40 +59,27 @@ export default class IncidentList extends Component {
   }
   
   render() {
-
-    const { incidents } = this.props;
-
     return (
-      <Table onRowSelection={this.handleRowSelection}>
-        <TableHeader>
-          <TableRow className="table-header">
-            <TableHeaderColumn>Avator</TableHeaderColumn>
-            <TableHeaderColumn>Reporter</TableHeaderColumn>
-            <TableHeaderColumn>Type</TableHeaderColumn>
-            <TableHeaderColumn>Description</TableHeaderColumn>
-            <TableHeaderColumn>Time</TableHeaderColumn>
-            <TableHeaderColumn>Location</TableHeaderColumn>
-            <TableHeaderColumn>Witnesses</TableHeaderColumn>
-            <TableHeaderColumn>Status</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody showRowHover>
-          {
-            incidents.map((incident, index) => (
-              <TableRow key={index} selected={this.isSelected(index)}>
-                <TableRowColumn>{incident.owner_avatar}</TableRowColumn>
-                <TableRowColumn>{incident.slack_handle_reporter}</TableRowColumn>
-                <TableRowColumn><img className="incident-flag" src={this.getIncidentFlag(incident.incident_type)} /></TableRowColumn>
-                <TableRowColumn><FlatButton label="Show"/></TableRowColumn>
-                <TableRowColumn>{incident.date_occurred}</TableRowColumn>
-                <TableRowColumn>{incident.location_name}</TableRowColumn>
-                <TableRowColumn>@slack.handle</TableRowColumn>
-                <TableRowColumn><FlatButton label={incident.status}/></TableRowColumn>
-              </TableRow>
-            ))
-          }
-        </TableBody>
-      </Table>
+      <div className="all-incidents">
+        <div className="incidents incidents-pending">
+          <IncidentSection
+            incidentStatus={'PENDING'}
+            incidents={[]} // replace with pending data from api
+          />
+        </div>
+        <div className="incidents incidents-progress">
+          <IncidentSection
+            incidentStatus={'IN PROGRESS'}
+            incidents={[]} // replace with pending data from api
+          />
+        </div>
+        <div className="incidents incidents-resolved">
+          <IncidentSection
+            incidentStatus={'RESOLVED'}
+            incidents={[]} // replace with pending data from api
+          />
+        </div>
+      </div>
     );
   }
 }
