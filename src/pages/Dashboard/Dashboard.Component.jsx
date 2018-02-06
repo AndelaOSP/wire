@@ -16,7 +16,6 @@ import './Dashboard.scss';
 import NavBar from '../../Common/NavBar/NavBar.Component';
 import IncidentFilter from '../../Components/IncidentFilter/IncidentFilter.Component';
 import IncidentList from '../../Components/IncidentList/IncidentList.Component';
-import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
 import CustomButton from '../../Components/Button/Button.Component';
 
 /**
@@ -99,10 +98,7 @@ export class Dashboard extends Component {
         <NavBar {...this.props} />
         <IncidentFilter incident={this.state.selectedIncident} changeCountryFilter={this.changeFilter()} onSelectStatus={this.handleSelectedValue} />
         <div className="dashboard-container">
-          
-          {
-            incidents.length ? <IncidentList incidents={incidents} onSelect={this.handleSelectedIncident}/> : <CircularProgressIndicator />
-          }
+          { <IncidentList incidents={incidents} onSelect={this.handleSelectedIncident}/> }
         </div>
 
         <Dialog
