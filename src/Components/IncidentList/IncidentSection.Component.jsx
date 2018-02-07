@@ -7,11 +7,11 @@ import IncidentCard from './IncidentCard.Component';
 import './IncidentList.scss';
 
 class IncidentSection extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
   }
 
-  render () {
+  render() {
     const { incidentStatus, incidents } = this.props;
     return (
       <div>
@@ -20,19 +20,20 @@ class IncidentSection extends Component {
           <span className="incident-count">{incidents.length} Incidents</span>
         </div>
         <div className="incident-cards">
-          {incidents.length
-          ? incidents.map((incident) => (
-            <IncidentCard
-              key={incident.id}
-              incidentSubject={incident.subject}
-              incidentReportDate={incident.reportDate}
-              incidentTime={incident.time}
-              incidentHandler={incident.handler}
-              incidentFlag={incident.flag}
-            />
-          ))
-          : <div className="no-incidents"> No Incidents {this.props.incidentStatus.toUpperCase()}</div>
-          }
+          {incidents.length ? (
+            incidents.map(incident => (
+              <IncidentCard
+                key={incident.id}
+                incidentSubject={incident.subject}
+                incidentReportDate={incident.reportDate}
+                incidentTime={incident.time}
+                incidentHandler={incident.handler}
+                incidentFlag={incident.flag}
+              />
+            ))
+          ) : (
+            <div className="no-incidents"> No Incidents {this.props.incidentStatus.toUpperCase()}</div>
+          )}
         </div>
       </div>
     );
@@ -44,7 +45,7 @@ const { string, array } = PropTypes;
 
 IncidentSection.propTypes = {
   incidentStatus: string.isRequired,
-  incidents: array.isRequired,
+  incidents: array.isRequired
 };
 
 export default IncidentSection;

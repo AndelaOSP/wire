@@ -27,24 +27,23 @@ export default class IncidentFilter extends Component {
    * Should display the form to add a note to a selected incident
    */
   handleChange = (event, index, value) => {
-    this.setState({value});
+    this.setState({ value });
     this.props.onSelectStatus(value);
   };
-
 
   render() {
     const styles = {
       thumbOff: {
-        backgroundColor: '#616161',
+        backgroundColor: '#616161'
       },
       trackOff: {
-        backgroundColor: '#BCBCBC',
+        backgroundColor: '#BCBCBC'
       },
       thumbSwitched: {
-        backgroundColor: '#127dc5',
+        backgroundColor: '#127dc5'
       },
       trackSwitched: {
-        backgroundColor: '#81D4FA',
+        backgroundColor: '#81D4FA'
       }
     };
     return (
@@ -52,8 +51,8 @@ export default class IncidentFilter extends Component {
         <div className="filters">
           <span className="incidents-label">Show Incidents</span>
 
-          <SelectField 
-            value={0} 
+          <SelectField
+            value={0}
             className="duration-filter"
             style={{ fontSize: '0.8rem', textAlign: 'center', width: '9rem' }}
           >
@@ -82,8 +81,8 @@ export default class IncidentFilter extends Component {
             textFieldStyle={{ fontSize: '0.8rem', textAlign: 'center' }}
           />
 
-          <SelectField 
-            value={0} 
+          <SelectField
+            value={0}
             className="flag-filter"
             style={{ fontSize: '0.8rem', textAlign: 'center', width: '8rem' }}
           >
@@ -94,22 +93,19 @@ export default class IncidentFilter extends Component {
           </SelectField>
 
           <div className="toggle-section">
-            <span className="toggle-label">Mine</span> 
+            <span className="toggle-label">Mine</span>
 
             <Toggle
               thumbStyle={styles.thumbOff}
               trackStyle={styles.trackOff}
               thumbSwitchedStyle={styles.thumbSwitched}
               trackSwitchedStyle={styles.trackSwitched}
-            /> 
+            />
 
             <span className="toggle-label">All</span>
           </div>
-          
-          <CustomMenu 
-            className="country-filter" 
-            changeCountryFilter={this.props.changeCountryFilter} 
-          />
+
+          <CustomMenu className="country-filter" changeCountryFilter={this.props.changeCountryFilter} />
         </div>
       </div>
     );

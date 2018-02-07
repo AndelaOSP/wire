@@ -5,9 +5,9 @@ import incidents from './incidentReducer';
 import notes from './noteReducer';
 
 const rootReducer = combineReducers({
-    incidents,
-    notes,
-    router: routerReducer,
+  incidents,
+  notes,
+  router: routerReducer
 });
 
 export default rootReducer;

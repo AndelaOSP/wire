@@ -1,4 +1,4 @@
 export default {
-    incidents: [],
-    notes: []
+  incidents: [],
+  notes: []
 };

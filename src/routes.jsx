@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-// History 
+// History
 import createHistory from 'history/createBrowserHistory';
 
 // Components
@@ -17,14 +17,14 @@ export const history = createHistory();
  * Application primary routes
  */
 const Routes = () => (
-    <Router>
-        <Switch>
-            <Route path="/login" component={LoginPage} />
-            <PrivateRoute exact path="/" component={Dashboard} />
-            <PrivateRoute path="/dashboard" component= {Dashboard} />
-            <PrivateRoute path="/search" component= {SearchComponent} />
-        </Switch>
-    </Router>
+  <Router>
+    <Switch>
+      <Route path="/login" component={LoginPage} />
+      <PrivateRoute exact path="/" component={Dashboard} />
+      <PrivateRoute path="/dashboard" component={Dashboard} />
+      <PrivateRoute path="/search" component={SearchComponent} />
+    </Switch>
+  </Router>
 );
 
 export default Routes;
