@@ -22,7 +22,7 @@ import CustomButton from '../../Components/Button/Button.Component';
  * @class Dashboard
  */
 export class Dashboard extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       filterKey: 'All Countries',
@@ -36,7 +36,7 @@ export class Dashboard extends Component {
   }
 
   changeFilter() {
-    return (key) => {
+    return key => {
       this.setState({ filterKey: key });
     };
   }
@@ -45,17 +45,17 @@ export class Dashboard extends Component {
     if (this.state.filterKey === 'All Countries') {
       return this.props.incidents;
     }
-    return this.props.incidents.filter((incident) => {
+    return this.props.incidents.filter(incident => {
       return this.state.filterKey === incident.location_name;
     });
   }
-  handleSelectedIncident = (selectedIncidentIndex) => {
+  handleSelectedIncident = selectedIncidentIndex => {
     let selectedIncident = this.props.incidents[selectedIncidentIndex];
     this.setState({ ...selectedIncident });
   };
 
-  handleSelectedValue = (value) => {
-    if (!this.state.id ){
+  handleSelectedValue = value => {
+    if (!this.state.id) {
       alert('Please select an incident first!');
     } else {
       this.setState({ value: value });
@@ -83,22 +83,20 @@ export class Dashboard extends Component {
   render() {
     const incidents = this.filterIncidents();
     const actions = [
-      <CustomButton 
-        label="Cancel" 
-        onClick={this.handleClose}
-        />,
-      <CustomButton 
-        label="Submit" 
-        onClick={this.handleSubmit}
-        />
+      <CustomButton label="Cancel" onClick={this.handleClose} />,
+      <CustomButton label="Submit" onClick={this.handleSubmit} />
     ];
 
     return (
       <div>
         <NavBar {...this.props} />
-        <IncidentFilter incident={this.state.selectedIncident} changeCountryFilter={this.changeFilter()} onSelectStatus={this.handleSelectedValue} />
+        <IncidentFilter
+          incident={this.state.selectedIncident}
+          changeCountryFilter={this.changeFilter()}
+          onSelectStatus={this.handleSelectedValue}
+        />
         <div className="dashboard-container">
-          { <IncidentList incidents={incidents} onSelect={this.handleSelectedIncident}/> }
+          {<IncidentList incidents={incidents} onSelect={this.handleSelectedIncident} />}
         </div>
 
         <Dialog
@@ -119,7 +117,6 @@ export class Dashboard extends Component {
             ref="notesTextField"
           />
         </Dialog>
-
       </div>
     );
   }
@@ -137,7 +134,7 @@ Dashboard.propTypes = {
 
 /**
  * map state from the store to props
- * @param {*} state 
+ * @param {*} state
  * @returns {*} partial state
  */
 const mapStateToProps = state => {
@@ -149,12 +146,16 @@ const mapStateToProps = state => {
 
 /**
  * map dispatch to props
- * @param {*} dispatch 
+ * @param {*} dispatch
  */
-const mapDispatchToProps = dispatch => bindActionCreators({
-  loadIncidents,
-  addNote,
-  changeStatus
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      loadIncidents,
+      addNote,
+      changeStatus
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

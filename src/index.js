@@ -20,16 +20,26 @@ const muiTheme = getMuiTheme({
     color: '#747474'
   },
   flatButton: {
-      primaryTextColor: '#747474',
+    primaryTextColor: '#747474'
   }
 });
 
-
-ReactDOM.render(
+const renderApp = Component => {
+  ReactDOM.render(
     <Provider store={store}>
-        <MuiThemeProvider muiTheme={muiTheme}>
-            <Routes />
-        </MuiThemeProvider>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <Component />
+      </MuiThemeProvider>
     </Provider>,
     document.getElementById('root')
-);
+  );
+};
+
+renderApp(Routes);
+
+if (process.env.NODE_ENV === 'development' && module.hot) {
+  module.hot.accept('./routes', () => {
+    const HotApp = require('./routes').default;
+    renderApp(HotApp);
+  });
+}

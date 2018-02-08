@@ -9,44 +9,46 @@ import './Search.scss';
  * @class SearchComponent
  */
 class SearchComponent extends Component {
-    constructor(props){
-        super(props);
-      }
-    
-    componentDidMount(){
-        this.nameInput.focus();
-      }
+  constructor(props) {
+    super(props);
+  }
 
-    /**
-     * Method to exit search
-     * @param {event} event - Event triggering exit to dashboard
-     */
-    handleExit = (event) => {
-        event.preventDefault();
-        this.props.history.push('/dashboard');
-    }
+  componentDidMount() {
+    this.nameInput.focus();
+  }
 
-    render() {
-        return (
-            <div className="search-container">
-                <TextField
-                    ref={(input) => { this.nameInput = input; }}
-                    floatingLabelText="Search for an incident"
-                    fullWidth
-                    rows={2}
-                    className="input-style"
-                />
-                <i className="fa fa-times-circle" title="Click to exit search" onClick={this.handleExit} />
-            </div>
-        );
-    }
+  /**
+   * Method to exit search
+   * @param {event} event - Event triggering exit to dashboard
+   */
+  handleExit = event => {
+    event.preventDefault();
+    this.props.history.push('/dashboard');
+  };
+
+  render() {
+    return (
+      <div className="search-container">
+        <TextField
+          ref={input => {
+            this.nameInput = input;
+          }}
+          floatingLabelText="Search for an incident"
+          fullWidth
+          rows={2}
+          className="input-style"
+        />
+        <i className="fa fa-times-circle" title="Click to exit search" onClick={this.handleExit} />
+      </div>
+    );
+  }
 }
 
 /**
  * Search Component Props validation
  */
 SearchComponent.propTypes = {
-    history: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default SearchComponent;
