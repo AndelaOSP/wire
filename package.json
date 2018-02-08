@@ -14,15 +14,16 @@
     },
     "scripts": {
         "babel": "babel",
-        "webpack": "webpack",
-        "start": "npm run lint:watch && webpack-dev-server --config=webpack.dev.js --host wire.andela.com --progress",
-        "start:dev": "node server.js",
+        "build": "webpack --config=webpack.prod.js",
+        "format": "prettier --write --single-quote --print-width=120 --parser=flow --tab-width=2 \"src/**/*.{js,jsx}\"",
         "lint": "node_modules/.bin/esw webpack.* src tools",
         "lint:watch": "npm run lint --watch",
-        "build": "webpack --config=webpack.prod.js",
+        "start": "npm run lint:watch && webpack-dev-server --config=webpack.dev.js --host wire.andela.com --progress",
+        "start:dev": "node server.js",
         "test": "npm run test:fend",
         "test:fend": "./node_modules/.bin/jest -u",
-        "test:watch": "npm run test -- --watch"
+        "test:watch": "npm run test -- --watch",
+        "webpack": "webpack"
     },
     "dependencies": {
         "axios": "^0.17.1",
@@ -83,6 +84,7 @@
         "postcss-flexbugs-fixes": "^3.2.0",
         "postcss-inline-rtl": "^0.9.8",
         "postcss-loader": "^2.0.8",
+        "prettier": "^1.10.2",
         "react-addons-test-utils": "^15.6.2",
         "react-dev-utils": "^4.1.0",
         "react-test-renderer": "^16.2.0",

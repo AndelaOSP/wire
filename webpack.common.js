@@ -71,7 +71,6 @@ module.exports = {
         new CleanWebpackPlugin(['dist']),
         HtmlWebpackPluginConfig,
         new ExtractTextPlugin('style.bundle.css'),
-        new webpack.HotModuleReplacementPlugin(),
     ],
     resolve: {
         extensions: ['.js', '.jsx', '.json', '*'],

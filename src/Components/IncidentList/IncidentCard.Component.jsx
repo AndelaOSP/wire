@@ -5,25 +5,17 @@ class IncidentCard extends Component {
   constructor(props) {
     super(props);
   }
-  
-  render () {
+
+  render() {
     return (
       <div className="incident-card">
         <div className="incident-header">
-          <span className="incident-subject">
-            {this.props.incidentSubject}
-          </span>
-          <span className="incident-report-date">
-            {this.props.incidentReportDate}
-          </span>
+          <span className="incident-subject">{this.props.incidentSubject}</span>
+          <span className="incident-report-date">{this.props.incidentReportDate}</span>
         </div>
         <div className="incident-actions">
-          <span className="incident-time">
-            {this.props.incidentTime}
-          </span>
-          <span className="assigned-to">
-            {this.props.incidentHandler}
-          </span>
+          <span className="incident-time">{this.props.incidentTime}</span>
+          <span className="assigned-to">{this.props.incidentHandler}</span>
           <span className="incident-flag">
             <i className="material-icons">{this.props.incidentFlag}</i>
           </span>
@@ -40,7 +32,7 @@ IncidentCard.protoType = {
   incidentReportDate: string.isRequired,
   incidentTime: string.isRequired,
   incidentHandler: string.isRequired,
-  incidentFlag: string.isRequired,
+  incidentFlag: string.isRequired
 };
 
 export default IncidentCard;

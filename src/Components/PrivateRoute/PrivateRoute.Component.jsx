@@ -8,25 +8,27 @@ import authenticateUser from '../../helpers/auth';
 /**
  * PrivateRoute Component
  */
-const PrivateRoute = ({ component: Component, ...rest}) => {
-    return (
-        <Route
-            {...rest}
-            render = {
-                (props) => authenticateUser.isAuthenticated
-                ? <Component {...props} />
-                : <Redirect to={{pathname: '/login', state: {from: props.location}}} />
-            }
-        />
-    );
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        authenticateUser.isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+        )
+      }
+    />
+  );
 };
 
 /**
  * PrivateRoute PropTypes declaration
  */
 PrivateRoute.propTypes = {
-    component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]), // Container || functional react component
-    location: PropTypes.object,
+  component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]), // Container || functional react component
+  location: PropTypes.object
 };
 
 export default PrivateRoute;
