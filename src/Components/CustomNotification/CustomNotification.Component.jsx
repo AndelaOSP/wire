@@ -10,8 +10,8 @@ let textStyle = {
   color: 'black'
 };
 
-const CustomNotification = ({type, open, message }) => {
-  if (type === 'success' ) {
+const CustomNotification = ({ type, open, message }) => {
+  if (type === 'success') {
     textStyle = { color: '#50AFA5' };
   } else if (type === 'error') {
     textStyle = { color: 'red' };

@@ -26,9 +26,9 @@ export default class IncidentList extends Component {
   /**
    * Method to determine if a row is selected
    * @param {number} index - Row index
-   * @returns {boolean} 
+   * @returns {boolean}
    */
-  isSelected = (index) => {
+  isSelected = index => {
     return this.state.selected.indexOf(index) !== -1;
   };
 
@@ -36,9 +36,9 @@ export default class IncidentList extends Component {
    * Method to set selected row(s)
    * @param {number} selectedRows - Index of selected Row(s)
    */
-  handleRowSelection = (selectedRows) => {
+  handleRowSelection = selectedRows => {
     this.setState({
-        selected: selectedRows,
+      selected: selectedRows
     });
     this.props.onSelect(selectedRows[0]);
   };
@@ -48,7 +48,7 @@ export default class IncidentList extends Component {
    * @param {string} flagType - incident flag type
    * @returns {string} flagType URL
    */
-  getIncidentFlag = (flagType) => {
+  getIncidentFlag = flagType => {
     if (flagType === 'type A') {
       return this.state.flags.green;
     } else if (flagType === 'type B') {
@@ -56,8 +56,8 @@ export default class IncidentList extends Component {
     } else {
       return this.state.flags.red;
     }
-  }
-  
+  };
+
   render() {
     return (
       <div className="all-incidents">
@@ -88,7 +88,7 @@ export default class IncidentList extends Component {
  * PropTypes
  */
 
- IncidentList.propTypes = {
-   incidents: PropTypes.array,
-   onSelect: PropTypes.func
- };
+IncidentList.propTypes = {
+  incidents: PropTypes.array,
+  onSelect: PropTypes.func
+};
