@@ -6,7 +6,7 @@ import IncidentList from '../src/Components/IncidentList/IncidentList.Component'
 
 describe('IncidentList component', () => {
   it('should render incident sections', () => {
-    const incidentList = mount(<IncidentList />);
+    const incidentList = mount(<IncidentList incidents={[]} />);
     const tree = shallowToJSON(incidentList);
     expect(incidentList.find('IncidentSection').exists()).toEqual(true);
     // renders 3

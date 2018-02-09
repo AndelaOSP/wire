@@ -6,19 +6,28 @@ class IncidentCard extends Component {
     super(props);
   }
 
+  renderFlag = flagLevel => {
+    if (flagLevel == 'red') {
+      return <img className="flag-image" src="/assets/images/red_flag.svg" alt="red" />;
+    } else if (flagLevel == 'green') {
+      return <img className="flag-image" src="/assets/images/green_flag.svg" alt="green" />;
+    } else {
+      return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;
+    }
+  };
+
   render() {
+    const { incidentSubject, incidentReportDate, incidentTime, incidentAsignee, incidentFlag } = this.props;
     return (
       <div className="incident-card">
         <div className="incident-header">
-          <span className="incident-subject">{this.props.incidentSubject}</span>
-          <span className="incident-report-date">{this.props.incidentReportDate}</span>
+          <span className="incident-subject">{incidentSubject}</span>
+          <span className="incident-report-date">{incidentReportDate}</span>
         </div>
         <div className="incident-actions">
-          <span className="incident-time">{this.props.incidentTime}</span>
-          <span className="assigned-to">{this.props.incidentHandler}</span>
-          <span className="incident-flag">
-            <i className="material-icons">{this.props.incidentFlag}</i>
-          </span>
+          <span className="incident-time">{incidentTime}</span>
+          <span className="assigned-to">{incidentAsignee}</span>
+          <span className="incident-flag">{this.renderFlag(incidentFlag)}</span>
         </div>
       </div>
     );
@@ -27,11 +36,11 @@ class IncidentCard extends Component {
 
 const { string } = PropTypes;
 
-IncidentCard.protoType = {
+IncidentCard.propTypes = {
   incidentSubject: string.isRequired,
   incidentReportDate: string.isRequired,
   incidentTime: string.isRequired,
-  incidentHandler: string.isRequired,
+  incidentAsignee: string.isRequired,
   incidentFlag: string.isRequired
 };
 
