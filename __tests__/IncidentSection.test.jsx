@@ -25,15 +25,15 @@ describe('IncidentCard component', () => {
         incidentSubject: 'Stolen Phone',
         incidentReportDate: '5th Jan 2018',
         incidentTime: '4:41 PM',
-        incidentHandler: 'Maureen Nyakio',
-        incidentFlag: 'red',
+        User: {name:'Maureen Nyakio'},
+        Level: {name:'red'},
       },{
         id: '12345678',
         incidentSubject: 'Stolen Phone',
         incidentReportDate: '5th Jan 2018',
         incidentTime: '4:41 PM',
-        incidentHandler: 'Maureen Nyakio',
-        incidentFlag: 'red',
+        User: {name:'Maureen Nyakio'},
+        Level: {name:'red'},
       }]}
     />);
     const tree = shallowToJSON(incidentSection);

@@ -19,7 +19,6 @@ common.module.rules = [
     ...common.module.rules,
 ];
 common.devServer = {
-    contentBase: './dist', // Tell server where to serve content (static files) from
     historyApiFallback: true,
     hot: true,
     inline: true,

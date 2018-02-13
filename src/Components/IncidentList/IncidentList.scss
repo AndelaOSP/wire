@@ -50,16 +50,18 @@
         }
 
         .incident-cards {
-            direction: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 27rem;
+            overflow-y: scroll;
 
             // style for no incidents message
             .no-incidents {
                 text-align: center;
                 font-weight: 100;
                 color: #b5b5b5;
-                margin: 55% 5rem;
                 font-size: .9rem;
-                height: 100%;
             }
 
             .incident-card {
@@ -113,6 +115,11 @@
                     .incident-flag {
                         padding-top: 1.3rem;
                         margin: 0 auto;
+
+                        .flag-image {
+                            width: 0.6rem;
+                            height: 1rem;
+                        }
                     }
                 }
             }
