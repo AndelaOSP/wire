@@ -15,7 +15,7 @@
     "scripts": {
         "babel": "babel",
         "build": "webpack --config=webpack.prod.js",
-        "format": "prettier --write --single-quote --print-width=120 --parser=flow --tab-width=2 \"src/**/*.{js,jsx}\"",
+        "format": "prettier --write --single-quote --print-width=120 --tab-width=2 \"src/**/*.{js,jsx}\"",
         "lint": "node_modules/.bin/esw webpack.* src tools",
         "lint:watch": "npm run lint --watch",
         "start": "npm run lint:watch && webpack-dev-server --config=webpack.dev.js --host wire.andela.com --progress",
