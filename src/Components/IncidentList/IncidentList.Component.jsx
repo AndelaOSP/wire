@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FlatButton from 'material-ui/FlatButton';
 import PropTypes from 'prop-types';
 
 import IncidentSection from './IncidentSection.Component';
@@ -58,25 +57,31 @@ export default class IncidentList extends Component {
     }
   };
 
+  /**
+   * sorts incidents by type
+   */
+  sortIncidentsByType = incidentType =>
+    this.props.incidents.length ? this.props.incidents.filter(incident => incident.Status.status == incidentType) : [];
+
   render() {
     return (
       <div className="all-incidents">
         <div className="incidents incidents-pending">
           <IncidentSection
             incidentStatus={'PENDING'}
-            incidents={[]} // replace with pending data from api
+            incidents={this.sortIncidentsByType('pending')} // replace with pending data from api
           />
         </div>
         <div className="incidents incidents-progress">
           <IncidentSection
             incidentStatus={'IN PROGRESS'}
-            incidents={[]} // replace with pending data from api
+            incidents={this.sortIncidentsByType('in progress')} // replace with pending data from api
           />
         </div>
         <div className="incidents incidents-resolved">
           <IncidentSection
             incidentStatus={'RESOLVED'}
-            incidents={[]} // replace with pending data from api
+            incidents={this.sortIncidentsByType('resolved')} // replace with pending data from api
           />
         </div>
       </div>

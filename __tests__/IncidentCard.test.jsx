@@ -10,7 +10,7 @@ describe('IncidentCard component', () => {
       incidentSubject='Stolen Phone'
       incidentReportDate='5th Jan 2018'
       incidentTime='4:41 PM'
-      incidentHandler='Maureen Nyakio'
+      incidentAsignee='Maureen Nyakio'
       incidentFlag='red'
     />);
     const tree = shallowToJSON(incidentCard);

@@ -11,6 +11,15 @@ class IncidentSection extends Component {
     super(props);
   }
 
+  getTime = timestamp => new Date(timestamp).toLocaleTimeString();
+
+  getDate = timestamp =>
+    new Date(timestamp).toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+
   render() {
     const { incidentStatus, incidents } = this.props;
     return (
@@ -25,14 +34,14 @@ class IncidentSection extends Component {
               <IncidentCard
                 key={incident.id}
                 incidentSubject={incident.subject}
-                incidentReportDate={incident.reportDate}
-                incidentTime={incident.time}
-                incidentHandler={incident.handler}
-                incidentFlag={incident.flag}
+                incidentReportDate={`reported on ${this.getDate(incident.dateOccurred)}`}
+                incidentTime={this.getTime(incident.dateOccurred)}
+                incidentAsignee={incident.User.name}
+                incidentFlag={incident.Level.name}
               />
             ))
           ) : (
-            <div className="no-incidents"> No Incidents {this.props.incidentStatus.toUpperCase()}</div>
+            <span className="no-incidents"> No Incidents {this.props.incidentStatus.toUpperCase()}</span>
           )}
         </div>
       </div>
