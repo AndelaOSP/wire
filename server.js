@@ -1,25 +1,49 @@
 const express = require('express');
-const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.config.js');
 const app = express();
+const path = require('path');
+require('dotenv').config();
 
-const compiler = webpack(webpackConfig);
+if (process.env.NODE_ENV === 'development') {
+	const webpackDevMiddleware = require('webpack-dev-middleware');
+	const webpackHotMiddleware = require('webpack-hot-middleware');
+	const webpackConfig = require('./webpack.dev.js');
+	const compiler = webpack(webpackConfig);
+	app.use(
+		webpackDevMiddleware(compiler, {
+			hot: true,
+			publicPath: webpackConfig.output.publicPath
+		})
+	);
+	app.use(webpackHotMiddleware(compiler));
+    app.use(express.static(path.join(__dirname, '/')));
+    
+    app.get('/api', (req, res, next) => {
+		console.log('Should server mock data');
+		res.send('End Request....');
+    });
+    
+	app.use('*', function(req, res, next) {
+		let filename = path.join(compiler.outputPath, 'index.html');
+		compiler.outputFileSystem.readFile(filename, function(err, result) {
+			if (err) {
+				return next(err);
+			}
+			res.set('content-type', 'text/html');
+			res.send(result);
+			res.end();
+		});
+	});
+} else if (process.env.NODE_ENV === 'production') {
+	// Configuration for production environment
+	app.use(express.static(path.join(__dirname, 'dist')));
+	app.get('*', function response(req, res) {
+		res.sendFile(path.join(__dirname, 'dist/index.html'));
+	});
+}
 
-app.use(express.static(__dirname + './dist'));
-
-app.use(webpackDevMiddleware(compiler, {
-    hot: true,
-    filename: 'bundle.js',
-    publicPath: '/',
-    stats: {
-        colors: true,
-    },
-    historyApiFallback: true,
-}));
-
-const server = app.listen(3000, function() {
-    const host = server.address().address;
-    const port = server.address().port;
-    console.log('App listening at http://%s:%s', host, port);
+const server = app.listen(8080, function() {
+	const host = server.address().address;
+	const port = server.address().port;
+	console.log('App listening at http://%s:%s', host, port);
 });

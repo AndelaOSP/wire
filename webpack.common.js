@@ -27,43 +27,12 @@ module.exports = {
         rules: [
             { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
             { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
-            { test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader'] },
-            {
-                test: /\.css$/,
-                use: [
-                    require.resolve('style-loader'),
-                    {
-                        loader: require.resolve('css-loader'),
-                        options: {
-                            importLoaders: 1,
-                        },
-                    },
-                    {
-                        loader: require.resolve('postcss-loader'),
-                        options: {
-                            // Necessary for external CSS imports to work
-                            // https://github.com/facebookincubator/create-react-app/issues/2677
-                            ident: 'postcss',
-                            plugins: () => [
-                                require('postcss-flexbugs-fixes'),
-                                require('postcss-inline-rtl'),
-                                autoprefixer({
-                                    browsers: [
-                                        '>1%',
-                                        'last 4 versions',
-                                        'Firefox ESR',
-                                        'not ie < 9', // React doesn't support IE8 anyway
-                                    ],
-                                    flexbox: 'no-2009',
-                                }),
-                            ],
-                        },
-                    },
-                ],
-            },
-            { test: /\.css$/, loader: ExtractTextPlugin.extract({ use: 'css-loader', }), },
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: ['css-loader', 'sass-loader']
+            })},
             //Add only image extensions
-            { test: /\.(png|jpg|gif|svg)$/, use: ['file-loader',], },
+            { test: /\.(png|jpeg|jpg|gif|svg)$/, use: ['file-loader',], },
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' }
         ]
     },

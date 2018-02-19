@@ -18,8 +18,8 @@
         "format": "prettier --write --single-quote --print-width=120 --tab-width=2 \"src/**/*.{js,jsx}\"",
         "lint": "node_modules/.bin/esw webpack.* src tools",
         "lint:watch": "npm run lint --watch",
-        "start": "npm run lint:watch && webpack-dev-server --config=webpack.dev.js --host wire.andela.com --progress",
-        "start:dev": "node server.js",
+        "start:dev": "npm run lint:watch && node server.js",
+        "start:prod": "npm run build && node server.js",
         "test": "npm run test:fend",
         "test:fend": "./node_modules/.bin/jest -u",
         "test:watch": "npm run test -- --watch",
@@ -28,6 +28,7 @@
     "dependencies": {
         "axios": "^0.17.1",
         "clean-webpack-plugin": "^0.1.17",
+        "dotenv": "^5.0.0",
         "enzyme-to-json": "^3.3.1",
         "eslint-plugin-import": "^2.8.0",
         "express": "^4.16.2",
@@ -63,6 +64,7 @@
         "babel-preset-react": "^6.24.1",
         "babel-preset-stage-2": "^6.24.1",
         "chai": "^4.1.2",
+        "copy-webpack-plugin": "^4.4.1",
         "coveralls": "^3.0.0",
         "css-loader": "^0.28.7",
         "enzyme": "^3.3.0",
@@ -93,6 +95,7 @@
         "sinon": "^4.0.1",
         "style-loader": "^0.19.0",
         "webpack-combine-loaders": "^2.0.3",
+        "webpack-hot-middleware": "^2.21.0",
         "webpack-merge": "^4.1.1"
     }
 }
