@@ -7,7 +7,6 @@ import TextField from 'material-ui/TextField';
 
 // actions
 import { loadIncidents, changeStatus } from '../../actions/incidentAction';
-import { addNote } from '../../actions/noteAction';
 
 // styling
 import './Dashboard.scss';
@@ -75,7 +74,6 @@ export class Dashboard extends Component {
     let noteText = this.refs.notesTextField.getValue();
     let incidentId = this.state.id;
     let statusId = this.state.value - 1;
-    this.props.addNote(noteText, incidentId);
     this.props.changeStatus(statusId, incidentId);
     this.setState({ showNotesDialog: !this.state.showNotesDialog });
   };
@@ -128,7 +126,6 @@ export class Dashboard extends Component {
 Dashboard.propTypes = {
   incidents: PropTypes.array.isRequired,
   loadIncidents: PropTypes.func.isRequired,
-  addNote: PropTypes.func.isRequired,
   changeStatus: PropTypes.func.isRequired
 };
 
@@ -139,8 +136,7 @@ Dashboard.propTypes = {
  */
 const mapStateToProps = state => {
   return {
-    incidents: state.incidents,
-    notes: state.notes
+    incidents: state.incidents
   };
 };
 
@@ -152,7 +148,6 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       loadIncidents,
-      addNote,
       changeStatus
     },
     dispatch

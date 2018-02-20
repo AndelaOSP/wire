@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "axios": "^0.17.1",
+        "body-parser": "^1.18.2",
         "clean-webpack-plugin": "^0.1.17",
         "dotenv": "^5.0.0",
         "enzyme-to-json": "^3.3.1",
