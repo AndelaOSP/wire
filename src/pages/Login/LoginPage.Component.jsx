@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import './LoginPage.scss';
 
 // config
-import { config } from '../../config';
+import config from '../../config';
 
 //helpers
 import authenticateUser from '../../helpers/auth';

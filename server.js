@@ -1,6 +1,8 @@
 const express = require('express');
 const webpack = require('webpack');
 const app = express();
+const bodyParser = require('body-parser');
+const mockMiddleware = require('./src/mock_endpoints/mockMiddleware');
 const path = require('path');
 require('dotenv').config();
 
@@ -17,11 +19,24 @@ if (process.env.NODE_ENV === 'development') {
 	);
 	app.use(webpackHotMiddleware(compiler));
     app.use(express.static(path.join(__dirname, '/')));
+    app.use(bodyParser.json());
     
-    app.get('/api', (req, res, next) => {
-		console.log('Should server mock data');
-		res.send('End Request....');
-    });
+    // Incident routes
+    app.get('/api/incidents', mockMiddleware.fetchIncidents);
+    app.get('/api/incidents/:id', mockMiddleware.fetchIncident);
+    app.put('/api/incidents/:id', mockMiddleware.updateIncident);
+
+    // Notes routes
+    app.post('/api/incidents/:id/notes', mockMiddleware.addNoteToIncident);
+    app.get('/api/incidents/:id/notes', mockMiddleware.fetchIncidentNotes);
+    app.put('/api/notes/:id', mockMiddleware.editIncidentNote);
+    app.delete('/api/notes/:id', mockMiddleware.archiveIncidentNote);
+
+    // Chat routes
+    app.post('/api/incidents/:id/chats', mockMiddleware.addChatToIncident);
+    app.get('/api/incidents/:id/chats', mockMiddleware.fetchIncidentChats);
+    app.put('/api/chats/:id', mockMiddleware.editIncidentChat);
+    app.delete('/api/chats/:id', mockMiddleware.archiveIncidentChat);
     
 	app.use('*', function(req, res, next) {
 		let filename = path.join(compiler.outputPath, 'index.html');

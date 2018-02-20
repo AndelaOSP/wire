@@ -69,19 +69,19 @@ export default class IncidentList extends Component {
         <div className="incidents incidents-pending">
           <IncidentSection
             incidentStatus={'PENDING'}
-            incidents={this.sortIncidentsByType('pending')} // replace with pending data from api
+            incidents={this.sortIncidentsByType('Pending')} // replace with pending data from api
           />
         </div>
         <div className="incidents incidents-progress">
           <IncidentSection
             incidentStatus={'IN PROGRESS'}
-            incidents={this.sortIncidentsByType('in progress')} // replace with pending data from api
+            incidents={this.sortIncidentsByType('In Progress')} // replace with pending data from api
           />
         </div>
         <div className="incidents incidents-resolved">
           <IncidentSection
             incidentStatus={'RESOLVED'}
-            incidents={this.sortIncidentsByType('resolved')} // replace with pending data from api
+            incidents={this.sortIncidentsByType('Resolved')} // replace with pending data from api
           />
         </div>
       </div>

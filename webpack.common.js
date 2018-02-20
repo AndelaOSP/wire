@@ -29,31 +29,7 @@ module.exports = {
             { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
-                use: [
-                    { loader: 'css-loader', options: { importLoaders: 1 } },
-                    {	
-                       loader: require.resolve('postcss-loader'),	
-                       options: {	
-                            // Necessary for external CSS imports to work	
-                            // https://github.com/facebookincubator/create-react-app/issues/2677	
-                            ident: 'postcss',	
-                            plugins: () => [	
-                                require('postcss-flexbugs-fixes'),	
-                                require('postcss-inline-rtl'),	
-                                autoprefixer({	
-                                    browsers: [	
-                                        '>1%',	
-                                        'last 4 versions',	
-                                        'Firefox ESR',	
-                                        'not ie < 9', // React doesn't support IE8 anyway	
-                                    ],	
-                                    flexbox: 'no-2009',	
-                                }),	
-                            ],	
-                        },	
-                    },
-                    { loader: 'sass-loader' }
-                ]
+                use: ['css-loader', 'sass-loader']
             })},
             //Add only image extensions
             { test: /\.(png|jpeg|jpg|gif|svg)$/, use: ['file-loader',], },
