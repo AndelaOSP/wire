@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const common = require('./webpack.common.js');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 
+common.entry.push('webpack-hot-middleware/client?reload=true');
 common.devtool = 'inline-source-map';
 common.module.rules = [
     {
@@ -21,7 +22,7 @@ common.module.rules = [
 common.devServer = {
     historyApiFallback: true,
     hot: true,
-    inline: true,
+    inline: true
 };
 common.plugins = [
     ...common.plugins,

@@ -1,10 +1,6 @@
 import * as axios from 'axios';
 import { FETCH_INCIDENTS_SUCCESS, CHANGE_STATUS } from './actionTypes';
-
-const url = () => {
-  // get all incidents
-  return 'https://wire-api.herokuapp.com/api/incidents';
-};
+import config from '../config/index';
 
 // load Incidents Action Creator
 export const loadIncidentsSuccess = incidents => {
@@ -17,7 +13,7 @@ export const loadIncidentsSuccess = incidents => {
 export const loadIncidents = () => {
   return dispatch => {
     return axios
-      .get(url(), {})
+      .get(config.INCIDENTS_URL)
       .then(incidents => {
         dispatch(loadIncidentsSuccess(incidents.data.data.incidents));
       })
@@ -40,7 +36,7 @@ export const changeStatusSuccess = incidentId => {
 export const changeStatus = (statusId, incidentId) => {
   return dispatch => {
     return axios
-      .put(`${url()}/${incidentId}/`, {
+      .put(`${config.INCIDENTS_URL}/${incidentId}/`, {
         statusId: statusId
       })
       .then(res => {
