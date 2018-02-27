@@ -1,10 +1,23 @@
 import * as axios from 'axios';
-import { FETCH_INCIDENTS_SUCCESS, CHANGE_STATUS } from './actionTypes';
+import { FETCH_INCIDENTS_SUCCESS, CHANGE_STATUS, INCIDENTS_ERROR } from './actionTypes';
 import config from '../config/index';
+
+// Incidents Error Action Creator
+export const incidentsError = error => {
+  return {
+    type: INCIDENTS_ERROR,
+    error: true,
+    errorMessage: error.message
+  };
+};
 
 // load Incidents Action Creator
 export const loadIncidentsSuccess = incidents => {
-  return { type: FETCH_INCIDENTS_SUCCESS, incidents };
+  return {
+    type: FETCH_INCIDENTS_SUCCESS,
+    incidents,
+    isLoading: false
+  };
 };
 
 /**
@@ -18,7 +31,7 @@ export const loadIncidents = () => {
         dispatch(loadIncidentsSuccess(incidents.data.data.incidents));
       })
       .catch(error => {
-        return error;
+        return dispatch(incidentsError(error));
       });
   };
 };
@@ -43,7 +56,7 @@ export const changeStatus = (statusId, incidentId) => {
         dispatch(changeStatusSuccess(res.data.data));
       })
       .catch(error => {
-        return error;
+        return dispatch(incidentsError(error));
       });
   };
 };
