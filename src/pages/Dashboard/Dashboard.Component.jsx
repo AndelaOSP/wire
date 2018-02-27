@@ -136,7 +136,7 @@ Dashboard.propTypes = {
  */
 const mapStateToProps = state => {
   return {
-    incidents: state.incidents
+    incidents: state.incidents.incidents
   };
 };
 
