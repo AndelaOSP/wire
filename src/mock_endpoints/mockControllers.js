@@ -1,3 +1,5 @@
+const fuzzysearch = require('fuzzysearch');
+
 let { incidents, chats, notes, users, statuses, levels } = require('./mockData');
 
 module.exports = {
@@ -23,8 +25,8 @@ module.exports = {
       }) || null;
     return incident;
   },
-  getIncidents: () => {
-    return incidents.map(incident => {
+  getIncidents: query => {
+    return incidents.filter(incident => fuzzysearch(query, incident.subject.toLowerCase()) === true).map(incident => {
       incident['Assignee'] =
         users.find(user => {
           return user.id === incident.assigneeId;
