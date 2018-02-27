@@ -7,3 +7,13 @@ jobs:
         - checkout
         - run: yarn install
         - run: yarn test
+        - run:
+            name: Deploy if tests pass
+            command: |
+              sudo yarn add webpack-cli webpack@3.8.1
+              yarn build
+        - deploy:
+            name: Setup Heroku
+            command: |
+              bash .circleci/setup-heroku.sh
+              chmod 600 ~/.netrc
