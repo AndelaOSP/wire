@@ -20,7 +20,8 @@ const {
 module.exports = {
   fetchIncidents: (req, res) => {
     setTimeout(() => {
-      res.send({ data: { incidents: getIncidents() }, status: 'success' });
+      let query = req.query.q ? req.query.q : '';
+      res.send({ data: { incidents: getIncidents(query) }, status: 'success' });
     }, 2000);
   },
   handleSearch: (req, res) => {
