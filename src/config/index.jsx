@@ -13,11 +13,11 @@ if (isDev) {
 } else if (isStaging) {
   API_URL = 'https://wireapi-staging.herokuapp.com/api';
   ANDELA_API_BASE_URL = 'https://api.andela.com';
-  BASE_URL = 'http://wire.andela.com:8080';
+  BASE_URL = 'https://wire-front-staging.herokuapp.com';
 } else if (isProd) {
-  API_URL = 'https://wire-api.herokuapp.com/api';
+  API_URL = 'https://wireapi-develop.herokuapp.com/api';
   ANDELA_API_BASE_URL = 'https://api-prod.andela.com';
-  BASE_URL = 'https://wire.andela.com';
+  BASE_URL = 'https://wire-front-develop.herokuapp.com';
 }
 
 const config = {
