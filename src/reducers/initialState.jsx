@@ -1,9 +1,9 @@
 export default {
-  incidents: {
-    incidents: [],
-    isLoading: false,
-    error: false,
-    errorMessage: ''
-  },
-  notes: []
+  incidents: [],
+  notes: [],
+  isLoading: false,
+  error: {
+    status: false,
+    message: ''
+  }
 };

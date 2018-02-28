@@ -1,20 +1,10 @@
 import initialState from './initialState';
-import { FETCH_INCIDENTS_SUCCESS, CHANGE_STATUS, INCIDENTS_ERROR } from '../actions/actionTypes';
+import { FETCH_INCIDENTS_SUCCESS, CHANGE_STATUS } from '../actions/actionTypes';
 
 const incidentReducer = (state = initialState.incidents, action) => {
   switch (action.type) {
     case FETCH_INCIDENTS_SUCCESS:
-      return {
-        ...state,
-        incidents: action.incidents
-      };
-
-    case INCIDENTS_ERROR:
-      return {
-        ...state,
-        error: action.error,
-        errorMessage: action.errorMessage
-      };
+      return action.incidents;
 
     case CHANGE_STATUS:
       return state;

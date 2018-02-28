@@ -16,6 +16,8 @@ import NavBar from '../../Common/NavBar/NavBar.Component';
 import IncidentFilter from '../../Components/IncidentFilter/IncidentFilter.Component';
 import IncidentList from '../../Components/IncidentList/IncidentList.Component';
 import CustomButton from '../../Components/Button/Button.Component';
+import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
+import CustomNotification from '../../Components/CustomNotification/CustomNotification.Component';
 
 /**
  * @class Dashboard
@@ -84,18 +86,32 @@ export class Dashboard extends Component {
       <CustomButton key={1} label="Cancel" onClick={this.handleClose} />,
       <CustomButton key={2} label="Submit" onClick={this.handleSubmit} />
     ];
+    const isLoading = this.props.isLoading;
+    const isError = this.props.isError;
+    const error = this.props.errorMessage;
 
     return (
       <div>
         <NavBar {...this.props} />
-        <IncidentFilter
-          incident={this.state.selectedIncident}
-          changeCountryFilter={this.changeFilter()}
-          onSelectStatus={this.handleSelectedValue}
-        />
-        <div className="dashboard-container">
-          {<IncidentList incidents={incidents} onSelect={this.handleSelectedIncident} />}
-        </div>
+        {isLoading ? (
+          <CircularProgressIndicator />
+        ) : (
+          <div>
+            <IncidentFilter
+              incident={this.state.selectedIncident}
+              changeCountryFilter={this.changeFilter()}
+              onSelectStatus={this.handleSelectedValue}
+            />
+            <div className="dashboard-container">
+              {<IncidentList incidents={incidents} onSelect={this.handleSelectedIncident} />}
+            </div>
+          </div>
+        )}
+        {isError ? (
+          <CustomNotification type={'error'} message={error} autoHideDuration={15000} open />
+        ) : (
+          <CustomNotification type={'error'} message={error} open={false} />
+        )}
 
         <Dialog
           title={'Subject: ' + this.state.subject || null}
@@ -126,7 +142,10 @@ export class Dashboard extends Component {
 Dashboard.propTypes = {
   incidents: PropTypes.array.isRequired,
   loadIncidents: PropTypes.func.isRequired,
-  changeStatus: PropTypes.func.isRequired
+  changeStatus: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired
 };
 
 /**
@@ -136,7 +155,10 @@ Dashboard.propTypes = {
  */
 const mapStateToProps = state => {
   return {
-    incidents: state.incidents.incidents
+    incidents: state.incidents,
+    isLoading: state.isLoading,
+    isError: state.error.status,
+    errorMessage: state.error.message
   };
 };
 
