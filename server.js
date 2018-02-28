@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === 'development') {
 	});
 }
 
-const server = app.listen(8080, function() {
+const server = app.listen(process.enc.PORT || 8080, function() {
 	const host = server.address().address;
 	const port = server.address().port;
 	console.log('App listening at http://%s:%s', host, port);
