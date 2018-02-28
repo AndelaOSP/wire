@@ -52,7 +52,7 @@ if (process.env.NODE_ENV === 'development') {
 			res.end();
 		});
 	});
-} else if (process.env.NODE_ENV === 'production') {
+} else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
 	// Configuration for production environment
 	app.use(express.static(path.join(__dirname, 'dist')));
 	app.get('*', function response(req, res) {
@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === 'development') {
 	});
 }
 
-const server = app.listen(process.enc.PORT || 8080, function() {
+const server = app.listen(process.env.PORT || 8080, function() {
 	const host = server.address().address;
 	const port = server.address().port;
 	console.log('App listening at http://%s:%s', host, port);
