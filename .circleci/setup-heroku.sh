@@ -18,10 +18,13 @@ EOF
 ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
 
 chmod 600 ~/.netrc
-git config --global user.email "wire@andela.com"
-git config --global user.name "Wire"
-git add -f dist server.js Procfile
-git status
-git commit -m "Deployment: Add dist folder and server"
-git push git@heroku.com:wire-front-staging.git ${CIRCLE_BRANCH}:master -f
-heroku restart
+if [ "${CIRCLE_BRANCH}" = "staging" ] || [ "${CIRCLE_BRANCH}" = "deployment" ] ;
+then
+  git config --global user.email "wire@andela.com"
+  git config --global user.name "Wire"
+  git add -f dist server.js Procfile
+  git status
+  git commit -m "Deployment: Add dist folder and server"
+  git push git@heroku.com:wire-front-staging.git ${CIRCLE_BRANCH}:master -f
+  heroku restart
+fi
