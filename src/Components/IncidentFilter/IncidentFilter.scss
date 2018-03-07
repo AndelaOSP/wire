@@ -12,9 +12,9 @@
 
 .filters-container {
   @include flex-column;
-  width: 90vw;
+  width: 95vw;
   max-height: 8rem;
-  margin: auto 2rem auto auto !important;
+  margin: auto !important;
 
   .filters {
     @include flex-row;
@@ -50,12 +50,14 @@
     .toggle-section {
       @include flex-row;
       padding: 0 0.5rem;
+      max-width: 2rem !important;
 
       .toggle-label {
         font-weight: 200;
         font-size: 0.8em;
         color: map_get($grey, 300);
-        margin: auto 0.5rem;
+        margin: auto 0.2rem;
+        padding: 0 0.5rem;
       }
     }
 
@@ -66,7 +68,7 @@
 
     .country-filter {
       max-width: 10rem !important;
-      margin: 0 1rem;
+      margin: 0 0.5rem;
     }
 
   }

@@ -3,12 +3,6 @@ import PropTypes from 'prop-types';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-const styles = {
-  customWidth: {
-    width: 145
-  }
-};
-
 /**
  * @class CustomMenu
  */
@@ -24,7 +18,10 @@ export class CustomMenu extends React.Component {
   /**
    * Method to handle menu item selection
    */
-  handleChange = (event, index, value) => this.props.changeCountryFilter(value);
+  handleChange = (event, index, value) => {
+    this.props.changeCountryFilter(value);
+    this.setState({ value });
+  };
 
   render() {
     return (
@@ -32,7 +29,7 @@ export class CustomMenu extends React.Component {
         <SelectField
           value={this.state.value}
           onChange={this.handleChange}
-          style={{ ...styles.customWidth, fontSize: '0.8rem', textAlign: 'center', width: '10rem' }}
+          style={{ display: 'block', fontSize: '0.8rem', textAlign: 'center', width: '10rem', padding: '0 auto' }}
         >
           <MenuItem value="All Countries" primaryText="All Countries" />
           <MenuItem value="Kenya" primaryText="Kenya" />
