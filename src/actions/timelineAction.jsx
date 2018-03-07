@@ -1,5 +1,7 @@
 import * as axios from 'axios';
 import config from '../config/index';
+import { loadingAction } from './LoadingAction';
+import { errorAction } from './errorAction';
 import {
   FETCH_INCIDENT,
   ADD_NOTE,
@@ -24,7 +26,7 @@ const loadChats = incidentId => {
 
 // load Incident Action Creator
 export const loadIncidentSuccess = incident => {
-  return { type: FETCH_INCIDENT, incident };
+  return { type: FETCH_INCIDENT, incident, isLoading: false };
 };
 
 /**
@@ -32,6 +34,7 @@ export const loadIncidentSuccess = incident => {
  */
 export const loadIncidentDetails = incidentId => {
   return dispatch => {
+    dispatch(loadingAction(true));
     return axios
       .all([loadIncident(incidentId), loadNotes(incidentId), loadChats(incidentId)])
       .then(arr => {
@@ -41,7 +44,7 @@ export const loadIncidentDetails = incidentId => {
         dispatch(loadIncidentSuccess(incident));
       })
       .catch(error => {
-        return error;
+        return dispatch(errorAction(error));
       });
   };
 };
@@ -68,7 +71,7 @@ export const addNote = (noteText, incidentId, userId) => {
         dispatch(addNoteSuccess(res.data.data));
       })
       .catch(error => {
-        return error;
+        return dispatch(errorAction(error));
       });
   };
 };
@@ -94,7 +97,7 @@ export const editNote = (noteText, noteId, index) => {
         dispatch(editNoteSuccess(res.data.data, index));
       })
       .catch(error => {
-        return error;
+        return dispatch(errorAction(error));
       });
   };
 };
@@ -112,7 +115,7 @@ export const archiveNote = (noteId, index) => {
         dispatch(archiveNoteSuccess(res.data.data, index));
       })
       .catch(error => {
-        return error;
+        return dispatch(errorAction(error));
       });
   };
 };
@@ -137,7 +140,7 @@ export const changeStatus = (statusId, incidentId) => {
         dispatch(changeStatusSuccess(res.data.data));
       })
       .catch(error => {
-        return error;
+        return dispatch(errorAction(error));
       });
   };
 };
@@ -162,7 +165,7 @@ export const changeAssignee = (assigneeId, incidentId) => {
         dispatch(changeAssigneeSuccess(res.data.data));
       })
       .catch(error => {
-        return error;
+        return dispatch(errorAction(error));
       });
   };
 };
@@ -189,7 +192,7 @@ export const sendMessage = (incidentId, userId, message) => {
         dispatch(sendMessageSuccess(res.data.data));
       })
       .catch(error => {
-        return error;
+        return dispatch(errorAction(error));
       });
   };
 };

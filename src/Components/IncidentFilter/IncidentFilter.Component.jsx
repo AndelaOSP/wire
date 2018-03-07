@@ -18,17 +18,16 @@ export default class IncidentFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 1
+      durationFilterValue: 0,
+      flagFilterValue: 'All Incidents'
     };
   }
-
   /**
-   * Method to handle Dropdown Change
-   * Should display the form to add a note to a selected incident
+   * Method to handle change on flag filter drop down
    */
-  handleChange = (event, index, value) => {
-    this.setState({ value });
-    this.props.onSelectStatus(value);
+  handleFlagChange = (event, index, value) => {
+    this.props.filterByType(value);
+    this.setState({ flagFilterValue: value });
   };
 
   render() {
@@ -52,7 +51,7 @@ export default class IncidentFilter extends Component {
           <span className="incidents-label">Show Incidents</span>
 
           <SelectField
-            value={0}
+            value={this.state.durationFilterValue}
             className="duration-filter"
             style={{ fontSize: '0.8rem', textAlign: 'center', width: '9rem' }}
           >
@@ -82,15 +81,18 @@ export default class IncidentFilter extends Component {
           />
 
           <SelectField
-            value={0}
+            value={this.state.flagFilterValue}
+            onChange={this.handleFlagChange}
             className="flag-filter"
             style={{ fontSize: '0.8rem', textAlign: 'center', width: '8rem' }}
           >
-            <MenuItem value={0} primaryText="All flags" onClick={() => { this.props.filterByType('All Incidents'); }}/>
-            <MenuItem value={1} primaryText="Red Flag" onClick={() => { this.props.filterByType('red'); }} />
-            <MenuItem value={2} primaryText="Yellow Flag" onClick={() => { this.props.filterByType('yellow'); }} />
-            <MenuItem value={3} primaryText="Green Flag" onClick={() => { this.props.filterByType('green'); }}/>
+            <MenuItem value={'All Incidents'} primaryText="All flags" />
+            <MenuItem value={'red'} primaryText="Red Flag" />
+            <MenuItem value={'yellow'} primaryText="Yellow Flag" />
+            <MenuItem value={'green'} primaryText="Green Flag" />
           </SelectField>
+
+          <CustomMenu className="country-filter" changeCountryFilter={this.props.changeCountryFilter} />
 
           <div className="toggle-section">
             <span className="toggle-label">Mine</span>
@@ -104,8 +106,6 @@ export default class IncidentFilter extends Component {
 
             <span className="toggle-label">All</span>
           </div>
-
-          <CustomMenu className="country-filter" changeCountryFilter={this.props.changeCountryFilter} />
         </div>
       </div>
     );
