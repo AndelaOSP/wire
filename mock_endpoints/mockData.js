@@ -27,7 +27,7 @@ module.exports = {
       levelId: 2,
       locationId: 2,
       updatedAt: '2018-02-13T15:58:06.202Z',
-      assigneeId: 5,
+      assigneeId: 1,
       categoryId: null
     },
     {
@@ -42,7 +42,7 @@ module.exports = {
       levelId: 1,
       locationId: 3,
       updatedAt: '2018-02-13T15:58:06.202Z',
-      assigneeId: 6,
+      assigneeId: 3,
       categoryId: null
     },
     {
@@ -57,7 +57,7 @@ module.exports = {
       levelId: 1,
       locationId: 4,
       updatedAt: '2018-02-13T15:58:06.202Z',
-      assigneeId: 6,
+      assigneeId: 2,
       categoryId: null
     }
   ],

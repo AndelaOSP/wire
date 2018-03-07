@@ -6,7 +6,8 @@ describe('Actions', () => {
   it('should create action to load incident details', () => {
     const expectedAction = {
       type: types.FETCH_INCIDENT,
-      incident: testIncident
+      incident: testIncident,
+      isLoading: false
     };
     expect(actions.loadIncidentSuccess(testIncident)).toEqual(expectedAction);
   });

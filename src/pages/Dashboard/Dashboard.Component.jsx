@@ -30,7 +30,6 @@ export class Dashboard extends Component {
     };
   }
 
-
   componentDidMount() {
     this.props.loadIncidents();
   }
@@ -42,7 +41,7 @@ export class Dashboard extends Component {
   }
 
   changeTypeFilter() {
-    return (key) => {
+    return key => {
       this.setState({ typeFilterKey: key });
     };
   }
@@ -52,17 +51,16 @@ export class Dashboard extends Component {
 
     // filter by countries
     if (this.state.filterKey !== 'All Countries') {
-      incidents = incidents.filter((incident) => {
+      incidents = incidents.filter(incident => {
         return this.state.filterKey.toLocaleLowerCase() === incident.Location.country.toLowerCase();
-
       });
     }
 
     // filter country by  incident's Type
     if (this.state.typeFilterKey !== 'All Incidents') {
-      incidents = incidents.filter((incident) => {
+      incidents = incidents.filter(incident => {
         const stateKey = this.state.typeFilterKey.toLocaleLowerCase();
-        return incident.Level && (stateKey === incident.Level.name.toLocaleLowerCase());
+        return incident.Level && stateKey === incident.Level.name.toLocaleLowerCase();
       });
     }
     return incidents;
@@ -70,9 +68,7 @@ export class Dashboard extends Component {
 
   render() {
     const incidents = this.filterIncidents();
-    const isLoading = this.props.isLoading;
-    const isError = this.props.isError;
-    const error = this.props.errorMessage;
+    const { isLoading, isError, errorMessage } = this.props;
 
     return (
       <div>
@@ -80,19 +76,22 @@ export class Dashboard extends Component {
         {isLoading ? (
           <CircularProgressIndicator />
         ) : (
-            <div>
-              <IncidentFilter incident={this.state.selectedIncident} changeCountryFilter={this.changeFilter()}
-                filterByType={this.changeTypeFilter()} />
-              <div className="dashboard-container">
-                {<IncidentList incidents={incidents} onSelect={this.handleSelectedIncident} />}
-              </div>
+          <div>
+            <IncidentFilter
+              incident={this.state.selectedIncident}
+              changeCountryFilter={this.changeFilter()}
+              filterByType={this.changeTypeFilter()}
+            />
+            <div className="dashboard-container">
+              {<IncidentList incidents={incidents} onSelect={this.handleSelectedIncident} />}
             </div>
-          )}
+          </div>
+        )}
         {isError ? (
-          <CustomNotification type={'error'} message={error} autoHideDuration={15000} open />
+          <CustomNotification type={'error'} message={errorMessage} autoHideDuration={15000} open />
         ) : (
-            <CustomNotification type={'error'} message={error} open={false} />
-          )}
+          <CustomNotification type={'error'} message={errorMessage} open={false} />
+        )}
 
         {this.props.location.state ? (
           <CustomNotification
@@ -101,8 +100,8 @@ export class Dashboard extends Component {
             open={this.props.location.state.open}
           />
         ) : (
-            <CustomNotification type="default" message="" open={false} />
-          )}
+          <CustomNotification type="default" message="" open={false} />
+        )}
       </div>
     );
   }

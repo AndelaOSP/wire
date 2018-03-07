@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import { Redirect } from 'react-router-dom';
 
 // actions
 import {
@@ -22,6 +21,7 @@ import './IncidentTimeline.scss';
 
 // Components
 import NavBar from '../../Common/NavBar/NavBar.Component';
+import CustomNotification from '../../Components/CustomNotification/CustomNotification.Component';
 import TimelineSidebar from '../../Components/TimelineSidebar/TimelineSidebar.Component';
 import TimelineNotes from '../../Components/TimelineNotes/TimelineNotes.Component';
 import TimelineChat from '../../Components/TimelineChat/TimelineChat.Component';
@@ -33,10 +33,6 @@ import CircularProgressIndicator from '../../Components/Progress/Progress.Compon
 export class IncidentTimeline extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      incident: {},
-      redirect: false
-    };
   }
 
   componentDidMount() {
@@ -49,23 +45,12 @@ export class IncidentTimeline extends Component {
   }
 
   render() {
-    const { redirect } = this.state;
-    if (redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: '/dashboard',
-            state: { open: true, type: 'error', message: 'Incident not found. Try again.' }
-          }}
-        />
-      );
-    }
+    const { isLoading, isError, errorMessage } = this.props;
 
     return (
       <div>
         <NavBar {...this.props} />
-
-        {this.props.match.params.incidentId && this.props.incident.id ? (
+        {!isLoading && this.props.incident.id ? (
           <div className="timeline-container">
             <TimelineSidebar className="timeline-sidebar" {...this.props} />
 
@@ -81,9 +66,13 @@ export class IncidentTimeline extends Component {
             </div>
           </div>
         ) : (
-          <div>
-            <CircularProgressIndicator>{/* this.handleRedirect() */}</CircularProgressIndicator>
-          </div>
+          <CircularProgressIndicator />
+        )}
+
+        {isError ? (
+          <CustomNotification type={'error'} message={errorMessage} autoHideDuration={15000} open />
+        ) : (
+          <CustomNotification type={'error'} message={''} open={false} />
         )}
       </div>
     );
@@ -98,7 +87,10 @@ IncidentTimeline.propTypes = {
   match: PropTypes.object.isRequired,
   incident: PropTypes.object,
   fetchStaff: PropTypes.func,
-  staff: PropTypes.array
+  staff: PropTypes.array,
+  isLoading: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired
 };
 
 /**
@@ -109,7 +101,10 @@ IncidentTimeline.propTypes = {
 const mapStateToProps = state => {
   return {
     incident: state.selectedIncident,
-    staff: state.staff
+    staff: state.staff,
+    isLoading: state.isLoading,
+    isError: state.error.status,
+    errorMessage: state.error.message
   };
 };
 

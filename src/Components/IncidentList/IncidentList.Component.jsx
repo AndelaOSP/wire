@@ -19,7 +19,7 @@ export default class IncidentList extends Component {
    * @param {string} flagType - incident flag type
    * @returns {string} flagType URL
    */
-  getIncidentFlag = (flag) => {
+  getIncidentFlag = flag => {
     if (flag.toLowerCase() === 'green') {
       return this.state.flags.green;
     } else if (flag.toLowerCase() === 'yellow') {
