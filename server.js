@@ -2,7 +2,7 @@ const express = require('express');
 const webpack = require('webpack');
 const app = express();
 const bodyParser = require('body-parser');
-const mockMiddleware = require('./src/mock_endpoints/mockMiddleware');
+const mockMiddleware = require('./mock_endpoints/mockMiddleware');
 const path = require('path');
 require('dotenv').config();
 

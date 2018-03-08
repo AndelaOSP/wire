@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import shallowToJSON from 'enzyme-to-json';
 
 import TimelineSidebar from '../src/Components/TimelineSidebar/TimelineSidebar.Component';
-import { testIncident } from '../src/mock_endpoints/mockData';
+import { testIncident } from '../mock_endpoints/mockData';
 
 describe('Timeline Sidebar component', () => {
   it('should have all the Timeline Sidebar content', () => {
