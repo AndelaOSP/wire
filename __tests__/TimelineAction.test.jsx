@@ -1,6 +1,6 @@
 import * as actions from '../src/actions/timelineAction';
 import * as types from '../src/actions/actionTypes';
-import { testIncident } from '../src/mock_endpoints/mockData';
+import { testIncident } from '../mock_endpoints/mockData';
 
 describe('Actions', () => {
   it('should create action to load incident details', () => {
