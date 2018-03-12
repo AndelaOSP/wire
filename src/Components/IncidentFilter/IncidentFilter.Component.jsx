@@ -86,10 +86,10 @@ export default class IncidentFilter extends Component {
             className="flag-filter"
             style={{ fontSize: '0.8rem', textAlign: 'center', width: '8rem' }}
           >
-            <MenuItem value={0} primaryText="Flag" />
-            <MenuItem value={1} primaryText="Red Flag" />
-            <MenuItem value={2} primaryText="Yellow Flag" />
-            <MenuItem value={3} primaryText="Green Flag" />
+            <MenuItem value={0} primaryText="All flags" onClick={() => { this.props.filterByType('All Incidents'); }}/>
+            <MenuItem value={1} primaryText="Red Flag" onClick={() => { this.props.filterByType('red'); }} />
+            <MenuItem value={2} primaryText="Yellow Flag" onClick={() => { this.props.filterByType('yellow'); }} />
+            <MenuItem value={3} primaryText="Green Flag" onClick={() => { this.props.filterByType('green'); }}/>
           </SelectField>
 
           <div className="toggle-section">
@@ -114,6 +114,7 @@ export default class IncidentFilter extends Component {
 
 IncidentFilter.propTypes = {
   changeCountryFilter: PropTypes.func,
+  filterByType: PropTypes.func,
   incident: PropTypes.object,
   onSelectStatus: PropTypes.func
 };

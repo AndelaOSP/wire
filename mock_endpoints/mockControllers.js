@@ -46,6 +46,9 @@ module.exports = {
         levels.find(level => {
           return level.id === incident.levelId;
         }) || null;
+      incident['Location'] = locations.find(location => {
+        return location.id === incident.locationId;
+      });
       return incident;
     });
   },

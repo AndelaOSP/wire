@@ -44,6 +44,21 @@ module.exports = {
       updatedAt: '2018-02-13T15:58:06.202Z',
       assigneeId: 6,
       categoryId: null
+    },
+    {
+      id: 3,
+      createdAt: '2018-02-13T15:58:06.202Z',
+      subject: 'subject 4',
+      description: 'description 3',
+      dateOccurred: '2018-02-13T15:58:06.202Z',
+      witnesses: ['@slack_name', '@slack_name'],
+      userId: 3,
+      statusId: 3,
+      levelId: 1,
+      locationId: 4,
+      updatedAt: '2018-02-13T15:58:06.202Z',
+      assigneeId: 6,
+      categoryId: null
     }
   ],
   notes: [
@@ -150,20 +165,20 @@ module.exports = {
     {
       id: 2,
       name: 'Game Room',
-      centre: 'Nairobi',
-      country: 'Kenya'
+      centre: 'Lagos',
+      country: 'Nigeria'
     },
     {
       id: 3,
       name: 'Board Room',
-      centre: 'Nairobi',
-      country: 'Kenya'
+      centre: 'New York',
+      country: 'USA'
     },
     {
       id: 4,
       name: 'Quiet Room',
-      centre: 'Nairobi',
-      country: 'Kenya'
+      centre: 'Kampala',
+      country: 'Uganda'
     }
   ],
   categories: [],
