@@ -8,9 +8,9 @@ class IncidentCard extends Component {
   }
 
   renderFlag = flagLevel => {
-    if (flagLevel == 'Red') {
+    if (flagLevel.toLowerCase() == 'red') {
       return <img className="flag-image" src="/assets/images/red_flag.svg" alt="red" />;
-    } else if (flagLevel == 'Green') {
+    } else if (flagLevel.toLowerCase() == 'green') {
       return <img className="flag-image" src="/assets/images/green_flag.svg" alt="green" />;
     } else {
       return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;

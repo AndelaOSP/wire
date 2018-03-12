@@ -35,10 +35,10 @@ export class CustomMenu extends React.Component {
           style={{ ...styles.customWidth, fontSize: '0.8rem', textAlign: 'center', width: '10rem' }}
         >
           <MenuItem value="All Countries" primaryText="All Countries" />
-          <MenuItem value="Nairobi, Kenya" primaryText="Kenya" />
-          <MenuItem value="Lagos, Nigeria" primaryText="Nigeria" />
-          <MenuItem value="Kampala, Uganda" primaryText="Uganda" />
-          <MenuItem value="New York, USA" primaryText="USA" />
+          <MenuItem value="Kenya" primaryText="Kenya" />
+          <MenuItem value="Nigeria" primaryText="Nigeria" />
+          <MenuItem value="Uganda" primaryText="Uganda" />
+          <MenuItem value="USA" primaryText="USA" />
         </SelectField>
       </div>
     );
