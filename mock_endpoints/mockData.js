@@ -52,7 +52,7 @@ module.exports = {
       description: 'description 3',
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: ['@slack_name', '@slack_name'],
-      userId: 3,
+      userId: 4,
       statusId: 3,
       levelId: 1,
       locationId: 4,
