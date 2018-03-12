@@ -10,7 +10,18 @@
         "moduleNameMapper": {
             "^.+\\.(css|less|scss)$": "identity-obj-proxy"
         },
-        "setupTestFrameworkScriptFile": "<rootDir>/setup.js"
+        "setupTestFrameworkScriptFile": "<rootDir>/setup.js",
+        "collectCoverageFrom": [
+            "src/**/*.jsx",
+            "src/**/*.js"
+        ],
+        "coveragePathIgnorePatterns": [
+            "src/config/*",
+            "src/helpers/*",
+            "src/routes.jsx",
+            "src/index.js",
+            "src/store/*"
+        ]
     },
     "scripts": {
         "babel": "babel",
@@ -21,7 +32,7 @@
         "start:dev": "npm run lint:watch && node server.js",
         "start:prod": "npm run build && node server.js",
         "test": "npm run test:fend",
-        "test:fend": "./node_modules/.bin/jest -u",
+        "test:fend": "./node_modules/.bin/jest -u --coverage",
         "test:watch": "npm run test -- --watch",
         "webpack": "webpack"
     },
