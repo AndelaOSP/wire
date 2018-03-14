@@ -55,7 +55,7 @@ export default class TimelineNotes extends Component {
 
   handleAddNote = e => {
     e.preventDefault();
-    this.props.addNote(this.refs.noteInput.getValue(), this.props.incident.id, localStorage.getItem('userId'));
+    this.props.addNote(this.refs.noteInput.getValue(), this.props.incident.id);
     this.setState({ content: '' });
   };
 
