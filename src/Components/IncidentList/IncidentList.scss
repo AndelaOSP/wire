@@ -55,6 +55,7 @@
             min-height: 65vh;
             overflow-y: scroll;
             justify-content: space-between;
+            
 
             // style for no incidents message
             .no-incidents {
@@ -75,6 +76,11 @@
                 margin: 5%;
                 background: white;
                 box-shadow: 0 0 0 rgba(0, 0, 0, 0.16), 0 0.1rem 0.2rem rgba(0, 0, 0, 0.23);
+                a {
+                    text-decoration: none !important;
+                    color: inherit !important;
+                };
+                
 
                 .incident-header {
                     display: flex;
@@ -83,12 +89,6 @@
                     padding-top: 1rem;
                     padding-bottom: .2rem;
                     
-                    .incident-subject {
-                        a {
-                            text-decoration: none !important;
-                            color: inherit !important;
-                        }
-                    }
 
                     .incident-report-date {
                         font-style: italic;
