@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import TextField from 'material-ui/TextField';
+import Dialog from 'material-ui/Dialog';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
 // styling
 import './TimelineSidebar.scss';
 
+// components
+import CustomButton from '../Button/Button.Component';
+
 export default class TimelineSidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       checked: false,
-      selectedValues: []
+      selectedValues: [],
+      reportDialogOpen: false,
+      resolveValue: 0
     };
   }
 
@@ -37,9 +44,36 @@ export default class TimelineSidebar extends Component {
     return moment(date).format('MMM Do YYYY [at] h:mm a');
   };
 
+  /**
+   * Method to handle status change for an incident
+   */
   handleStatusChange = (e, index, value) => {
     e.preventDefault();
-    this.props.changeStatus(value, this.props.incident.id);
+    if (value === 3) {
+      this.setState({ reportDialogOpen: !this.state.reportDialogOpen, resolveValue: value });
+    } else {
+      this.props.changeStatus(value, this.props.incident.id);
+    }
+  };
+
+  /**
+   * Method to handle the resolution of an incident
+   * The report is added as a note to the incident
+   */
+  handleResolveIncident = e => {
+    e.preventDefault();
+    this.props.changeStatus(this.state.resolveValue, this.props.incident.id);
+    this.props.addNote(
+      `Report: ${this.refs.reportTextField.getValue()}`,
+      this.props.incident.id,
+      localStorage.getItem('userId')
+    );
+    this.setState({ reportDialogOpen: !this.state.reportDialogOpen, resolveValue: 0 });
+  };
+
+  handleCloseReportDialog = e => {
+    e.preventDefault();
+    this.setState({ reportDialogOpen: !this.state.reportDialogOpen, resolveValue: 0 });
   };
 
   handleChangeAssignee = (e, index, value) => {
@@ -90,6 +124,10 @@ export default class TimelineSidebar extends Component {
     let ccdAssociates = incident.assignees.filter(user => {
       return user.assignedRole === 'ccd';
     });
+    const resolveActions = [
+      <CustomButton key={1} label="Cancel" onClick={this.handleCloseReportDialog} />,
+      <CustomButton key={2} label="Submit" onClick={this.handleResolveIncident} />
+    ];
     return (
       <div className="sidebar-container">
         <div className="incident-details">
@@ -177,6 +215,19 @@ export default class TimelineSidebar extends Component {
             )}
           </ul>
         </div>
+
+        <hr className="divider" />
+
+        <Dialog
+          title={'Resolve an incident'}
+          actions={resolveActions}
+          modal={false}
+          open={this.state.reportDialogOpen}
+          onRequestClose={this.handleCloseReportDialog}
+        >
+          Add the report to the incident or attach a link to the document containing the report
+          <TextField fullWidth multiLine rows={3} ref="reportTextField" />
+        </Dialog>
       </div>
     );
   }
@@ -188,5 +239,6 @@ TimelineSidebar.propTypes = {
   changeStatus: PropTypes.func.isRequired,
   changeAssignee: PropTypes.func.isRequired,
   handleCC: PropTypes.func.isRequired,
-  staff: PropTypes.array
+  staff: PropTypes.array,
+  addNote: PropTypes.func
 };
