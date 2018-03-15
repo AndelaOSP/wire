@@ -24,7 +24,7 @@ describe('IncidentCard component', () => {
             subject: 'Stolen Phone',
             incidentReportDate: '5th Jan 2018',
             incidentTime: '4:41 PM',
-            reporter: { name: 'Maureen Nyakio' },
+            reporter: { username: 'Maureen Nyakio' },
             Level: { name: 'red' }
           },
           {
@@ -32,7 +32,7 @@ describe('IncidentCard component', () => {
             subject: 'Stolen Phone',
             incidentReportDate: '5th Jan 2018',
             incidentTime: '4:41 PM',
-            reporter: { name: 'Maureen Nyakio' },
+            reporter: { username: 'Maureen Nyakio' },
             Level: { name: 'red' }
           }
         ]}
