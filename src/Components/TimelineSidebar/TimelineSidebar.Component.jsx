@@ -41,9 +41,9 @@ export default class TimelineSidebar extends Component {
     return (
       <div className="sidebar-container">
         <div className="incident-details">
-          <span className="incident-subject"> {incident.subject} </span>
+          <span className="incident-subject"> {incident.subject || 'No subject provided.'} </span>
           <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
-          <p> {incident.description} </p>
+          <p> {incident.description || 'No description provided.'} </p>
           <p className="incident-extra">
             reported by <b>{incident.User.name}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
           </p>
@@ -65,7 +65,7 @@ export default class TimelineSidebar extends Component {
           <span className="incident-status-title"> Incident status: </span>
           <div>
             <DropDownMenu
-              value={incident.statusId}
+              value={incident.statusId || 1}
               onChange={this.handleStatusChange}
               className="dropdown dropdown-status"
             >
@@ -77,7 +77,7 @@ export default class TimelineSidebar extends Component {
 
           <span> Assigned to: </span>
           <div>
-            {incident.assigneeId !== null ? (
+            {incident.assigneeId ? (
               <DropDownMenu
                 value={incident.Assignee.id}
                 onChange={this.handleChangeAssignee}
@@ -90,9 +90,13 @@ export default class TimelineSidebar extends Component {
             ) : (
               <DropDownMenu value={0} onChange={this.handleChangeAssignee} className="dropdown dropdown-assigned">
                 <MenuItem value={0} primaryText="Assign someone" />
-                {staff.map((staffMember, i) => {
-                  return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.name} />;
-                })}
+                {staff ? (
+                  staff.map((staffMember, i) => {
+                    return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.name} />;
+                  })
+                ) : (
+                  <MenuItem value={0} primaryText={'No assignees available'} />
+                )}
               </DropDownMenu>
             )}
           </div>
