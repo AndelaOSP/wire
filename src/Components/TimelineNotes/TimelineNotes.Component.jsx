@@ -90,7 +90,7 @@ export default class TimelineNotes extends Component {
                     <div className="note-header">
                       <span className="timestamp">
                         {' '}
-                        {note.User.name} on {this.handleDateString(note.createdAt)}{' '}
+                        {note.User ? note.User.name : 'Unknown'} on {this.handleDateString(note.createdAt)}{' '}
                       </span>
                     </div>
                     <Divider className="note-divider" />

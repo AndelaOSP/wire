@@ -40,8 +40,8 @@ export default class TimelineChat extends Component {
             chats.map((chat, i) => {
               return (
                 <ListItem
-                  leftAvatar={<Avatar src={chat.User.imageUrl} />}
-                  primaryText={`${chat.User.name} on ${this.handleDateString(chat.createdAt)}`}
+                  leftAvatar={chat.User ? <Avatar src={chat.User.imageUrl} /> : null}
+                  primaryText={chat.User ? `${chat.User.name} on ${this.handleDateString(chat.createdAt)}` : 'Unknown'}
                   secondaryText={<p> {chat.chat} </p>}
                   secondaryTextLines={2}
                   className="chat-item"
