@@ -18,7 +18,14 @@ class IncidentCard extends Component {
   };
 
   render() {
-    const { incidentId, incidentSubject, incidentReportDate, incidentTime, incidentAsignee, incidentFlag } = this.props;
+    const {
+      incidentId,
+      incidentSubject,
+      incidentReportDate,
+      incidentTime,
+      incidentReporter,
+      incidentFlag
+    } = this.props;
     return (
       <div className="incident-card">
         <Link to={`/timeline/${incidentId}`}>
@@ -28,7 +35,7 @@ class IncidentCard extends Component {
           </div>
           <div className="incident-actions">
             <span className="incident-time">{incidentTime}</span>
-            <span className="assigned-to">{incidentAsignee}</span>
+            <span className="assigned-to">{incidentReporter}</span>
             <span className="incident-flag">{this.renderFlag(incidentFlag)}</span>
           </div>
         </Link>
@@ -44,7 +51,7 @@ IncidentCard.propTypes = {
   incidentSubject: string.isRequired,
   incidentReportDate: string.isRequired,
   incidentTime: string.isRequired,
-  incidentAsignee: string.isRequired,
+  incidentReporter: string.isRequired,
   incidentFlag: string.isRequired
 };
 
