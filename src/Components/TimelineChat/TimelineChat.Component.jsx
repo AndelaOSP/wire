@@ -41,7 +41,9 @@ export default class TimelineChat extends Component {
               return (
                 <ListItem
                   leftAvatar={chat.User ? <Avatar src={chat.User.imageUrl} /> : null}
-                  primaryText={chat.User ? `${chat.User.name} on ${this.handleDateString(chat.createdAt)}` : 'Unknown'}
+                  primaryText={
+                    chat.User ? `${chat.User.username} on ${this.handleDateString(chat.createdAt)}` : 'Unknown'
+                  }
                   secondaryText={<p> {chat.chat} </p>}
                   secondaryTextLines={2}
                   className="chat-item"

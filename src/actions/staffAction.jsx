@@ -12,7 +12,7 @@ export const fetchStaff = () => {
     return axios
       .get(`${config.API_URL}/users`)
       .then(res => {
-        dispatch(fetchStaffSuccess(res.data.users));
+        dispatch(fetchStaffSuccess(res.data.data.users));
       })
       .catch(error => {
         return error;

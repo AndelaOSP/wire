@@ -19,7 +19,8 @@ describe('async actions', () => {
   it('displays the appropriate error message when there is an error fetching incidents', done => {
     const store = mockStore();
     const expectedActions = [
-      { type: types.ERROR_ACTION,
+      {
+        type: types.ERROR_ACTION,
         status: true,
         message: 'Error fetching incident data. Please try again.'
       }
@@ -50,7 +51,8 @@ describe('async actions', () => {
   it('displays the appropriate error message when there is an auth error', done => {
     const store = mockStore();
     const expectedActions = [
-      { type: types.ERROR_ACTION,
+      {
+        type: types.ERROR_ACTION,
         status: true,
         message: 'You might not be logged in/authorized. Please try again.'
       }
@@ -81,7 +83,8 @@ describe('async actions', () => {
   it('displays the appropriate error message for all other errors', done => {
     const store = mockStore();
     const expectedActions = [
-      { type: types.ERROR_ACTION,
+      {
+        type: types.ERROR_ACTION,
         status: true,
         message: 'Oops! Something went wrong. Please try again.'
       }

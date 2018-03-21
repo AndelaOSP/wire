@@ -7,13 +7,9 @@ module.exports = {
     let incident = incidents.find(incident => {
       return incident.id === incidentId;
     });
-    incident['Assignee'] =
+    incident['reporter'] =
       users.find(user => {
-        return user.id === incident.assigneeId;
-      }) || null;
-    incident['User'] =
-      users.find(user => {
-        return user.id === incident.userId;
+        return user.id === incident.reporterId;
       }) || null;
     incident['Status'] =
       statuses.find(status => {
@@ -30,13 +26,9 @@ module.exports = {
   },
   getIncidents: query => {
     return incidents.filter(incident => fuzzysearch(query, incident.subject.toLowerCase()) === true).map(incident => {
-      incident['Assignee'] =
+      incident['reporter'] =
         users.find(user => {
-          return user.id === incident.assigneeId;
-        }) || null;
-      incident['User'] =
-        users.find(user => {
-          return user.id === incident.userId;
+          return user.id === incident.reporterId;
         }) || null;
       incident['Status'] =
         statuses.find(status => {
@@ -80,13 +72,9 @@ module.exports = {
       return incident.id === parseInt(incidentId);
     });
     incident.statusId = statusId;
-    incident['Assignee'] =
+    incident['reporter'] =
       users.find(user => {
-        return user.id === incident.assigneeId;
-      }) || null;
-    incident['User'] =
-      users.find(user => {
-        return user.id === incident.userId;
+        return user.id === incident.reporterId;
       }) || null;
     incident['Status'] =
       statuses.find(status => {
@@ -101,18 +89,50 @@ module.exports = {
     });
     return incident;
   },
-  changeAssignee: (incidentId, assigneeId) => {
+  changeAssignee: (incidentId, userId) => {
     let incident = incidents.find(incident => {
       return incident.id === incidentId;
     });
-    incident.assigneeId = assigneeId;
-    incident['Assignee'] =
+    incident.assignees = incident.assignees.filter(assignee => {
+      return assignee.assignedRole !== 'assignee';
+    });
+    let newAssignee = users.find(user => {
+      return user.id === userId;
+    });
+    newAssignee['assignedRole'] = 'assignee';
+    incident.assignees.push(newAssignee);
+    incident['reporter'] =
       users.find(user => {
-        return user.id === assigneeId;
+        return user.id === incident.reporterId;
       }) || null;
-    incident['User'] =
+    incident['Status'] =
+      statuses.find(status => {
+        return status.id === incident.statusId;
+      }) || null;
+    incident['Level'] =
+      levels.find(level => {
+        return level.id === incident.levelId;
+      }) || null;
+    incident['Location'] = locations.find(location => {
+      return location.id === incident.locationId;
+    });
+    return incident;
+  },
+  handleCCd: (incidentId, ccdUsers) => {
+    let incident = incidents.find(incident => {
+      return incident.id === incidentId;
+    });
+    incident.assignees = [];
+    ccdUsers.map(ccdUser => {
+      let newCCd = users.find(user => {
+        return user.id === ccdUser.userId;
+      });
+      newCCd['assignedRole'] = 'ccd';
+      incident.assignees.push(newCCd);
+    });
+    incident['reporter'] =
       users.find(user => {
-        return user.id === incident.userId;
+        return user.id === incident.reporterId;
       }) || null;
     incident['Status'] =
       statuses.find(status => {
