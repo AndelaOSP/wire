@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
+import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -10,6 +11,21 @@ import './TimelineSidebar.scss';
 export default class TimelineSidebar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      checked: false,
+      selectedValues: []
+    };
+  }
+
+  componentWillMount() {
+    let ccdAssociates = this.props.incident.assignees
+      .filter(user => {
+        return user.assignedRole === 'ccd';
+      })
+      .map(user => {
+        return user.id;
+      });
+    this.setState({ selectedValues: ccdAssociates });
   }
 
   handleDateString = date => {
@@ -23,7 +39,46 @@ export default class TimelineSidebar extends Component {
 
   handleChangeAssignee = (e, index, value) => {
     e.preventDefault();
-    this.props.changeAssignee(value, this.props.incident.id);
+    this.props.changeAssignee({ userId: value, incidentId: this.props.incident.id });
+  };
+
+  handleSelectCCd = (event, index, values) => {
+    this.setState({ selectedValues: values });
+  };
+
+  /**
+   * Customize the rendering of the selected item.
+   */
+  selectionRenderer = values => {
+    switch (values.length) {
+      case 0:
+        return 'Select a name';
+      case 1:
+        return '1 person selected';
+      default:
+        return `${values.length} people selected`;
+    }
+  };
+
+  renderCC = staff => {
+    return staff.map(staffMember => {
+      return (
+        <MenuItem
+          key={staffMember.id}
+          insetChildren
+          value={staffMember.id}
+          checked={this.state.selectedValues && this.state.selectedValues.indexOf(staffMember.id) > -1}
+          primaryText={staffMember.username}
+        />
+      );
+    });
+  };
+
+  onSelectClose = () => {
+    let ccdUsers = this.state.selectedValues.map(selected => {
+      return { incidentId: this.props.incident.id, userId: selected };
+    });
+    this.props.handleCC({ incidentId: this.props.incident.id, ccdUsers });
   };
 
   renderFlag = flagLevel => {
@@ -38,6 +93,12 @@ export default class TimelineSidebar extends Component {
 
   render() {
     let { incident, staff } = this.props;
+    let assignee = incident.assignees.find(user => {
+      return user.assignedRole === 'assignee';
+    });
+    let ccdAssociates = incident.assignees.filter(user => {
+      return user.assignedRole === 'ccd';
+    });
     return (
       <div className="sidebar-container">
         <div className="incident-details">
@@ -45,7 +106,7 @@ export default class TimelineSidebar extends Component {
           <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
           <p> {incident.description || 'No description provided.'} </p>
           <p className="incident-extra">
-            reported by <b>{incident.User.name}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
+            reported by <b>{incident.reporter.username}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
           </p>
         </div>
 
@@ -56,7 +117,7 @@ export default class TimelineSidebar extends Component {
           <ul className="list">
             {incident.witnesses ? (
               incident.witnesses.map((witness, i) => {
-                return <li key={i}> {witness} </li>;
+                return <li key={i}> {witness.username} </li>;
               })
             ) : (
               <li> No witnesses </li>
@@ -77,14 +138,14 @@ export default class TimelineSidebar extends Component {
 
           <span> Assigned to: </span>
           <div>
-            {incident.assigneeId ? (
+            {assignee ? (
               <DropDownMenu
-                value={incident.Assignee.id}
+                value={assignee.id}
                 onChange={this.handleChangeAssignee}
                 className="dropdown dropdown-assigned"
               >
                 {staff.map((staffMember, i) => {
-                  return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.name} />;
+                  return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.username} />;
                 })}
               </DropDownMenu>
             ) : (
@@ -92,13 +153,29 @@ export default class TimelineSidebar extends Component {
                 <MenuItem value={0} primaryText="Assign someone" />
                 {staff ? (
                   staff.map((staffMember, i) => {
-                    return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.name} />;
+                    return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.username} />;
                   })
                 ) : (
                   <MenuItem value={0} primaryText={'No assignees available'} />
                 )}
               </DropDownMenu>
             )}
+          </div>
+
+          <span> CC: </span>
+          <div>
+            <SelectField
+              multiple
+              hintText="Select a name"
+              value={this.state.selectedValues}
+              onChange={this.handleSelectCCd}
+              dropDownMenuProps={{
+                onClose: this.onSelectClose
+              }}
+              selectionRenderer={() => this.selectionRenderer(this.state.selectedValues)}
+            >
+              {this.renderCC(staff, ccdAssociates)}
+            </SelectField>
           </div>
 
           <span> Location: </span>
@@ -149,5 +226,6 @@ TimelineSidebar.propTypes = {
   match: PropTypes.object,
   changeStatus: PropTypes.func.isRequired,
   changeAssignee: PropTypes.func.isRequired,
+  handleCC: PropTypes.func.isRequired,
   staff: PropTypes.array
 };

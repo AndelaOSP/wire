@@ -11,6 +11,7 @@ import {
   editNote,
   archiveNote,
   changeAssignee,
+  handleCC,
   changeStatus,
   sendMessage
 } from '../../actions/timelineAction';
@@ -120,6 +121,7 @@ const mapDispatchToProps = dispatch =>
       editNote,
       archiveNote,
       changeAssignee,
+      handleCC,
       changeStatus,
       sendMessage,
       fetchStaff

@@ -4,15 +4,32 @@ module.exports = {
       id: 1,
       createdAt: '2018-02-13T15:58:06.202Z',
       subject: 'subject 1',
-      description: 'description 1',
+      description: null,
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: ['@slack_name', '@slack_name'],
-      userId: 1,
       statusId: 1,
+      reporterId: 1,
       levelId: 3,
       locationId: 1,
       updatedAt: '2018-02-13T15:58:06.202Z',
-      assigneeId: 2,
+      assignees: [
+        {
+          id: '-KhLsOxrKcKZC8i2n888',
+          email: 'mercy.muchai@andela.com',
+          name: 'Mercy Muchai',
+          imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
+          roleId: 2,
+          assignedRole: 'assignee'
+        },
+        {
+          id: '-KhLsOxrKcKZC8i2n889',
+          email: 'carol.nkirote@andela.com',
+          name: 'Carol Nkirote',
+          imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
+          roleId: 2,
+          assignedRole: 'ccd'
+        }
+      ],
       categoryId: null
     },
     {
@@ -22,12 +39,12 @@ module.exports = {
       description: 'description 2',
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: ['@slack_name', '@slack_name'],
-      userId: 2,
       statusId: 2,
+      reporterId: 2,
       levelId: 2,
       locationId: 2,
       updatedAt: '2018-02-13T15:58:06.202Z',
-      assigneeId: 1,
+      assignees: [],
       categoryId: null
     },
     {
@@ -37,12 +54,12 @@ module.exports = {
       description: 'description 3',
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: ['@slack_name', '@slack_name'],
-      userId: 3,
       statusId: 3,
+      reporterId: 3,
       levelId: 1,
       locationId: 3,
       updatedAt: '2018-02-13T15:58:06.202Z',
-      assigneeId: 3,
+      assignees: [],
       categoryId: null
     },
     {
@@ -52,12 +69,12 @@ module.exports = {
       description: 'description 3',
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: ['@slack_name', '@slack_name'],
-      userId: 4,
       statusId: 3,
+      reporterId: 4,
       levelId: 1,
       locationId: 4,
       updatedAt: '2018-02-13T15:58:06.202Z',
-      assigneeId: 2,
+      assignees: [],
       categoryId: null
     }
   ],
@@ -153,6 +170,27 @@ module.exports = {
       name: 'Another Lady',
       imageUrl: 'https://randomuser.me/api/portraits/med/women/05.jpg',
       roleId: 1
+    },
+    {
+      id: '-KhLsOxrKcKZC8i2n888',
+      email: 'mercy.muchai@andela.com',
+      name: 'Mercy Muchai',
+      imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
+      roleId: 2
+    },
+    {
+      id: '-KhLsOxrKcKZC8i2n889',
+      email: 'carol.nkirote@andela.com',
+      name: 'Carol Nkirote',
+      imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
+      roleId: 2
+    },
+    {
+      id: '-KkqiPVabgde_hvNDi0A',
+      email: 'robley.gori@',
+      name: 'Robley Gori',
+      imageUrl: 'https://lh6.googleusercontent.com/-tVq8OIwPjOw/AAAAAAAAAAI/AAAAAAAAAAo/t3GsqCgqrNk/photo.jpg?sz=50',
+      roleId: 3
     }
   ],
   locations: [
@@ -217,15 +255,31 @@ module.exports = {
     description: 'description 1',
     dateOccurred: '2018-02-13T15:58:06.202Z',
     witnesses: ['@slack_name', '@slack_name'],
-    userId: 1,
     statusId: 1,
     levelId: 3,
     locationId: 1,
     updatedAt: '2018-02-13T15:58:06.202Z',
-    assigneeId: 2,
     categoryId: null,
+    assignees: [
+      {
+        id: '-KhLsOxrKcKZC8i2n888',
+        email: 'mercy.muchai@andela.com',
+        name: 'Mercy Muchai',
+        imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
+        roleId: 2,
+        assignedRole: 'assignee'
+      },
+      {
+        id: '-KhLsOxrKcKZC8i2n889',
+        email: 'carol.nkirote@andela.com',
+        name: 'Carol Nkirote',
+        imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
+        roleId: 2,
+        assignedRole: 'ccd'
+      }
+    ],
     Level: { name: 'Red' },
-    User: {
+    reporter: {
       name: 'Test User'
     },
     Status: {
