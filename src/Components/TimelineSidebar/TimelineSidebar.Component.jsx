@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
+import Checkbox from 'material-ui/Checkbox';
 import MenuItem from 'material-ui/MenuItem';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -10,6 +11,9 @@ import './TimelineSidebar.scss';
 export default class TimelineSidebar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      checked: false,
+    };
   }
 
   handleDateString = date => {
@@ -26,6 +30,11 @@ export default class TimelineSidebar extends Component {
     this.props.changeAssignee(value, this.props.incident.id);
   };
 
+  handleCC = (isChecked, assigneeId) => {
+    this.props.handleCC(assigneeId, this.props.incident.id, isChecked);
+    this.setState({ checked: !this.state.checked });
+  };
+
   renderFlag = flagLevel => {
     if (flagLevel == 'Red') {
       return <img className="flag-image" src="/assets/images/red_flag.svg" alt="red" />;
@@ -38,6 +47,12 @@ export default class TimelineSidebar extends Component {
 
   render() {
     let { incident, staff } = this.props;
+    let assignee = incident.assignees.find(user => {
+      return user.assignedRole === 'assignee';
+    });
+    let ccdAssociates = incident.assignees.filter(user => {
+      return user.assignedRole === 'ccd';
+    });
     return (
       <div className="sidebar-container">
         <div className="incident-details">
@@ -45,7 +60,7 @@ export default class TimelineSidebar extends Component {
           <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
           <p> {incident.description || 'No description provided.'} </p>
           <p className="incident-extra">
-            reported by <b>{incident.User.name}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
+            reported by <b>{incident.reporter.name}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
           </p>
         </div>
 
@@ -77,9 +92,9 @@ export default class TimelineSidebar extends Component {
 
           <span> Assigned to: </span>
           <div>
-            {incident.assigneeId ? (
+            {assignee ? (
               <DropDownMenu
-                value={incident.Assignee.id}
+                value={assignee.id}
                 onChange={this.handleChangeAssignee}
                 className="dropdown dropdown-assigned"
               >
@@ -99,6 +114,42 @@ export default class TimelineSidebar extends Component {
                 )}
               </DropDownMenu>
             )}
+          </div>
+
+          <span> CC: </span>
+          <div>
+            <DropDownMenu value={ccdAssociates[0] ? ccdAssociates[0].id : 0} className="dropdown dropdown-assigned">
+              <MenuItem value={0} primaryText="CC someone" />
+              {staff.map((staffMember, i) => {
+                if (
+                  staff.find(member => {
+                    return member.id === staffMember.id;
+                  }) &&
+                  ccdAssociates.find(member => {
+                    return member.id === staffMember.id;
+                  })
+                ) {
+                  return (
+                    <Checkbox
+                      key={i}
+                      value={staffMember.id}
+                      label={staffMember.name}
+                      checked
+                      onCheck={(e, checked) => this.handleCC(checked, staffMember.id)}
+                    />
+                  );
+                } else {
+                  return (
+                    <Checkbox
+                      key={i}
+                      value={staffMember.id}
+                      label={staffMember.name}
+                      onCheck={(e, checked) => this.handleCC(checked, staffMember.id)}
+                    />
+                  );
+                }
+              })}
+            </DropDownMenu>
           </div>
 
           <span> Location: </span>
@@ -149,5 +200,6 @@ TimelineSidebar.propTypes = {
   match: PropTypes.object,
   changeStatus: PropTypes.func.isRequired,
   changeAssignee: PropTypes.func.isRequired,
+  handleCC: PropTypes.func.isRequired,
   staff: PropTypes.array
 };
