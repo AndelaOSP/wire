@@ -81,7 +81,7 @@ describe('Search functionality', () => {
                   subject: 'Stolen Phone',
                   dateOccurred: '2017-02-11T00:00:00.000Z',
                   createdAt: '2018-02-14T12:26:03.792Z',
-                  User: { name: 'Maureen Nyakio' },
+                  reporter: { name: 'Maureen Nyakio' },
                   Level: { name: 'red' }
                 }
               ]

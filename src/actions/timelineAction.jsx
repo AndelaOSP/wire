@@ -155,14 +155,43 @@ export const changeAssigneeSuccess = incident => {
  * @param {*} assigneeId
  * @param {*} incidentId
  */
-export const changeAssignee = (assigneeId, incidentId) => {
+export const changeAssignee = (userId, incidentId) => {
   return dispatch => {
     return axios
       .put(`${config.INCIDENTS_URL}/${incidentId}/`, {
-        assigneeId: assigneeId
+        userId: userId,
+        assignedRole: 'assignee'
       })
       .then(res => {
         dispatch(changeAssigneeSuccess(res.data.data));
+      })
+      .catch(error => {
+        return dispatch(errorAction(error));
+      });
+  };
+};
+
+// Handle CC'd action creator
+export const changeCCdSuccess = incident => {
+  return { type: CHANGE_ASSIGNEE, incident };
+};
+
+/**
+ * Handle CCd thunk
+ * @param {*} assigneeId
+ * @param {*} incidentId
+ * @param {*} status
+ */
+export const handleCC = (userId, incidentId, status) => {
+  return dispatch => {
+    return axios
+      .put(`${config.INCIDENTS_URL}/${incidentId}/`, {
+        userId: userId,
+        assignedRole: 'ccd',
+        status: status
+      })
+      .then(res => {
+        dispatch(changeCCdSuccess(res.data.data));
       })
       .catch(error => {
         return dispatch(errorAction(error));
