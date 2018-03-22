@@ -118,21 +118,18 @@ module.exports = {
     });
     return incident;
   },
-  handleCCd: (incidentId, userId, status) => {
+  handleCCd: (incidentId, ccdUsers) => {
     let incident = incidents.find(incident => {
       return incident.id === incidentId;
     });
-    if (status) {
-      let newAssignee = users.find(user => {
-        return user.id === userId;
+    incident.assignees = [];
+    ccdUsers.map(ccdUser => {
+      let newCCd = users.find(user => {
+        return user.id === ccdUser.userId;
       });
-      newAssignee['assignedRole'] = 'ccd';
-      incident.assignees.push(newAssignee);
-    } else {
-      incident.assignees = incident.assignees.filter(user => {
-        return user.id !== userId;
-      });
-    }
+      newCCd['assignedRole'] = 'ccd';
+      incident.assignees.push(newCCd);
+    });
     incident['reporter'] =
       users.find(user => {
         return user.id === incident.reporterId;

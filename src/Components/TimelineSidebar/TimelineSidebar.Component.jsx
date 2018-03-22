@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import Checkbox from 'material-ui/Checkbox';
+import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -13,7 +13,19 @@ export default class TimelineSidebar extends Component {
     super(props);
     this.state = {
       checked: false,
+      selectedValues: []
     };
+  }
+
+  componentWillMount() {
+    let ccdAssociates = this.props.incident.assignees
+      .filter(user => {
+        return user.assignedRole === 'ccd';
+      })
+      .map(user => {
+        return user.id;
+      });
+    this.setState({ selectedValues: ccdAssociates });
   }
 
   handleDateString = date => {
@@ -27,12 +39,46 @@ export default class TimelineSidebar extends Component {
 
   handleChangeAssignee = (e, index, value) => {
     e.preventDefault();
-    this.props.changeAssignee(value, this.props.incident.id);
+    this.props.changeAssignee({ userId: value, incidentId: this.props.incident.id });
   };
 
-  handleCC = (isChecked, assigneeId) => {
-    this.props.handleCC(assigneeId, this.props.incident.id, isChecked);
-    this.setState({ checked: !this.state.checked });
+  handleSelectCCd = (event, index, values) => {
+    this.setState({ selectedValues: values });
+  };
+
+  /**
+   * Customize the rendering of the selected item.
+   */
+  selectionRenderer = values => {
+    switch (values.length) {
+      case 0:
+        return 'Select a name';
+      case 1:
+        return '1 person selected';
+      default:
+        return `${values.length} people selected`;
+    }
+  };
+
+  renderCC = staff => {
+    return staff.map(staffMember => {
+      return (
+        <MenuItem
+          key={staffMember.id}
+          insetChildren
+          value={staffMember.id}
+          checked={this.state.selectedValues && this.state.selectedValues.indexOf(staffMember.id) > -1}
+          primaryText={staffMember.username}
+        />
+      );
+    });
+  };
+
+  onSelectClose = () => {
+    let ccdUsers = this.state.selectedValues.map(selected => {
+      return { incidentId: this.props.incident.id, userId: selected };
+    });
+    this.props.handleCC({ incidentId: this.props.incident.id, ccdUsers });
   };
 
   renderFlag = flagLevel => {
@@ -60,7 +106,7 @@ export default class TimelineSidebar extends Component {
           <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
           <p> {incident.description || 'No description provided.'} </p>
           <p className="incident-extra">
-            reported by <b>{incident.reporter.name}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
+            reported by <b>{incident.reporter.username}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
           </p>
         </div>
 
@@ -71,7 +117,7 @@ export default class TimelineSidebar extends Component {
           <ul className="list">
             {incident.witnesses ? (
               incident.witnesses.map((witness, i) => {
-                return <li key={i}> {witness} </li>;
+                return <li key={i}> {witness.username} </li>;
               })
             ) : (
               <li> No witnesses </li>
@@ -99,7 +145,7 @@ export default class TimelineSidebar extends Component {
                 className="dropdown dropdown-assigned"
               >
                 {staff.map((staffMember, i) => {
-                  return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.name} />;
+                  return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.username} />;
                 })}
               </DropDownMenu>
             ) : (
@@ -107,7 +153,7 @@ export default class TimelineSidebar extends Component {
                 <MenuItem value={0} primaryText="Assign someone" />
                 {staff ? (
                   staff.map((staffMember, i) => {
-                    return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.name} />;
+                    return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.username} />;
                   })
                 ) : (
                   <MenuItem value={0} primaryText={'No assignees available'} />
@@ -118,38 +164,18 @@ export default class TimelineSidebar extends Component {
 
           <span> CC: </span>
           <div>
-            <DropDownMenu value={ccdAssociates[0] ? ccdAssociates[0].id : 0} className="dropdown dropdown-assigned">
-              <MenuItem value={0} primaryText="CC someone" />
-              {staff.map((staffMember, i) => {
-                if (
-                  staff.find(member => {
-                    return member.id === staffMember.id;
-                  }) &&
-                  ccdAssociates.find(member => {
-                    return member.id === staffMember.id;
-                  })
-                ) {
-                  return (
-                    <Checkbox
-                      key={i}
-                      value={staffMember.id}
-                      label={staffMember.name}
-                      checked
-                      onCheck={(e, checked) => this.handleCC(checked, staffMember.id)}
-                    />
-                  );
-                } else {
-                  return (
-                    <Checkbox
-                      key={i}
-                      value={staffMember.id}
-                      label={staffMember.name}
-                      onCheck={(e, checked) => this.handleCC(checked, staffMember.id)}
-                    />
-                  );
-                }
-              })}
-            </DropDownMenu>
+            <SelectField
+              multiple
+              hintText="Select a name"
+              value={this.state.selectedValues}
+              onChange={this.handleSelectCCd}
+              dropDownMenuProps={{
+                onClose: this.onSelectClose
+              }}
+              selectionRenderer={() => this.selectionRenderer(this.state.selectedValues)}
+            >
+              {this.renderCC(staff, ccdAssociates)}
+            </SelectField>
           </div>
 
           <span> Location: </span>

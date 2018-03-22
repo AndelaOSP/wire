@@ -155,12 +155,11 @@ export const changeAssigneeSuccess = incident => {
  * @param {*} assigneeId
  * @param {*} incidentId
  */
-export const changeAssignee = (userId, incidentId) => {
+export const changeAssignee = payload => {
   return dispatch => {
     return axios
-      .put(`${config.INCIDENTS_URL}/${incidentId}/`, {
-        userId: userId,
-        assignedRole: 'assignee'
+      .put(`${config.INCIDENTS_URL}/${payload.incidentId}/`, {
+        assignee: payload
       })
       .then(res => {
         dispatch(changeAssigneeSuccess(res.data.data));
@@ -182,13 +181,11 @@ export const changeCCdSuccess = incident => {
  * @param {*} incidentId
  * @param {*} status
  */
-export const handleCC = (userId, incidentId, status) => {
+export const handleCC = payload => {
   return dispatch => {
     return axios
-      .put(`${config.INCIDENTS_URL}/${incidentId}/`, {
-        userId: userId,
-        assignedRole: 'ccd',
-        status: status
+      .put(`${config.INCIDENTS_URL}/${payload.incidentId}/`, {
+        ccd: payload.ccdUsers
       })
       .then(res => {
         dispatch(changeCCdSuccess(res.data.data));
