@@ -139,4 +139,64 @@ describe('async actions', () => {
       });
     });
   });
+
+  it('creates ERROR_ACTION with 404 when an error occurs', done => {
+    const store = mockStore();
+    const newIncident = testIncident;
+    const expectedActions = [
+        { 
+          type: types.ERROR_ACTION, 
+          status: true,
+          message: 'Error fetching incident data. Please try again.'
+        }
+      ];
+    
+    newIncident['statusId'] = 2;
+
+    store.dispatch(actions.changeStatus(2,1));
+    moxios.wait(()=>{
+      let request = moxios.requests.mostRecent();
+      const statusResponse = {
+        status : 404,
+        response : {
+          status : 404
+        }
+      };
+      request.respondWith(statusResponse).then(()=>{
+        const storeActions = store.getActions();
+        expect(storeActions).toEqual(expectedActions);
+        done();
+      });
+    });
+  });
+
+  it('creates ERROR_ACTION with 401 when not logged in', done => {
+    const store = mockStore();
+    const newIncident = testIncident;
+    const expectedActions = [
+        { 
+          type: types.ERROR_ACTION, 
+          status: true,
+          message: 'You might not be logged in/authorized. Please try again.'
+        }
+      ];
+    
+    newIncident['statusId'] = 2;
+
+    store.dispatch(actions.changeStatus(2,1));
+    moxios.wait(()=>{
+      let request = moxios.requests.mostRecent();
+      const statusResponse = {
+        status : 401,
+        response : {
+          status : 401
+        }
+      };
+      request.respondWith(statusResponse).then(()=>{
+        const storeActions = store.getActions();
+        expect(storeActions).toEqual(expectedActions);
+        done();
+      });
+    });
+  });
 });
