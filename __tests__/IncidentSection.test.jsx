@@ -21,18 +21,18 @@ describe('IncidentCard component', () => {
         incidents={[
           {
             id: '12345667',
-            subject: 'Stolen Phone',
+            incidentSubject: 'Stolen Phone',
             incidentReportDate: '5th Jan 2018',
             incidentTime: '4:41 PM',
-            reporter: { name: 'Maureen Nyakio' },
+            User: { name: 'Maureen Nyakio' },
             Level: { name: 'red' }
           },
           {
             id: '12345678',
-            subject: 'Stolen Phone',
+            incidentSubject: 'Stolen Phone',
             incidentReportDate: '5th Jan 2018',
             incidentTime: '4:41 PM',
-            reporter: { name: 'Maureen Nyakio' },
+            User: { name: 'Maureen Nyakio' },
             Level: { name: 'red' }
           }
         ]}

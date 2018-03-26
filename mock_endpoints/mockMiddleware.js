@@ -10,7 +10,6 @@ const {
   archiveNote,
   archiveChat,
   changeAssignee,
-  handleCCd,
   changeStatus,
   getStaff
 } = require('./mockControllers');
@@ -33,10 +32,8 @@ module.exports = {
       let incidentId = parseInt(req.params.id);
       if (req.body.statusId) {
         res.send({ data: changeStatus(incidentId, req.body.statusId), status: 'success' });
-      } else if (req.body.userId && req.body.assignedRole === 'assignee') {
-        res.send({ data: changeAssignee(incidentId, req.body.userId, req.body.assignedRole), status: 'success' });
-      } else if (req.body.userId && req.body.assignedRole === 'ccd' && req.body.status) {
-        res.send({ data: handleCCd(incidentId, req.body.userId, req.body.status), status: 'success' });
+      } else if (req.body.assigneeId) {
+        res.send({ data: changeAssignee(incidentId, req.body.assigneeId), status: 'success' });
       }
     }, 2000);
   },

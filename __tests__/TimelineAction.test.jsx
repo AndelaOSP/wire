@@ -62,8 +62,7 @@ describe('async actions', () => {
       type: types.ADD_CHAT,
       chat: chats[2]
     },
-    {
-      type: types.ERROR_ACTION,
+    { type: types.ERROR_ACTION,
       status: true,
       message: 'You might not be logged in/authorized. Please try again.'
     }
@@ -76,22 +75,24 @@ describe('async actions', () => {
       let incidentRequest = moxios.requests.at(0);
       let notesRequest = moxios.requests.at(1);
       let chatsRequest = moxios.requests.at(2);
-      incidentRequest.respondWith({
-        status: 200,
-        response: {
-          status: 'success',
-          data: testIncident
-        }
-      });
-      notesRequest.respondWith({
-        status: 200,
-        response: {
-          status: 'success',
-          data: {
-            notes
+      incidentRequest
+        .respondWith({
+          status: 200,
+          response: {
+            status: 'success',
+            data: testIncident
           }
-        }
-      });
+        });
+      notesRequest
+        .respondWith({
+          status: 200,
+          response: {
+            status: 'success',
+            data: {
+              notes
+            }
+          }
+        });
       chatsRequest
         .respondWith({
           status: 200,

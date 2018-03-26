@@ -8,13 +8,7 @@ import { testIncident } from '../mock_endpoints/mockData';
 describe('Timeline Sidebar component', () => {
   it('should have all the Timeline Sidebar content', () => {
     const timelineSidebar = shallow(
-      <TimelineSidebar
-        staff={[]}
-        incident={testIncident}
-        handleCC={() => {}}
-        changeAssignee={() => {}}
-        changeStatus={() => {}}
-      />
+      <TimelineSidebar staff={[]} incident={testIncident} changeAssignee={() => {}} changeStatus={() => {}} />
     );
     const tree = shallowToJSON(timelineSidebar);
     expect(tree.type).toEqual('div');

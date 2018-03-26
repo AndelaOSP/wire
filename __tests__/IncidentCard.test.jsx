@@ -12,7 +12,7 @@ describe('IncidentCard component', () => {
         incidentSubject="Stolen Phone"
         incidentReportDate="5th Jan 2018"
         incidentTime="4:41 PM"
-        incidentReporter="Maureen Nyakio"
+        incidentAsignee="Maureen Nyakio"
         incidentFlag="red"
       />
     );

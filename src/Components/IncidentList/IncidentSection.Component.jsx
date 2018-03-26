@@ -39,7 +39,7 @@ class IncidentSection extends Component {
                 incidentSubject={incident.subject}
                 incidentReportDate={`reported on ${this.getDate(incident.dateOccurred)}`}
                 incidentTime={this.getTime(incident.dateOccurred)}
-                incidentReporter={incident.reporter.name}
+                incidentAsignee={incident.User.name}
                 incidentFlag={incident.Level.name}
               />
             ))
