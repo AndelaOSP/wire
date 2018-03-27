@@ -46,20 +46,6 @@ export default class TimelineSidebar extends Component {
     this.setState({ selectedValues: values });
   };
 
-  /**
-   * Customize the rendering of the selected item.
-   */
-  selectionRenderer = values => {
-    switch (values.length) {
-      case 0:
-        return 'Select a name';
-      case 1:
-        return '1 person selected';
-      default:
-        return `${values.length} people selected`;
-    }
-  };
-
   renderCC = staff => {
     return staff.map(staffMember => {
       return (
@@ -172,7 +158,6 @@ export default class TimelineSidebar extends Component {
               dropDownMenuProps={{
                 onClose: this.onSelectClose
               }}
-              selectionRenderer={() => this.selectionRenderer(this.state.selectedValues)}
             >
               {this.renderCC(staff, ccdAssociates)}
             </SelectField>

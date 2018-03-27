@@ -6,7 +6,26 @@ module.exports = {
       subject: 'subject 1',
       description: null,
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: ['@slack_name', '@slack_name'],
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
       statusId: 1,
       reporterId: 1,
       levelId: 3,
@@ -16,7 +35,7 @@ module.exports = {
         {
           id: '-KhLsOxrKcKZC8i2n888',
           email: 'mercy.muchai@andela.com',
-          name: 'Mercy Muchai',
+          username: 'Mercy Muchai',
           imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
           roleId: 2,
           assignedRole: 'assignee'
@@ -24,7 +43,7 @@ module.exports = {
         {
           id: '-KhLsOxrKcKZC8i2n889',
           email: 'carol.nkirote@andela.com',
-          name: 'Carol Nkirote',
+          username: 'Carol Nkirote',
           imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
           roleId: 2,
           assignedRole: 'ccd'
@@ -38,7 +57,26 @@ module.exports = {
       subject: 'subject 2',
       description: 'description 2',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: ['@slack_name', '@slack_name'],
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
       statusId: 2,
       reporterId: 2,
       levelId: 2,
@@ -53,7 +91,26 @@ module.exports = {
       subject: 'subject 3',
       description: 'description 3',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: ['@slack_name', '@slack_name'],
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
       statusId: 3,
       reporterId: 3,
       levelId: 1,
@@ -68,7 +125,26 @@ module.exports = {
       subject: 'subject 4',
       description: 'description 3',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: ['@slack_name', '@slack_name'],
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
       statusId: 3,
       reporterId: 4,
       levelId: 1,
@@ -139,56 +215,56 @@ module.exports = {
     {
       id: 1,
       email: 'me@example.com',
-      name: 'Me Example',
+      username: 'Me Example',
       imageUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
       roleId: 2
     },
     {
       id: 2,
       email: 'metwo@example.com',
-      name: 'Metwo Ex',
+      username: 'Metwo Ex',
       imageUrl: 'https://randomuser.me/api/portraits/med/men/83.jpg',
       roleId: 2
     },
     {
       id: 3,
       email: 'methree@example.com',
-      name: 'Methree Ex',
+      username: 'Methree Ex',
       imageUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
       roleId: 3
     },
     {
       id: 4,
       email: 'another@guy.com',
-      name: 'Another Guy',
+      username: 'Another Guy',
       imageUrl: 'https://randomuser.me/api/portraits/med/men/05.jpg',
       roleId: 1
     },
     {
       id: 5,
       email: 'another@lady.com',
-      name: 'Another Lady',
+      username: 'Another Lady',
       imageUrl: 'https://randomuser.me/api/portraits/med/women/05.jpg',
       roleId: 1
     },
     {
       id: '-KhLsOxrKcKZC8i2n888',
       email: 'mercy.muchai@andela.com',
-      name: 'Mercy Muchai',
+      username: 'Mercy Muchai',
       imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
       roleId: 2
     },
     {
       id: '-KhLsOxrKcKZC8i2n889',
       email: 'carol.nkirote@andela.com',
-      name: 'Carol Nkirote',
+      username: 'Carol Nkirote',
       imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
       roleId: 2
     },
     {
       id: '-KkqiPVabgde_hvNDi0A',
       email: 'robley.gori@',
-      name: 'Robley Gori',
+      username: 'Robley Gori',
       imageUrl: 'https://lh6.googleusercontent.com/-tVq8OIwPjOw/AAAAAAAAAAI/AAAAAAAAAAo/t3GsqCgqrNk/photo.jpg?sz=50',
       roleId: 3
     }
@@ -264,7 +340,7 @@ module.exports = {
       {
         id: '-KhLsOxrKcKZC8i2n888',
         email: 'mercy.muchai@andela.com',
-        name: 'Mercy Muchai',
+        username: 'Mercy Muchai',
         imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
         roleId: 2,
         assignedRole: 'assignee'
@@ -272,7 +348,7 @@ module.exports = {
       {
         id: '-KhLsOxrKcKZC8i2n889',
         email: 'carol.nkirote@andela.com',
-        name: 'Carol Nkirote',
+        username: 'Carol Nkirote',
         imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
         roleId: 2,
         assignedRole: 'ccd'
@@ -280,14 +356,14 @@ module.exports = {
     ],
     Level: { name: 'Red' },
     reporter: {
-      name: 'Test User'
+      username: 'Test User'
     },
     Status: {
       status: 'Pending'
     },
     Assignee: {
       id: 1,
-      name: 'Test Assignee'
+      username: 'Test Assignee'
     },
     notes: [],
     chats: []
