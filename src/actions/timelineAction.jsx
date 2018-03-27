@@ -65,7 +65,8 @@ export const addNote = (noteText, incidentId, userId) => {
     return axios
       .post(notesUrl, {
         note: noteText,
-        userId: userId
+        userId: userId,
+        userEmail: localStorage.getItem('email')
       })
       .then(res => {
         dispatch(addNoteSuccess(res.data.data));
@@ -91,7 +92,8 @@ export const editNote = (noteText, noteId, index) => {
   return dispatch => {
     return axios
       .put(noteUrl, {
-        note: noteText
+        note: noteText,
+        userEmail: localStorage.getItem('email')
       })
       .then(res => {
         dispatch(editNoteSuccess(res.data.data, index));
@@ -212,7 +214,8 @@ export const sendMessage = (incidentId, userId, message) => {
     return axios
       .post(`${config.INCIDENTS_URL}/${incidentId}/chats`, {
         chat: message,
-        userId: userId
+        userId: userId,
+        userEmail: localStorage.getItem('email')
       })
       .then(res => {
         dispatch(sendMessageSuccess(res.data.data));

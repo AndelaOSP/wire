@@ -1,6 +1,7 @@
 const {
   getIncidents,
   getIncident,
+  searchIncidents,
   getIncidentNotes,
   getIncidentChats,
   addNote,
@@ -18,8 +19,13 @@ const {
 module.exports = {
   fetchIncidents: (req, res) => {
     setTimeout(() => {
+      res.send({ data: { incidents: getIncidents() }, status: 'success' });
+    }, 2000);
+  },
+  handleSearch: (req, res) => {
+    setTimeout(() => {
       let query = req.query.q ? req.query.q : '';
-      res.send({ data: { incidents: getIncidents(query) }, status: 'success' });
+      res.send({ data: { incidents: searchIncidents(query) }, status: 'success' });
     }, 2000);
   },
   fetchIncident: (req, res) => {
@@ -34,7 +40,10 @@ module.exports = {
       if (req.body.statusId) {
         res.send({ data: changeStatus(incidentId, req.body.statusId), status: 'success' });
       } else if (req.body.assignee) {
-        res.send({ data: changeAssignee(req.body.assignee.incidentId, req.body.assignee.userId, 'assignee'), status: 'success' });
+        res.send({
+          data: changeAssignee(req.body.assignee.incidentId, req.body.assignee.userId, 'assignee'),
+          status: 'success'
+        });
       } else if (req.body.ccd) {
         res.send({ data: handleCCd(incidentId, req.body.ccd), status: 'success' });
       }
@@ -88,7 +97,7 @@ module.exports = {
   },
   fetchStaff: (req, res) => {
     setTimeout(() => {
-      res.send({ users: getStaff(), status: 'success' });
+      res.send({ data: { users: getStaff() }, status: 'success' });
     }, 2000);
   }
 };
