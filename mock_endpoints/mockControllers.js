@@ -24,7 +24,27 @@ module.exports = {
     });
     return incident;
   },
-  getIncidents: query => {
+  getIncidents: () => {
+    return incidents.map(incident => {
+      incident['reporter'] =
+        users.find(user => {
+          return user.id === incident.reporterId;
+        }) || null;
+      incident['Status'] =
+        statuses.find(status => {
+          return status.id === incident.statusId;
+        }) || null;
+      incident['Level'] =
+        levels.find(level => {
+          return level.id === incident.levelId;
+        }) || null;
+      incident['Location'] = locations.find(location => {
+        return location.id === incident.locationId;
+      });
+      return incident;
+    });
+  },
+  searchIncidents: query => {
     return incidents.filter(incident => fuzzysearch(query, incident.subject.toLowerCase()) === true).map(incident => {
       incident['reporter'] =
         users.find(user => {
