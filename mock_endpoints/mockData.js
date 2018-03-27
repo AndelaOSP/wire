@@ -359,7 +359,7 @@ module.exports = {
       username: 'Test User'
     },
     Status: {
-      status: 'Pending'
+      status: 'In Progress'
     },
     Assignee: {
       id: 1,
@@ -367,5 +367,115 @@ module.exports = {
     },
     notes: [],
     chats: []
-  }
+  },
+  newTestIncidents: [
+    {
+      'id': 'cjezu2kr700010wx1yy6kxu5z',
+      'description': 'Some random thing happened and I didnt like it',
+      'subject': 'Theft',
+      'dateOccurred': '2018-02-02T00:00:00.000Z',
+      'createdAt': '2018-03-20T15:48:15.380Z',
+      'updatedAt': '2018-03-21T09:02:41.309Z',
+      'categoryId': 4,
+      'statusId': 2,
+      'locationId': 'cjezu2kqo00000wx1a5u0i2xt',
+      'levelId': 1,
+      'Level': {
+          'name': 'Red'
+      },
+      'Status': {
+          'status': 'In Progress'
+      },
+      'Location': {
+        'name': 'Quiet Room',
+        'centre': 'Nairobi',
+        'country': 'Kenya'
+      },
+      'assignees': [
+          {
+            'id': '-KhLsLqucbC1WAMylcFt',
+            'email': 'caroline.nkirote@andela.com',
+            'name': 'Caroline Nkirote',
+            'imageUrl': 'https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg',
+            'createdAt': '2018-03-20T15:45:48.778Z',
+            'updatedAt': '2018-03-20T15:45:48.778Z',
+            'roleId': 2,
+            'assignedRole': 'ccd'
+          },
+          {
+            'id': '-KhLsOxrKcKZC8i2n888',
+            'email': 'mercy.muchai@andela.com',
+            'name': 'Mercy Muchai',
+            'imageUrl': 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
+            'createdAt': '2018-03-20T15:45:48.778Z',
+            'updatedAt': '2018-03-20T15:45:48.778Z',
+            'roleId': 2,
+            'assignedRole': 'assignee'
+          }
+      ],
+      'reporter': {
+        'id': '-KhLsLqucbC1WAMylcFt',
+        'email': 'caroline.nkirote@andela.com',
+        'username': 'Caroline Nkirote',
+        'imageUrl': 'https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg',
+        'createdAt': '2018-03-20T15:45:48.778Z',
+        'updatedAt': '2018-03-20T15:45:48.778Z',
+        'roleId': 2
+      }
+    },
+    {
+      'id': 'cjezu2kr700010wx1yy6kxu5y',
+      'description': 'Some other random thing happened and I hated it',
+      'subject': 'Fighting',
+      'dateOccurred': '2018-02-02T00:00:00.000Z',
+      'createdAt': '2018-03-20T15:48:15.380Z',
+      'updatedAt': '2018-03-21T09:02:41.309Z',
+      'categoryId': 4,
+      'statusId': 2,
+      'locationId': 'cjezu2kqo00000wx1a5u0i2xt',
+      'levelId': 1,
+      'Level': {
+          'name': 'Yellow'
+      },
+      'Status': {
+          'status': 'In Progress'
+      },
+      'Location': {
+        'name': 'First Floor',
+        'centre': 'Lagos',
+        'country': 'Nigeria'
+      },
+      'assignees': [
+          {
+            'id': '-KhLsLqucbC1WAMylcFt',
+            'email': 'caroline.nkirote@andela.com',
+            'name': 'Caroline Nkirote',
+            'imageUrl': 'https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg',
+            'createdAt': '2018-03-20T15:45:48.778Z',
+            'updatedAt': '2018-03-20T15:45:48.778Z',
+            'roleId': 2,
+            'assignedRole': 'ccd'
+          },
+          {
+            'id': '-KhLsOxrKcKZC8i2n888',
+            'email': 'mercy.muchai@andela.com',
+            'name': 'Mercy Muchai',
+            'imageUrl': 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
+            'createdAt': '2018-03-20T15:45:48.778Z',
+            'updatedAt': '2018-03-20T15:45:48.778Z',
+            'roleId': 2,
+            'assignedRole': 'assignee'
+          }
+      ],
+      'reporter': {
+        'id': '-KhLsLqucbC1WAMylcFt',
+        'email': 'caroline.nkirote@andela.com',
+        'username': 'Caroline Nkirote',
+        'imageUrl': 'https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg',
+        'createdAt': '2018-03-20T15:45:48.778Z',
+        'updatedAt': '2018-03-20T15:45:48.778Z',
+        'roleId': 2
+      }
+    }
+  ]
 };
