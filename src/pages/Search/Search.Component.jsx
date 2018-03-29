@@ -81,7 +81,7 @@ class SearchComponent extends Component {
                   incidentSubject={incident.subject}
                   incidentReportDate={`reported on ${this.getDate(incident.dateOccurred)}`}
                   incidentTime={this.getTime(incident.dateOccurred)}
-                  incidentReporter={incident.reporter.name}
+                  incidentReporter={incident.reporter.username}
                   incidentFlag={incident.Level.name}
                 />
               ))
