@@ -31,6 +31,9 @@ module.exports = {
   fetchIncident: (req, res) => {
     setTimeout(() => {
       let incidentId = parseInt(req.params.id);
+      if(getIncident(incidentId) === 'Incident Not Found') {
+        return res.status(404).send({ error: true, message: 'Incident not found', status: 'error' });
+      }
       res.send({ data: getIncident(incidentId), status: 'success' });
     }, 2000);
   },

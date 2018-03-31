@@ -8,7 +8,7 @@ export const errorAction = error => {
       message = 'You might not be logged in/authorized. Please try again.';
       break;
     case 404:
-      message = 'Error fetching incident data. Please try again.';
+      message = 'The requested resource cannot be found';
       break;
     default:
       message = 'Oops! Something went wrong. Please try again.';
