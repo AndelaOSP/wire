@@ -7,6 +7,7 @@ module.exports = {
     let incident = incidents.find(incident => {
       return incident.id === incidentId;
     });
+    if(!incident) return 'Incident Not Found';
     incident['reporter'] =
       users.find(user => {
         return user.id === incident.reporterId;
