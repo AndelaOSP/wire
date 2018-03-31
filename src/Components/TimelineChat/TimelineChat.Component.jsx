@@ -23,7 +23,7 @@ export default class TimelineChat extends Component {
 
   handlePostMessage = e => {
     e.preventDefault();
-    this.props.sendMessage(this.props.incident.id, localStorage.getItem('userId'), this.refs.messageInput.getValue());
+    this.props.sendMessage(this.props.incident.id, this.refs.messageInput.getValue());
     this.setState({ message: '' });
   };
 
