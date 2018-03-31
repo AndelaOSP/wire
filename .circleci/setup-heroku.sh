@@ -22,7 +22,7 @@ if [ "${CIRCLE_BRANCH}" = "staging" ] || [ "${CIRCLE_BRANCH}" = "deployment" ] |
 then
   git config --global user.email "wire@andela.com"
   git config --global user.name "Wire"
-  git add dist/ server.js Procfile package.json
+  git add dist/ server.js Procfile package.json yarn.lock
   git status
   git commit -m "Deployment: Add dist folder and server"
   git push git@heroku.com:wire-front-develop.git ${CIRCLE_BRANCH}:master -f
