@@ -1,5 +1,4 @@
 const express = require('express');
-const webpack = require('webpack');
 const app = express();
 const bodyParser = require('body-parser');
 const mockMiddleware = require('./mock_endpoints/mockMiddleware');
@@ -7,6 +6,7 @@ const path = require('path');
 require('dotenv').config();
 
 if (process.env.NODE_ENV === 'development') {
+  const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const webpackConfig = require('./webpack.dev.js');
