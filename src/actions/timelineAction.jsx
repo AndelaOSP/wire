@@ -59,13 +59,13 @@ export const addNoteSuccess = note => {
  * @param {*} notesText
  * @param {*} incidentId
  */
-export const addNote = (noteText, incidentId, userId) => {
+export const addNote = (noteText, incidentId) => {
   let notesUrl = `${config.INCIDENTS_URL}/${incidentId}/notes`;
   return dispatch => {
     return axios
       .post(notesUrl, {
         note: noteText,
-        userId: userId
+        userEmail: localStorage.getItem('email')
       })
       .then(res => {
         dispatch(addNoteSuccess(res.data.data));
@@ -91,7 +91,8 @@ export const editNote = (noteText, noteId, index) => {
   return dispatch => {
     return axios
       .put(noteUrl, {
-        note: noteText
+        note: noteText,
+        userEmail: localStorage.getItem('email')
       })
       .then(res => {
         dispatch(editNoteSuccess(res.data.data, index));
@@ -155,14 +156,40 @@ export const changeAssigneeSuccess = incident => {
  * @param {*} assigneeId
  * @param {*} incidentId
  */
-export const changeAssignee = (assigneeId, incidentId) => {
+export const changeAssignee = payload => {
   return dispatch => {
     return axios
-      .put(`${config.INCIDENTS_URL}/${incidentId}/`, {
-        assigneeId: assigneeId
+      .put(`${config.INCIDENTS_URL}/${payload.incidentId}/`, {
+        assignee: payload
       })
       .then(res => {
         dispatch(changeAssigneeSuccess(res.data.data));
+      })
+      .catch(error => {
+        return dispatch(errorAction(error));
+      });
+  };
+};
+
+// Handle CC'd action creator
+export const changeCCdSuccess = incident => {
+  return { type: CHANGE_ASSIGNEE, incident };
+};
+
+/**
+ * Handle CCd thunk
+ * @param {*} assigneeId
+ * @param {*} incidentId
+ * @param {*} status
+ */
+export const handleCC = payload => {
+  return dispatch => {
+    return axios
+      .put(`${config.INCIDENTS_URL}/${payload.incidentId}/`, {
+        ccd: payload.ccdUsers
+      })
+      .then(res => {
+        dispatch(changeCCdSuccess(res.data.data));
       })
       .catch(error => {
         return dispatch(errorAction(error));
@@ -178,15 +205,14 @@ export const sendMessageSuccess = chat => {
 /**
  * Send chat message thunk
  * @param {*} incidentId
- * @param {*} userId
  * @param {*} message
  */
-export const sendMessage = (incidentId, userId, message) => {
+export const sendMessage = (incidentId, message) => {
   return dispatch => {
     return axios
       .post(`${config.INCIDENTS_URL}/${incidentId}/chats`, {
         chat: message,
-        userId: userId
+        userEmail: localStorage.getItem('email')
       })
       .then(res => {
         dispatch(sendMessageSuccess(res.data.data));

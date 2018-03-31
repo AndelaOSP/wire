@@ -26,7 +26,8 @@ const config = {
   API_URL,
   INCIDENTS_URL: `${API_URL}/incidents`,
   USERS_URL: `${API_URL}/users`,
-  NOTES_URL: `${API_URL}/notes`
+  NOTES_URL: `${API_URL}/notes`,
+  SEARCH_INCIDENTS_URL: `${API_URL}/search/incidents/`
 };
 
 export default config;

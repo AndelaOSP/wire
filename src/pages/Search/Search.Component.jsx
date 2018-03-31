@@ -30,7 +30,7 @@ class SearchComponent extends Component {
   handleInputChange = () => {
     let searchQuery = this.nameInput.input.value.toLowerCase();
     if (searchQuery) {
-      axios.get(config.INCIDENTS_URL + '?q=' + searchQuery).then(response => {
+      axios.get(config.SEARCH_INCIDENTS_URL + '?q=' + searchQuery).then(response => {
         this.setState({
           incidents: response.data.data.incidents
         });
@@ -81,7 +81,7 @@ class SearchComponent extends Component {
                   incidentSubject={incident.subject}
                   incidentReportDate={`reported on ${this.getDate(incident.dateOccurred)}`}
                   incidentTime={this.getTime(incident.dateOccurred)}
-                  incidentAsignee={incident.User.name}
+                  incidentReporter={incident.reporter.username}
                   incidentFlag={incident.Level.name}
                 />
               ))

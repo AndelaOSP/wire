@@ -92,16 +92,6 @@ export class Dashboard extends Component {
         ) : (
           <CustomNotification type={'error'} message={errorMessage} open={false} />
         )}
-
-        {this.props.location.state ? (
-          <CustomNotification
-            type={this.props.location.state.type}
-            message={this.props.location.state.message}
-            open={this.props.location.state.open}
-          />
-        ) : (
-          <CustomNotification type="default" message="" open={false} />
-        )}
       </div>
     );
   }
