@@ -147,7 +147,7 @@ describe('async actions', () => {
         { 
           type: types.ERROR_ACTION, 
           status: true,
-          message: 'Error fetching incident data. Please try again.'
+          message: 'The requested resource cannot be found'
         }
       ];
     
