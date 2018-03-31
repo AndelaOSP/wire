@@ -53,6 +53,10 @@ if (process.env.NODE_ENV === 'development') {
       res.end();
     });
   });
+
+  app.use(function (err, req, res, next) {
+    res.status(500).send('Something broke!')
+  })
 } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   // Configuration for production environment
   app.use(express.static(path.join(__dirname, 'dist')));
