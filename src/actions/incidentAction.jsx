@@ -22,7 +22,13 @@ export const loadIncidents = () => {
     return axios
       .get(config.INCIDENTS_URL)
       .then(incidents => {
-        dispatch(loadIncidentsSuccess(incidents.data.data.incidents));
+        dispatch(
+          loadIncidentsSuccess(
+            incidents.data.data.incidents.sort((a, b) => {
+              return new Date(b.createdAt).getTime() > new Date(a.createdAt).getTime() ? 1 : -1;
+            })
+          )
+        );
       })
       .catch(error => {
         return dispatch(errorAction(error));

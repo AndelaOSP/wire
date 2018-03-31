@@ -17,15 +17,21 @@ export default class TimelineSidebar extends Component {
     };
   }
 
-  componentWillMount() {
-    let ccdAssociates = this.props.incident.assignees
+
+  /**
+   * This lifecycle hook is used to populate the list of ccd associates
+   */
+  componentWillReceiveProps(nextProps) {
+    let ccdAssociates = nextProps.incident.assignees
       .filter(user => {
         return user.assignedRole === 'ccd';
       })
       .map(user => {
         return user.id;
       });
-    this.setState({ selectedValues: ccdAssociates });
+    if (this.state.selectedValues !== ccdAssociates ) {
+      this.setState({ selectedValues: ccdAssociates });
+    } 
   }
 
   handleDateString = date => {
@@ -44,20 +50,6 @@ export default class TimelineSidebar extends Component {
 
   handleSelectCCd = (event, index, values) => {
     this.setState({ selectedValues: values });
-  };
-
-  /**
-   * Customize the rendering of the selected item.
-   */
-  selectionRenderer = values => {
-    switch (values.length) {
-      case 0:
-        return 'Select a name';
-      case 1:
-        return '1 person selected';
-      default:
-        return `${values.length} people selected`;
-    }
   };
 
   renderCC = staff => {
@@ -172,7 +164,6 @@ export default class TimelineSidebar extends Component {
               dropDownMenuProps={{
                 onClose: this.onSelectClose
               }}
-              selectionRenderer={() => this.selectionRenderer(this.state.selectedValues)}
             >
               {this.renderCC(staff, ccdAssociates)}
             </SelectField>
@@ -192,28 +183,28 @@ export default class TimelineSidebar extends Component {
         <span>Activity</span>
         <div className="incident-activity">
           <div className="incident-activity-item">
-            <b>Janet Njoroge</b> updated the status to <b>"Pending"</b>
+            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
           </div>
           <div className="incident-activity-item">
-            <b>Janet Njoroge</b> updated the status to <b>"Pending"</b>
+            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
           </div>
           <div className="incident-activity-item">
-            <b>Janet Njoroge</b> updated the status to <b>"Pending"</b>
+            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
           </div>
           <div className="incident-activity-item">
-            <b>Janet Njoroge</b> updated the status to <b>"Pending"</b>
+            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
           </div>
           <div className="incident-activity-item">
-            <b>Janet Njoroge</b> updated the status to <b>"Pending"</b>
+            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
           </div>
           <div className="incident-activity-item">
-            <b>Janet Njoroge</b> updated the status to <b>"Pending"</b>
+            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
           </div>
           <div className="incident-activity-item">
-            <b>Janet Njoroge</b> updated the status to <b>"Pending"</b>
+            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
           </div>
           <div className="incident-activity-item">
-            <b>Janet Njoroge</b> updated the status to <b>"Pending"</b>
+            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
           </div>
         </div>
       </div>
