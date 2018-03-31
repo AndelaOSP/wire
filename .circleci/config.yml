@@ -5,8 +5,12 @@ jobs:
         - image: circleci/node:7.10
       steps:
         - checkout
-        - run: yarn install
-        - run: yarn test
+        - run:
+            name: Install packages 
+            command: yarn install
+        - run: 
+            name: Run tests
+            command: yarn test
         - run:
             name: Deploy if tests pass
             command: |
