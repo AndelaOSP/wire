@@ -37,8 +37,8 @@ export class IncidentTimeline extends Component {
   }
 
   componentDidMount() {
-    this.props.loadIncidentDetails(this.props.match.params.incidentId);
     this.props.fetchStaff();
+    this.props.loadIncidentDetails(this.props.match.params.incidentId);
   }
 
   handleRedirect() {
@@ -51,7 +51,13 @@ export class IncidentTimeline extends Component {
     return (
       <div>
         <NavBar {...this.props} />
-        {!isLoading && this.props.incident.id ? (
+        {isLoading ? (<CircularProgressIndicator />) : null}
+        {isError ? (
+          <CustomNotification type={'error'} message={errorMessage} autoHideDuration={1500000} open />
+        ) : (
+          <CustomNotification type={'error'} message={errorMessage} open={false} />
+        )}
+        {this.props.incident.id ? (
           <div className="timeline-container">
             <TimelineSidebar className="timeline-sidebar" {...this.props} />
 
@@ -66,15 +72,7 @@ export class IncidentTimeline extends Component {
               </Tabs>
             </div>
           </div>
-        ) : (
-          <CircularProgressIndicator />
-        )}
-
-        {isError ? (
-          <CustomNotification type={'error'} message={errorMessage} autoHideDuration={15000} open />
-        ) : (
-          <CustomNotification type={'error'} message={''} open={false} />
-        )}
+        ) : null}
       </div>
     );
   }

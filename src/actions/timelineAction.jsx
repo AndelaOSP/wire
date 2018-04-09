@@ -26,7 +26,7 @@ const loadChats = incidentId => {
 
 // load Incident Action Creator
 export const loadIncidentSuccess = incident => {
-  return { type: FETCH_INCIDENT, incident, isLoading: false };
+  return { type: FETCH_INCIDENT, incident, isLoading: false, isError: false };
 };
 
 /**
