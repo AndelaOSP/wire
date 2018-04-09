@@ -9,7 +9,8 @@ export const loadIncidentsSuccess = incidents => {
   return {
     type: FETCH_INCIDENTS_SUCCESS,
     incidents,
-    isLoading: false
+    isLoading: false,
+    isError: false
   };
 };
 
