@@ -17,7 +17,6 @@ export default class TimelineSidebar extends Component {
     };
   }
 
-
   /**
    * This lifecycle hook is used to populate the list of ccd associates
    */
@@ -29,9 +28,9 @@ export default class TimelineSidebar extends Component {
       .map(user => {
         return user.id;
       });
-    if (this.state.selectedValues !== ccdAssociates ) {
+    if (this.state.selectedValues !== ccdAssociates) {
       this.setState({ selectedValues: ccdAssociates });
-    } 
+    }
   }
 
   handleDateString = date => {
@@ -177,35 +176,6 @@ export default class TimelineSidebar extends Component {
               <li> No location specified </li>
             )}
           </ul>
-        </div>
-
-        <hr className="divider" />
-        <span>Activity</span>
-        <div className="incident-activity">
-          <div className="incident-activity-item">
-            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
-          </div>
-          <div className="incident-activity-item">
-            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
-          </div>
-          <div className="incident-activity-item">
-            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
-          </div>
-          <div className="incident-activity-item">
-            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
-          </div>
-          <div className="incident-activity-item">
-            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
-          </div>
-          <div className="incident-activity-item">
-            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
-          </div>
-          <div className="incident-activity-item">
-            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
-          </div>
-          <div className="incident-activity-item">
-            <b>Maureen Nyakio</b> updated the status to <b>"Pending"</b>
-          </div>
         </div>
       </div>
     );
