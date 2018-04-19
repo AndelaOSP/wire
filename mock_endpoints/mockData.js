@@ -267,6 +267,13 @@ module.exports = {
       username: 'Robley Gori',
       imageUrl: 'https://lh6.googleusercontent.com/-tVq8OIwPjOw/AAAAAAAAAAI/AAAAAAAAAAo/t3GsqCgqrNk/photo.jpg?sz=50',
       roleId: 3
+    },
+    {
+      id: '-KlxFba7RDN80Dg3Abgw',
+      email: 'peter.musonye@andela.com',
+      username: 'Peter Musonye',
+      imageUrl: 'https://lh3.googleusercontent.com/-Jlt5VItDH60/AAAAAAAAAAI/AAAAAAAAAAc/sFHgXrT4PBs/photo.jpg?sz=50',
+      roleId: 1 
     }
   ],
   locations: [

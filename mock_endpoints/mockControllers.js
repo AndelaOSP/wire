@@ -235,5 +235,14 @@ module.exports = {
     return users.filter(user => {
       return user.roleId !== 1;
     });
+  },
+  login: (email) => {
+    if (email) {
+      let userToCheck = users.filter(user => {
+        return user.email == email;
+      });
+      return userToCheck[0].roleId !== 1;
+    }
+    return false;
   }
 };

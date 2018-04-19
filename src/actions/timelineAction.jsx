@@ -13,7 +13,8 @@ import {
 } from './actionTypes';
 
 const loadIncident = incidentId => {
-  return axios.get(`${config.INCIDENTS_URL}/${incidentId}`);
+  let headers = {'Authorization': localStorage.token};
+  return axios.get(`${config.INCIDENTS_URL}/${incidentId}`, {headers});
 };
 
 const loadNotes = incidentId => {
@@ -132,11 +133,12 @@ export const changeStatusSuccess = incident => {
  * @param {*} incidentId
  */
 export const changeStatus = (statusId, incidentId) => {
+  let headers = {'Authorization': localStorage.token};
   return dispatch => {
     return axios
       .put(`${config.INCIDENTS_URL}/${incidentId}/`, {
         statusId: statusId
-      })
+      }, {headers})
       .then(res => {
         dispatch(changeStatusSuccess(res.data.data));
       })
@@ -157,11 +159,12 @@ export const changeAssigneeSuccess = incident => {
  * @param {*} incidentId
  */
 export const changeAssignee = payload => {
+  let headers = {'Authorization': localStorage.token};
   return dispatch => {
     return axios
       .put(`${config.INCIDENTS_URL}/${payload.incidentId}/`, {
         assignee: payload
-      })
+      }, {headers})
       .then(res => {
         dispatch(changeAssigneeSuccess(res.data.data));
       })
@@ -183,11 +186,12 @@ export const changeCCdSuccess = incident => {
  * @param {*} status
  */
 export const handleCC = payload => {
+  let headers = {'Authorization': localStorage.token};
   return dispatch => {
     return axios
       .put(`${config.INCIDENTS_URL}/${payload.incidentId}/`, {
         ccd: payload.ccdUsers
-      })
+      }, {headers})
       .then(res => {
         dispatch(changeCCdSuccess(res.data.data));
       })
