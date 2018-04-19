@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import shallowToJSON from 'enzyme-to-json';
 
 import IncidentFilter from '../src/Components/IncidentFilter/IncidentFilter.Component';
