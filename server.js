@@ -42,6 +42,9 @@ if (process.env.NODE_ENV === 'development') {
   // Staff route
   app.get('/api/users', mockMiddleware.fetchStaff);
 
+  // Login route
+  app.post('/api/users/login', mockMiddleware.login);
+
   app.use('*', function(req, res, next) {
     let filename = path.join(compiler.outputPath, 'index.html');
     compiler.outputFileSystem.readFile(filename, function(err, result) {
@@ -55,8 +58,8 @@ if (process.env.NODE_ENV === 'development') {
   });
 
   app.use(function (err, req, res, next) {
-    res.status(500).send('Something broke!')
-  })
+    res.status(500).send('Something broke!');
+  });
 } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   // Configuration for production environment
   app.use(express.static(path.join(__dirname, 'dist')));
