@@ -27,7 +27,7 @@
         "babel": "babel",
         "build": "webpack --config=webpack.prod.js",
         "format": "prettier --write --single-quote --print-width=120 --tab-width=2 \"src/**/*.{js,jsx}\"",
-        "lint": "node_modules/.bin/esw webpack.* src tools",
+        "lint": "node_modules/.bin/eslint . --ext .jsx .js --fix",
         "lint:watch": "npm run lint --watch",
         "start:dev": "npm run lint:watch && node server.js",
         "start:prod": "npm run build && node server.js",

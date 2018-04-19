@@ -7,7 +7,6 @@ import IncidentSection from '../src/Components/IncidentList/IncidentSection.Comp
 describe('IncidentCard component', () => {
   it('should render no cards when there are no incidents', () => {
     const incidentSection = shallow(<IncidentSection incidentStatus={'PENDING'} incidents={[]} />);
-    const tree = shallowToJSON(incidentSection);
     expect(incidentSection.find('div .incident-status').text()).toEqual('PENDING');
     expect(incidentSection.find('div .incident-count').text()).toEqual(0 + ' Incidents');
     expect(incidentSection.find('div .incident-cards > .no-incidents').text()).toEqual(' No Incidents PENDING');
