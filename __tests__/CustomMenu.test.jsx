@@ -12,12 +12,12 @@ describe('CustomMenu component', () => {
   });
 
   it('Should change state when filter value changes', () => {
-    const changeCountryFilterMock = jest.fn()
-    const menu = shallow(<CustomMenu changeCountryFilter={changeCountryFilterMock}/>)
+    const changeCountryFilterMock = jest.fn();
+    const menu = shallow(<CustomMenu changeCountryFilter={changeCountryFilterMock}/>);
     const select = menu.find(SelectField);
-    select.props().onChange()
-    menu.setState({value: 'Kenya'})
-    menu.update()
+    select.props().onChange();
+    menu.setState({value: 'Kenya'});
+    menu.update();
     expect(menu.instance().state.value).toEqual('Kenya');
     expect(changeCountryFilterMock.mock.calls.length).toBe(1);
   });
