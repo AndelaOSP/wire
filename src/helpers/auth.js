@@ -23,22 +23,16 @@ const authenticateUser = {
   /**
    * Check if user info is credible
    * and user can be authorized.
-   * check if is WIRE admin
    */
   validateUser() {
     const userInfo = decodeToken();
 
     if (this.andelaEmailRegex.test(userInfo.email)) {
-      /**
-       * TODO: update to authenticating only WIRE admins
-       *       Get admin info from WIRE API
-       */
       if (userInfo.roles.Andelan) {
         localStorage.setItem('user', userInfo.name);
         localStorage.setItem('user_avatar', userInfo.picture);
         localStorage.setItem('userId', userInfo.id);
         localStorage.setItem('email', userInfo.email);
-        this.isAuthenticated = true;
         return true;
       }
       return false;
@@ -51,6 +45,7 @@ const authenticateUser = {
    */
   logoutUser() {
     this.removeToken();
+    localStorage.clear();
     location.reload();
   },
 
