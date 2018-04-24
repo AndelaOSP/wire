@@ -1,7 +1,7 @@
 #Create our image from Node alpine
 FROM node:alpine
 
-LABEL maintainer Vicky<victoria.aoka@andela.com>
+LABEL maintainer "Vicky<victoria.aoka@andela.com>"
 
 LABEL application="wiref"
 
