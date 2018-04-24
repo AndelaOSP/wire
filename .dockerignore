@@ -1,0 +1,6 @@
+node_modules
+npm-debug.log
+Procfile
+README.md
+CONTRIBUTING.MD
+/docker
