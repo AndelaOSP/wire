@@ -6,7 +6,7 @@ import { errorAction } from './errorAction';
 
 // Fetch staff action creator
 export const fetchStaffSuccess = staff => {
-  return { type: FETCH_STAFF, staff };
+  return { type: FETCH_STAFF, staff, isError: false };
 };
 
 export const fetchStaff = () => {

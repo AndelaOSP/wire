@@ -34,7 +34,8 @@ describe('async actions', () => {
     {
       type: types.FETCH_INCIDENT,
       incident: testIncident,
-      isLoading: false
+      isLoading: false,
+      isError: false
     },
     {
       type: types.ADD_NOTE,
