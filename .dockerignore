@@ -3,4 +3,7 @@ npm-debug.log
 Procfile
 README.md
 CONTRIBUTING.MD
-/docker
+.gitignore
+.circleci
+.github
+Makefile
