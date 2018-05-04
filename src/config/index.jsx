@@ -11,13 +11,13 @@ if (isDev) {
   ANDELA_API_BASE_URL = 'https://api.andela.com';
   BASE_URL = 'http://wire.andela.com:8080';
 } else if (isStaging) {
-  API_URL = 'https://wireapi-staging.herokuapp.com/api';
+  API_URL = 'https://api-staging.wire.herokuapp.com/api';
   ANDELA_API_BASE_URL = 'https://api.andela.com';
-  BASE_URL = 'https://wire-front-staging.herokuapp.com';
+  BASE_URL = 'https://staging.wire.herokuapp.com';
 } else if (isProd) {
-  API_URL = 'https://wireapi-develop.herokuapp.com/api';
+  API_URL = 'https://api.wire.andela.com/api';
   ANDELA_API_BASE_URL = 'https://api-prod.andela.com';
-  BASE_URL = 'https://wire-front-develop.herokuapp.com';
+  BASE_URL = 'https://wire.andela.com';
 }
 
 const config = {
