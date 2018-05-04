@@ -10,9 +10,11 @@ COMMIT_HASH=$(git rev-parse --short HEAD)
 if [ "$CIRCLE_BRANCH" == 'master' ]; then
     IMAGE_TAG=$COMMIT_HASH
     GOOGLE_CLUSTER_NAME=$DEFAULT_GOOGLE_CLUSTER_NAME
+    ENVIRONMENT=production
 else
     IMAGE_TAG="${CIRCLE_BRANCH}-${COMMIT_HASH}"
     GOOGLE_CLUSTER_NAME="${DEFAULT_GOOGLE_CLUSTER_NAME}-staging"
+    ENVIRONMENT=staging
 fi
 
 
@@ -46,4 +48,13 @@ IMAGE="${DOCKER_REGISTRY}/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${IMAGE_TAG}"
 docker build -t $IMAGE .
 
 docker push $IMAGE
+
 # TODO: deploy built image to kubernetes cluster
+DEPLOYMENT="${ENVIRONMENT}-${PROJECT_NAME}"
+kubectl set image deployment/${DEPLOYMENT} frontend=${IMAGE}
+
+if [ "$?" == "0" ]; then
+    echo "Image ${IMAGE} has been successfuly deployed to ${ENVIRONMENT} environment"
+else
+    echo "Failed to deploy ${IMAGE} to ${ENVIRONMENT} environment"
+fi
