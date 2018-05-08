@@ -12,7 +12,10 @@ module.exports = merge(common, {
         }),
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify('production')
+                'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+                'API_URL': JSON.stringify(process.env.API_URL),
+                'ANDELA_API_BASE_URL': JSON.stringify(process.env.ANDELA_API_BASE_URL),
+                'BASE_URL': JSON.stringify(process.env.BASE_URL)
             }
         }),
         new CopyWebpackPlugin([
