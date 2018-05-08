@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
+import * as axios from 'axios';
 
 //styling
 import './LoginPage.scss';
@@ -16,14 +17,37 @@ import authenticateUser from '../../helpers/auth';
  * LoginPage class
  */
 class LoginPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userToken: ''
+    };
+  }
+
+  componentDidMount() {
+    authenticateUser.authenticate();
+    this.login(localStorage.getItem('email'));
+  }
+
+  login = email => {
+    let loginUrl = `${config.API_URL}/users/login`;
+    if (email) {
+      axios.post(loginUrl, {email})
+      .then(response => {
+        this.setState({
+          userToken: response.data.userToken
+        });
+      });
+    }
+  }
+
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } };
-
     setReferrerInlocationStorage(from.pathname);
-    authenticateUser.authenticate();
     const referrer = getReferrerInlocationStorage();
+    localStorage.setItem('token', this.state.userToken);
 
-    if (authenticateUser.isAuthenticated) {
+    if (authenticateUser.isAuthenticated && this.state.userToken) {
       return <Redirect to={(from.pathname = referrer)} />;
     }
 

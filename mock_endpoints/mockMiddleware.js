@@ -13,7 +13,8 @@ const {
   changeAssignee,
   handleCCd,
   changeStatus,
-  getStaff
+  getStaff,
+  login
 } = require('./mockControllers');
 
 module.exports = {
@@ -101,6 +102,11 @@ module.exports = {
   fetchStaff: (req, res) => {
     setTimeout(() => {
       res.send({ data: { users: getStaff() }, status: 'success' });
+    }, 2000);
+  },
+  login: (req, res) => {
+    setTimeout(() => {
+      res.send({userToken: login(req.body.email), status: 'success' });
     }, 2000);
   }
 };

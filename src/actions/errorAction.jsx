@@ -4,7 +4,7 @@ import { ERROR_ACTION } from './actionTypes';
 export const errorAction = error => {
   let message;
   switch (error.response.status) {
-    case 401:
+    case 401 || 403:
       message = 'You might not be logged in/authorized. Please try again.';
       break;
     case 404:
