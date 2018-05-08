@@ -28,7 +28,10 @@ common.plugins = [
     ...common.plugins,
     new webpack.DefinePlugin({
         'process.env': {
-            'NODE_ENV': JSON.stringify('development')
+            'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            'API_URL': JSON.stringify(process.env.API_URL),
+            'ANDELA_API_BASE_URL': JSON.stringify(process.env.ANDELA_API_BASE_URL),
+            'BASE_URL': JSON.stringify(process.env.BASE_URL)
         }
     }),
     new webpack.NamedModulesPlugin(), // displays the path of the module when HMR is enabled.
