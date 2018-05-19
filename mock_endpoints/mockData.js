@@ -273,7 +273,7 @@ module.exports = {
       email: 'peter.musonye@andela.com',
       username: 'Peter Musonye',
       imageUrl: 'https://lh3.googleusercontent.com/-Jlt5VItDH60/AAAAAAAAAAI/AAAAAAAAAAc/sFHgXrT4PBs/photo.jpg?sz=50',
-      roleId: 1 
+      roleId: 3 
     }
   ],
   locations: [
