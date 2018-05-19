@@ -2,7 +2,7 @@
 
 .navbar {
   background-color: map_get($white, 100);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -12,29 +12,27 @@
   z-index: 2;
   position: relative;
 
-  .left-nav-section {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  .logo {
+    width: 6.5rem;
+    height: 2rem;
+    margin: 1.2rem 1rem 1rem 2rem;
+  }
 
-    .logo {
-      width: 2rem;
-      height: 2rem;
-      margin: auto 1rem;
-    }
-
-    .search-input {
-      font-family: "FontAwesome";
-      width: 10rem;
-      height: 1.5rem;
-      border: 1rem;
-      border-width: 0.05rem;
-      border-style: solid;
-      border-color: map_get($grey, 600);
-      border-radius: 0.5rem;
-      padding-left: 1rem;
-      margin: auto 1rem;
-      outline: none;
+  .search-input {
+    font-family: "FontAwesome";
+    width: 10rem;
+    height: 1.5rem;
+    border: 1rem;
+    border-width: 0.05rem;
+    border-style: solid;
+    border-color: #3960ad;
+    border-radius: 0.5rem;
+    padding-top: .1rem;
+    padding-left: 1.8rem;
+    margin: auto 1rem;
+    outline: none;
+    &::placeholder {
+      font-family: 'PT Sans';
     }
   }
 
@@ -43,6 +41,14 @@
     flex-direction: row;
     align-items: center;
     margin: auto 2rem;
+    &::before {
+      position: relative;
+      font-family: 'FontAwesome';
+      top: -1px;
+      right: -40px;
+      content: '\f002';
+      color: #358fe2;
+    }
 
     .notifications {
       cursor: pointer;
@@ -74,7 +80,7 @@
       position: relative;
       display: inline-block;
       z-index: 1;
-      
+
       .dropdowntn {
         box-sizing: border-box !important;
         display: flex;
@@ -90,7 +96,7 @@
         }
 
         .user-name {
-          color: map_get($grey, 300);
+          color: map_get($black, 700);
           padding: 0.5rem;
         }
 
