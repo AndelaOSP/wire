@@ -39,21 +39,19 @@ export class NavBar extends Component {
   render() {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
-        <div className="left-nav-section">
-          <Link to="/dashboard">
-            <img className="logo" src="/assets/images/wire_logo_v1.svg" alt="Wire" />
-          </Link>
+        <Link to="/dashboard">
+          <img className="logo" src="/assets/images/andelaLogo.png" alt="Wire" />
+        </Link>
+        <div className="right-nav-section">
           <input
             className="search-input"
             onFocus={this.handleSearch}
             type="text"
-            placeholder="&#xF002; Search for an incident"
+            placeholder="Search"
           />
-        </div>
-        <div className="right-nav-section">
           <div className="notifications">
-            <FontIcon className="material-icons">notifications</FontIcon>
-            <Badge badgeContent={4} className="badge" />
+            <FontIcon color="#3960ad" className="material-icons">notifications_none</FontIcon>
+            <Badge badgeContent={3} className="badge" />
           </div>
           <div className="profile">
             <div className="dropdowntn">
