@@ -9,6 +9,7 @@ import authenticateUser from '../../helpers/auth';
  * PrivateRoute Component
  */
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  authenticateUser.authenticate();
   return (
     <Route
       {...rest}

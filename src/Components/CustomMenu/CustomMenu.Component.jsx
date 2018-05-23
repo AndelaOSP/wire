@@ -24,12 +24,16 @@ export class CustomMenu extends React.Component {
   };
 
   render() {
+    const styles = { display: 'block', fontSize: '0.8rem', width: '10rem', padding: '0 auto 0 0' };
     return (
-      <div>
+      <div className="custom-menu">
         <SelectField
+          underlineStyle={{display: 'none'}}
+          iconStyle={{ fill: '#000000', marginRight: '1rem' }}
+          labelStyle={{ textAlign: 'right' }}
           value={this.state.value}
           onChange={this.handleChange}
-          style={{ display: 'block', fontSize: '0.8rem', textAlign: 'center', width: '10rem', padding: '0 auto' }}
+          style={styles}
         >
           <MenuItem value="All Countries" primaryText="All Countries" />
           <MenuItem value="Kenya" primaryText="Kenya" />
