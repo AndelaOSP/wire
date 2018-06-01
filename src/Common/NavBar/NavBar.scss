@@ -15,57 +15,57 @@
   .logo {
     width: 6.5rem;
     height: 2rem;
-    margin: 1.2rem 1rem 1rem 2rem;
-  }
-
-  .search-input {
-    font-family: "FontAwesome";
-    width: 10rem;
-    height: 1.5rem;
-    border: 1rem;
-    border-width: 0.05rem;
-    border-style: solid;
-    border-color: #3960ad;
-    border-radius: 0.5rem;
-    padding-top: .1rem;
-    padding-left: 1.8rem;
-    margin: auto 1rem;
-    outline: none;
-    &::placeholder {
-      font-family: 'PT Sans';
-    }
+    margin: 1.2rem 0 1rem 2rem;
   }
 
   .right-nav-section {
     display: flex;
     flex-direction: row;
+    margin-left: auto;
+    margin-right: 3rem;
     align-items: center;
-    margin: auto 2rem;
+
+    .search-input {
+      width: 9rem;
+      height: 1.85rem;
+      border: 0.05rem;
+      border-width: 0.05rem;
+      border-style: solid;
+      border-color: #3960ad;
+      border-radius: 0.5rem;
+      padding-top: .1rem;
+      padding-left: 2.5rem;
+      margin: auto;
+      outline: none;
+      &::placeholder {
+        font-family: 'DIN Pro Extra Light';
+      }
+    }
     &::before {
-      position: relative;
-      font-family: 'FontAwesome';
-      top: -1px;
-      right: -40px;
-      content: '\f002';
-      color: #358fe2;
+      position: absolute;
+      content: "";
+      background: url('/assets/images/search_icon.svg') no-repeat center;
+      top: 0;
+      bottom: 0;
+      width: 1.15rem;
+      margin-left: 0.7rem;
     }
 
     .notifications {
       cursor: pointer;
-      box-sizing: border-box !important;
-      max-height: 4rem;
-      padding: 0.5rem 0 0.5rem 1rem;
-      display: inline-block;
+      margin: 0 1rem 0 1rem;
 
       .notification-icon {
-        margin: auto;
-        padding: 0.5rem;
+        position: relative;
+        top: 1.5rem;
+        color: map_get($white, 100);
       }
 
       .badge {
-        padding: 1rem !important;
-        left: -2.0rem;
-        top: -0.5rem;
+        position: absolute;
+        top:-25px;
+        right:-5px;
+
         &>span {
           background-color: map_get($red, 300) !important;
           color: map_get($white, 100) !important;
@@ -93,6 +93,11 @@
 
         .profile-img {
           padding: 0.5rem;
+          background-color: map_get($white, 100) !important;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          margin: .5rem;
         }
 
         .user-name {
@@ -138,20 +143,4 @@
       }
     }
   }
-}
-
-.notification-icon {
-  color: map_get($white, 100);
-}
-
-.material-icons {
-  font-size: 2.5rem !important;
-}
-
-.profile-img {
-  background-color: map_get($white, 100) !important;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  margin: .5rem;
 }
