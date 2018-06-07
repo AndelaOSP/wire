@@ -34,6 +34,7 @@
         "test": "npm run test:fend",
         "test:fend": "./node_modules/.bin/jest -u --coverage",
         "test:watch": "npm run test -- --watch",
+        "coveralls": "cat ./coverage/lcov.info | coveralls",
         "webpack": "webpack"
     },
     "dependencies": {
@@ -47,7 +48,7 @@
         "js-cookie": "^2.2.0",
         "jwt-decode": "^2.2.0",
         "material-ui": "^0.20.0",
-        "moment": "^2.20.1",
+        "moment": "^2.22.2",
         "path": "^0.12.7",
         "prop-types": "^15.6.0",
         "react": "^16.2.0",

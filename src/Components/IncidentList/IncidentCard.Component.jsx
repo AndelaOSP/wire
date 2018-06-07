@@ -17,26 +17,41 @@ class IncidentCard extends Component {
     }
   };
 
+  generateInitials = assignee => {
+    let names = assignee.username.split(' ');
+    let firstInitial = names[0][0].toUpperCase();
+    let secondInitial = names[1][0].toUpperCase();
+    return firstInitial + secondInitial;
+  };
+
   render() {
     const {
       incidentId,
       incidentSubject,
+      incidentDescription,
       incidentReportDate,
       incidentTime,
-      incidentReporter,
-      incidentFlag
+      incidentFlag,
+      assignees
     } = this.props;
     return (
       <div className="incident-card">
         <Link to={`/timeline/${incidentId}`}>
-          <div className="incident-header">
-            <span className="incident-subject">{incidentSubject}</span>
-            <span className="incident-report-date">{incidentReportDate}</span>
+          <div className="card-header">
+            <div className="incident-report-date">{incidentReportDate}</div>
+            <div className="incident-time">{incidentTime}</div>
+            <div className="incident-flag">{this.renderFlag(incidentFlag)}</div>
           </div>
-          <div className="incident-actions">
-            <span className="incident-time">{incidentTime}</span>
-            <span className="assigned-to">{incidentReporter}</span>
-            <span className="incident-flag">{this.renderFlag(incidentFlag)}</span>
+          <div className="incident-subject">{incidentSubject}</div>
+          <div className="incident-description">{incidentDescription}</div>
+          <div className="assigned-to">
+            {assignees.length ? (
+              assignees.map((assignee, index) =>
+                (<div className="assignee" key={index} style={{backgroundColor: index == 0 ? '#fbaf31' : '#358fe2'}}>
+                  {this.generateInitials(assignee)}
+                </div>)
+              )
+            ) : (<div className="unassigned">Unassigned</div>)}
           </div>
         </Link>
       </div>
@@ -44,15 +59,16 @@ class IncidentCard extends Component {
   }
 }
 
-const { string, number, oneOfType } = PropTypes;
+const { string, number, oneOfType, array } = PropTypes;
 
 IncidentCard.propTypes = {
   incidentId: oneOfType([string, number]),
   incidentSubject: string.isRequired,
+  incidentDescription: string,
   incidentReportDate: string.isRequired,
   incidentTime: string.isRequired,
-  incidentReporter: string.isRequired,
-  incidentFlag: string.isRequired
+  incidentFlag: string.isRequired,
+  assignees: array.isRequired
 };
 
 export default IncidentCard;

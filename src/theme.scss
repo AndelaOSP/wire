@@ -1,8 +1,22 @@
 // Global Rule Definitions
 @import url(https://fonts.googleapis.com/css?family=PT+Sans);
+@font-face {
+  font-family: 'DIN Pro';
+  src: url(/assets/fonts/DINPro.otf);
+}
+
+@font-face {
+  font-family: 'DIN Pro Light';
+  src: url(/assets/fonts/DINPro-Light.otf);
+}
+
+@font-face {
+  font-family: 'DIN Pro Extra Light';
+  src: url(/assets/fonts/DINPro-Extlight.otf);
+}
 
 body, div, h1, h2, h3, h4, p, a {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'DIN Pro', sans-serif;
   font-weight: 400;
 }
 
