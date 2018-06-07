@@ -81,10 +81,11 @@ class SearchComponent extends Component {
                   key={incident.id}
                   incidentId={incident.id}
                   incidentSubject={incident.subject}
+                  incidentDescription={incident.description || 'No Description'}
                   incidentReportDate={`reported on ${this.getDate(incident.dateOccurred)}`}
                   incidentTime={this.getTime(incident.dateOccurred)}
-                  incidentReporter={incident.reporter.username}
                   incidentFlag={incident.Level.name}
+                  assignees={incident.assignees}
                 />
               ))
             : null}

@@ -4,8 +4,15 @@ module.exports = {
       id: 1,
       createdAt: '2018-02-13T15:58:06.202Z',
       subject: 'subject 1',
-      description: null,
-      dateOccurred: '2018-02-13T15:58:06.202Z',
+      description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy \
+      nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi \
+      enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis \
+      nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in \
+      hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu \
+      feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim \
+      qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla \
+      facilisi.',
+      dateOccurred: '2018-06-10T15:58:06.202Z',
       witnesses: [
         {
           id: '3rd',
@@ -56,7 +63,7 @@ module.exports = {
       createdAt: '2018-02-13T15:58:06.202Z',
       subject: 'subject 2',
       description: 'description 2',
-      dateOccurred: '2018-02-13T15:58:06.202Z',
+      dateOccurred: '2018-06-04T15:58:06.202Z',
       witnesses: [
         {
           id: '3rd',
@@ -273,7 +280,7 @@ module.exports = {
       email: 'peter.musonye@andela.com',
       username: 'Peter Musonye',
       imageUrl: 'https://lh3.googleusercontent.com/-Jlt5VItDH60/AAAAAAAAAAI/AAAAAAAAAAc/sFHgXrT4PBs/photo.jpg?sz=50',
-      roleId: 3 
+      roleId: 3
     }
   ],
   locations: [
@@ -388,10 +395,10 @@ module.exports = {
       'locationId': 'cjezu2kqo00000wx1a5u0i2xt',
       'levelId': 1,
       'Level': {
-          'name': 'Red'
+        'name': 'Red'
       },
       'Status': {
-          'status': 'In Progress'
+        'status': 'In Progress'
       },
       'Location': {
         'name': 'Quiet Room',
@@ -399,26 +406,26 @@ module.exports = {
         'country': 'Kenya'
       },
       'assignees': [
-          {
-            'id': '-KhLsLqucbC1WAMylcFt',
-            'email': 'caroline.nkirote@andela.com',
-            'name': 'Caroline Nkirote',
-            'imageUrl': 'https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg',
-            'createdAt': '2018-03-20T15:45:48.778Z',
-            'updatedAt': '2018-03-20T15:45:48.778Z',
-            'roleId': 2,
-            'assignedRole': 'ccd'
-          },
-          {
-            'id': '-KhLsOxrKcKZC8i2n888',
-            'email': 'mercy.muchai@andela.com',
-            'name': 'Mercy Muchai',
-            'imageUrl': 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
-            'createdAt': '2018-03-20T15:45:48.778Z',
-            'updatedAt': '2018-03-20T15:45:48.778Z',
-            'roleId': 2,
-            'assignedRole': 'assignee'
-          }
+        {
+          'id': '-KhLsLqucbC1WAMylcFt',
+          'email': 'caroline.nkirote@andela.com',
+          'username': 'Caroline Nkirote',
+          'imageUrl': 'https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg',
+          'createdAt': '2018-03-20T15:45:48.778Z',
+          'updatedAt': '2018-03-20T15:45:48.778Z',
+          'roleId': 2,
+          'assignedRole': 'ccd'
+        },
+        {
+          'id': '-KhLsOxrKcKZC8i2n888',
+          'email': 'mercy.muchai@andela.com',
+          'username': 'Mercy Muchai',
+          'imageUrl': 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
+          'createdAt': '2018-03-20T15:45:48.778Z',
+          'updatedAt': '2018-03-20T15:45:48.778Z',
+          'roleId': 2,
+          'assignedRole': 'assignee'
+        }
       ],
       'reporter': {
         'id': '-KhLsLqucbC1WAMylcFt',
@@ -442,10 +449,10 @@ module.exports = {
       'locationId': 'cjezu2kqo00000wx1a5u0i2xt',
       'levelId': 1,
       'Level': {
-          'name': 'Yellow'
+        'name': 'Yellow'
       },
       'Status': {
-          'status': 'In Progress'
+        'status': 'In Progress'
       },
       'Location': {
         'name': 'First Floor',
@@ -453,26 +460,26 @@ module.exports = {
         'country': 'Nigeria'
       },
       'assignees': [
-          {
-            'id': '-KhLsLqucbC1WAMylcFt',
-            'email': 'caroline.nkirote@andela.com',
-            'name': 'Caroline Nkirote',
-            'imageUrl': 'https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg',
-            'createdAt': '2018-03-20T15:45:48.778Z',
-            'updatedAt': '2018-03-20T15:45:48.778Z',
-            'roleId': 2,
-            'assignedRole': 'ccd'
-          },
-          {
-            'id': '-KhLsOxrKcKZC8i2n888',
-            'email': 'mercy.muchai@andela.com',
-            'name': 'Mercy Muchai',
-            'imageUrl': 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
-            'createdAt': '2018-03-20T15:45:48.778Z',
-            'updatedAt': '2018-03-20T15:45:48.778Z',
-            'roleId': 2,
-            'assignedRole': 'assignee'
-          }
+        {
+          'id': '-KhLsLqucbC1WAMylcFt',
+          'email': 'caroline.nkirote@andela.com',
+          'username': 'Caroline Nkirote',
+          'imageUrl': 'https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg',
+          'createdAt': '2018-03-20T15:45:48.778Z',
+          'updatedAt': '2018-03-20T15:45:48.778Z',
+          'roleId': 2,
+          'assignedRole': 'ccd'
+        },
+        {
+          'id': '-KhLsOxrKcKZC8i2n888',
+          'email': 'mercy.muchai@andela.com',
+          'username': 'Mercy Muchai',
+          'imageUrl': 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
+          'createdAt': '2018-03-20T15:45:48.778Z',
+          'updatedAt': '2018-03-20T15:45:48.778Z',
+          'roleId': 2,
+          'assignedRole': 'assignee'
+        }
       ],
       'reporter': {
         'id': '-KhLsLqucbC1WAMylcFt',

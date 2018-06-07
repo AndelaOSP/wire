@@ -11,7 +11,7 @@ class IncidentSection extends Component {
     super(props);
   }
 
-  getTime = timestamp => new Date(timestamp).toLocaleTimeString();
+  getTime = timestamp => new Date(timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
   getDate = timestamp =>
     new Date(timestamp).toLocaleDateString('en-GB', {
@@ -21,31 +21,29 @@ class IncidentSection extends Component {
     });
 
   render() {
-    const { incidentStatus, incidents } = this.props;
+    const { incidentStatus, incidents, underLineColor } = this.props;
     return (
       <div>
-        <div className="incident-title">
-          <span className="incident-status">{incidentStatus}</span>
-          <span className="incident-count">
-            {incidents.length} {incidents.length === 1 ? 'Incident' : 'Incidents'}
-          </span>
-        </div>
         <div className="incident-cards">
+          <span className="incident-status">{incidentStatus}</span>
+          <div className="underline" style={{backgroundColor: underLineColor}}/>
           {incidents.length ? (
             incidents.map(incident => (
               <IncidentCard
                 key={incident.id}
                 incidentId={incident.id}
                 incidentSubject={incident.subject}
-                incidentReportDate={`reported on ${this.getDate(incident.dateOccurred)}`}
+                incidentDescription={incident.description || 'No Description'}
+                incidentReportDate={`reported on ${this.getDate(incident.dateOccurred)} at`}
                 incidentTime={this.getTime(incident.dateOccurred)}
-                incidentReporter={incident.reporter.username}
                 incidentFlag={incident.Level.name}
+                assignees={incident.assignees}
               />
             ))
           ) : (
             <div className="no-incidents">
-              <p> No Incidents {this.props.incidentStatus.toUpperCase()}</p>
+              <img className="folder" src="/assets/images/open_folder.png" alt="No incidents" />
+              <p> No incidents <br/>in <span className="status">{this.props.incidentStatus.toUpperCase()}</span></p>
             </div>
           )}
         </div>
@@ -59,7 +57,8 @@ const { string, array } = PropTypes;
 
 IncidentSection.propTypes = {
   incidentStatus: string.isRequired,
-  incidents: array.isRequired
+  incidents: array.isRequired,
+  underLineColor: string
 };
 
 export default IncidentSection;
