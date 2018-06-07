@@ -30,6 +30,10 @@ export default class IncidentFilter extends Component {
     this.setState({ flagFilterValue: value });
   };
 
+  handleTimeChange = (value) => {
+    this.props.changeTime(value);
+  }
+
   render() {
     const styles = {
       thumbOff: {
@@ -50,14 +54,12 @@ export default class IncidentFilter extends Component {
       <div className="filters-container">
         <div className="toggle-section">
           <span className="toggle-label">Mine</span>
-
-          <Toggle
-            thumbStyle={styles.thumbOff}
-            trackStyle={styles.trackOff}
-            thumbSwitchedStyle={styles.thumbSwitched}
-            trackSwitchedStyle={styles.trackSwitched}
-          />
-
+            <Toggle
+              thumbStyle={styles.thumbOff}
+              trackStyle={styles.trackOff}
+              thumbSwitchedStyle={styles.thumbSwitched}
+              trackSwitchedStyle={styles.trackSwitched}
+            />
           <span className="toggle-label">All</span>
         </div>
         <div className="filters">
@@ -95,9 +97,9 @@ export default class IncidentFilter extends Component {
           </SelectField>
 
           <div className="duration-filter">
-            <button className="day"><span>Day</span></button>
-            <button className="week"><span>Week</span></button>
-            <button className="month"><span>Month</span></button>
+            <button className="day" onClick={() => this.handleTimeChange('Day')}><span>Day</span></button>
+            <button className="week" onClick={() => this.handleTimeChange('Week')}><span>Week</span></button>
+            <button className="month" onClick={() => this.handleTimeChange('Month')}><span>Month</span></button>
           </div>
 
         </div>
@@ -109,6 +111,7 @@ export default class IncidentFilter extends Component {
 IncidentFilter.propTypes = {
   changeCountryFilter: PropTypes.func,
   filterByType: PropTypes.func,
+  changeTime: PropTypes.func,
   incident: PropTypes.object,
   onSelectStatus: PropTypes.func
 };

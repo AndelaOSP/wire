@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Badge from 'material-ui/Badge';
 import PropTypes from 'prop-types';
-import FontIcon from 'material-ui/FontIcon';
 import { Link } from 'react-router-dom';
 
 // styles
@@ -50,7 +49,7 @@ export class NavBar extends Component {
             placeholder="Search"
           />
           <div className="notifications">
-            <FontIcon color="#3960ad" className="material-icons">notifications_none</FontIcon>
+            <img src="/assets/images/bell_icon.svg" color="#3960ad" className="notification-icon" />
             <Badge badgeContent={3} className="badge" />
           </div>
           <div className="profile">
