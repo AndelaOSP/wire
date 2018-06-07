@@ -41,18 +41,21 @@ export default class IncidentList extends Component {
         <div className="incidents incidents-pending">
           <IncidentSection
             incidentStatus={'PENDING'}
+            underLineColor={'#fdb237'}
             incidents={this.sortIncidentsByType('Pending')} // replace with pending data from api
           />
         </div>
         <div className="incidents incidents-progress">
           <IncidentSection
             incidentStatus={'IN PROGRESS'}
+            underLineColor={'#49abb0'}
             incidents={this.sortIncidentsByType('In Progress')} // replace with pending data from api
           />
         </div>
         <div className="incidents incidents-resolved">
           <IncidentSection
             incidentStatus={'RESOLVED'}
+            underLineColor={'#3960ad'}
             incidents={this.sortIncidentsByType('Resolved')} // replace with pending data from api
           />
         </div>

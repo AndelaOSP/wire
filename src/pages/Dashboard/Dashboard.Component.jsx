@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 // actions
 import { loadIncidents } from '../../actions/incidentAction';
@@ -25,6 +26,7 @@ export class Dashboard extends Component {
     this.state = {
       filterKey: 'All Countries',
       typeFilterKey: 'All Incidents',
+      timeFilter: '',
       showNotesDialog: false,
       value: 1
     };
@@ -46,6 +48,21 @@ export class Dashboard extends Component {
     };
   }
 
+  changeTimeFilter() {
+    return key => {
+      this.setState({ timeFilter: key });
+    };
+  }
+
+  getDate = timestamp =>
+    new Date(timestamp).toDateString();
+
+  getWeek = timestamp =>
+    moment(timestamp).format('W');
+
+  getMonth = timestamp =>
+    new Date(timestamp).getMonth();
+
   filterIncidents() {
     let incidents = this.props.incidents;
 
@@ -62,6 +79,30 @@ export class Dashboard extends Component {
         const stateKey = this.state.typeFilterKey.toLocaleLowerCase();
         return incident.Level && stateKey === incident.Level.name.toLocaleLowerCase();
       });
+    }
+
+    // filter by time
+    switch (this.state.timeFilter) {
+      case 'Day':
+        incidents = incidents.filter(incident => {
+          let day = this.getDate(new Date());
+          return this.getDate(incident.dateOccurred) == day;
+        });
+      break;
+      case 'Week':
+        incidents = incidents.filter(incident => {
+          let week = moment().format('W');
+          return this.getWeek(incident.dateOccurred) == week;
+        });
+      break;
+      case 'Month':
+        incidents = incidents.filter(incident => {
+          let month = this.getMonth(new Date());
+          return this.getMonth(incident.dateOccurred) == month;
+        });
+      break;
+      default:
+        return incidents;
     }
     return incidents;
   }
@@ -81,6 +122,7 @@ export class Dashboard extends Component {
               incident={this.state.selectedIncident}
               changeCountryFilter={this.changeFilter()}
               filterByType={this.changeTypeFilter()}
+              changeTime={this.changeTimeFilter()}
             />
             <div className="dashboard-container">
               {<IncidentList incidents={incidents} onSelect={this.handleSelectedIncident} />}
