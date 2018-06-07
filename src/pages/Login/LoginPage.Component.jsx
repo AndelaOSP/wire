@@ -40,18 +40,8 @@ class LoginPage extends React.Component {
       });
     }
   }
-  
 
   render() {
-    const styles = {
-      button: {
-        width: '288px',
-        height: '55px',
-        marginLeft: '5rem',
-        marginTop: '0rem',
-      
-      }
-    };
     const { from } = this.props.location.state || { from: { pathname: '/' } };
     setReferrerInlocationStorage(from.pathname);
     const referrer = getReferrerInlocationStorage();
@@ -64,23 +54,19 @@ class LoginPage extends React.Component {
     return (
       <div className="login-page">
         <div className="left-column">
-          <div className="left-container">
-          <div><img className="andela-logo" src="/assets/images/andelaLogo.png" alt=""/></div>
-          <div className="welcome-text">
-            <p>Welcome to <span className="wire">Wire</span><br/>
-            Please sign in with<br/> your Google account<br/> to proceed</p>
-          </div>
-          <RaisedButton
-            className="button"
-            icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg" />}
-            href={`${config.ANDELA_API_BASE_URL}/login?redirect_url=${config.BASE_URL}/login`}
-            label={<p className="label">Sign In With Google</p>}
-            style={styles.button}
-          />
-          </div>
+          <img className="landing-image" src="/assets/images/wire_landingpage.jpeg" alt="Wire Logo" />
         </div>
         <div className="right-column">
-            <img className="landing-image" src="/assets/images/wire_landing_page_vector@2x.png" />
+          <div className="login-container">
+            <img className="landing-logo" src="/assets/images/wire_logo_landing.svg" />
+            <h2 className="title">Sign in with Andela email</h2>
+            <RaisedButton
+              className="button"
+              icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg" />}
+              href={`${config.ANDELA_API_BASE_URL}/login?redirect_url=${config.BASE_URL}/login`}
+              label="login with google"
+            />
+          </div>
         </div>
       </div>
     );
