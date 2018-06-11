@@ -42,12 +42,7 @@ export class NavBar extends Component {
           <img className="logo" src="/assets/images/andelaLogo.png" alt="Wire" />
         </Link>
         <div className="right-nav-section">
-          <input
-            className="search-input"
-            onFocus={this.handleSearch}
-            type="text"
-            placeholder="Search"
-          />
+          <input className="search-input" onFocus={this.handleSearch} type="text" placeholder="Search" />
           <div className="notifications">
             <img src="/assets/images/bell_icon.svg" color="#3960ad" className="notification-icon" />
             <Badge badgeContent={3} className="badge" />

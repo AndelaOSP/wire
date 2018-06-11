@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import shallowToJSON from 'enzyme-to-json';
 
 import IncidentSection from '../src/Components/IncidentList/IncidentSection.Component';
 import { newTestIncidents } from '../mock_endpoints/mockData';
@@ -20,7 +19,7 @@ describe('IncidentCard component', () => {
         incidents={newTestIncidents}
       />
     );
-    const tree = shallowToJSON(incidentSection);
+
     expect(incidentSection.find('div .incident-status').text()).toEqual('IN PROGRESS');
     expect(incidentSection.find('IncidentCard').exists()).toEqual(true);
     expect(incidentSection.find('IncidentCard').length).toBe(2);
