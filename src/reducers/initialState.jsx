@@ -5,6 +5,7 @@ export default {
   notes: [],
 >>>>>>> chore: extra action type for loading incidents
   isLoading: false,
+  hasToken: false,
   error: {
     status: false,
     message: ''

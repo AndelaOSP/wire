@@ -51,7 +51,7 @@ export class IncidentTimeline extends Component {
     return (
       <div>
         <NavBar {...this.props} />
-        {isLoading ? (<CircularProgressIndicator />) : null}
+        {isLoading ? <CircularProgressIndicator /> : null}
         {isError ? (
           <CustomNotification type={'error'} message={errorMessage} autoHideDuration={1500000} open />
         ) : (

@@ -1,43 +1,33 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
-import * as axios from 'axios';
+import CustomNotification from '../../Components/CustomNotification/CustomNotification.Component';
+import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
 
-//styling
+// actions
+import { getToken } from '../../actions/tokenAction';
+
+// styling
 import './LoginPage.scss';
+
+// helpers
+import authenticateUser from '../../helpers/auth';
 
 // config
 import config from '../../config';
-
-//helpers
-import authenticateUser from '../../helpers/auth';
 
 /**
  * LoginPage class
  */
 class LoginPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userToken: ''
-    };
-  }
-
-  componentDidMount() {
+  componentWillMount() {
     authenticateUser.authenticate();
-    this.login(localStorage.getItem('email'));
-  }
-
-  login = email => {
-    let loginUrl = `${config.API_URL}/users/login`;
+    let email = localStorage.getItem('email');
     if (email) {
-      axios.post(loginUrl, {email})
-      .then(response => {
-        this.setState({
-          userToken: response.data.userToken
-        });
-      });
+      this.props.getToken(email);
     }
   }
 
@@ -45,31 +35,35 @@ class LoginPage extends React.Component {
     const { from } = this.props.location.state || { from: { pathname: '/' } };
     setReferrerInlocationStorage(from.pathname);
     const referrer = getReferrerInlocationStorage();
-    localStorage.setItem('token', this.state.userToken);
+    const { isLoading, isError, errorMessage, hasToken } = this.props;
 
-    if (authenticateUser.isAuthenticated && this.state.userToken) {
+    if (isError) {
+      return <CustomNotification type={'error'} message={errorMessage} autoHideDuration={15000} open />;
+    } else if (isLoading) {
+      return <CircularProgressIndicator />;
+    } else if (authenticateUser.isAuthenticated && hasToken) {
       return <Redirect to={(from.pathname = referrer)} />;
-    }
-
-    return (
-      <div className="login-page">
-        <div className="left-column">
-          <img className="landing-image" src="/assets/images/wire_landingpage.jpeg" alt="Wire Logo" />
-        </div>
-        <div className="right-column">
-          <div className="login-container">
-            <img className="landing-logo" src="/assets/images/wire_logo_landing.svg" />
-            <h2 className="title">Sign in with Andela email</h2>
-            <RaisedButton
-              className="button"
-              icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg" />}
-              href={`${config.ANDELA_API_BASE_URL}/login?redirect_url=${config.BASE_URL}/login`}
-              label="login with google"
-            />
+    } else {
+      return (
+        <div className="login-page">
+          <div className="left-column">
+            <img className="landing-image" src="/assets/images/wire_landingpage.jpeg" alt="Wire Logo" />
+          </div>
+          <div className="right-column">
+            <div className="login-container">
+              <img className="landing-logo" src="/assets/images/wire_logo_landing.svg" />
+              <h2 className="title">Sign in with Andela email</h2>
+              <RaisedButton
+                className="button"
+                icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg" />}
+                href={`${config.ANDELA_API_BASE_URL}/login?redirect_url=${config.BASE_URL}/login`}
+                label="login with google"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
@@ -77,7 +71,12 @@ class LoginPage extends React.Component {
  * PropTypes declaration
  */
 LoginPage.propTypes = {
-  location: PropTypes.object
+  location: PropTypes.object,
+  getToken: PropTypes.func,
+  isLoading: PropTypes.bool,
+  isError: PropTypes.bool,
+  hasToken: PropTypes.bool,
+  errorMessage: PropTypes.string
 };
 
 /**
@@ -98,4 +97,30 @@ const setReferrerInlocationStorage = path => {
   }
 };
 
-export default LoginPage;
+/**
+ * map state from the store to props
+ * @param {*} state
+ * @returns {*} partial state
+ */
+const mapStateToProps = state => {
+  return {
+    isLoading: state.isLoading,
+    hasToken: state.hasToken,
+    isError: state.error.status,
+    errorMessage: state.error.message
+  };
+};
+
+/**
+ * map dispatch to props
+ * @param {*} dispatch
+ */
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      getToken
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
