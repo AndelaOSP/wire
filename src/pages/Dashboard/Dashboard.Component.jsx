@@ -54,14 +54,11 @@ export class Dashboard extends Component {
     };
   }
 
-  getDate = timestamp =>
-    new Date(timestamp).toDateString();
+  getDate = timestamp => new Date(timestamp).toDateString();
 
-  getWeek = timestamp =>
-    moment(timestamp).format('W');
+  getWeek = timestamp => moment(timestamp).format('W');
 
-  getMonth = timestamp =>
-    new Date(timestamp).getMonth();
+  getMonth = timestamp => new Date(timestamp).getMonth();
 
   filterIncidents() {
     let incidents = this.props.incidents;
@@ -88,19 +85,19 @@ export class Dashboard extends Component {
           let day = this.getDate(new Date());
           return this.getDate(incident.dateOccurred) == day;
         });
-      break;
+        break;
       case 'Week':
         incidents = incidents.filter(incident => {
           let week = moment().format('W');
           return this.getWeek(incident.dateOccurred) == week;
         });
-      break;
+        break;
       case 'Month':
         incidents = incidents.filter(incident => {
           let month = this.getMonth(new Date());
           return this.getMonth(incident.dateOccurred) == month;
         });
-      break;
+        break;
       default:
         return incidents;
     }

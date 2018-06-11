@@ -28,7 +28,7 @@ export class CustomMenu extends React.Component {
     return (
       <div className="custom-menu">
         <SelectField
-          underlineStyle={{display: 'none'}}
+          underlineStyle={{ display: 'none' }}
           iconStyle={{ fill: '#000000', marginRight: '1rem' }}
           labelStyle={{ textAlign: 'right' }}
           value={this.state.value}

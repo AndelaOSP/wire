@@ -46,12 +46,14 @@ class IncidentCard extends Component {
           <div className="incident-description">{incidentDescription}</div>
           <div className="assigned-to">
             {assignees.length ? (
-              assignees.map((assignee, index) =>
-                (<div className="assignee" key={index} style={{backgroundColor: index == 0 ? '#fbaf31' : '#358fe2'}}>
+              assignees.map((assignee, index) => (
+                <div className="assignee" key={index} style={{ backgroundColor: index == 0 ? '#fbaf31' : '#358fe2' }}>
                   {this.generateInitials(assignee)}
-                </div>)
-              )
-            ) : (<div className="unassigned">Unassigned</div>)}
+                </div>
+              ))
+            ) : (
+              <div className="unassigned">Unassigned</div>
+            )}
           </div>
         </Link>
       </div>
