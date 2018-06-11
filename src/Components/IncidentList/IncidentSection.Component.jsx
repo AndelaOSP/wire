@@ -11,7 +11,8 @@ class IncidentSection extends Component {
     super(props);
   }
 
-  getTime = timestamp => new Date(timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+  getTime = timestamp =>
+    new Date(timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
   getDate = timestamp =>
     new Date(timestamp).toLocaleDateString('en-GB', {
@@ -26,7 +27,7 @@ class IncidentSection extends Component {
       <div>
         <div className="incident-cards">
           <span className="incident-status">{incidentStatus}</span>
-          <div className="underline" style={{backgroundColor: underLineColor}}/>
+          <div className="underline" style={{ backgroundColor: underLineColor }} />
           {incidents.length ? (
             incidents.map(incident => (
               <IncidentCard
@@ -43,7 +44,10 @@ class IncidentSection extends Component {
           ) : (
             <div className="no-incidents">
               <img className="folder" src="/assets/images/open_folder.png" alt="No incidents" />
-              <p> No incidents <br/>in <span className="status">{this.props.incidentStatus.toUpperCase()}</span></p>
+              <p>
+                {' '}
+                No incidents <br />in <span className="status">{this.props.incidentStatus.toUpperCase()}</span>
+              </p>
             </div>
           )}
         </div>
