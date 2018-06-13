@@ -126,6 +126,10 @@ describe('Filter functionality', () => {
       incidents: newTestIncidents
     });
 
+    dashboard.setState({
+      typeFilter: 'All Incidents'
+    });
+
     expect(dashboard.find('.incidents-progress').exists()).toEqual(true);
     let pendingIncidents = dashboard.find('.incidents-progress');
     expect(pendingIncidents.find('.incident-cards').exists()).toEqual(true);
