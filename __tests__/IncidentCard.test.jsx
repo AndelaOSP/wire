@@ -10,6 +10,7 @@ describe('IncidentCard component', () => {
       <IncidentCard
         incidentId={1}
         incidentSubject="Stolen Phone"
+        incidentDescription="Yadda yadda yadda"
         incidentReportDate="5th Jan 2018"
         incidentTime="4:41 PM"
         incidentFlag="red"
