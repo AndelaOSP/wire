@@ -36,15 +36,15 @@
   .filters {
     @include flex-row;
     width: 90vw;
-    height: 4rem;
+    height: 7vh;
     box-sizing: border-box;
     align-items: flex-end;
 
     .incidents-label {
       padding: 0 0.5rem;
-      width: 180px;
-      height: 58px;
-      font-size: 2rem;
+      width: 5vw;
+      height: 7vh;
+      font-size: 2vw;
       font-style: lighter;
       line-height: 1.29;
       letter-spacing: normal;
@@ -56,8 +56,9 @@
 
     .duration-filter {
       @include flex-row;
-      height: 48px;
-      width: 15rem;
+      height: 5vh;
+      min-height: 2.5rem;
+      width: 17vw;
       margin: 0 1rem;
       margin-right: 5px;
       border-radius: 4px;
@@ -65,12 +66,13 @@
       box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 
       .duration-button {
-        height: 40px;
-        width: 4.5rem;
+        height: 4.3vh;
+        min-height: 2.3rem;
+        width: 4.2vw;
         border-radius: 4px;
         margin: 0.2rem 0.3rem;
         font-family: 'DIN Pro';
-        font-size: 0.8rem;
+        font-size: 0.75vw;
         text-align: center;
         border: none;
         outline: none;
@@ -82,29 +84,10 @@
       }
     }
 
-    .flag-filter {
-      max-width: 10rem !important;
-      margin: 0 1rem;
-      border-radius: 4px;
-      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    }
-
-    .country-filter {
-      max-width: 10rem !important;
+    .flag-filter, .incidents-filter, .custom-menu {
       margin: 0 0.5rem;
-    }
-
-    .incidents-filter {
-      display: none !important;
-      max-width: 10rem !important;
-      margin: 0 0.5rem;
+      min-height: 2.5rem !important;
       border-radius: 4px;
-      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-    }
-
-    .custom-menu {
-      border-radius: 4px;
-      background-color: #ffffff;
       box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     }
   }
