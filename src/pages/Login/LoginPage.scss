@@ -1,93 +1,59 @@
 @import "../../theme";
-@import url(https://fonts.googleapis.com/css?family=PT+Sans);
 
-.login-page{
+.login-page {
     display: flex;
     flex-direction: row;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
 
-    .left-container{
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        width: 20vw;
-        
-        .andela-logo{
-            margin: 20% 0% 0% 10%;
-            width: 7.7vw;
-            height: 4.5vh;
+    .left-column {
+
+        .landing-image {
+            width: 27vw;
+            height: 100%;
         }
+    }
 
-        .welcome-text{
-            margin-top: 40vh;
-            margin-left: 2vw;
-            width: 70%;
+    .right-column {
+        flex: 1;
 
-
-            p{
-                font-family: 'DIN Pro Extra Light';
-                font-size: 25px;
-
-                .wire{
-                    font-family: 'DIN Pro Light';
-                    font-style: italic;
-                }
-                
-            }
-        }
-        .button{
-            
-            .google-logo{
-                display: inline-block;
-                width: 3vw;
-                height: 60%;
-                padding: 0%;
-                margin-left: 0%;
-
-            }
-            .label{
-                display: inline-block;
-            }
-        }
-
-     }
-        
-
-
-    .right-container{
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        width: 80vw;
-
-
-        .landing-image{
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             height: 100vh;
-            width: 80vw;
+            justify-content: center;
+            margin: auto !important;
+
+            .title {
+                margin-bottom: 0.3rem;
+                font-weight: 200;
+                font-size: 1.25rem;
+            }
+
+            .instructions {
+                margin: 0.2rem;
+            }
+
+            .google-logo {
+                display: inline-block;
+                position: relative;
+                right: 0.5rem;
+                width: 3.5rem;
+                height: 80%;
+                box-sizing: border-box;
+            }
+
+            .button {
+                margin: 1rem;
+                border: 1px solid map-get($grey, 100);
+                font-size: small;
+                padding: 0.1rem 0.1rem;
+            }
+
+            .landing-logo {
+                height: 5rem;
+                margin-top: 1rem;
+            }
         }
-
-        .right-text{
-            position: absolute;
-            color: #fbaf31;
-            font-size: 40px;
-            font-weight: 500;
-            margin-left: 45vw;
-            margin-top: 23vh;
-
-        }
-            .underline{
-                position: absolute;
-                background-color: #fdb237;
-                width: 8vw;
-                height: 0.5vh;
-                border-radius: 5px;
-                left: 68vw;
-                top: 39vh;
-
-
-        }   
-        
-
     }
 }
