@@ -19,19 +19,37 @@ export default class IncidentFilter extends Component {
     this.state = {
       durationFilterValue: 0,
       flagFilterValue: 'All Incidents',
-      incidentsType: 'Pending'
+      incidentsType: 'Pending',
+      assignedToMe: false
     };
   }
+
   /**
    * Method to handle change on flag filter drop down
    */
   handleFlagChange = (event, index, value) => {
-    this.props.filterByType(value);
+    this.props.filterByFlag(value);
     this.setState({ flagFilterValue: value });
   };
 
+  /**
+   * Method to handle change on type filter drop down
+   */
+  handleTypeChange = (event, index, value) => {
+    this.props.filterByType(value);
+    this.setState({ incidentsType: value });
+  };
+
+  /**
+   * Method to handle change on time filter buttons
+   */
   handleTimeChange = value => {
     this.props.changeTime(value);
+  };
+
+  handleMineAllChange = () => {
+    this.props.changeMineAll(!this.state.assignedToMe);
+    this.setState({ assignedToMe: !this.state.assignedToMe });
   };
 
   render() {
@@ -48,7 +66,7 @@ export default class IncidentFilter extends Component {
       trackSwitched: {
         backgroundColor: '#81D4FA'
       },
-      selectField: { fontSize: '0.8rem', textAlign: 'center', width: '10rem', backgroundColor: '#ffffff' }
+      selectField: { fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.5vw', height: '5vh' }
     };
     return (
       <div className="filters-container">
@@ -59,18 +77,20 @@ export default class IncidentFilter extends Component {
             trackStyle={styles.trackOff}
             thumbSwitchedStyle={styles.thumbSwitched}
             trackSwitchedStyle={styles.trackSwitched}
+            onToggle={() => this.handleMineAllChange()}
+            toggled={!this.state.assignedToMe}
           />
           <span className="toggle-label">All</span>
         </div>
         <div className="filters">
           <span className="incidents-label">Incidents</span>
 
-          <CustomMenu className="country-filter" changeCountryFilter={this.props.changeCountryFilter} />
+          <CustomMenu changeCountryFilter={this.props.changeCountryFilter} />
 
           <SelectField
             underlineStyle={{ display: 'none' }}
-            iconStyle={{ fill: '#000000', marginRight: '2rem' }}
-            labelStyle={{ marginLeft: '2rem' }}
+            iconStyle={{ fill: '#000000', marginRight: '1rem', textAlign: 'center' }}
+            labelStyle={{ textAlign: 'center', marginLeft: '1.85rem' }}
             value={this.state.flagFilterValue}
             onChange={this.handleFlagChange}
             className="flag-filter"
@@ -84,16 +104,17 @@ export default class IncidentFilter extends Component {
 
           <SelectField
             underlineStyle={{ display: 'none' }}
-            iconStyle={{ fill: '#000000', marginRight: '2rem' }}
-            labelStyle={{ marginLeft: '2rem' }}
+            iconStyle={{ fill: '#000000', marginRight: '1rem', textAlign: 'center' }}
+            labelStyle={{ textAlign: 'center', marginLeft: '1.85rem' }}
             value={this.state.incidentsType}
+            onChange={this.handleTypeChange}
             className="incidents-filter"
             style={styles.selectField}
           >
             <MenuItem value={'Pending'} primaryText="Pending" />
-            <MenuItem value={'yellow'} primaryText="In Progress" />
-            <MenuItem value={'red'} primaryText="Resolved" />
-            <MenuItem value={'green'} primaryText="All Incidents" />
+            <MenuItem value={'In Progress'} primaryText="In Progress" />
+            <MenuItem value={'Resolved'} primaryText="Resolved" />
+            <MenuItem value={'All Incidents'} primaryText="All Incidents" />
           </SelectField>
 
           <div className="duration-filter">
@@ -118,8 +139,10 @@ export default class IncidentFilter extends Component {
 
 IncidentFilter.propTypes = {
   changeCountryFilter: PropTypes.func,
+  filterByFlag: PropTypes.func,
   filterByType: PropTypes.func,
   changeTime: PropTypes.func,
+  changeMineAll: PropTypes.func,
   incident: PropTypes.object,
   onSelectStatus: PropTypes.func
 };
