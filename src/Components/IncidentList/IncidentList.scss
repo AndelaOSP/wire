@@ -25,7 +25,10 @@
       border-radius: 8px;
       background-color: #ffffff;
       box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+<<<<<<< HEAD
       position: relative;
+=======
+>>>>>>> feat: Add an `incidents type` filter
 
       .incident-status {
         font-family: 'DIN Pro Light';
@@ -40,16 +43,54 @@
         width: 8vw;
         height: 0.5vh;
         border-radius: 5px;
+<<<<<<< HEAD
         position: sticky;
         margin-left: 5%;
         margin-bottom: 13%;
         top: 6vh;
+=======
+        position: relative;
+        margin-left: 1.5%;
+        margin-bottom: 4rem;
+        top: 2rem;
+        left: 1rem;
+      }
+
+      .no-incidents {
+        display: flex;
+        flex-direction: column;
+        font-size: 1rem;
+        font-weight: 300;
+        align-items: center;
+        justify-content: center;
+
+        .folder {
+          font-size: 5rem;
+          margin-top: 7rem;
+          width: 6rem;
+          height: 5rem;
+        }
+
+        p {
+          position: relative;
+          text-align: center !important;
+          vertical-align: middle !important;
+          color: #3960ad;
+          font-family: 'DIN Pro Extra Light';
+        }
+
+        .status {
+          font-style: italic;
+          color: rgba(57, 96, 173, 0.6);
+        }
+>>>>>>> feat: Add an `incidents type` filter
       }
 
       .card-wrapper {
         position: absolute;
         bottom: 0;
         flex-direction: column;
+<<<<<<< HEAD
         height: 55vh;
         width: 100%;
         overflow-y: scroll;
@@ -101,6 +142,76 @@
           }
 
           .card-header {
+=======
+        margin: 5%;
+        min-height: 9rem;
+        height: auto;
+        opacity: 0.8;
+        border-radius: 5px;
+        border: solid 1px rgba(0, 0, 0, 0.2);
+        box-shadow: none;
+
+        a {
+          text-decoration: none !important;
+          color: inherit !important;
+        }
+
+        .card-header {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          margin-bottom: 0;
+
+          .incident-report-date {
+            margin: 3% 0 0 5%;
+            color: #95989a;
+            font-size: 0.85rem;
+          }
+
+          .incident-time {
+            font-style: italic;
+            margin: 3% 3% 0 1%;
+            color: #95989a;
+            font-size: 0.85rem;
+          }
+
+          .incident-flag {
+            width: 2rem;
+            height: 2rem;
+            margin-left: auto;
+            margin-top: 3%;
+            margin-bottom: 0;
+
+            .flag-image {
+              width: 0.8rem;
+              height: 1.2rem;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+
+        .incident-subject {
+          margin: 0 3% 3% 5%;
+          color: #000000;
+          font-size: 1.2rem;
+        }
+
+        .incident-description {
+          margin: 0% 3% 3% 5%;
+          font-size: 0.7rem;
+          color: rgba(0, 0, 0, 0.7);
+        }
+
+        .assigned-to {
+          display: flex;
+          flex-direction: row;
+          margin-bottom: 1%;
+
+          .assignee {
+>>>>>>> feat: Add an `incidents type` filter
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -149,7 +260,11 @@
             color: rgba(0, 0, 0, 0.7);
           }
 
+<<<<<<< HEAD
           .assigned-to {
+=======
+          .unassigned {
+>>>>>>> feat: Add an `incidents type` filter
             display: flex;
             flex-direction: row;
             margin-bottom: 1%;
