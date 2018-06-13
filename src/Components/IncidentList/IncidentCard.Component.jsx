@@ -24,6 +24,10 @@ class IncidentCard extends Component {
     return firstInitial + secondInitial;
   };
 
+  trimText = (text, length) => {
+    return text.length > length ? text.substring(0, length) + ' ...' : text;
+  };
+
   render() {
     const {
       incidentId,
@@ -42,8 +46,8 @@ class IncidentCard extends Component {
             <div className="incident-time">{incidentTime}</div>
             <div className="incident-flag">{this.renderFlag(incidentFlag)}</div>
           </div>
-          <div className="incident-subject">{incidentSubject}</div>
-          <div className="incident-description">{incidentDescription}</div>
+          <div className="incident-subject">{this.trimText(incidentSubject, 30)}</div>
+          <div className="incident-description">{this.trimText(incidentDescription, 280)}</div>
           <div className="assigned-to">
             {assignees.length ? (
               assignees.map((assignee, index) => (

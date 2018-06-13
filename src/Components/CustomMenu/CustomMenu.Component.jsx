@@ -24,24 +24,23 @@ export class CustomMenu extends React.Component {
   };
 
   render() {
-    const styles = { display: 'block', fontSize: '0.8rem', width: '10rem', padding: '0 auto 0 0' };
+    const styles = { fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.5vw', height: '5vh' };
     return (
-      <div className="custom-menu">
-        <SelectField
-          underlineStyle={{ display: 'none' }}
-          iconStyle={{ fill: '#000000', marginRight: '1rem' }}
-          labelStyle={{ textAlign: 'right' }}
-          value={this.state.value}
-          onChange={this.handleChange}
-          style={styles}
-        >
-          <MenuItem value="All Countries" primaryText="All Countries" />
-          <MenuItem value="Kenya" primaryText="Kenya" />
-          <MenuItem value="Nigeria" primaryText="Nigeria" />
-          <MenuItem value="Uganda" primaryText="Uganda" />
-          <MenuItem value="USA" primaryText="USA" />
-        </SelectField>
-      </div>
+      <SelectField
+        underlineStyle={{ display: 'none' }}
+        iconStyle={{ fill: '#000000', marginRight: '1rem', textAlign: 'center' }}
+        labelStyle={{ textAlign: 'center', marginLeft: '1.85rem' }}
+        value={this.state.value}
+        onChange={this.handleChange}
+        className="custom-menu"
+        style={styles}
+      >
+        <MenuItem value="All Countries" primaryText="All Countries" />
+        <MenuItem value="Kenya" primaryText="Kenya" />
+        <MenuItem value="Nigeria" primaryText="Nigeria" />
+        <MenuItem value="Uganda" primaryText="Uganda" />
+        <MenuItem value="USA" primaryText="USA" />
+      </SelectField>
     );
   }
 }

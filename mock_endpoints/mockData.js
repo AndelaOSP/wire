@@ -159,6 +159,244 @@ module.exports = {
       updatedAt: '2018-02-13T15:58:06.202Z',
       assignees: [],
       categoryId: null
+    },
+    {
+      id: 5,
+      createdAt: '2018-02-13T15:58:06.202Z',
+      subject: 'subject 5',
+      description: 'description 5',
+      dateOccurred: '2018-02-13T15:58:06.202Z',
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
+      statusId: 1,
+      reporterId: 4,
+      levelId: 1,
+      locationId: 4,
+      updatedAt: '2018-02-13T15:58:06.202Z',
+      assignees: [],
+      categoryId: null
+    },
+    {
+      id: 6,
+      createdAt: '2018-02-13T15:58:06.202Z',
+      subject: 'subject 6',
+      description: 'description 6',
+      dateOccurred: '2018-02-13T15:58:06.202Z',
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
+      statusId: 1,
+      reporterId: 4,
+      levelId: 1,
+      locationId: 4,
+      updatedAt: '2018-02-13T15:58:06.202Z',
+      assignees: [],
+      categoryId: null
+    },
+    {
+      id: 7,
+      createdAt: '2018-02-13T15:58:06.202Z',
+      subject: 'subject 7',
+      description: 'description 7',
+      dateOccurred: '2018-02-13T15:58:06.202Z',
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
+      statusId: 1,
+      reporterId: 4,
+      levelId: 1,
+      locationId: 4,
+      updatedAt: '2018-02-13T15:58:06.202Z',
+      assignees: [],
+      categoryId: null
+    },
+    {
+      id: 8,
+      createdAt: '2018-02-13T15:58:06.202Z',
+      subject: 'subject 8',
+      description: 'description 8',
+      dateOccurred: '2018-02-13T15:58:06.202Z',
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
+      statusId: 1,
+      reporterId: 4,
+      levelId: 1,
+      locationId: 4,
+      updatedAt: '2018-02-13T15:58:06.202Z',
+      assignees: [],
+      categoryId: null
+    },
+    {
+      id: 9,
+      createdAt: '2018-02-13T15:58:06.202Z',
+      subject: 'subject 9',
+      description: 'description 9',
+      dateOccurred: '2018-02-13T15:58:06.202Z',
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
+      statusId: 1,
+      reporterId: 4,
+      levelId: 1,
+      locationId: 4,
+      updatedAt: '2018-02-13T15:58:06.202Z',
+      assignees: [],
+      categoryId: null
+    },
+    {
+      id: 10,
+      createdAt: '2018-02-13T15:58:06.202Z',
+      subject: 'subject 10',
+      description: 'description 10',
+      dateOccurred: '2018-02-13T15:58:06.202Z',
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
+      statusId: 1,
+      reporterId: 4,
+      levelId: 1,
+      locationId: 4,
+      updatedAt: '2018-02-13T15:58:06.202Z',
+      assignees: [],
+      categoryId: null
+    },
+    {
+      id: 11,
+      createdAt: '2018-02-13T15:58:06.202Z',
+      subject: 'subject 11',
+      description: 'description 11',
+      dateOccurred: '2018-06-04T15:58:06.202Z',
+      witnesses: [
+        {
+          id: '3rd',
+          email: 'person3@g.com',
+          username: 'person3',
+          imageUrl: 'person3.jpeg',
+          createdAt: '2018-03-26T09:44:48.701Z',
+          updatedAt: '2018-03-26T09:44:48.701Z',
+          roleId: 1
+        },
+        {
+          id: '2nd',
+          email: 'person2@g.com',
+          username: 'person2',
+          imageUrl: 'person2.jpeg',
+          createdAt: '2018-03-26T09:44:48.681Z',
+          updatedAt: '2018-03-26T09:44:48.681Z',
+          roleId: 1
+        }
+      ],
+      statusId: 3,
+      reporterId: 2,
+      levelId: 2,
+      locationId: 2,
+      updatedAt: '2018-02-13T15:58:06.202Z',
+      assignees: [],
+      categoryId: null
     }
   ],
   notes: [
