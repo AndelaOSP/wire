@@ -1,7 +1,6 @@
 defaults: &defaults
   docker:
     - image: circleci/node:9.8.0
-  working_directory: ~/wire
 
 version: 2
 jobs:
