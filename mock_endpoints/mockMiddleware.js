@@ -107,6 +107,9 @@ module.exports = {
   },
   login: (req, res) => {
     setTimeout(() => {
+      if(!login(req.body.email)) {
+        return res.status(401).send({ error: true, message: 'User does not exist', status: 'error' });
+      }
       res.send({userToken: login(req.body.email), status: 'success' });
     }, 2000);
   }

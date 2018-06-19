@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mockMiddleware = require('./mock_endpoints/mockMiddleware');
 const path = require('path');
+const auth = require('./mock_endpoints/auth');
 require('dotenv').config();
 
 if (process.env.NODE_ENV === 'development') {
@@ -22,10 +23,10 @@ if (process.env.NODE_ENV === 'development') {
   app.use(bodyParser.json());
 
   // Incident routes
-  app.get('/api/incidents', mockMiddleware.fetchIncidents);
-  app.get('/api/incidents/:id', mockMiddleware.fetchIncident);
-  app.put('/api/incidents/:id', mockMiddleware.updateIncident);
-  app.get('/api/search/incidents', mockMiddleware.handleSearch);
+  app.get('/api/incidents', auth, mockMiddleware.fetchIncidents);
+  app.get('/api/incidents/:id', auth, mockMiddleware.fetchIncident);
+  app.put('/api/incidents/:id', auth, mockMiddleware.updateIncident);
+  app.get('/api/search/incidents', auth, mockMiddleware.handleSearch);
 
   // Notes routes
   app.post('/api/incidents/:id/notes', mockMiddleware.addNoteToIncident);

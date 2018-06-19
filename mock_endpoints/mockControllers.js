@@ -241,7 +241,7 @@ module.exports = {
       let userToCheck = users.filter(user => {
         return user.email == email;
       });
-      return userToCheck[0].roleId !== 1;
+      return userToCheck.length > 0 ? userToCheck[0].roleId !== 1 : false;
     }
     return false;
   }
