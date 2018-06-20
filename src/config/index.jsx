@@ -1,6 +1,6 @@
-const API_URL = process.env.API_URL;
-const ANDELA_API_BASE_URL = process.env.ANDELA_API_BASE_URL;
-const BASE_URL = process.env.BASE_URL;
+const API_URL = "https://api-staging-wire.andela.com"
+const ANDELA_API_BASE_URL = "https://api.andela.com"
+const BASE_URL = "https://staging-wire.andela.com"
 
 const config = {
   ANDELA_API_BASE_URL,
