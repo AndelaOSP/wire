@@ -1,4 +1,4 @@
-const API_URL = "https://api-staging-wire.andela.com"
+const API_URL = "https://api-staging-wire.andela.com/api"
 const ANDELA_API_BASE_URL = "https://api.andela.com"
 const BASE_URL = "https://staging-wire.andela.com"
 
