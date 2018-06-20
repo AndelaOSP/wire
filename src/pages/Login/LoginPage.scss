@@ -1,59 +1,89 @@
 @import "../../theme";
+@import url(https://fonts.googleapis.com/css?family=PT+Sans);
 
-.login-page {
+.login-page{
     display: flex;
-    flex-direction: row;
     height: 100vh;
+    width: 100vw;
 
-    .left-column {
+    .left-container{
 
-        .landing-image {
-            width: 27vw;
-            height: 100%;
+        height: 100vh;
+        min-width: 340px;
+        
+        .andela-logo{
+            margin: 20% 0% 0% 10%;
+            width: 8.3rem;
+            height: 3.2rem;
         }
-    }
 
-    .right-column {
-        flex: 1;
+        .welcome-text{
+            margin-top: 40vh;
+            margin-left: 2vw;
+            width: 70%;
 
-        .login-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            justify-content: center;
-            margin: auto !important;
 
-            .title {
-                margin-bottom: 0.3rem;
-                font-weight: 200;
-                font-size: 1.25rem;
+            p{
+                font-family: 'DIN Pro Extra Light';
+                font-size: 25px;
+
+                .wire{
+                    font-family: 'DIN Pro Light';
+                    font-style: italic;
+                }
+                
             }
-
-            .instructions {
-                margin: 0.2rem;
-            }
-
-            .google-logo {
+        }
+        .button{
+            
+            .google-logo{
                 display: inline-block;
-                position: relative;
-                right: 0.5rem;
-                width: 3.5rem;
-                height: 80%;
-                box-sizing: border-box;
-            }
+                min-width: 3vw;
+                height: 60%;
+                padding: 0%;
+                margin-left: 0%;
 
-            .button {
-                margin: 1rem;
-                border: 1px solid map-get($grey, 100);
-                font-size: small;
-                padding: 0.1rem 0.1rem;
             }
-
-            .landing-logo {
-                height: 5rem;
-                margin-top: 1rem;
+            .label{
+                display: inline-block;
             }
         }
+
+     }
+        
+
+
+    .right-container{
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+
+      
+
+
+        .right-text{
+            position: absolute;
+            color: #fbaf31;
+            font-size: 40px;
+            font-weight: 500;
+            left: 75rem;
+            top: 17rem;
+            min-width: 10rem;
+            white-space: nowrap;
+
+        }
+            .underline{
+                position: absolute;
+                background-color: #fdb237;
+                min-width: 8rem;
+                height: 0.5vh;
+                border-radius: 5px;
+                left: 80rem;
+                top: 27rem;
+
+
+        }   
+        
+
     }
 }
