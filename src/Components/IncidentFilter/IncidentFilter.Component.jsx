@@ -97,14 +97,17 @@ export default class IncidentFilter extends Component {
           </SelectField>
 
           <div className="duration-filter">
-            <button className="day" onClick={() => this.handleTimeChange('Day')}>
+            <button className="duration-button" onClick={() => this.handleTimeChange('Day')}>
               <span>Day</span>
             </button>
-            <button className="week" onClick={() => this.handleTimeChange('Week')}>
+            <button className="duration-button" onClick={() => this.handleTimeChange('Week')}>
               <span>Week</span>
             </button>
-            <button className="month" onClick={() => this.handleTimeChange('Month')}>
+            <button className="duration-button" onClick={() => this.handleTimeChange('Month')}>
               <span>Month</span>
+            </button>
+            <button className="duration-button" onClick={() => this.handleTimeChange('All')}>
+              <span>All</span>
             </button>
           </div>
         </div>
