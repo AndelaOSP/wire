@@ -26,7 +26,7 @@ export class Dashboard extends Component {
     this.state = {
       filterKey: 'All Countries',
       typeFilterKey: 'All Incidents',
-      timeFilter: '',
+      timeFilter: 'All',
       showNotesDialog: false,
       value: 1
     };
