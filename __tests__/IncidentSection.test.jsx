@@ -8,7 +8,7 @@ describe('IncidentCard component', () => {
   it('should render no cards when there are no incidents', () => {
     const incidentSection = shallow(<IncidentSection incidentStatus={'PENDING'} incidents={[]} />);
     expect(incidentSection.find('div .incident-status').text()).toEqual('PENDING');
-    expect(incidentSection.find('div .incident-cards > .no-incidents').text()).toEqual(' No incidents in PENDING');
+    expect(incidentSection.find('div .card-wrapper > .no-incidents').text()).toEqual(' No incidents in PENDING');
     expect(incidentSection.find('IncidentCard').exists()).toEqual(false);
   });
 
