@@ -24,10 +24,10 @@ class IncidentSection extends Component {
   render() {
     const { incidentStatus, incidents, underLineColor } = this.props;
     return (
-      <div>
-        <div className="incident-cards">
-          <span className="incident-status">{incidentStatus}</span>
-          <div className="underline" style={{ backgroundColor: underLineColor }} />
+      <div className="incident-cards">
+        <span className="incident-status">{incidentStatus}</span>
+        <div className="underline" style={{ backgroundColor: underLineColor }} />
+        <div className="card-wrapper">
           {incidents.length ? (
             incidents.map(incident => (
               <IncidentCard
