@@ -21,159 +21,165 @@
     margin: 2rem 0.5rem;
 
     .incident-cards {
-      flex-direction: column;
-      align-items: center;
       height: 65vh;
-      overflow-y: scroll;
-      justify-content: space-between;
       border-radius: 8px;
       background-color: #ffffff;
       box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+      position: relative;
 
       .incident-status {
         font-family: 'DIN Pro Light';
         font-weight: 300;
-        position: relative;
-        top: 1rem;
-        left: 1rem;
-        margin-left: 1.5%;
+        font-size: 1vw;
+        position: sticky;
+        top: 2.5vh;
+        margin-left: 5%;
       }
 
       .underline {
-        width: 150px;
-        height: 5px;
+        width: 8vw;
+        height: 0.5vh;
         border-radius: 5px;
-        position: relative;
-        margin-left: 1.5%;
-        margin-bottom: 4rem;
-        top: 2rem;
-        left: 1rem;
+        position: sticky;
+        margin-left: 5%;
+        margin-bottom: 13%;
+        top: 6vh;
       }
 
-      .no-incidents {
-        display: flex;
+      .card-wrapper {
+        position: absolute;
+        bottom: 0;
         flex-direction: column;
-        font-size: 1rem;
-        font-weight: 300;
-        align-items: center;
-        justify-content: center;
+        height: 55vh;
+        width: 100%;
+        overflow-y: scroll;
+        justify-content: space-between;
 
-        .folder {
-          font-size: 5rem;
-          margin-top: 7rem;
-          width: 6rem;
-          height: 5rem;
-        }
-
-        p {
-          position: relative;
-          text-align: center !important;
-          vertical-align: middle !important;
-          color: #3960ad;
-          font-family: 'DIN Pro Extra Light';
-        }
-
-        .status {
-          font-style: italic;
-          color: rgba(57, 96, 173, 0.6);
-        }
-      }
-
-      .incident-card {
-        display: flex;
-        flex-direction: column;
-        margin: 5%;
-        min-height: 9rem;
-        height: auto;
-        opacity: 0.8;
-        border-radius: 5px;
-        border: solid 1px rgba(0, 0, 0, 0.2);
-        box-shadow: none;
-
-        a {
-          text-decoration: none !important;
-          color: inherit !important;
-        }
-
-        .card-header {
+        .no-incidents {
           display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          margin-bottom: 0;
+          flex-direction: column;
+          font-size: 1rem;
+          font-weight: 300;
+          align-items: center;
+          justify-content: center;
 
-          .incident-report-date {
-            margin: 3% 0 0 5%;
-            color: #95989a;
-            font-size: 0.85rem;
+          .folder {
+            font-size: 5rem;
+            margin-top: 7rem;
+            width: 6rem;
+            height: 5rem;
           }
 
-          .incident-time {
+          p {
+            position: relative;
+            text-align: center !important;
+            vertical-align: middle !important;
+            color: #3960ad;
+            font-family: 'DIN Pro Extra Light';
+          }
+
+          .status {
             font-style: italic;
-            margin: 3% 3% 0 1%;
-            color: #95989a;
-            font-size: 0.85rem;
+            color: rgba(57, 96, 173, 0.6);
+          }
+        }
+
+        .incident-card {
+          display: flex;
+          flex-direction: column;
+          margin: 0% 5% 5% 5%;
+          min-height: 9rem;
+          height: auto;
+          opacity: 0.8;
+          border-radius: 5px;
+          border: solid 1px rgba(0, 0, 0, 0.2);
+          box-shadow: none;
+
+          a {
+            text-decoration: none !important;
+            color: inherit !important;
           }
 
-          .incident-flag {
-            width: 2rem;
-            height: 2rem;
-            margin-left: auto;
-            margin-top: 3%;
+          .card-header {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             margin-bottom: 0;
 
-            .flag-image {
-              width: 0.8rem;
-              height: 1.2rem;
+            .incident-report-date {
+              margin: 3% 0 0 5%;
+              color: #95989a;
+              font-size: 0.85rem;
             }
 
-            &:hover {
-              cursor: pointer;
+            .incident-time {
+              font-style: italic;
+              margin: 3% 3% 0 1%;
+              color: #95989a;
+              font-size: 0.85rem;
+            }
+
+            .incident-flag {
+              width: 2rem;
+              height: 2rem;
+              margin-left: auto;
+              margin-top: 3%;
+              margin-bottom: 0;
+
+              .flag-image {
+                width: 0.8rem;
+                height: 1.2rem;
+              }
+
+              &:hover {
+                cursor: pointer;
+              }
             }
           }
-        }
 
-        .incident-subject {
-          margin: 0 3% 3% 5%;
-          color: #000000;
-          font-size: 1.2rem;
-        }
-
-        .incident-description {
-          margin: 0% 3% 3% 5%;
-          font-size: 0.7rem;
-          color: rgba(0, 0, 0, 0.7);
-        }
-
-        .assigned-to {
-          display: flex;
-          flex-direction: row;
-          margin-bottom: 1%;
-
-          .assignee {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 4px;
-            margin: 0% -2.5% 3% 5%;
-            width: 2rem;
-            height: 1rem;
-            border-radius: 3px;
-            font-size: 0.7rem;
+          .incident-subject {
+            margin: 0 3% 3% 5%;
+            color: #000000;
+            font-size: 1.2rem;
           }
 
-          .unassigned {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 6px;
-            margin: 0% -2.5% 3% 5%;
-            width: 4rem;
-            height: 1rem;
-            border-radius: 3px;
-            background-color: #f1f6f8;
+          .incident-description {
+            margin: 0% 3% 3% 5%;
             font-size: 0.7rem;
+            color: rgba(0, 0, 0, 0.7);
+          }
+
+          .assigned-to {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 1%;
+
+            .assignee {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              padding: 4px;
+              margin: 0% -2.5% 3% 5%;
+              width: 2rem;
+              height: 1rem;
+              border-radius: 3px;
+              font-size: 0.7rem;
+            }
+
+            .unassigned {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              padding: 6px;
+              margin: 0% -2.5% 3% 5%;
+              width: 4rem;
+              height: 1rem;
+              border-radius: 3px;
+              background-color: #f1f6f8;
+              font-size: 0.7rem;
+            }
           }
         }
       }
