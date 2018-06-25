@@ -23,7 +23,7 @@ import config from '../../config';
  * LoginPage class
  */
 class LoginPage extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     authenticateUser.authenticate();
     let email = localStorage.getItem('email');
     if (email) {
@@ -44,6 +44,11 @@ class LoginPage extends React.Component {
     setReferrerInlocationStorage(from.pathname);
     const referrer = getReferrerInlocationStorage();
     const { isLoading, isError, errorMessage, hasToken } = this.props;
+
+    if (isError) {
+      authenticateUser.removeToken();
+      localStorage.clear();
+    }
 
     if (authenticateUser.isAuthenticated && hasToken) {
       return <Redirect to={(from.pathname = referrer)} />;
