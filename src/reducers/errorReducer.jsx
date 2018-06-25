@@ -12,30 +12,35 @@ const errorReducer = (state = initialState.error, action) => {
     case ERROR_ACTION:
       return {
         status: action.status,
+        statusCode: action.statusCode,
         message: action.message
       };
 
     case FETCH_INCIDENTS_SUCCESS:
       return {
         status: action.isError,
+        statusCode: null,
         message: ''
       };
 
     case FETCH_INCIDENT:
       return {
         status: action.isError,
+        statusCode: null,
         message: ''
       };
 
     case FETCH_STAFF:
       return {
         status: action.isError,
+        statusCode: null,
         message: ''
       };
 
     case GET_TOKEN_SUCCESS:
       return {
         status: action.isError,
+        statusCode: null,
         message: ''
       };
 
