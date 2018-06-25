@@ -66,7 +66,7 @@ export default class IncidentFilter extends Component {
       trackSwitched: {
         backgroundColor: '#81D4FA'
       },
-      selectField: { fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.5vw', height: '5vh' }
+      selectField: { fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.7vw', height: '5vh' }
     };
     return (
       <div className="filters-container">
@@ -89,8 +89,8 @@ export default class IncidentFilter extends Component {
 
           <SelectField
             underlineStyle={{ display: 'none' }}
-            iconStyle={{ fill: '#000000', marginRight: '1rem', textAlign: 'center' }}
-            labelStyle={{ textAlign: 'center', marginLeft: '1.85rem' }}
+            iconStyle={{ fill: '#000000', marginRight: '1vw', textAlign: 'center' }}
+            labelStyle={{ textAlign: 'center', marginLeft: '1.85vw' }}
             value={this.state.flagFilterValue}
             onChange={this.handleFlagChange}
             className="flag-filter"
@@ -104,8 +104,8 @@ export default class IncidentFilter extends Component {
 
           <SelectField
             underlineStyle={{ display: 'none' }}
-            iconStyle={{ fill: '#000000', marginRight: '1rem', textAlign: 'center' }}
-            labelStyle={{ textAlign: 'center', marginLeft: '1.85rem' }}
+            iconStyle={{ fill: '#000000', marginRight: '1vw', textAlign: 'center' }}
+            labelStyle={{ textAlign: 'center', marginLeft: '1.85vw' }}
             value={this.state.incidentsType}
             onChange={this.handleTypeChange}
             className="incidents-filter"
