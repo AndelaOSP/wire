@@ -16,6 +16,7 @@ export const errorAction = error => {
   return {
     type: ERROR_ACTION,
     status: true,
+    statusCode: error.response.status,
     message: `${message}`
   };
 };

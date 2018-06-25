@@ -66,7 +66,8 @@ describe('async actions', () => {
     {
       type: types.ERROR_ACTION,
       status: true,
-      message: 'You might not be logged in/authorized. Please try again.'
+      message: 'You might not be logged in/authorized. Please try again.',
+      statusCode: 401,
     }
   ];
 

@@ -24,12 +24,12 @@ export class CustomMenu extends React.Component {
   };
 
   render() {
-    const styles = { fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.5vw', height: '5vh' };
+    const styles = { fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.7vw', height: '5vh' };
     return (
       <SelectField
         underlineStyle={{ display: 'none' }}
-        iconStyle={{ fill: '#000000', marginRight: '1rem', textAlign: 'center' }}
-        labelStyle={{ textAlign: 'center', marginLeft: '1.85rem' }}
+        iconStyle={{ fill: '#000000', marginRight: '1vw', textAlign: 'center' }}
+        labelStyle={{ textAlign: 'center', marginLeft: '1.85vw' }}
         value={this.state.value}
         onChange={this.handleChange}
         className="custom-menu"
