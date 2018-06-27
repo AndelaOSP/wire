@@ -25,6 +25,6 @@ describe('IncidentCard component', () => {
     expect(incidentCard.find('.incident-subject').text()).toEqual('Stolen Phone');
     expect(incidentCard.find('.incident-report-date').text()).toEqual('5th Jan 2018');
     expect(incidentCard.find('.incident-time').text()).toEqual('4:41 PM');
-    expect(incidentCard.find('.assigned-to').text()).toEqual('PM');
+    expect(incidentCard.find('.assigned-to').text()).toEqual('PMPeter Musonye');
   });
 });
