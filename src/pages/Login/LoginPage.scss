@@ -1,89 +1,65 @@
 @import "../../theme";
 @import url(https://fonts.googleapis.com/css?family=PT+Sans);
-
-.login-page{
-    display: flex;
+.login-page {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  .left-container {
     height: 100vh;
-    width: 100vw;
-
-    .left-container{
-
-        height: 100vh;
-        min-width: 340px;
-        
-        .andela-logo{
-            margin: 20% 0% 0% 10%;
-            width: 8.3rem;
-            height: 3.2rem;
-        }
-
-        .welcome-text{
-            margin-top: 40vh;
-            margin-left: 2vw;
-            width: 70%;
-
-
-            p{
-                font-family: 'DIN Pro Extra Light';
-                font-size: 25px;
-
-                .wire{
-                    font-family: 'DIN Pro Light';
-                    font-style: italic;
-                }
-                
-            }
-        }
-        .button{
-            
-            .google-logo{
-                display: inline-block;
-                min-width: 3vw;
-                height: 60%;
-                padding: 0%;
-                margin-left: 0%;
-
-            }
-            .label{
-                display: inline-block;
-            }
-        }
-
-     }
-        
-
-
-    .right-container{
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-
-      
-
-
-        .right-text{
-            position: absolute;
-            color: #fbaf31;
-            font-size: 40px;
-            font-weight: 500;
-            left: 75rem;
-            top: 17rem;
-            min-width: 10rem;
-            white-space: nowrap;
-
-        }
-            .underline{
-                position: absolute;
-                background-color: #fdb237;
-                min-width: 8rem;
-                height: 0.5vh;
-                border-radius: 5px;
-                left: 80rem;
-                top: 27rem;
-
-
-        }   
-        
-
+    min-width: 340px;
+    .andela-logo {
+      margin: 20% 0% 0% 10%;
+      width: 8.3rem;
+      height: 3.2rem;
     }
+    .welcome-text {
+      margin-top: 40vh;
+      margin-left: 2vw;
+      width: 70%;
+      p {
+        font-family: 'DIN Pro Extra Light';
+        font-size: 25px;
+        .wire {
+          font-family: 'DIN Pro Light';
+          font-style: italic;
+        }
+      }
+    }
+    .button {
+      .google-logo {
+        display: inline-block;
+        min-width: 3vw;
+        height: 60%;
+        padding: 0%;
+        margin-left: 0%;
+      }
+      .label {
+        display: inline-block;
+      }
+    }
+  }
+  .right-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    .right-text {
+      position: absolute;
+      color: #fbaf31;
+      font-size: 40px;
+      font-weight: 500;
+      left: 75rem;
+      top: 17rem;
+      min-width: 10rem;
+      white-space: nowrap;
+    }
+    .underline {
+      position: absolute;
+      background-color: #fdb237;
+      min-width: 8rem;
+      height: 0.5vh;
+      border-radius: 5px;
+      left: 80rem;
+      top: 27rem;
+    }
+  }
 }
