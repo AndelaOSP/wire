@@ -154,7 +154,7 @@ export default class TimelineSidebar extends Component {
             {incident.witnesses ? (
               incident.witnesses.map((witness, i) => {
                 return  (
-                  <div className="witness-image"> <p>
+                  <div key={i} className="witness-image"> <p>
                     JK
                     </p> 
                     </div>
