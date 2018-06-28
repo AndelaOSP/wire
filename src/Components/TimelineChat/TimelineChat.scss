@@ -1,28 +1,53 @@
 @import "../../theme";
-
 .chat-container {
+  width: 100%;
   height: 80vh !important;
   overflow: auto;
-
   .chat-list {
     width: 90%;
     margin: 2rem auto;
   }
-
-  .message-input {
-    margin: 0 auto !important;
+  .message-container {
     top: auto !important;
     bottom: 0 !important;
     position: absolute !important;
-    background-color: map_get($white, 100) !important;
-    width: 100% !important;
-    height: 2vh !important;
-
-    .text-input {
-      border-top-color: map_get($grey, 700) !important; 
-      border-top-style: solid !important;
-      border-top-width: thin;
-      width: 100% !important;
+    .notification-icon {
+      cursor: pointer;
+      margin-top: 1rem;
+      width: 30.4px;
+      height: 32.1px;
+      margin-left: 1rem;
+      position: absolute !important;
+    }
+    .message-input {
+      margin-left: 5rem;
+      width: 60vw;
+      height: 60px;
+      border-radius: 9px;
+      background-color: #F1F1F4;
+      .text-input {
+        border-top-color: map_get($grey, 700) !important;
+        width: 100% !important;
+        text-align: center;
+        padding: .3rem 0 0 1.5rem;
+        align-items: center;
+      }
+    }
+    .message-icon {
+      cursor: pointer; // padding-right: 1rem;
+      width: 25.3px;
+      height: 25.3px;
+      position: absolute;
+      top: 10px;
+      right: 13px;
+      font-size: 25px;
+      cursor: pointer;
+      opacity: 0.6;
+      padding: .3rem 0 0 1.5rem;
+      -webkit-transition: all ease-out 0.3s 0s;
+      -o-transition: all ease-out 0.3s 0s;
+      transition: all ease-out 0.3s 0s;
+      color: #dbdbdb;
     }
   }
 }

@@ -118,6 +118,8 @@ export default class TimelineSidebar extends Component {
 
   render() {
     let { incident, staff } = this.props;
+
+    console.log(incident)
     let assignee = incident.assignees.find(user => {
       return user.assignedRole === 'assignee';
     });
@@ -133,27 +135,37 @@ export default class TimelineSidebar extends Component {
         <div className="incident-details">
           <span className="incident-subject"> {incident.subject || 'No subject provided.'} </span>
           <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
-          <p> {incident.description || 'No description provided.'} </p>
-          <p className="incident-extra">
-            reported by <b>{incident.reporter.username}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
-          </p>
+          <div className="undeline"/>
+          <div className="incident-description">
+          <div className="description-details">
+              <p> {incident.description || 'No description provided.'} </p>
+              <p className="incident-extra">
+                reported by <b>{incident.reporter.username}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
+              </p>
+          </div>
+          </div>
         </div>
 
         <hr className="divider" />
 
         <div className="incident-status">
           <span> Witnesses: </span>
-          <ul className="list">
+          <div className="list">
             {incident.witnesses ? (
               incident.witnesses.map((witness, i) => {
-                return <li key={i}> {witness.username} </li>;
+                return  (
+                  <div className="witness-image"> <p>
+                    JK
+                    </p> 
+                    </div>
+                )
               })
             ) : (
-              <li> No witnesses </li>
+              <p> No witnesses </p>
             )}
-          </ul>
+          </div>
           <span className="incident-status-title"> Incident status: </span>
-          <div>
+          <div className="incident-dropdown">
             <DropDownMenu
               value={incident.statusId || 1}
               onChange={this.handleStatusChange}
@@ -207,13 +219,13 @@ export default class TimelineSidebar extends Component {
           </div>
 
           <span> Location: </span>
-          <ul className="list">
+          <div className="loction-list">
             {incident.Location ? (
-              <li> {`${incident.Location.name}, ${incident.Location.centre}, ${incident.Location.country}`} </li>
+              <p> {`${incident.Location.name}, ${incident.Location.centre}, ${incident.Location.country}`} </p>
             ) : (
-              <li> No location specified </li>
+              <p> No location specified </p>
             )}
-          </ul>
+          </div>
         </div>
 
         <hr className="divider" />

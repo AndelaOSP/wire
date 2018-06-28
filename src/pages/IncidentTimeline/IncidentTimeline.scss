@@ -1,27 +1,25 @@
 @import "../../theme";
-
 .timeline-container {
   display: flex;
   flex-direction: row;
   min-height: 93vh;
-
   .timeline-sidebar {
     justify-content: flex-start;
     z-index: 2;
     position: relative;
   }
-
   .timeline-main-content {
+    background-color: #ffffff;
     justify-content: flex-end;
     width: 100vw;
     padding: 0 1rem;
     z-index: 0;
     position: relative;
-
-    .chat-tab, .notes-tab {
+    .chat-tab,
+    .notes-tab {
       &>div {
         &>div {
-          height: 4rem !important; 
+          height: 4rem !important;
           background-color: map_get($white, 100) !important;
           color: map_get($black, 700) !important;
         }
