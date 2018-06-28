@@ -1,16 +1,14 @@
 @import "../../theme";
-
 .sidebar-container {
   display: flex;
   flex-direction: column;
   width: 25%;
   padding: 1.5rem;
   margin-top: 0;
-  background-color: #E4E4E4;
+  background-color: #f1f6f8;
   box-shadow: 0 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.2), 0 0.4rem 1rem 0 rgba(0, 0, 0, 0.19);
   overflow: scroll;
   max-height: 88vh !important;
-
   .divider {
     background-color: map_get($white, 100);
     color: map_get($white, 100);
@@ -20,64 +18,103 @@
     border-radius: 0.1rem;
     padding: 0.1rem;
   }
-
   .incident-details {
-    padding: 0.5rem;
-
+    padding-top: 0.5rem 0 .5rem 0;
     .incident-subject {
-      font-weight: 400;
-      font-size: 1.5rem;
+      font-size: 20px;
+      font-weight: 300;
+      font-family: 'DIN Pro Light';
+      text-transform: capitalize;
     }
-
     .incident-flag {
       img {
         width: 2rem;
         height: 1.5rem;
+        margin-left: 1rem;
       }
-
       &:hover {
-          cursor: pointer;
+        cursor: pointer;
       }
     }
-    
+    .undeline {
+      width: 150px;
+      height: 5px;
+      border-radius: 5px;
+      position: relative;
+      margin-bottom: 3rem;
+      top: 1.2rem;
+      background-color: #fdb237;
+    }
+    .incident-description {
+      margin-top: 2rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      background-color: #ffffff;
+      .description-details {
+        p {
+          padding: 1rem;
+          font-family: 'DIN Pro Light';
+          font-size: 12px;
+          font-weight: 300;
+          line-height: 2.08;
+          letter-spacing: normal;
+          color: #000000;
+          b {
+            font-family: 'DIN Pro';
+          }
+        }
+      }
+    }
     .incident-extra {
       font-weight: 100;
+      font-family: 'DIN Pro Light';
       font-size: 0.7rem;
     }
   }
-
   .incident-status {
-      font-weight: 300;
-
-      .list {
-        li {
-          font-weight: 400;
+    font-family: 'DIN Pro Light';
+    font-weight: 400;
+    .list {
+      display: flex;
+      flex-direction: row;
+      .witness-image {
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        background-color: #49abb0;
+        margin: .6rem .5rem 1.5rem .0rem;
+        p {
+          font-family: 'DIN Pro Light';
+          font-size: 20px;
+          line-height: 0.25;
+          color: #ffffff;
+          text-align: center;
         }
       }
-
-      .dropdown {
-        position: relative;
-        &>div {
-          border-color: black !important;
-          &>button {
-            &>div {
-              svg {
-                fill: black !important;
-              }
+    }
+    .incident-dropdown {}
+    .dropdown {
+      position: relative;
+      &>div {
+        border-color: black !important;
+        &>button {
+          &>div {
+            svg {
+              fill: black !important;
             }
           }
-          &>div {
-            border-color: black !important;
-          }
+        }
+        &>div {
+          border-color: black !important;
         }
       }
+    }
   }
-
   .incident-activity {
     overflow: scroll !important;
     height: 25% !important;
     padding: 0.5rem;
-
     .incident-activity-item {
       background-color: map_get($white, 100);
       border-radius: 0.3rem;
@@ -86,5 +123,14 @@
       box-shadow: 0.1rem 0.1rem 0.5rem map_get($grey, 500);
     }
   }
-
+  .loction-list {
+    p {
+      font-family: 'DIN Pro Light';
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 2.08;
+      letter-spacing: normal;
+      color: #000000;
+    }
+  }
 }
