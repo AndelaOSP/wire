@@ -56,7 +56,8 @@ export default class TimelineChat extends Component {
             <ListItem disabled> No messages. </ListItem>
           )}
         </List>
-
+        <div className="message-container">
+          <img src="/assets/images/clip.svg" color="red" className="notification-icon" />
         <div className="message-input">
           <form onSubmit={this.handlePostMessage}>
             <TextField
@@ -69,6 +70,10 @@ export default class TimelineChat extends Component {
             />
           </form>
         </div>
+          <div className="message-icon">
+            <img src="/assets/images/smile.svg" className="message-icon" />
+        </div>
+         </div>
       </div>
     );
   }
