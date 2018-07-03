@@ -28,7 +28,7 @@ export default class TimelineChat extends Component {
   };
 
   handleDateString = date => {
-    return moment(date).format('MMM Do YYYY [at] h:mm a');
+    return moment(date).format('[at] h:mm a');
   };
 
   render() {
@@ -36,25 +36,25 @@ export default class TimelineChat extends Component {
     return (
       <div className="chat-container">
         <List className="chat-list">
-          {chats.length > 0 ? (
+        {
+          chats.length > 0 ? (
             chats.map((chat, i) => {
-              return (
-                <ListItem
-                  leftAvatar={chat.User ? <Avatar src={chat.User.imageUrl} /> : null}
-                  primaryText={
-                    chat.User ? `${chat.User.username} on ${this.handleDateString(chat.createdAt)}` : 'Unknown'
+              return <div className="message-header" key={i}>
+              <span>
+                  {chat.User ? `${chat.User.username}${this.handleDateString(chat.createdAt)}` : 'You'
                   }
-                  secondaryText={<p> {chat.chat} </p>}
-                  secondaryTextLines={2}
-                  className="chat-item"
-                  key={i}
-                  disabled
-                />
-              );
+              </span>
+                {/* <img src={chat.User.imageUrl} /> */}
+                  <div className="message-bubble">
+                    <p>{chat.chat}</p>
+                  </div>
+                </div>;
             })
-          ) : (
-            <ListItem disabled> No messages. </ListItem>
-          )}
+          ):
+          <div>
+            <p>No Messages</p>
+            </div>
+        }
         </List>
         <div className="message-container">
           <img src="/assets/images/clip.svg" color="red" className="notification-icon" />
