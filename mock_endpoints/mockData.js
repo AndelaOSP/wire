@@ -415,14 +415,14 @@ module.exports = {
       createdAt: '2018-02-13T15:58:06.202Z',
       note: 'A note',
       userId: 1,
-      incidentId: 2
+      incidentId: 1
     },
     {
       id: 4,
       createdAt: '2018-02-13T15:58:06.202Z',
       note: 'A note',
       userId: 1,
-      incidentId: 3
+      incidentId: 1
     }
   ],
   chats: [{
