@@ -443,7 +443,7 @@ module.exports = {
     },
     {
       id: 3,
-      chat: 'Most people feel they can’t tell their boss or supervisee what they really think. What might a completely honest conversation be like ? ',
+      chat: 'Lol',
       userId: 2,
       incidentId: 1,
       createdAt: '2018-02-13T15:58:06.202Z',
