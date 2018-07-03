@@ -1,6 +1,5 @@
 module.exports = {
-  incidents: [
-    {
+  incidents: [{
       id: 1,
       createdAt: '2018-02-13T15:58:06.202Z',
       subject: 'subject 1',
@@ -13,8 +12,7 @@ module.exports = {
       qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla \
       facilisi.',
       dateOccurred: '2018-06-10T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -38,8 +36,7 @@ module.exports = {
       levelId: 3,
       locationId: 1,
       updatedAt: '2018-02-13T15:58:06.202Z',
-      assignees: [
-        {
+      assignees: [{
           id: '-KhLsOxrKcKZC8i2n888',
           email: 'mercy.muchai@andela.com',
           username: 'Mercy Muchai',
@@ -64,8 +61,7 @@ module.exports = {
       subject: 'subject 2',
       description: 'description 2',
       dateOccurred: '2018-06-04T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -98,8 +94,7 @@ module.exports = {
       subject: 'subject 3',
       description: 'description 3',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -132,8 +127,7 @@ module.exports = {
       subject: 'subject 4',
       description: 'description 3',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -166,8 +160,7 @@ module.exports = {
       subject: 'subject 5',
       description: 'description 5',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -200,8 +193,7 @@ module.exports = {
       subject: 'subject 6',
       description: 'description 6',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -234,8 +226,7 @@ module.exports = {
       subject: 'subject 7',
       description: 'description 7',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -268,8 +259,7 @@ module.exports = {
       subject: 'subject 8',
       description: 'description 8',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -302,8 +292,7 @@ module.exports = {
       subject: 'subject 9',
       description: 'description 9',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -336,8 +325,7 @@ module.exports = {
       subject: 'subject 10',
       description: 'description 10',
       dateOccurred: '2018-02-13T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -370,8 +358,7 @@ module.exports = {
       subject: 'subject 11',
       description: 'description 11',
       dateOccurred: '2018-06-04T15:58:06.202Z',
-      witnesses: [
-        {
+      witnesses: [{
           id: '3rd',
           email: 'person3@g.com',
           username: 'person3',
@@ -399,19 +386,27 @@ module.exports = {
       categoryId: null
     }
   ],
-  notes: [
-    {
+  notes: [{
       id: 1,
       createdAt: '2018-02-13T15:58:06.202Z',
       updatedAt: '2018-02-13T15:58:06.202Z',
-      note: 'A note',
+      note: 'At 5:22 p.m. on Jan 17, 2018, I was dispatched to Block A of AKL ... At 5:22 p.m. on Jan 17, 2018, I was dispatched to Block A\
+      of AKL … At 5:22 p.m. on Jan 17, 2018, I was dispatched to Block A  of AKL… At 5: 22 p.m.on Jan 17, 2018, I was dispatched to Block A \
+      of AKL… At 5: 22 p.m.on Jan 17, 2018, I was dispatched to Block A of AKL… At 5: 22 p.m.on Jan 17, 2018, I was dispatchedto Block A of\
+      AKL… At 5: 22 p.m.on Jan 17, 2018, I was dispatched to Block A of AKL… At 5: 22 p.m.on Jan 17, 2018,\
+      I was dispatched to Block A of AKL… At 5: 22 p.m.on Jan 17, 2018, I wasdispatched to Block A of AKL… At 5: 22 p.m.on Jan 17, 2018, I was dispatched to Block A of AKL… ',
       userId: 1,
       incidentId: 1
     },
     {
       id: 2,
       createdAt: '2018-02-13T15:58:06.202Z',
-      note: 'A note',
+      note: 'At 5:22 p.m. on Jan 17, 2018, I was dispatched to Block A of AKL ... At 5:22 p.m. on Jan 17, 2018, I was dispatched to Block A\
+      of AKL … At 5:22 p.m. on Jan 17, 2018, I was dispatched to Block A  of AKL… At 5: 22 p.m.on Jan 17, 2018, I was dispatched to Block A \
+      of AKL… At 5: 22 p.m.on Jan 17, 2018, I was dispatched to Block A of AKL… At 5: 22 p.m.on Jan 17, 2018, I was dispatchedto Block A of\
+      AKL… At 5: 22 p.m.on Jan 17, 2018, I was dispatched to Block A of AKL… At 5: 22 p.m.on Jan 17, 2018,\
+      I was dispatched to Block A of AKL… At 5: 22 p.m.on Jan 17, 2018, I wasdispatched to Block A of AKL… At 5: 22 p.m.on Jan 17, 2018,\
+      I was dispatched to Block A of AKL… ',
       userId: 1,
       incidentId: 1
     },
@@ -430,10 +425,9 @@ module.exports = {
       incidentId: 3
     }
   ],
-  chats: [
-    {
+  chats: [{
       id: 1,
-      chat: 'A chat',
+      chat: 'Most people feel they can’t tell their boss or supervisee what they really think. What might a completely honest conversation be like ? ',
       userId: 1,
       incidentId: 1,
       createdAt: '2018-02-13T15:58:06.202Z',
@@ -441,7 +435,7 @@ module.exports = {
     },
     {
       id: 2,
-      chat: 'A second chat',
+      chat: 'Most people feel they can’t tell their boss or supervisee what they really think. What might a completely honest conversation be like ? ',
       userId: 2,
       incidentId: 1,
       createdAt: '2018-02-13T15:58:06.202Z',
@@ -449,15 +443,14 @@ module.exports = {
     },
     {
       id: 3,
-      chat: 'Another chat',
+      chat: 'Most people feel they can’t tell their boss or supervisee what they really think. What might a completely honest conversation be like ? ',
       userId: 2,
       incidentId: 1,
       createdAt: '2018-02-13T15:58:06.202Z',
       updatedAt: '2018-02-13T15:58:06.202Z'
     }
   ],
-  users: [
-    {
+  users: [{
       id: 1,
       email: 'me@example.com',
       username: 'Me Example',
@@ -521,8 +514,7 @@ module.exports = {
       roleId: 3
     }
   ],
-  locations: [
-    {
+  locations: [{
       id: 1,
       name: 'Amphitheatre',
       centre: 'Nairobi',
@@ -548,8 +540,7 @@ module.exports = {
     }
   ],
   categories: [],
-  levels: [
-    {
+  levels: [{
       id: 1,
       name: 'Red'
     },
@@ -562,8 +553,7 @@ module.exports = {
       name: 'Green'
     }
   ],
-  statuses: [
-    {
+  statuses: [{
       id: 1,
       status: 'Pending'
     },
@@ -588,8 +578,7 @@ module.exports = {
     locationId: 1,
     updatedAt: '2018-02-13T15:58:06.202Z',
     categoryId: null,
-    assignees: [
-      {
+    assignees: [{
         id: '-KhLsOxrKcKZC8i2n888',
         email: 'mercy.muchai@andela.com',
         username: 'Mercy Muchai',
@@ -606,7 +595,9 @@ module.exports = {
         assignedRole: 'ccd'
       }
     ],
-    Level: { name: 'Red' },
+    Level: {
+      name: 'Red'
+    },
     reporter: {
       username: 'Test User'
     },
@@ -620,8 +611,7 @@ module.exports = {
     notes: [],
     chats: []
   },
-  newTestIncidents: [
-    {
+  newTestIncidents: [{
       'id': 'cjezu2kr700010wx1yy6kxu5z',
       'description': 'Some random thing happened and I didnt like it',
       'subject': 'Theft',
@@ -643,8 +633,7 @@ module.exports = {
         'centre': 'Nairobi',
         'country': 'Kenya'
       },
-      'assignees': [
-        {
+      'assignees': [{
           'id': '-KhLsLqucbC1WAMylcFt',
           'email': 'caroline.nkirote@andela.com',
           'username': 'Caroline Nkirote',
@@ -697,8 +686,7 @@ module.exports = {
         'centre': 'Lagos',
         'country': 'Nigeria'
       },
-      'assignees': [
-        {
+      'assignees': [{
           'id': '-KhLsLqucbC1WAMylcFt',
           'email': 'caroline.nkirote@andela.com',
           'username': 'Caroline Nkirote',
