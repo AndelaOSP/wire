@@ -44,11 +44,12 @@ export default class TimelineChat extends Component {
                   {chat.User ? `${chat.User.username}${this.handleDateString(chat.createdAt)}` : 'You'
                   }
               </span>
-                {/* <img src={chat.User.imageUrl} /> */}
+              <div className="message-body">
                   <div className="message-bubble">
                     <p>{chat.chat}</p>
                   </div>
-                </div>;
+              </div>
+                </div>
             })
           ):
           <div>
