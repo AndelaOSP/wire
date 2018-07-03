@@ -52,7 +52,7 @@ export default class TimelineChat extends Component {
                 </div>
             })
           ):
-          <div>
+          <div className="no-message">
             <p>No Messages</p>
             </div>
         }
