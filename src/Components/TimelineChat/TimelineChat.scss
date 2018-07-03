@@ -41,6 +41,22 @@
         }
       }
     }
+    .no-message {
+      width: 244.2px;
+      height: 106px;
+      background-color: #f3f6f9;
+      margin-left: auto;
+      border-radius: 5px;
+      p {
+        font-family: 'DINPro';
+        font-size: 16px;
+        line-height: 1.31;
+        letter-spacing: 0.2px;
+        color: #000000;
+        text-align: center;
+        padding: 2.5rem;
+      }
+    }
   }
   .message-container {
     top: auto !important;
