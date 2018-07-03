@@ -112,9 +112,11 @@ export default class TimelineNotes extends Component {
                 </ListItem>
               );
             })
-          ) : (
-            <ListItem disabled> No Notes. </ListItem>
-          )}
+          ) : 
+              <div className="no-message">
+                <p>No Notes Created</p>
+              </div>
+          }
         </List>
 
         <div className="message-container">
