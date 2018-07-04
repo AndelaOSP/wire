@@ -63,11 +63,11 @@ export class IncidentTimeline extends Component {
 
             <div className="timeline-main-content">
               <Tabs contentContainerClassName="timeline-tabs" inkBarStyle={{ backgroundColor: '#E2E2E2' }} className="">
-                <Tab label="Chat" className="chat-tab">
-                  <TimelineChat className="chat-content" {...this.props} />
-                </Tab>
                 <Tab label="Notes" className="notes-tab">
                   <TimelineNotes className="notes-content" {...this.props} />
+                </Tab>
+                <Tab label="Chat" className="chat-tab">
+                  <TimelineChat className="chat-content" {...this.props} />
                 </Tab>
               </Tabs>
             </div>
