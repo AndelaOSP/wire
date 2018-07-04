@@ -119,7 +119,6 @@ export default class TimelineSidebar extends Component {
   render() {
     let { incident, staff } = this.props;
 
-    console.log(incident)
     let assignee = incident.assignees.find(user => {
       return user.assignedRole === 'assignee';
     });
@@ -135,14 +134,14 @@ export default class TimelineSidebar extends Component {
         <div className="incident-details">
           <span className="incident-subject"> {incident.subject || 'No subject provided.'} </span>
           <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
-          <div className="undeline"/>
+          <div className="undeline" />
           <div className="incident-description">
-          <div className="description-details">
+            <div className="description-details">
               <p> {incident.description || 'No description provided.'} </p>
               <p className="incident-extra">
                 reported by <b>{incident.reporter.username}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
               </p>
-          </div>
+            </div>
           </div>
         </div>
 
@@ -153,12 +152,12 @@ export default class TimelineSidebar extends Component {
           <div className="list">
             {incident.witnesses ? (
               incident.witnesses.map((witness, i) => {
-                return  (
-                  <div key={i} className="witness-image"> <p>
-                    JK
-                    </p> 
-                    </div>
-                )
+                return (
+                  <div key={i} className="witness-image">
+                    {' '}
+                    <p>JK</p>
+                  </div>
+                );
               })
             ) : (
               <p> No witnesses </p>
