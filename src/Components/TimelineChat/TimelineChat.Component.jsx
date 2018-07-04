@@ -35,8 +35,7 @@ export default class TimelineChat extends Component {
     return (
       <div className="chat-container">
         <List className="chat-list">
-        {
-          chats.length > 0 ? (
+          {chats.length > 0 ? (
             chats.map((chat, i) => {
               return (
                 <div className="message-header" key={i}>
