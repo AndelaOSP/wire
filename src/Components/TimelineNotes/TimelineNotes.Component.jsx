@@ -88,17 +88,12 @@ export default class TimelineNotes extends Component {
                 <ListItem className="notes-list-item" key={i} disabled>
                   <div className="single-note-container">
                     <div className="note-header">
-                      <span className="timestamp">
-                        {' '}
-                        {this.handleDateString(note.createdAt)}{' '}
-                      </span>
+                      <span className="timestamp"> {this.handleDateString(note.createdAt)} </span>
                     </div>
                     <Divider className="note-divider" />
                     <div className="note-container">
                       <div className="note-content">
-                      <p>
-                           {note.note}
-                      </p>
+                        <p>{note.note}</p>
                       </div>
                     </div>
                     <div className="note-actions">
@@ -112,11 +107,11 @@ export default class TimelineNotes extends Component {
                 </ListItem>
               );
             })
-          ) : 
-              <div className="no-message">
-                <p>No Notes Created</p>
-              </div>
-          }
+          ) : (
+            <div className="no-message">
+              <p>No Notes Created</p>
+            </div>
+          )}
         </List>
 
         <div className="message-container">
