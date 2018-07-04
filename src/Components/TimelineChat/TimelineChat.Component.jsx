@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { List, ListItem } from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
+import { List } from 'material-ui/List';
 import TextField from 'material-ui/TextField';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -36,45 +35,43 @@ export default class TimelineChat extends Component {
     return (
       <div className="chat-container">
         <List className="chat-list">
-        {
-          chats.length > 0 ? (
+          {chats.length > 0 ? (
             chats.map((chat, i) => {
-              return <div className="message-header" key={i}>
-              <span>
-                  {chat.User ? `${chat.User.username}${this.handleDateString(chat.createdAt)}` : 'You'
-                  }
-              </span>
-              <div className="message-body">
-                  <div className="message-bubble">
-                    <p>{chat.chat}</p>
+              return (
+                <div className="message-header" key={i}>
+                  <span>{chat.User ? `${chat.User.username}${this.handleDateString(chat.createdAt)}` : 'You'}</span>
+                  <div className="message-body">
+                    <div className="message-bubble">
+                      <p>{chat.chat}</p>
+                    </div>
                   </div>
-              </div>
                 </div>
+              );
             })
-          ):
-          <div className="no-message">
-            <p>No Messages</p>
+          ) : (
+            <div className="no-message">
+              <p>No Messages</p>
             </div>
-        }
+          )}
         </List>
         <div className="message-container">
           <img src="/assets/images/clip.svg" color="red" className="notification-icon" />
-        <div className="message-input">
-          <form onSubmit={this.handlePostMessage}>
-            <TextField
-              hintText="Type a message"
-              value={this.state.message}
-              onChange={this.handleChange}
-              ref="messageInput"
-              underlineShow={false}
-              className="text-input"
-            />
-          </form>
-        </div>
+          <div className="message-input">
+            <form onSubmit={this.handlePostMessage}>
+              <TextField
+                hintText="Type a message"
+                value={this.state.message}
+                onChange={this.handleChange}
+                ref="messageInput"
+                underlineShow={false}
+                className="text-input"
+              />
+            </form>
+          </div>
           <div className="message-icon">
             <img src="/assets/images/smile.svg" className="message-icon" />
+          </div>
         </div>
-         </div>
       </div>
     );
   }
