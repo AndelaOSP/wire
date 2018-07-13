@@ -115,11 +115,11 @@
       .dropdown-content {
         display: none;
         position: absolute;
-        left: 4.5rem;
-        width: 6rem;
+
+        min-width: 200px;
         border-radius: .3rem;
         box-shadow: 0.1rem 0.1rem 1rem map_get($grey, 500);
-        z-index: 1;
+        z-index: 2;
         cursor: pointer;
 
         span {
@@ -133,9 +133,7 @@
         }
       }
 
-      &:hover {
-        background-color: #FCF5F5;
-      }
+
 
       &:hover .dropdown-content {
         display: block;

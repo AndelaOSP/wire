@@ -4,6 +4,7 @@ export default {
   hasToken: false,
   error: {
     status: false,
+    statusCode: null,
     message: ''
   },
   selectedIncident: {
