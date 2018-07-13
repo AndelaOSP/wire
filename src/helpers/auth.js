@@ -12,7 +12,6 @@ const authenticateUser = {
   authenticate() {
     if (this.validateUser()) {
       this.isAuthenticated = true;
-      return this.isAuthenticated;
     }
   },
   revokeAuthentication() {
