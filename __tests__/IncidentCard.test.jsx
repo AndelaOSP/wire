@@ -10,10 +10,13 @@ describe('IncidentCard component', () => {
       <IncidentCard
         incidentId={1}
         incidentSubject="Stolen Phone"
+        incidentDescription="Yadda yadda yadda"
         incidentReportDate="5th Jan 2018"
         incidentTime="4:41 PM"
-        incidentReporter="Maureen Nyakio"
         incidentFlag="red"
+        assignees={[
+          { username: 'Peter Musonye' }
+        ]}
       />
     );
     const tree = shallowToJSON(incidentCard);
@@ -22,6 +25,6 @@ describe('IncidentCard component', () => {
     expect(incidentCard.find('.incident-subject').text()).toEqual('Stolen Phone');
     expect(incidentCard.find('.incident-report-date').text()).toEqual('5th Jan 2018');
     expect(incidentCard.find('.incident-time').text()).toEqual('4:41 PM');
-    expect(incidentCard.find('.assigned-to').text()).toEqual('Maureen Nyakio');
+    expect(incidentCard.find('.assigned-to').text()).toEqual('PMPeter Musonye');
   });
 });

@@ -9,3 +9,4 @@ export const IS_LOADING = 'IS_LOADING';
 export const CHANGE_ASSIGNEE = 'CHANGE_ASSIGNEE';
 export const ADD_CHAT = 'ADD_CHAT';
 export const FETCH_STAFF = 'FETCH_STAFF';
+export const GET_TOKEN_SUCCESS = 'GET_TOKEN_SUCCESS';

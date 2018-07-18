@@ -13,64 +13,100 @@
 .filters-container {
   @include flex-column;
   width: 95vw;
-  max-height: 8rem;
-  margin: auto !important;
+  align-items: center;
+  position: relative;
+  left: 2.3%;
+
+  .toggle-section {
+    @include flex-row;
+    position: relative;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    align-items: center;
+    right: 2.7%;
+    z-index: 0;
+    
+    .toggle-label {
+      font-weight: 200;
+      font-size: 0.8em;
+      color: map_get($grey, 300);
+      margin: 0.2rem;
+    }
+  }
+
+  .toggle-section {
+    @include flex-row;
+    position: relative;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    align-items: center;
+    right: 2.7%;
+    .toggle-label {
+      font-weight: 200;
+      font-size: 0.8em;
+      color: map_get($grey, 300);
+      margin: 0.2rem;
+    }
+  }
 
   .filters {
     @include flex-row;
     width: 90vw;
-    height: 4rem;
+    height: 7vh;
     box-sizing: border-box;
-    justify-content: flex-end;
-    align-items: center;
+    align-items: flex-end;
 
     .incidents-label {
-      font-weight: 200;
-      color: map_get($grey, 300);
       padding: 0 0.5rem;
+      width: 5vw;
+      height: 7vh;
+      font-size: 2vw;
+      font-style: lighter;
+      line-height: 1.29;
+      letter-spacing: normal;
+      text-align: left;
+      color: #000000;
+      margin-right: auto;
+      font-family: 'DIN Pro Light';
     }
 
     .duration-filter {
-      max-width: 10rem !important;
-      margin: 0 1rem;
-    }
-
-    .date-filter {
-      &>div {
-        margin: 0 1rem;
-        max-width: 6rem !important;
-      }
-    }
-
-    .flag-type-label {
-      font-weight: 500;
-      color: map_get($grey, 300);
-    }
-
-    .toggle-section {
       @include flex-row;
-      padding: 0 0.5rem;
-      max-width: 2rem !important;
+      height: 5vh;
+      min-height: 2.5rem;
+      width: 17vw;
+      margin: 0 1vw;
+      margin-right: 5px;
+      border-radius: 4px;
+      background-color: #ffffff;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 
-      .toggle-label {
-        font-weight: 200;
-        font-size: 0.8em;
-        color: map_get($grey, 300);
-        margin: auto 0.2rem;
-        padding: 0 0.5rem;
+      .duration-button {
+        height: 4.3vh;
+        min-height: 2.3rem;
+        width: 4.2vw;
+        border-radius: 4px;
+        margin: 0.2vw 0.3vw;
+        font-family: 'DIN Pro';
+        font-size: 0.75vw;
+        text-align: center;
+        border: none;
+        outline: none;
+        background-color: #ffffff;
+        &:hover, &:focus {
+          background-color: #f1f6f8;
+          cursor: pointer;
+        }
       }
     }
 
-    .flag-filter {
-      max-width: 10rem !important;
-      margin: 0 1rem;
+    .flag-filter, .incidents-filter, .custom-menu {
+      margin: 0 0.5vw;
+      min-height: 2.5rem !important;
+      border-radius: 4px;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     }
-
-    .country-filter {
-      max-width: 10rem !important;
-      margin: 0 0.5rem;
-    }
-
   }
-
 }

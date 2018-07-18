@@ -20,11 +20,11 @@ export const loadIncidentsSuccess = incidents => {
 
 export const loadIncidents = () => {
   let token = localStorage.getItem('token');
-  let headers = {'Authorization': token};
+  let headers = { Authorization: token };
   return dispatch => {
     dispatch(loadingAction(true));
     return axios
-      .get(config.INCIDENTS_URL, {headers})
+      .get(config.INCIDENTS_URL, { headers })
       .then(incidents => {
         dispatch(
           loadIncidentsSuccess(
@@ -52,12 +52,16 @@ export const changeStatusSuccess = incidentId => {
  */
 export const changeStatus = (statusId, incidentId) => {
   let token = localStorage.getItem('token');
-  let headers = {'Authorization': token};
+  let headers = { Authorization: token };
   return dispatch => {
     return axios
-      .put(`${config.INCIDENTS_URL}/${incidentId}/`, {
-        statusId: statusId
-      }, {headers})
+      .put(
+        `${config.INCIDENTS_URL}/${incidentId}/`,
+        {
+          statusId: statusId
+        },
+        { headers }
+      )
       .then(res => {
         dispatch(changeStatusSuccess(res.data.data));
       })

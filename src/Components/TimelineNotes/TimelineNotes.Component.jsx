@@ -88,13 +88,14 @@ export default class TimelineNotes extends Component {
                 <ListItem className="notes-list-item" key={i} disabled>
                   <div className="single-note-container">
                     <div className="note-header">
-                      <span className="timestamp">
-                        {' '}
-                        {note.User ? note.User.username : 'Unknown'} on {this.handleDateString(note.createdAt)}{' '}
-                      </span>
+                      <span className="timestamp"> {this.handleDateString(note.createdAt)} </span>
                     </div>
                     <Divider className="note-divider" />
-                    <div className="note-content">{note.note}</div>
+                    <div className="note-container">
+                      <div className="note-content">
+                        <p>{note.note}</p>
+                      </div>
+                    </div>
                     <div className="note-actions">
                       <ModeEdit className="note-action-edit" onClick={this.handleOpenEditDialog.bind(null, note, i)} />
                       <Archive
@@ -107,21 +108,29 @@ export default class TimelineNotes extends Component {
               );
             })
           ) : (
-            <ListItem disabled> No Notes. </ListItem>
+            <div className="no-message">
+              <p>No Notes Created</p>
+            </div>
           )}
         </List>
 
-        <div className="message-input">
-          <form onSubmit={this.handleAddNote}>
-            <TextField
-              value={this.state.content}
-              onChange={this.handleChange}
-              hintText="Add a note"
-              ref="noteInput"
-              underlineShow={false}
-              className="text-input"
-            />
-          </form>
+        <div className="message-container">
+          <img src="/assets/images/clip.svg" color="red" className="notification-icon" />
+          <div className="message-input">
+            <form onSubmit={this.handleAddNote}>
+              <TextField
+                value={this.state.content}
+                onChange={this.handleChange}
+                hintText="Add a note"
+                ref="noteInput"
+                underlineShow={false}
+                className="text-input"
+              />
+            </form>
+          </div>
+          <div className="message-icon">
+            <img src="/assets/images/smile.svg" className="message-icon" />
+          </div>
         </div>
 
         <Dialog

@@ -20,7 +20,8 @@ const {
 module.exports = {
   fetchIncidents: (req, res) => {
     setTimeout(() => {
-      res.send({ data: { incidents: getIncidents() }, status: 'success' });
+      let query = req.query.q ? req.query.q : '';
+      res.send({ data: { incidents: getIncidents(query) }, status: 'success' });
     }, 2000);
   },
   handleSearch: (req, res) => {
@@ -106,6 +107,9 @@ module.exports = {
   },
   login: (req, res) => {
     setTimeout(() => {
+      if(!login(req.body.email)) {
+        return res.status(401).send({ error: true, message: 'User does not exist', status: 'error' });
+      }
       res.send({userToken: login(req.body.email), status: 'success' });
     }, 2000);
   }

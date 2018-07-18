@@ -116,10 +116,10 @@ describe('async actions', () => {
     const store = mockStore();
     const newIncident = testIncident;
     const expectedActions = [
-      { type: types.CHANGE_STATUS, 
+      { type: types.CHANGE_STATUS,
         incidentId: newIncident.id }
       ];
-    
+
     newIncident['statusId'] = 2;
 
     store.dispatch(actions.changeStatus(2,1));
@@ -129,7 +129,7 @@ describe('async actions', () => {
         status : 200,
         response : {
           status : 200,
-          data : newIncident.id    
+          data : newIncident.id
         }
       };
       request.respondWith(statusResponse).then(()=>{
@@ -144,13 +144,14 @@ describe('async actions', () => {
     const store = mockStore();
     const newIncident = testIncident;
     const expectedActions = [
-        { 
-          type: types.ERROR_ACTION, 
+        {
+          type: types.ERROR_ACTION,
           status: true,
-          message: 'The requested resource cannot be found'
+          message: 'The requested resource cannot be found',
+          statusCode: 404,
         }
       ];
-    
+
     newIncident['statusId'] = 2;
 
     store.dispatch(actions.changeStatus(2,1));
@@ -174,13 +175,14 @@ describe('async actions', () => {
     const store = mockStore();
     const newIncident = testIncident;
     const expectedActions = [
-        { 
-          type: types.ERROR_ACTION, 
+        {
+          type: types.ERROR_ACTION,
           status: true,
-          message: 'You might not be logged in/authorized. Please try again.'
+          message: 'You might not be logged in/authorized. Please try again.',
+          statusCode: 401,
         }
       ];
-    
+
     newIncident['statusId'] = 2;
 
     store.dispatch(actions.changeStatus(2,1));

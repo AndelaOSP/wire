@@ -82,7 +82,10 @@ describe('Search functionality', () => {
                   dateOccurred: '2017-02-11T00:00:00.000Z',
                   createdAt: '2018-02-14T12:26:03.792Z',
                   reporter: { username: 'Maureen Nyakio' },
-                  Level: { name: 'red' }
+                  Level: { name: 'red' },
+                  assignees: [
+                    { username: 'Peter Musonye' }
+                  ]
                 }
               ]
             }

@@ -1,76 +1,131 @@
 @import "../../theme";
-
 .notes-container {
-  height: 80vh !important;
-  overflow: auto;
-
+  height: 83vh !important;
+  overflow: scroll;
   .notes-list {
-    width: 85%;
+    overflow: scroll;
+    width: 70vw;
     margin: 2rem auto;
-
     .subheader {
       padding-left: 0 !important;
       font-weight: 900 !important;
     }
-
     .notes-list-item {
       &>div {
         &>div {
           padding: 0 !important;
         }
       }
-
       .single-note-container {
         padding: 0;
         .note-header {
           margin: 0.5rem 0;
         }
-
+        .timestamp {
+          width: 202px;
+          height: 22px;
+          font-family: 'DINPro';
+          font-size: 17px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.29;
+          text-align: left;
+          color: #000000;
+        }
         .note-divider {
-          width: 30% !important;
-          height: 0.25rem !important;
+          width: 150px !important;
+          height: 6px !important;
+          background-color: #dff3fc !important;
+          border-radius: 5px !important;
         }
-
-        .note-content {
-          margin: 0.5rem 0;
-          padding: 0.5rem 0;
-          font-size: 0.75rem;
-          font-weight: 200;
-          line-height: 1.5rem;
+        .note-container {
+          height: 100%;
+          width: 100%;
+          border-radius: 5px;
+          background-color: #f3f6f9;
+          .note-content {
+            p {
+              padding: 1rem;
+              text-transform: capitalize;
+              font-family: 'DINPro';
+              font-size: 12px;
+              line-height: 2.17;
+              font-weight: 300;
+              color: #000000;
+            }
+          }
         }
-
         .note-actions {
           margin: 0.5rem;
           padding: 1rem 0;
-          
           svg {
             fill: #747474 !important;
           }
-
-          .note-action-edit, .note-action-archive {
+          .note-action-edit,
+          .note-action-archive {
             padding: 0 0.25rem;
             cursor: pointer;
           }
         }
       }
     }
+    .no-message {
+      width: 244.2px;
+      height: 106px;
+      background-color: #f3f6f9;
+      margin: 0 auto;
+      border-radius: 5px;
+      p {
+        font-family: 'DINPro';
+        font-size: 16px;
+        line-height: 1.31;
+        letter-spacing: 0.2px;
+        color: #000000;
+        text-align: center;
+        padding: 2.5rem;
+      }
+    }
   }
-
-  .message-input {
-    margin: 0 auto !important;
+  .message-container {
     top: auto !important;
     bottom: 0 !important;
     position: absolute !important;
-    background-color: map_get($white, 100) !important;
-    width: 100% !important;
-    min-height: 2% !important;
-    max-height: 2% !important; 
-    
-    .text-input {
-      border-top-color: map_get($grey, 700) !important; 
-      border-top-style: solid !important;
-      border-top-width: thin;
-      width: 100% !important;
+    .notification-icon {
+      cursor: pointer;
+      margin-top: 1rem;
+      width: 30.4px;
+      height: 32.1px;
+      margin-left: 1rem;
+      position: absolute !important;
+    }
+    .message-input {
+      margin-left: 4rem;
+      width: 70vw;
+      height: 60px;
+      border-radius: 9px;
+      background-color: #F1F1F4;
+      .text-input {
+        border-top-color: map_get($grey, 700) !important;
+        width: 100% !important;
+        text-align: center;
+        padding: .3rem 0 0 1.5rem;
+        align-items: center;
+      }
+    }
+    .message-icon {
+      cursor: pointer; // padding-right: 1rem;
+      width: 25.3px;
+      height: 25.3px;
+      position: absolute;
+      top: 10px;
+      right: 13px;
+      font-size: 25px;
+      cursor: pointer;
+      opacity: 0.6;
+      -webkit-transition: all ease-out 0.3s 0s;
+      -o-transition: all ease-out 0.3s 0s;
+      transition: all ease-out 0.3s 0s;
     }
   }
 }

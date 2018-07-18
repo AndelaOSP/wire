@@ -29,10 +29,10 @@ class SearchComponent extends Component {
    */
   handleInputChange = () => {
     let token = localStorage.getItem('token');
-    let headers = {'Authorization': token};
+    let headers = { Authorization: token };
     let searchQuery = this.nameInput.input.value.toLowerCase();
     if (searchQuery) {
-      axios.get(config.SEARCH_INCIDENTS_URL + '?q=' + searchQuery, {headers}).then(response => {
+      axios.get(config.SEARCH_INCIDENTS_URL + '?q=' + searchQuery, { headers }).then(response => {
         this.setState({
           incidents: response.data.data.incidents
         });
@@ -81,10 +81,11 @@ class SearchComponent extends Component {
                   key={incident.id}
                   incidentId={incident.id}
                   incidentSubject={incident.subject}
+                  incidentDescription={incident.description || 'No Description'}
                   incidentReportDate={`reported on ${this.getDate(incident.dateOccurred)}`}
                   incidentTime={this.getTime(incident.dateOccurred)}
-                  incidentReporter={incident.reporter.username}
                   incidentFlag={incident.Level.name}
+                  assignees={incident.assignees}
                 />
               ))
             : null}

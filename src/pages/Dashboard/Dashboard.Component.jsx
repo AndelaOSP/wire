@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 // actions
 import { loadIncidents } from '../../actions/incidentAction';
@@ -24,7 +25,10 @@ export class Dashboard extends Component {
     super(props);
     this.state = {
       filterKey: 'All Countries',
-      typeFilterKey: 'All Incidents',
+      flagFilterKey: 'All Incidents',
+      typeFilter: 'Pending',
+      timeFilter: 'All',
+      assignedToMe: false,
       showNotesDialog: false,
       value: 1
     };
@@ -40,11 +44,35 @@ export class Dashboard extends Component {
     };
   }
 
-  changeTypeFilter() {
+  changeFlagFilter() {
     return key => {
-      this.setState({ typeFilterKey: key });
+      this.setState({ flagFilterKey: key });
     };
   }
+
+  changeTypeFilter() {
+    return key => {
+      this.setState({ typeFilter: key });
+    };
+  }
+
+  changeTimeFilter() {
+    return key => {
+      this.setState({ timeFilter: key });
+    };
+  }
+
+  changeAssignedToMeFilter() {
+    return key => {
+      this.setState({ assignedToMe: key });
+    };
+  }
+
+  getDate = timestamp => new Date(timestamp).toDateString();
+
+  getWeek = timestamp => moment(timestamp).format('W');
+
+  getMonth = timestamp => new Date(timestamp).getMonth();
 
   filterIncidents() {
     let incidents = this.props.incidents;
@@ -56,12 +84,60 @@ export class Dashboard extends Component {
       });
     }
 
-    // filter country by  incident's Type
-    if (this.state.typeFilterKey !== 'All Incidents') {
+    // filter by incident's flag
+    if (this.state.flagFilterKey !== 'All Incidents') {
       incidents = incidents.filter(incident => {
-        const stateKey = this.state.typeFilterKey.toLocaleLowerCase();
+        const stateKey = this.state.flagFilterKey.toLocaleLowerCase();
         return incident.Level && stateKey === incident.Level.name.toLocaleLowerCase();
       });
+    }
+
+    // filter by incident's type
+    if (this.state.typeFilter !== 'All Incidents') {
+      incidents = incidents.filter(incident => {
+        const typeKey = this.state.typeFilter;
+        return incident.Status && typeKey === incident.Status.status;
+      });
+    }
+
+    // filter by assignedToMe
+    if (this.state.assignedToMe) {
+      let extractAssigness = incident => {
+        let emails = [];
+        incident.assignees.forEach(assignee => {
+          emails.push(assignee.email);
+        });
+        return emails;
+      };
+
+      incidents = incidents.filter(incident => {
+        const me = localStorage.getItem('email');
+        return extractAssigness(incident).indexOf(me) !== -1;
+      });
+    }
+
+    // filter by time
+    switch (this.state.timeFilter) {
+      case 'Day':
+        incidents = incidents.filter(incident => {
+          let day = this.getDate(new Date());
+          return this.getDate(incident.dateOccurred) == day;
+        });
+        break;
+      case 'Week':
+        incidents = incidents.filter(incident => {
+          let week = moment().format('W');
+          return this.getWeek(incident.dateOccurred) == week;
+        });
+        break;
+      case 'Month':
+        incidents = incidents.filter(incident => {
+          let month = this.getMonth(new Date());
+          return this.getMonth(incident.dateOccurred) == month;
+        });
+        break;
+      default:
+        return incidents;
     }
     return incidents;
   }
@@ -80,10 +156,13 @@ export class Dashboard extends Component {
             <IncidentFilter
               incident={this.state.selectedIncident}
               changeCountryFilter={this.changeFilter()}
+              filterByFlag={this.changeFlagFilter()}
               filterByType={this.changeTypeFilter()}
+              changeTime={this.changeTimeFilter()}
+              changeMineAll={this.changeAssignedToMeFilter()}
             />
             <div className="dashboard-container">
-              {<IncidentList incidents={incidents} onSelect={this.handleSelectedIncident} />}
+              {<IncidentList incidents={incidents} incidentsType={this.state.typeFilter} />}
             </div>
           </div>
         )}

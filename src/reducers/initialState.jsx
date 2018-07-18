@@ -1,8 +1,10 @@
 export default {
   incidents: [],
   isLoading: false,
+  hasToken: false,
   error: {
     status: false,
+    statusCode: null,
     message: ''
   },
   selectedIncident: {

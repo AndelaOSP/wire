@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Badge from 'material-ui/Badge';
 import PropTypes from 'prop-types';
-import FontIcon from 'material-ui/FontIcon';
 import { Link } from 'react-router-dom';
 
 // styles
@@ -39,21 +38,14 @@ export class NavBar extends Component {
   render() {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
-        <div className="left-nav-section">
-          <Link to="/dashboard">
-            <img className="logo" src="/assets/images/wire_logo_v1.svg" alt="Wire" />
-          </Link>
-          <input
-            className="search-input"
-            onFocus={this.handleSearch}
-            type="text"
-            placeholder="&#xF002; Search for an incident"
-          />
-        </div>
+        <Link to="/dashboard">
+          <img className="logo" src="/assets/images/andelaLogo.png" alt="Wire" />
+        </Link>
         <div className="right-nav-section">
+          <input className="search-input" onFocus={this.handleSearch} type="text" placeholder="Search" />
           <div className="notifications">
-            <FontIcon className="material-icons">notifications</FontIcon>
-            <Badge badgeContent={4} className="badge" />
+            <img src="/assets/images/bell_icon.svg" color="#3960ad" className="notification-icon" />
+            <Badge badgeContent={3} className="badge" />
           </div>
           <div className="profile">
             <div className="dropdowntn">
