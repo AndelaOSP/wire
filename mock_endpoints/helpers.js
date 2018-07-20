@@ -1,0 +1,25 @@
+const getUserName = email => {
+  let username = {};
+  const [firstName, lastName] = email.split('@')[0].split('.');
+  const first = firstName[0].toUpperCase() + firstName.substr(1, firstName.length);
+  const last = lastName[0].toUpperCase() + lastName.substr(1, lastName.length);
+  username = { first, last };
+  return username;
+};
+
+const matchRoleIdToName = (roles, roleId) => {
+  let role = roles.find(role => {
+    return role.id === roleId;
+  });
+  return role.name;
+};
+
+const matchLocationIdToLocation = (locations, locationId) => {
+  let location = locations.find(location => {
+    return location.id === locationId;
+  });
+  delete location.id;
+  return location;
+};
+
+module.exports = { getUserName, matchRoleIdToName, matchLocationIdToLocation };

@@ -4,6 +4,7 @@ import {
   ERROR_ACTION,
   FETCH_INCIDENTS_SUCCESS,
   FETCH_INCIDENT,
+  FETCH_STAFF,
   GET_TOKEN_SUCCESS
 } from '../actions/actionTypes';
 
@@ -16,6 +17,9 @@ const loadingReducer = (state = initialState.isLoading, action) => {
       return action.isLoading;
 
     case FETCH_INCIDENT:
+      return action.isLoading;
+
+    case FETCH_STAFF:
       return action.isLoading;
 
     case GET_TOKEN_SUCCESS:

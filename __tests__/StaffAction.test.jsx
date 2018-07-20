@@ -25,6 +25,7 @@ describe('async actions', () => {
     {
       type: types.FETCH_STAFF,
       staff: users,
+      isLoading: false,
       isError: false
     },
     { type: types.ERROR_ACTION,

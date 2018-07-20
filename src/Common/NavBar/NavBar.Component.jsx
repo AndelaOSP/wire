@@ -36,13 +36,18 @@ export class NavBar extends Component {
   };
 
   render() {
+    let { showSearch } = this.props;
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <Link to="/dashboard">
           <img className="logo" src="/assets/images/andelaLogo.png" alt="Wire" />
         </Link>
         <div className="right-nav-section">
-          <input className="search-input" onFocus={this.handleSearch} type="text" placeholder="Search" />
+          {showSearch ? (
+            <div className="search">
+              <input className="search-input" onFocus={this.handleSearch} type="text" placeholder="Search" />
+            </div>
+          ) : null}
           <div className="notifications">
             <img src="/assets/images/bell_icon.svg" color="#3960ad" className="notification-icon" />
             <Badge badgeContent={3} className="badge" />
@@ -69,7 +74,8 @@ export class NavBar extends Component {
  * Navbar Component Props validation
  */
 NavBar.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  showSearch: PropTypes.bool
 };
 
 export default NavBar;

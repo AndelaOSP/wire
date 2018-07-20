@@ -148,7 +148,7 @@ export class Dashboard extends Component {
 
     return (
       <div>
-        <NavBar {...this.props} />
+        <NavBar {...this.props} showSearch />
         {isLoading ? (
           <CircularProgressIndicator />
         ) : (

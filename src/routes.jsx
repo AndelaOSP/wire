@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard/Dashboard.Component';
 import IncidentTimeline from './pages/IncidentTimeline/IncidentTimeline.Component';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute.Component';
 import SearchComponent from './pages/Search/Search.Component';
+import AdminDashboard from './pages/AdminDashboard/AdminDashboard.Component';
 
 // create history object.
 export const history = createHistory();
@@ -25,6 +26,7 @@ const Routes = () => (
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <PrivateRoute path="/timeline/:incidentId" component={IncidentTimeline} />
       <PrivateRoute path="/search" component={SearchComponent} />
+      <PrivateRoute path="/admin" component={AdminDashboard} />
     </Switch>
   </Router>
 );
