@@ -25,6 +25,19 @@
     margin-right: 3rem;
     align-items: center;
 
+    .search {
+      position: relative;
+      &::before {
+        position: absolute;
+        content: "";
+        background: url('/assets/images/search_icon.svg') no-repeat center;
+        top: 0;
+        bottom: 0;
+        width: 1.15rem;
+        margin-left: 0.7rem;
+      }
+    }
+
     .search-input {
       width: 9rem;
       height: 1.85rem;
@@ -41,15 +54,6 @@
         font-family: 'DIN Pro Extra Light';
         font-size: 12px;
       }
-    }
-    &::before {
-      position: absolute;
-      content: "";
-      background: url('/assets/images/search_icon.svg') no-repeat center;
-      top: 0;
-      bottom: 0;
-      width: 1.15rem;
-      margin-left: 0.7rem;
     }
 
     .notifications {
