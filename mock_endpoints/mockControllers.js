@@ -1,6 +1,8 @@
 const fuzzysearch = require('fuzzysearch');
 
-let { incidents, chats, notes, users, statuses, levels, locations } = require('./mockData');
+let { incidents, chats, notes, roles, users, statuses, levels, locations } = require('./mockData');
+
+let { getUserName, matchRoleIdToName, matchLocationIdToLocation } = require('./helpers');
 
 module.exports = {
   getIncident: incidentId => {
@@ -235,6 +237,40 @@ module.exports = {
     return users.filter(user => {
       return user.roleId !== 1;
     });
+  },
+  addUser: (email, roleId, locationId) => {
+    let newUser = {
+      id: users.length++,
+      email,
+      username: getUserName(email),
+      imageUrl: '',
+      roleId,
+      Role: {
+        name: matchRoleIdToName(roles, roleId)
+      },
+      Location: matchLocationIdToLocation(locations, locationId)
+    };
+    users.push(newUser);
+  },
+  searchUser: query => {
+    return users.filter(user =>
+      fuzzysearch(query, user.username.toLowerCase()) === true);
+  },
+  editUser: (userId, roleId) => {
+    let userToEdit = users.find(user => {
+      return user.id === userId;
+    });
+    userToEdit.roleId = roleId;
+    userToEdit.Role.name = matchRoleIdToName(roles, roleId);
+    return userToEdit;
+  },
+  deleteUser: (userId) => {
+    let userToDelete = users.find(user => {
+      return user.id === userId;
+    });
+    let index = users.indexOf(userToDelete);
+    users.splice(index, 1);
+    return userToDelete;
   },
   login: (email) => {
     if (email) {
