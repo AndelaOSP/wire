@@ -450,6 +450,20 @@ module.exports = {
       updatedAt: '2018-02-13T15:58:06.202Z'
     }
   ],
+  roles: [
+    {
+      id: 1,
+      name: 'User',
+    },
+    {
+      id: 2,
+      name: 'Assignee',
+    },
+    {
+      id: 3,
+      name: 'Admin',
+    },
+  ],
   users: [{
       id: 1,
       email: 'me@example.com',
@@ -457,12 +471,12 @@ module.exports = {
       imageUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
       roleId: 2,
       Role: {
-        name: "Assignee"
+        name: 'Assignee'
       },
       Location: {
-        name: "Cafeteria",
-        centre: "Lagos",
-        country: "Nigeria"
+        name: 'Cafeteria',
+        centre: 'Lagos',
+        country: 'Nigeria'
       }
     },
     {
@@ -472,12 +486,12 @@ module.exports = {
       imageUrl: 'https://randomuser.me/api/portraits/med/men/83.jpg',
       roleId: 2,
       Role: {
-        name: "Admin"
+        name: 'Admin'
       },
       Location: {
-        name: "Cafeteria",
-        centre: "Lagos",
-        country: "Nigeria"
+        name: 'Cafeteria',
+        centre: 'Lagos',
+        country: 'Nigeria'
       }
     },
     {
@@ -487,12 +501,12 @@ module.exports = {
       imageUrl: 'https://randomuser.me/api/portraits/med/women/83.jpg',
       roleId: 3,
       Role: {
-        name: "Admin"
+        name: 'Admin'
       },
       Location: {
-        name: "Cafeteria",
-        centre: "Lagos",
-        country: "Nigeria"
+        name: 'Cafeteria',
+        centre: 'Lagos',
+        country: 'Nigeria'
       }
     },
     {
@@ -502,12 +516,12 @@ module.exports = {
       imageUrl: 'https://randomuser.me/api/portraits/med/men/05.jpg',
       roleId: 1,
       Role: {
-        name: "Admin"
+        name: 'Admin'
       },
       Location: {
-        name: "Cafeteria",
-        centre: "Lagos",
-        country: "Nigeria"
+        name: 'Cafeteria',
+        centre: 'Lagos',
+        country: 'Nigeria'
       }
     },
     {
@@ -517,87 +531,87 @@ module.exports = {
       imageUrl: 'https://randomuser.me/api/portraits/med/women/05.jpg',
       roleId: 1,
       Role: {
-        name: "Admin"
+        name: 'Admin'
       },
       Location: {
-        name: "Cafeteria",
-        centre: "Lagos",
-        country: "Nigeria"
+        name: 'Cafeteria',
+        centre: 'Lagos',
+        country: 'Nigeria'
       }
     },
     {
-      id: '-KhLsOxrKcKZC8i2n888',
+      id: 6,
       email: 'mercy.muchai@andela.com',
       username: 'Mercy Muchai',
       imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
       roleId: 2,
       Role: {
-        name: "Admin"
+        name: 'Admin'
       },
       Location: {
-        name: "Tsavo",
-        centre: "Nairobi",
-        country: "Kenya"
+        name: 'Tsavo',
+        centre: 'Nairobi',
+        country: 'Kenya'
       }
     },
     {
-      id: '-KhLsOxrKcKZC8i2n889',
+      id: 7,
       email: 'carol.nkirote@andela.com',
       username: 'Carol Nkirote',
       imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
       roleId: 2,
       Role: {
-        name: "Admin"
+        name: 'Admin'
       },
       Location: {
-        name: "Tsavo",
-        centre: "Nairobi",
-        country: "Kenya"
+        name: 'Tsavo',
+        centre: 'Nairobi',
+        country: 'Kenya'
       }
     },
     {
-      id: '-KkqiPVabgde_hvNDi0A',
+      id: 8,
       email: 'robley.gori@',
       username: 'Robley Gori',
       imageUrl: 'https://lh6.googleusercontent.com/-tVq8OIwPjOw/AAAAAAAAAAI/AAAAAAAAAAo/t3GsqCgqrNk/photo.jpg?sz=50',
       roleId: 3,
       Role: {
-        name: "Admin"
+        name: 'Admin'
       },
       Location: {
-        name: "Tsavo",
-        centre: "Nairobi",
-        country: "Kenya"
+        name: 'Tsavo',
+        centre: 'Nairobi',
+        country: 'Kenya'
       }
     },
     {
-      id: '-KlxFba7RDN80Dg3Abgw',
+      id: 9,
       email: 'peter.musonye@andela.com',
       username: 'Peter Musonye',
       imageUrl: 'https://lh3.googleusercontent.com/-Jlt5VItDH60/AAAAAAAAAAI/AAAAAAAAAAc/sFHgXrT4PBs/photo.jpg?sz=50',
       roleId: 3,
       Role: {
-        name: "Admin"
+        name: 'Admin'
       },
       Location: {
-        name: "Tsavo",
-        centre: "Nairobi",
-        country: "Kenya"
+        name: 'Tsavo',
+        centre: 'Nairobi',
+        country: 'Kenya'
       }
     },
     {
-      id: '-KlxFba7RDN80Dg3Abgx',
+      id: 10,
       email: 'akash.baga@andela.com',
       username: 'Akash Baga',
       imageUrl: 'https://lh3.googleusercontent.com/-Jlt5VItDH60/AAAAAAAAAAI/AAAAAAAAAAc/sFHgXrT4PBs/photo.jpg?sz=50',
       roleId: 3,
       Role: {
-        name: "Admin"
+        name: 'Admin'
       },
       Location: {
-        name: "Tsavo",
-        centre: "Nairobi",
-        country: "Kenya"
+        name: 'Tsavo',
+        centre: 'Nairobi',
+        country: 'Kenya'
       }
     }
   ],

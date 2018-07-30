@@ -14,6 +14,9 @@ const {
   handleCCd,
   changeStatus,
   getStaff,
+  addUser,
+  editUser,
+  deleteUser,
   login
 } = require('./mockControllers');
 
@@ -103,6 +106,24 @@ module.exports = {
   fetchStaff: (req, res) => {
     setTimeout(() => {
       res.send({ data: { users: getStaff() }, status: 'success' });
+    }, 2000);
+  },
+  addUser: (req, res) => {
+    setTimeout(() => {
+      let { email, roleId, locationId } = req.body;
+      res.send({ data: addUser(email, roleId, locationId), status: 'success' });
+    }, 2000);
+  },
+  editUser: (req, res) => {
+    setTimeout(() => {
+      let { userId, roleId } = req.body;
+      res.send({ data: editUser(userId, roleId), status: 'success' });
+    }, 2000);
+  },
+  deleteUser: (req, res) => {
+    setTimeout(() => {
+      let { userId } = req.body;
+      res.send({ data: deleteUser(userId), status: 'success' });
     }, 2000);
   },
   login: (req, res) => {
