@@ -12,16 +12,16 @@ class UserFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'All Countries',
+      countryFilter: 'All Countries',
       open: false
     };
   }
   /**
    * Method to handle menu item selection
    */
-  handleChange = (event, index, value) => {
+  handleCountryChange = (event, index, value) => {
     this.props.changeCountryFilter(value);
-    this.setState({ value });
+    this.setState({ countryFilter: value });
   };
   handleOpen = () => {
     this.setState({ open: true });
@@ -30,7 +30,14 @@ class UserFilter extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
+  handleInputChange = e => {
+    let query = e.target.value;
+    this.props.handleSearch(query);
+  };
+
   render() {
+    const { staff } = this.props;
     const styles = {
       selectField: {
         fontSize: '0.75vw',
@@ -39,12 +46,12 @@ class UserFilter extends Component {
         height: '5vh',
         marginTop: '0.2rem'
       },
-      flatButton: { marginLeft: '2rem', marginTop: '0.4rem', borderRadius: '3px' }
+      flatButton: { marginLeft: '1vw', marginTop: '0.4rem', borderRadius: '3px' }
     };
     return (
       <div className="user-filter">
         <div className="heading-admin">
-          <p>Available Users</p>
+          <p>Available Users ({staff.length})</p>
           <div className="underline-admin" />
         </div>
         <div className="filter-search">
@@ -54,8 +61,8 @@ class UserFilter extends Component {
               underlineStyle={{ display: 'none' }}
               iconStyle={{ fill: '#000000', marginRight: '1vw', textAlign: 'center' }}
               labelStyle={{ textAlign: 'center', marginLeft: '1.85vw' }}
-              value={this.state.value}
-              onChange={this.handleChange}
+              value={this.state.countryFilter}
+              onChange={this.handleCountryChange}
               className="custom-menu"
               style={styles.selectField}
             >
@@ -68,15 +75,18 @@ class UserFilter extends Component {
           </div>
           <div className="right-side-search">
             <div className="search-bar">
-              <input className="admin-search" type="search" />
+              <input
+                className="admin-search"
+                type="search"
+                onChange={this.handleInputChange}
+              />
             </div>
             <div className="invite-button">
               <FlatButton
                 label="Invite"
-                labelStyle={{ top: '0.1rem' }}
+                labelStyle={{ verticalAlign: 'none', color: '#fff'}}
                 onClick={this.handleOpen}
                 backgroundColor="#3359df"
-                labelStyle={{ color: white }}
                 hoverColor="none"
                 style={styles.flatButton}
               />
@@ -89,6 +99,10 @@ class UserFilter extends Component {
   }
 }
 
-UserFilter.propTypes = {};
+UserFilter.propTypes = {
+  staff: PropTypes.array.isRequired,
+  handleSearch: PropTypes.func.isRequired,
+  changeCountryFilter: PropTypes.func.isRequired,
+};
 
 export default UserFilter;

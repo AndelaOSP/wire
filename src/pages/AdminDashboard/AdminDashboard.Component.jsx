@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // actions
-import { fetchStaff } from '../../actions/staffAction';
+import { fetchStaff, searchUsers } from '../../actions/staffAction';
 
 // styling
 import './AdminDashboard.scss';
@@ -22,15 +22,43 @@ import CircularProgressIndicator from '../../Components/Progress/Progress.Compon
 export class AdminDashboard extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      countryFilter: 'All Countries'
+    };
   }
 
   componentDidMount() {
     this.props.fetchStaff();
   }
 
-  render() {
-    const { isLoading, isError, errorMessage, staff } = this.props;
+  changeCountryFilter() {
+    return key => {
+      this.setState({ countryFilter: key });
+    };
+  }
 
+  handleSearch = query => {
+    if (query) {
+      this.props.searchUsers(query);
+    }
+  }
+
+  filterStaff = () => {
+    let staff = this.props.staff;
+
+    // filter by countries
+    if (this.state.countryFilter !== 'All Countries') {
+      staff = staff.filter(user => {
+        return this.state.countryFilter.toLocaleLowerCase() === user.Location.country.toLowerCase();
+      });
+    }
+
+    return staff;
+  }
+
+  render() {
+    const { isLoading, isError, errorMessage } = this.props;
+    const staff = this.filterStaff();
     return (
       <div>
         <NavBar {...this.props} showSearch={false} />
@@ -38,7 +66,11 @@ export class AdminDashboard extends Component {
           <CircularProgressIndicator />
         ) : (
           <div className="admin-dashboard">
-            <UserFilter />
+            <UserFilter
+              staff={staff}
+              handleSearch={this.handleSearch}
+              changeCountryFilter={this.changeCountryFilter()}
+            />
             <div className="available-users">
               {staff.length
                 ? staff.map(staffMember => (
@@ -50,7 +82,10 @@ export class AdminDashboard extends Component {
                       country={staffMember.Location.country}
                     />
                   ))
-                : null}
+                :
+                <div className="no-users">
+                  <p>Sorry, no users. Invite some?</p>
+                </div>}
             </div>
           </div>
         )}
@@ -72,6 +107,7 @@ AdminDashboard.propTypes = {
   isError: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
   fetchStaff: PropTypes.func.isRequired,
+  searchUsers: PropTypes.func.isRequired,
   staff: PropTypes.array
 };
 
@@ -96,7 +132,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchStaff
+      fetchStaff, searchUsers,
     },
     dispatch
   );

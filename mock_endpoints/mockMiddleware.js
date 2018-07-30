@@ -117,6 +117,7 @@ module.exports = {
   },
   searchUser: (req, res) => {
     setTimeout(() => {
+      console.log('called', req.query.q);
       let query = req.query.q ? req.query.q : '';
       res.send({ data: { users: searchUser(query) }, status: 'success' });
     }, 2000);

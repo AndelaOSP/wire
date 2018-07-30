@@ -42,6 +42,7 @@ if (process.env.NODE_ENV === 'development') {
 
   // Staff route
   app.get('/api/users', mockMiddleware.fetchStaff);
+  app.get('/api/users/search', mockMiddleware.searchUser);
 
   // Login route
   app.post('/api/users/login', mockMiddleware.login);

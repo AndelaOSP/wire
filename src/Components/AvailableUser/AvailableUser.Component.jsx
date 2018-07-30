@@ -9,8 +9,19 @@ class AvailableUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: null
+      position: null
     };
+  }
+
+  /**
+   * Method to handle position selection
+   */
+  handlePositionChange = (event, index, value) => {
+    this.setState({ position: value });
+  };
+
+  handleRemove = userId => {
+
   }
 
   render() {
@@ -34,8 +45,19 @@ class AvailableUser extends Component {
           <SelectField
             underlineStyle={{ display: 'none' }}
             iconStyle={{ display: 'none' }}
-            floatingLabelText="Change Position"
-            floatingLabelStyle={{
+            labelStyle={{
+              textAlign: 'center',
+              marginRight: '1vw',
+              paddingRight: '0',
+              color: '#49abb0',
+              fontFamily: 'DIN Pro Extra Light',
+              fontWeight: 'normal',
+              fontStyle: 'normal',
+              fontStretch: 'normal',
+              letterSpacing: '0.3px'
+            }}
+            hintText="Change Position"
+            hintStyle={{
               top: '1.5vh',
               textAlign: 'center',
               marginLeft: '1.85vw',
@@ -58,8 +80,8 @@ class AvailableUser extends Component {
               fontStretch: 'normal',
               letterSpacing: '0.3px'
             }}
-            value={this.state.value}
-            onChange={() => {}}
+            value={this.state.position}
+            onChange={this.handlePositionChange}
             className="available-user-menu"
             style={styles}
           >

@@ -1,5 +1,5 @@
 import * as axios from 'axios';
-import { FETCH_INCIDENTS_SUCCESS, CHANGE_STATUS } from './actionTypes';
+import { FETCH_INCIDENTS_SUCCESS, SEARCH_INCIDENTS, CHANGE_STATUS } from './actionTypes';
 import config from '../config/index';
 import { loadingAction } from './LoadingAction';
 import { errorAction } from './errorAction';
@@ -33,6 +33,26 @@ export const loadIncidents = () => {
             })
           )
         );
+      })
+      .catch(error => {
+        return dispatch(errorAction(error));
+      });
+  };
+};
+
+// Search staff action creator
+export const searchIncidentsSuccess = incidents => {
+  return { type: SEARCH_INCIDENTS, incidents, isError: false };
+};
+
+export const searchIncidents = query => {
+  let token = localStorage.getItem('token');
+  let headers = { Authorization: token };
+  return dispatch => {
+    return axios
+      .get(`${config.SEARCH_INCIDENTS_URL}?q=${query}`,  { headers })
+      .then(res => {
+        dispatch(searchIncidentsSuccess(res.data.data.incidents));
       })
       .catch(error => {
         return dispatch(errorAction(error));
