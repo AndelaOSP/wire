@@ -28,8 +28,14 @@ export class AdminDashboard extends Component {
     this.props.fetchStaff();
   }
 
+  filterStaff() {
+    let staff = this.props.staff;
+    return staff;
+  }
+
   render() {
-    const { isLoading, isError, errorMessage, staff } = this.props;
+    const { isLoading, isError, errorMessage} = this.props;
+    const staff = this.filterStaff();
 
     return (
       <div>
@@ -38,7 +44,7 @@ export class AdminDashboard extends Component {
           <CircularProgressIndicator />
         ) : (
           <div className="admin-dashboard">
-            <UserFilter />
+            <UserFilter staff={staff} />
             <div className="available-users">
               {staff.length
                 ? staff.map(staffMember => (

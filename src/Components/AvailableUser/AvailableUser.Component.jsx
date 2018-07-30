@@ -13,6 +13,10 @@ class AvailableUser extends Component {
     };
   }
 
+  handleRemove = userId => {
+    
+  }
+
   render() {
     const { imageUrl, username, role, country } = this.props;
     const styles = {
