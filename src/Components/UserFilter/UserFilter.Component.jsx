@@ -31,6 +31,7 @@ class UserFilter extends Component {
     this.setState({ open: false });
   };
   render() {
+    const { staff } = this.props;
     const styles = {
       selectField: {
         fontSize: '0.75vw',
@@ -44,7 +45,7 @@ class UserFilter extends Component {
     return (
       <div className="user-filter">
         <div className="heading-admin">
-          <p>Available Users</p>
+          <p>Available Users ({staff.length})</p>
           <div className="underline-admin" />
         </div>
         <div className="filter-search">
@@ -89,6 +90,8 @@ class UserFilter extends Component {
   }
 }
 
-UserFilter.propTypes = {};
+UserFilter.propTypes = {
+  staff: PropTypes.array.isRequired,
+};
 
 export default UserFilter;

@@ -127,6 +127,12 @@ module.exports = {
       res.send({ data: editUser(userId, roleId), status: 'success' });
     }, 2000);
   },
+  deleteUser: (req, res) => {
+    setTimeout(() => {
+      let { userId } = req.body;
+      res.send({ data: deleteUser(userId), status: 'success' });
+    }, 2000);
+  },
   login: (req, res) => {
     setTimeout(() => {
       if(!login(req.body.email)) {
