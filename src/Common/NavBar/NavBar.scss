@@ -126,6 +126,11 @@
         z-index: 2;
         cursor: pointer;
 
+        a {
+          text-decoration: none !important;
+          color: inherit !important;
+        }
+
         span {
           display: block;
           color: map_get($black, 700);
@@ -136,8 +141,6 @@
           }
         }
       }
-
-
 
       &:hover .dropdown-content {
         display: block;

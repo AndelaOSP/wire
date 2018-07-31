@@ -33,7 +33,25 @@ export const searchUsers = query => {
     return axios
       .get(`${config.API_URL}/users/search/?q=${query}`)
       .then(res => {
-        dispatch(fetchStaffSuccess(res.data.data.users));
+        dispatch(searchUserSuccess(res.data.data.users));
+      })
+      .catch(error => {
+        return dispatch(errorAction(error));
+      });
+  };
+};
+
+// Invite User action creator
+export const inviteUserSuccess = staff => {
+  return { type: ADD_USER, staff, isError: false };
+};
+
+export const inviteUser = (email, roleId, locationId) => {
+  return dispatch => {
+    return axios
+      .post(`${config.API_URL}/users/invite`, { email, roleId, locationId })
+      .then(res => {
+        dispatch(inviteUserSuccess(res.data.data));
       })
       .catch(error => {
         return dispatch(errorAction(error));

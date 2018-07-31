@@ -14,6 +14,8 @@ const {
   handleCCd,
   changeStatus,
   getStaff,
+  getRoles,
+  getLocations,
   addUser,
   editUser,
   searchUser,
@@ -109,6 +111,16 @@ module.exports = {
       res.send({ data: { users: getStaff() }, status: 'success' });
     }, 2000);
   },
+  fetchRoles: (req, res) => {
+    setTimeout(() => {
+      res.send({ data: { roles: getRoles() }, status: 'success' });
+    }, 2000);
+  },
+  fetchLocations: (req, res) => {
+    setTimeout(() => {
+      res.send({ data: { locations: getLocations() }, status: 'success' });
+    }, 2000);
+  },
   addUser: (req, res) => {
     setTimeout(() => {
       let { email, roleId, locationId } = req.body;
@@ -117,7 +129,6 @@ module.exports = {
   },
   searchUser: (req, res) => {
     setTimeout(() => {
-      console.log('called', req.query.q);
       let query = req.query.q ? req.query.q : '';
       res.send({ data: { users: searchUser(query) }, status: 'success' });
     }, 2000);

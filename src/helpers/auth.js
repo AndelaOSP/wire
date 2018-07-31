@@ -2,7 +2,7 @@
  * Login and log out user
  */
 
-import decodeToken from '../helpers/decodeToken';
+import { decodeToken, currentUser } from '../helpers/decodeToken';
 import * as jscookie from 'js-cookie';
 
 const authenticateUser = {
@@ -37,6 +37,14 @@ const authenticateUser = {
       return false;
     }
     return false;
+  },
+
+  isAdmin() {
+    const user = currentUser();
+    if (user) {
+      return user.roleId === 3;
+    }
+    // return process.env.API_URL === 'http://wire.andela.com:8080/api';
   },
 
   /**

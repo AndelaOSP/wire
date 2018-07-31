@@ -73,9 +73,14 @@
         border-radius: 0.2rem;
         padding-top: .1rem;
         padding-left: 2.5rem;
+        padding-right: 1rem;
         margin: auto;
         outline: none;
         transition: all 0.9s;
+        font-family: 'DIN Pro';
+        font-weight: 400;
+        font-size: 1rem;
+        color: #000;
         &::placeholder {
           font-family: 'DIN Pro Extra Light';
           font-size: 12px;

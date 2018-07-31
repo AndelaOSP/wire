@@ -50,7 +50,7 @@ export const searchIncidents = query => {
   let headers = { Authorization: token };
   return dispatch => {
     return axios
-      .get(`${config.SEARCH_INCIDENTS_URL}?q=${query}`,  { headers })
+      .get(`${config.SEARCH_INCIDENTS_URL}?q=${query}`, { headers })
       .then(res => {
         dispatch(searchIncidentsSuccess(res.data.data.incidents));
       })
@@ -75,13 +75,7 @@ export const changeStatus = (statusId, incidentId) => {
   let headers = { Authorization: token };
   return dispatch => {
     return axios
-      .put(
-        `${config.INCIDENTS_URL}/${incidentId}/`,
-        {
-          statusId: statusId
-        },
-        { headers }
-      )
+      .put(`${config.INCIDENTS_URL}/${incidentId}/`, { statusId }, { headers })
       .then(res => {
         dispatch(changeStatusSuccess(res.data.data));
       })

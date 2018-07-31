@@ -513,7 +513,7 @@ module.exports = {
       id: 4,
       email: 'another@guy.com',
       username: 'Another Guy',
-      imageUrl: 'https://randomuser.me/api/portraits/med/men/05.jpg',
+      imageUrl: 'https://randomuser.me/api/portraits/med/men/83.jpg',
       roleId: 1,
       Role: {
         name: 'Admin'

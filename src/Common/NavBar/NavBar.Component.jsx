@@ -59,8 +59,9 @@ export class NavBar extends Component {
               <i className="fa fa-caret-down" aria-hidden="true" />
             </div>
             <div className="dropdown-content">
-              <span>Profile</span>
-              <span>Settings</span>
+              <Link to="/admin">
+                <span>Settings</span>
+              </Link>
               <span onClick={this.handleSignOut}>Logout</span>
             </div>
           </div>
