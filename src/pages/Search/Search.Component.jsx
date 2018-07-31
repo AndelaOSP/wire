@@ -93,7 +93,7 @@ class SearchComponent extends Component {
 SearchComponent.propTypes = {
   history: PropTypes.object.isRequired,
   incidents: PropTypes.array.isRequired,
-  searchIncidents: PropTypes.func.isRequired,
+  searchIncidents: PropTypes.func.isRequired
 };
 
 /**
@@ -103,7 +103,7 @@ SearchComponent.propTypes = {
  */
 const mapStateToProps = state => {
   return {
-    incidents: state.incidents,
+    incidents: state.incidents
   };
 };
 
@@ -114,7 +114,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      searchIncidents,
+      searchIncidents
     },
     dispatch
   );

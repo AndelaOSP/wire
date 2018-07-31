@@ -6,7 +6,6 @@ import FlatButton from 'material-ui/FlatButton';
 
 import './UserFilter.scss';
 import Modal from '../Modal/Modal.Component';
-import { white } from 'material-ui/styles/colors';
 
 class UserFilter extends Component {
   constructor(props) {
@@ -16,24 +15,42 @@ class UserFilter extends Component {
       open: false
     };
   }
+
   /**
-   * Method to handle menu item selection
+   * Method to handle filtering by country
    */
   handleCountryChange = (event, index, value) => {
     this.props.changeCountryFilter(value);
     this.setState({ countryFilter: value });
   };
+
+  /**
+   * Method to handle opening invite modal
+   */
   handleOpen = () => {
     this.setState({ open: true });
   };
 
+  /**
+   * Method to handle closing invite modal
+   */
   handleClose = () => {
     this.setState({ open: false });
   };
 
+  /**
+   * Method to handle searching users
+   */
   handleInputChange = e => {
     let query = e.target.value;
     this.props.handleSearch(query);
+  };
+
+  /**
+   * Method to handle the invite user api call
+   */
+  handleInvite = (email, position, location) => {
+    this.props.handleInvite(email, position, location);
   };
 
   render() {
@@ -75,22 +92,18 @@ class UserFilter extends Component {
           </div>
           <div className="right-side-search">
             <div className="search-bar">
-              <input
-                className="admin-search"
-                type="search"
-                onChange={this.handleInputChange}
-              />
+              <input className="admin-search" type="search" onChange={this.handleInputChange} />
             </div>
             <div className="invite-button">
               <FlatButton
                 label="Invite"
-                labelStyle={{ verticalAlign: 'none', color: '#fff'}}
+                labelStyle={{ verticalAlign: 'none', color: '#fff' }}
                 onClick={this.handleOpen}
                 backgroundColor="#3359df"
                 hoverColor="none"
                 style={styles.flatButton}
               />
-              <Modal open={this.state.open} handleClose={this.handleClose} />
+              <Modal open={this.state.open} handleClose={this.handleClose} handleInvite={this.handleInvite} />
             </div>
           </div>
         </div>
@@ -102,7 +115,8 @@ class UserFilter extends Component {
 UserFilter.propTypes = {
   staff: PropTypes.array.isRequired,
   handleSearch: PropTypes.func.isRequired,
-  changeCountryFilter: PropTypes.func.isRequired,
+  handleInvite: PropTypes.func.isRequired,
+  changeCountryFilter: PropTypes.func.isRequired
 };
 
 export default UserFilter;

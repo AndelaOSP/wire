@@ -172,16 +172,15 @@ module.exports = {
   },
   addNote: (incidentId, userId, note) => {
     let newNote = {
-      id: notes.length++,
+      id: ++notes.length,
       incidentId,
       userId,
       note
     };
     notes.push(newNote);
-    newNote['User'] =
-      users.find(user => {
-        return user.id === newNote.userId;
-      }) || {};
+    newNote['User'] = users.find(user => {
+      return user.id === newNote.userId;
+    });
     return newNote;
   },
   editNote: (noteId, note) => {
@@ -206,7 +205,7 @@ module.exports = {
   },
   addChat: (incidentId, userId, chat) => {
     let newChat = {
-      id: chats.length++,
+      id: ++chats.length,
       incidentId,
       userId,
       chat
@@ -238,19 +237,26 @@ module.exports = {
       return user.roleId !== 1;
     });
   },
+  getRoles: () => {
+    return roles;
+  },
+  getLocations: () => {
+    return locations;
+  },
   addUser: (email, roleId, locationId) => {
+    let randomNum = Math.floor(Math.random() * 9);
     let newUser = {
-      id: users.length++,
+      id: ++users.length,
       email,
       username: getUserName(email),
-      imageUrl: '',
+      imageUrl: 'https://randomuser.me/api/portraits/lego/' + randomNum + '.jpg',
       roleId,
       Role: {
         name: matchRoleIdToName(roles, roleId)
       },
       Location: matchLocationIdToLocation(locations, locationId)
     };
-    users.push(newUser);
+    return newUser;
   },
   searchUser: query => {
     return users.filter(user =>

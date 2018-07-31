@@ -9,10 +9,18 @@ class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      email: '',
       position: null,
       location: null
     };
   }
+
+  /**
+   * Method to handle email selection
+   */
+  handleEmailChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
+  };
 
   /**
    * Method to handle position selection
@@ -28,6 +36,12 @@ class Modal extends Component {
     this.setState({ location: value });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    let { email, position, location } = this.state;
+    this.props.handleInvite(email, position, location);
+  };
+
   render() {
     const { open } = this.props;
     const styles = { marginTop: '5rem', border: '1px solid #e0e0e0', width: '21rem', height: '2.7rem' };
@@ -39,14 +53,21 @@ class Modal extends Component {
           </span>
           <div className="modal-header">
             <p className="modal-heading">Add Users</p>
-            <div className="modal-underline"/>
+            <div className="modal-underline" />
           </div>
-          <div className="modal-body">
-            <input type="email" id="email-input" placeholder="Email Address" />
+          <form className="modal-body" onSubmit={this.handleSubmit}>
+            <input
+              type="email"
+              name="email"
+              id="email-input"
+              placeholder="Email Address"
+              value={this.state.email}
+              onChange={this.handleEmailChange}
+            />
             <SelectField
               underlineStyle={{ display: 'none' }}
               iconStyle={{ display: 'none' }}
-              labelStyle={{ top: '-0.5vh', marginLeft: '1rem', color: '#95989a' }}
+              labelStyle={{ top: '-0.7vh', marginLeft: '1rem', color: '#95989a' }}
               hintText="Position"
               hintStyle={{ top: '1vh', marginLeft: '1rem', color: '#95989a' }}
               value={this.state.position}
@@ -60,9 +81,9 @@ class Modal extends Component {
             <SelectField
               underlineStyle={{ display: 'none' }}
               iconStyle={{ display: 'none' }}
+              labelStyle={{ top: '-0.7vh', marginLeft: '1rem', color: '#95989a' }}
               hintText="Country"
-              hintStyle={{ marginLeft: '1rem', color: '#95989a' }}
-              labelStyle={{ textAlign: 'center', marginLeft: '1.85vw' }}
+              hintStyle={{ top: '1vh', marginLeft: '1rem', color: '#95989a' }}
               value={this.state.location}
               onChange={this.handleLocationChange}
               className="custom-menu"
@@ -74,9 +95,11 @@ class Modal extends Component {
               <MenuItem value="Uganda" primaryText="Uganda" />
             </SelectField>
             <div className="invite-button">
-              <button id="send-invite">Send Invite</button>
+              <button type="submit" id="send-invite" onClick={this.props.handleClose}>
+                Send Invite
+              </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     );
@@ -85,7 +108,8 @@ class Modal extends Component {
 
 Modal.propTypes = {
   open: PropTypes.bool,
-  handleClose: PropTypes.func
+  handleClose: PropTypes.func,
+  handleInvite: PropTypes.func
 };
 
 export default Modal;

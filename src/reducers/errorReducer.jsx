@@ -6,7 +6,10 @@ import {
   SEARCH_INCIDENTS,
   FETCH_STAFF,
   GET_TOKEN_SUCCESS,
-  SEARCH_USER
+  SEARCH_USER,
+  ADD_USER,
+  FETCH_ROLES,
+  FETCH_LOCATIONS
 } from '../actions/actionTypes';
 
 const errorReducer = (state = initialState.error, action) => {
@@ -40,6 +43,27 @@ const errorReducer = (state = initialState.error, action) => {
       };
 
     case FETCH_STAFF:
+      return {
+        status: action.isError,
+        statusCode: null,
+        message: ''
+      };
+
+    case FETCH_ROLES:
+      return {
+        status: action.isError,
+        statusCode: null,
+        message: ''
+      };
+
+    case FETCH_LOCATIONS:
+      return {
+        status: action.isError,
+        statusCode: null,
+        message: ''
+      };
+
+    case ADD_USER:
       return {
         status: action.isError,
         statusCode: null,

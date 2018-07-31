@@ -20,9 +20,7 @@ class AvailableUser extends Component {
     this.setState({ position: value });
   };
 
-  handleRemove = userId => {
-
-  }
+  handleRemove = userId => {};
 
   render() {
     const { imageUrl, username, role, country } = this.props;

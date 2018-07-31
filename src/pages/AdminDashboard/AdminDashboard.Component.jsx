@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // actions
-import { fetchStaff, searchUsers } from '../../actions/staffAction';
+import { fetchStaff, inviteUser, searchUsers } from '../../actions/staffAction';
+import { fetchRoles } from '../../actions/rolesAction';
+import { fetchLocations } from '../../actions/locationsAction';
+
+// helpers
+import { matchPositionToRoleId, matchLocationToLocationId } from '../../helpers/adminDashboard';
 
 // styling
 import './AdminDashboard.scss';
@@ -29,6 +34,8 @@ export class AdminDashboard extends Component {
 
   componentDidMount() {
     this.props.fetchStaff();
+    this.props.fetchRoles();
+    this.props.fetchLocations();
   }
 
   changeCountryFilter() {
@@ -41,7 +48,17 @@ export class AdminDashboard extends Component {
     if (query) {
       this.props.searchUsers(query);
     }
-  }
+  };
+
+  /**
+   * Method to handle the invite user api call
+   */
+  handleInvite = (email, position, location) => {
+    let { roles, locations } = this.props;
+    let roleId = matchPositionToRoleId(roles, position);
+    let locationId = matchLocationToLocationId(locations, location);
+    this.props.inviteUser(email, roleId, locationId);
+  };
 
   filterStaff = () => {
     let staff = this.props.staff;
@@ -54,7 +71,7 @@ export class AdminDashboard extends Component {
     }
 
     return staff;
-  }
+  };
 
   render() {
     const { isLoading, isError, errorMessage } = this.props;
@@ -69,23 +86,25 @@ export class AdminDashboard extends Component {
             <UserFilter
               staff={staff}
               handleSearch={this.handleSearch}
+              handleInvite={this.handleInvite}
               changeCountryFilter={this.changeCountryFilter()}
             />
             <div className="available-users">
-              {staff.length
-                ? staff.map(staffMember => (
-                    <AvailableUser
-                      key={staffMember.id}
-                      imageUrl={staffMember.imageUrl}
-                      username={staffMember.username}
-                      role={staffMember.Role.name.toUpperCase()}
-                      country={staffMember.Location.country}
-                    />
-                  ))
-                :
+              {staff.length ? (
+                staff.map(staffMember => (
+                  <AvailableUser
+                    key={staffMember.id}
+                    imageUrl={staffMember.imageUrl}
+                    username={staffMember.username}
+                    role={staffMember.Role.name.toUpperCase()}
+                    country={staffMember.Location.country}
+                  />
+                ))
+              ) : (
                 <div className="no-users">
                   <p>Sorry, no users. Invite some?</p>
-                </div>}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -107,8 +126,13 @@ AdminDashboard.propTypes = {
   isError: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
   fetchStaff: PropTypes.func.isRequired,
+  fetchRoles: PropTypes.func.isRequired,
+  fetchLocations: PropTypes.func.isRequired,
+  inviteUser: PropTypes.func.isRequired,
   searchUsers: PropTypes.func.isRequired,
-  staff: PropTypes.array
+  staff: PropTypes.array,
+  roles: PropTypes.array,
+  locations: PropTypes.array
 };
 
 /**
@@ -121,7 +145,9 @@ const mapStateToProps = state => {
     isLoading: state.isLoading,
     isError: state.error.status,
     errorMessage: state.error.message,
-    staff: state.staff
+    staff: state.staff,
+    roles: state.roles,
+    locations: state.locations
   };
 };
 
@@ -132,7 +158,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchStaff, searchUsers,
+      fetchStaff,
+      fetchRoles,
+      fetchLocations,
+      inviteUser,
+      searchUsers
     },
     dispatch
   );
