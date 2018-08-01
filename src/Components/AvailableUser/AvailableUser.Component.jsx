@@ -14,13 +14,21 @@ class AvailableUser extends Component {
   }
 
   /**
-   * Method to handle position selection
+   * Method to handle position change
    */
-  handlePositionChange = (event, index, value) => {
+  handlePositionChange = (e, i, value) => {
     this.setState({ position: value });
+    let { id, index } = this.props;
+    this.props.handlePositionChange(value, id, index);
   };
 
-  handleRemove = userId => {};
+  /**
+   * Method to handle user removal
+   */
+  handleRemove = () => {
+    let { id, index } = this.props;
+    this.props.handleRemove(id, index);
+  };
 
   render() {
     const { imageUrl, username, role, country } = this.props;
@@ -78,7 +86,7 @@ class AvailableUser extends Component {
               fontStretch: 'normal',
               letterSpacing: '0.3px'
             }}
-            value={this.state.position}
+            value={null}
             onChange={this.handlePositionChange}
             className="available-user-menu"
             style={styles}
@@ -87,7 +95,7 @@ class AvailableUser extends Component {
             <MenuItem value="Assignee" primaryText="Assignee" />
           </SelectField>
         </div>
-        <div className="remove" onClick={() => {}}>
+        <div className="remove" onClick={this.handleRemove}>
           Remove
         </div>
       </div>
@@ -96,10 +104,14 @@ class AvailableUser extends Component {
 }
 
 AvailableUser.propTypes = {
+  id: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
-  country: PropTypes.string.isRequired
+  country: PropTypes.string.isRequired,
+  handlePositionChange: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired
 };
 
 export default AvailableUser;

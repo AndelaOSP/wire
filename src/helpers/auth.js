@@ -44,7 +44,7 @@ const authenticateUser = {
     if (user) {
       return user.roleId === 3;
     }
-    // return process.env.API_URL === 'http://wire.andela.com:8080/api';
+    return process.env.API_URL === 'http://wire.andela.com:8080/api';
   },
 
   /**

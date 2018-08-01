@@ -44,7 +44,13 @@ class Modal extends Component {
 
   render() {
     const { open } = this.props;
-    const styles = { marginTop: '5rem', border: '1px solid #e0e0e0', width: '21rem', height: '2.7rem' };
+    const styles = {
+      marginTop: '3.3rem',
+      marginLeft: '.85rem',
+      border: '1px solid #e0e0e0',
+      width: '92%',
+      height: '3.2rem'
+    };
     return (
       <div id="myModal" className="modal" style={{ display: open ? 'block' : 'none' }}>
         <div className="modal-content">
@@ -67,12 +73,11 @@ class Modal extends Component {
             <SelectField
               underlineStyle={{ display: 'none' }}
               iconStyle={{ display: 'none' }}
-              labelStyle={{ top: '-0.7vh', marginLeft: '1rem', color: '#95989a' }}
+              labelStyle={{ top: '-0.3vh', marginLeft: '1rem', color: '#95989a' }}
               hintText="Position"
-              hintStyle={{ top: '1vh', marginLeft: '1rem', color: '#95989a' }}
+              hintStyle={{ top: '1.4vh', marginLeft: '1rem', color: '#95989a' }}
               value={this.state.position}
               onChange={this.handlePositionChange}
-              className="custom-menu"
               style={styles}
             >
               <MenuItem value="Admin" primaryText="Admin" />
@@ -81,12 +86,11 @@ class Modal extends Component {
             <SelectField
               underlineStyle={{ display: 'none' }}
               iconStyle={{ display: 'none' }}
-              labelStyle={{ top: '-0.7vh', marginLeft: '1rem', color: '#95989a' }}
+              labelStyle={{ top: '-0.3vh', marginLeft: '1rem', color: '#95989a' }}
               hintText="Country"
-              hintStyle={{ top: '1vh', marginLeft: '1rem', color: '#95989a' }}
+              hintStyle={{ top: '1.4vh', marginLeft: '1rem', color: '#95989a' }}
               value={this.state.location}
               onChange={this.handleLocationChange}
-              className="custom-menu"
               style={styles}
             >
               <MenuItem value="Kenya" primaryText="Kenya" />

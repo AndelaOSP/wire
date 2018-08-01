@@ -7,6 +7,11 @@ const getUserName = email => {
   return username;
 };
 
+const getRandomImageUrl = () => {
+  const randomNum = Math.floor(Math.random() * 9);
+  return `https://randomuser.me/api/portraits/lego/${randomNum}.jpg`;
+};
+
 const matchRoleIdToName = (roles, roleId) => {
   let role = roles.find(role => {
     return role.id === roleId;
@@ -22,4 +27,4 @@ const matchLocationIdToLocation = (locations, locationId) => {
   return location;
 };
 
-module.exports = { getUserName, matchRoleIdToName, matchLocationIdToLocation };
+module.exports = { getUserName, getRandomImageUrl, matchRoleIdToName, matchLocationIdToLocation };
