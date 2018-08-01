@@ -27,7 +27,7 @@ const Routes = () => (
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <PrivateRoute path="/timeline/:incidentId" component={IncidentTimeline} />
       <PrivateRoute path="/search" component={SearchComponent} />
-      <PrivateRoute path="/admin" component={RequireAdmin(AdminDashboard)} />
+      <PrivateRoute path="/settings" component={RequireAdmin(AdminDashboard)} />
     </Switch>
   </Router>
 );

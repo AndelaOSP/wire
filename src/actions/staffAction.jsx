@@ -58,3 +58,39 @@ export const inviteUser = (email, roleId, locationId) => {
       });
   };
 };
+
+// Update User action creator
+export const updateUserSuccess = (staff, index) => {
+  return { type: EDIT_USER, staff, index, isError: false };
+};
+
+export const updateUser = (userId, roleId, index) => {
+  return dispatch => {
+    return axios
+      .put(`${config.API_URL}/users/${userId}`, { roleId })
+      .then(res => {
+        dispatch(updateUserSuccess(res.data.data, index));
+      })
+      .catch(error => {
+        return dispatch(errorAction(error));
+      });
+  };
+};
+
+// Delete User action creator
+export const removeUserSuccess = (staff, index) => {
+  return { type: DELETE_USER, staff, index, isError: false };
+};
+
+export const removeUser = (userId, index) => {
+  return dispatch => {
+    return axios
+      .delete(`${config.API_URL}/users/${userId}`)
+      .then(res => {
+        dispatch(removeUserSuccess(res.data.data, index));
+      })
+      .catch(error => {
+        return dispatch(errorAction(error));
+      });
+  };
+};

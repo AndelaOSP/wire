@@ -135,13 +135,14 @@ module.exports = {
   },
   editUser: (req, res) => {
     setTimeout(() => {
-      let { userId, roleId } = req.body;
+      let userId = parseInt(req.params.id);
+      let { roleId } = req.body;
       res.send({ data: editUser(userId, roleId), status: 'success' });
     }, 2000);
   },
   deleteUser: (req, res) => {
     setTimeout(() => {
-      let { userId } = req.body;
+      let userId = parseInt(req.params.id);
       res.send({ data: deleteUser(userId), status: 'success' });
     }, 2000);
   },

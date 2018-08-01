@@ -8,6 +8,8 @@ import {
   GET_TOKEN_SUCCESS,
   SEARCH_USER,
   ADD_USER,
+  EDIT_USER,
+  DELETE_USER,
   FETCH_ROLES,
   FETCH_LOCATIONS
 } from '../actions/actionTypes';
@@ -64,6 +66,20 @@ const errorReducer = (state = initialState.error, action) => {
       };
 
     case ADD_USER:
+      return {
+        status: action.isError,
+        statusCode: null,
+        message: ''
+      };
+
+    case EDIT_USER:
+      return {
+        status: action.isError,
+        statusCode: null,
+        message: ''
+      };
+
+    case DELETE_USER:
       return {
         status: action.isError,
         statusCode: null,

@@ -2,7 +2,7 @@ const fuzzysearch = require('fuzzysearch');
 
 let { incidents, chats, notes, roles, users, statuses, levels, locations } = require('./mockData');
 
-let { getUserName, matchRoleIdToName, matchLocationIdToLocation } = require('./helpers');
+let { getUserName, getRandomImageUrl, matchRoleIdToName, matchLocationIdToLocation } = require('./helpers');
 
 module.exports = {
   getIncident: incidentId => {
@@ -171,21 +171,25 @@ module.exports = {
     return incident;
   },
   addNote: (incidentId, userId, note) => {
+    let noteUser = users.find(user => {
+      return user.email === userId;
+    });
+    userId = noteUser.id;
     let newNote = {
       id: ++notes.length,
       incidentId,
       userId,
       note
     };
+    newNote['User'] = noteUser;
     notes.push(newNote);
-    newNote['User'] = users.find(user => {
-      return user.id === newNote.userId;
-    });
     return newNote;
   },
   editNote: (noteId, note) => {
     let noteToEdit = notes.find(note => {
-      return note.id === noteId;
+      if (note) {
+        return note.id === noteId;
+      }
     });
     noteToEdit.note = note;
     noteToEdit['User'] = users.find(user => {
@@ -244,18 +248,18 @@ module.exports = {
     return locations;
   },
   addUser: (email, roleId, locationId) => {
-    let randomNum = Math.floor(Math.random() * 9);
     let newUser = {
       id: ++users.length,
       email,
       username: getUserName(email),
-      imageUrl: 'https://randomuser.me/api/portraits/lego/' + randomNum + '.jpg',
+      imageUrl: getRandomImageUrl(),
       roleId,
       Role: {
         name: matchRoleIdToName(roles, roleId)
       },
       Location: matchLocationIdToLocation(locations, locationId)
     };
+    users.push(newUser);
     return newUser;
   },
   searchUser: query => {
@@ -264,15 +268,19 @@ module.exports = {
   },
   editUser: (userId, roleId) => {
     let userToEdit = users.find(user => {
-      return user.id === userId;
+      if (user) {
+        return user.id === userId;
+      }
     });
     userToEdit.roleId = roleId;
     userToEdit.Role.name = matchRoleIdToName(roles, roleId);
     return userToEdit;
   },
-  deleteUser: (userId) => {
+  deleteUser: userId => {
     let userToDelete = users.find(user => {
-      return user.id === userId;
+      if (user) {
+        return user.id === userId;
+      }
     });
     let index = users.indexOf(userToDelete);
     users.splice(index, 1);

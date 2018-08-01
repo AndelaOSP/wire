@@ -143,13 +143,8 @@ export class Dashboard extends Component {
   }
 
   render() {
-    let incidents = this.filterIncidents();
-    let { isLoading, isError, errorMessage, location } = this.props;
-
-    if (location.state && location.state.from.pathname === '/admin') {
-      isError = true;
-      errorMessage = 'You\'re not authorized to view that page';
-    }
+    const incidents = this.filterIncidents();
+    const { isLoading, isError, errorMessage } = this.props;
 
     return (
       <div>

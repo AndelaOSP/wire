@@ -18,17 +18,24 @@ body {font-family: Arial, Helvetica, sans-serif;}
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 20%;
+  border-radius: 5px;
+  position: relative;
+  top: 8vh;
+  width: 23%;
+  height: 55%;
 
   .modal-header{
     position: relative;
-    .modal-heading{
+    top: -2rem;
+    width: 50%;
+    .modal-heading {
+      font-family: 'DIN Pro Light';
       font-size: 30px;
       margin-bottom: 0%;
     }
     .modal-underline{
-      width: 60px;
-      height: 7px;
+      width: 90px;
+      height: 5.5px;
       border-radius: 5px;
       background-color: #3359df;
       position: absolute;
@@ -41,8 +48,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
     flex-direction: column;
 
     #email-input{
-      height: 2.5rem;
-      margin-top: 5rem;
+      height: 3rem;
+      width: 88%;
+      margin-top: 3rem;
+      margin-left: .85rem;
       padding-left: .85rem;
       font-family: 'DIN Pro';
       font-weight: 400;
@@ -61,23 +70,17 @@ body {font-family: Arial, Helvetica, sans-serif;}
       }
     }
 
-    #position-input{
-      height: 2.5rem;
-      margin-top: 3rem;
-      padding-left: 1rem;
-    }
-
     .invite-button{
       text-align: center;
     }
 
     #send-invite{
-      height: 2.7rem;
-      margin-top: 5rem;
-      margin-bottom: 5rem;
+      height: 3.3rem;
+      width: 80%;
+      margin-top: 3.3rem;
+      margin-bottom: 4rem;
       background-color: #3359df;
       border-radius: 5px;
-      width: 15rem;
       color: white;
       font-family: 'DIN Pro Light';
       font-size: 20px;

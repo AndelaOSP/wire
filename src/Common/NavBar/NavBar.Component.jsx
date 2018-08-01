@@ -59,9 +59,11 @@ export class NavBar extends Component {
               <i className="fa fa-caret-down" aria-hidden="true" />
             </div>
             <div className="dropdown-content">
-              <Link to="/admin">
-                <span>Settings</span>
-              </Link>
+              {authenticateUser.isAdmin() ? (
+                <Link to="/settings">
+                  <span>Settings</span>
+                </Link>
+              ) : null}
               <span onClick={this.handleSignOut}>Logout</span>
             </div>
           </div>

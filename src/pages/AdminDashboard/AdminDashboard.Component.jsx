@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // actions
-import { fetchStaff, inviteUser, searchUsers } from '../../actions/staffAction';
+import { fetchStaff, inviteUser, searchUsers, updateUser, removeUser } from '../../actions/staffAction';
 import { fetchRoles } from '../../actions/rolesAction';
 import { fetchLocations } from '../../actions/locationsAction';
 
@@ -28,7 +28,8 @@ export class AdminDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countryFilter: 'All Countries'
+      countryFilter: 'All Countries',
+      selectedUser: null
     };
   }
 
@@ -58,6 +59,22 @@ export class AdminDashboard extends Component {
     let roleId = matchPositionToRoleId(roles, position);
     let locationId = matchLocationToLocationId(locations, location);
     this.props.inviteUser(email, roleId, locationId);
+  };
+
+  /**
+   * Method to handle position change
+   */
+  handlePositionChange = (position, userId, index) => {
+    let { roles } = this.props;
+    let roleId = matchPositionToRoleId(roles, position);
+    this.props.updateUser(userId, roleId, index);
+  };
+
+  /**
+   * Method to handle user removal
+   */
+  handleRemove = (userId, index) => {
+    this.props.removeUser(userId, index);
   };
 
   filterStaff = () => {
@@ -91,13 +108,17 @@ export class AdminDashboard extends Component {
             />
             <div className="available-users">
               {staff.length ? (
-                staff.map(staffMember => (
+                staff.map((staffMember, i) => (
                   <AvailableUser
-                    key={staffMember.id}
+                    key={i}
+                    id={staffMember.id}
+                    index={this.props.staff.indexOf(staffMember)}
                     imageUrl={staffMember.imageUrl}
                     username={staffMember.username}
                     role={staffMember.Role.name.toUpperCase()}
                     country={staffMember.Location.country}
+                    handlePositionChange={this.handlePositionChange}
+                    handleRemove={this.handleRemove}
                   />
                 ))
               ) : (
@@ -130,6 +151,8 @@ AdminDashboard.propTypes = {
   fetchLocations: PropTypes.func.isRequired,
   inviteUser: PropTypes.func.isRequired,
   searchUsers: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
+  removeUser: PropTypes.func.isRequired,
   staff: PropTypes.array,
   roles: PropTypes.array,
   locations: PropTypes.array
@@ -162,7 +185,9 @@ const mapDispatchToProps = dispatch =>
       fetchRoles,
       fetchLocations,
       inviteUser,
-      searchUsers
+      searchUsers,
+      updateUser,
+      removeUser
     },
     dispatch
   );
