@@ -36,8 +36,7 @@ class AvailableUser extends Component {
       fontSize: '1.2rem',
       width: '15vw',
       height: '5vh',
-      backgroundColor: '#ffffff',
-      marginTop: '1%'
+      backgroundColor: '#ffffff'
     };
     return (
       <div className="user-card">
@@ -64,7 +63,7 @@ class AvailableUser extends Component {
             }}
             hintText="Change Position"
             hintStyle={{
-              top: '1.5vh',
+              top: '1.25vh',
               textAlign: 'center',
               marginLeft: '1.85vw',
               color: '#49abb0',

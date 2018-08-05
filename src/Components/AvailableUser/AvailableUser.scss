@@ -3,8 +3,9 @@
 .user-card {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  min-height: 5rem;
   height: 8vh;
-  min-width: 50rem;
   width: 72vw;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -13,7 +14,7 @@
   background-color: #ffffff;
   border: solid 1px #e0e0e0;
   position: relative;
-  margin: 0% 0 3% 0;
+  margin: 0% 0 3.5% 0;
   padding-left: 3.5%;
 
   &:last-child {
@@ -21,10 +22,9 @@
   }
 
   .user-img {
-    width: 3vw;
-    height: 3vw;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
-    margin-top: 1%;
   }
 
   .username {
@@ -38,7 +38,7 @@
     line-height: 1.27;
     letter-spacing: 0.3px;
     color: #9b9b9b;
-    margin: 2.3% 0 0 5%;
+    margin: 0 0 0 5%;
   }
 
   .user-role {
@@ -56,7 +56,7 @@
     letter-spacing: 0.3px;
     color: #000000;
     text-align: center;
-    margin: 1.5% 0 0;
+    margin: 0 0 0;
     padding-top: 1%;
   }
 
@@ -71,7 +71,7 @@
     line-height: 1.27;
     letter-spacing: 0.3px;
     color: #9b9b9b;
-    margin: 2.3% 0 0 12%;
+    margin: 0 0 0 12%;
   }
 
   .change-role {
@@ -84,7 +84,7 @@
     font-stretch: normal;
     line-height: 1.27;
     letter-spacing: 0.3px;
-    margin: 1% 0 0 7%;
+    margin: 0 0 0 7%;
     z-index: 0;
   }
 
@@ -99,7 +99,7 @@
     line-height: 1.27;
     letter-spacing: 0.3px;
     color: #e74c3c;
-    margin: 2.3% 0 0 5.5%;
+    margin: 0 0 0 5.5%;
     &:hover {
       cursor: pointer;
     }

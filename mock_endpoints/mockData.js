@@ -489,9 +489,9 @@ module.exports = {
         name: 'Admin'
       },
       Location: {
-        name: 'Cafeteria',
-        centre: 'Lagos',
-        country: 'Nigeria'
+        name: 'RoofTop',
+        centre: 'Kampala',
+        country: 'Uganda'
       }
     },
     {

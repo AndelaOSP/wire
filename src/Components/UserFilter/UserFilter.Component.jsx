@@ -57,13 +57,26 @@ class UserFilter extends Component {
     const { staff } = this.props;
     const styles = {
       selectField: {
-        fontSize: '0.75vw',
+        fontSize: '12px',
         backgroundColor: '#ffffff',
         width: '9.7vw',
         height: '5vh',
-        marginTop: '0.2rem'
+        marginTop: '1vh'
       },
-      flatButton: { marginLeft: '1vw', marginTop: '0.4rem', borderRadius: '3px' }
+      flatButton: { marginLeft: '1vw', borderRadius: '3px' },
+      labelStyle: {
+        backgroundColor: '#e0e0e0',
+        height: '30px',
+        width: '90px',
+        lineHeight: '30px',
+        paddingTop: '0',
+        paddingRight: '0',
+        top: '10px',
+        textAlign: 'center',
+        verticalAlign: 'none',
+        marginLeft: '1vw',
+        borderRadius: '20px'
+      }
     };
     return (
       <div className="user-filter">
@@ -76,17 +89,17 @@ class UserFilter extends Component {
             <p>Location:</p>
             <SelectField
               underlineStyle={{ display: 'none' }}
-              iconStyle={{ fill: '#000000', marginRight: '1vw', textAlign: 'center' }}
-              labelStyle={{ textAlign: 'center', marginLeft: '1.85vw' }}
+              iconStyle={{ fill: '#95989a', marginRight: '1rem', textAlign: 'center' }}
+              labelStyle={styles.labelStyle}
               value={this.state.countryFilter}
               onChange={this.handleCountryChange}
               className="custom-menu"
               style={styles.selectField}
             >
-              <MenuItem value="All Countries" primaryText="All Countries" />
-              <MenuItem value="Kenya" primaryText="Kenya" />
-              <MenuItem value="Nigeria" primaryText="Nigeria" />
-              <MenuItem value="Uganda" primaryText="Uganda" />
+              <MenuItem value="All Countries" primaryText="ALL" />
+              <MenuItem value="Kenya" primaryText="KENYA" />
+              <MenuItem value="Nigeria" primaryText="NIGERIA" />
+              <MenuItem value="UGANDA" primaryText="UGANDA" />
               <MenuItem value="USA" primaryText="USA" />
             </SelectField>
           </div>
