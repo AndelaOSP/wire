@@ -40,8 +40,18 @@ if (process.env.NODE_ENV === 'development') {
   app.put('/api/chats/:id', mockMiddleware.editIncidentChat);
   app.delete('/api/chats/:id', mockMiddleware.archiveIncidentChat);
 
-  // Staff route
+  // Staff routes
   app.get('/api/users', mockMiddleware.fetchStaff);
+  app.post('/api/users/invite', mockMiddleware.addUser);
+  app.get('/api/users/search', mockMiddleware.searchUser);
+  app.put('/api/users/:id', mockMiddleware.editUser);
+  app.delete('/api/users/:id', mockMiddleware.deleteUser);
+
+  // roles
+  app.get('/api/roles', mockMiddleware.fetchRoles);
+
+  // locations
+  app.get('/api/locations', mockMiddleware.fetchLocations);
 
   // Login route
   app.post('/api/users/login', mockMiddleware.login);

@@ -66,7 +66,7 @@ export const addNote = (noteText, incidentId) => {
     return axios
       .post(notesUrl, {
         note: noteText,
-        userEmail: localStorage.getItem('email')
+        userId: localStorage.getItem('email')
       })
       .then(res => {
         dispatch(addNoteSuccess(res.data.data));
@@ -139,7 +139,7 @@ export const changeStatus = (statusId, incidentId) => {
       .put(
         `${config.INCIDENTS_URL}/${incidentId}/`,
         {
-          statusId: statusId
+          statusId
         },
         { headers }
       )

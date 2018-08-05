@@ -1,0 +1,96 @@
+@import '../../theme.scss';
+
+.user-filter {
+  display: flex;
+  flex-direction: column;
+  height: 25vh;
+  width: auto;
+  position: relative;
+  left: 7vw;
+  top: 1.5vh;
+  .heading-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    p {
+      font-size: 36px;
+    }
+    .underline-admin {
+      width: 11vw;
+      height: 6px;
+      border-radius: 5px;
+      background-color: #3359df;
+      position: absolute;
+      top: 10vh;
+    }
+  }
+  .filter-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 16vh;
+    width: 72vw;
+    height: 8vh;
+    .location-filter {
+      display: flex;
+      flex-direction: row;
+      width: auto;
+      p {
+        font-size: 20px;
+        font-weight: 300;
+        font-family: 'DIN Pro Light';
+      }
+    }
+    .right-side-search {
+      display: flex;
+      flex-direction: row;
+      height: 7vh;
+      width: auto;
+      align-items: center;
+      .search-bar {
+        position: relative;
+        width: 14vw;
+        text-align: right;
+        &::before {
+          position: absolute;
+          content: "";
+          background: url('/assets/images/search_icon.svg') no-repeat center;
+          top: 0;
+          bottom: 0;
+          width: 1.15rem;
+          margin-left: 0.7rem;
+        }
+        &:hover .admin-search {
+          width: 14vw;
+          border-style: solid;
+        }
+      }
+      .admin-search {
+        width: 1vw;
+        height: 3.9vh;
+        border: 0.05rem;
+        border-width: 0.05rem;
+        border-style: none;
+        border-color: #95989a;
+        border-radius: 0.2rem;
+        padding-top: .1rem;
+        padding-left: 2.5rem;
+        padding-right: 1rem;
+        margin: auto;
+        outline: none;
+        transition: all 0.9s;
+        font-family: 'DIN Pro';
+        font-weight: 400;
+        font-size: 1rem;
+        color: #000;
+        &::placeholder {
+          font-family: 'DIN Pro Extra Light';
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

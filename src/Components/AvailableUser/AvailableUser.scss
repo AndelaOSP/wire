@@ -1,0 +1,107 @@
+@import '../../theme.scss';
+
+.user-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 5rem;
+  height: 8vh;
+  width: 72vw;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px #e0e0e0;
+  position: relative;
+  margin: 0% 0 3.5% 0;
+  padding-left: 3.5%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .user-img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+
+  .username {
+    width: 15vw;
+    height: 2vh;
+    font-family: 'DIN Pro Light';
+    font-size: 1.2rem;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.27;
+    letter-spacing: 0.3px;
+    color: #9b9b9b;
+    margin: 0 0 0 5%;
+  }
+
+  .user-role {
+    box-sizing: border-box;
+    width: 8vw;
+    height: 4.5vh;
+    border-radius: 5px;
+    background-color: #f1f6f8;
+    font-family: 'DIN Pro Light';
+    font-size: 1rem;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.27;
+    letter-spacing: 0.3px;
+    color: #000000;
+    text-align: center;
+    margin: 0 0 0;
+    padding-top: 1%;
+  }
+
+  .user-country {
+    width: 4vw;
+    height: 2vh;
+    font-family: 'DIN Pro Light';
+    font-size: 1.2rem;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.27;
+    letter-spacing: 0.3px;
+    color: #9b9b9b;
+    margin: 0 0 0 12%;
+  }
+
+  .change-role {
+    width: 13vw;
+    height: 4.5vh;
+    font-family: 'DIN Pro Light';
+    font-size: 1rem;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.27;
+    letter-spacing: 0.3px;
+    margin: 0 0 0 7%;
+    z-index: 0;
+  }
+
+  .remove {
+    width: 8vw;
+    height: 2vh;
+    font-family: 'DIN Pro Light';
+    font-size: 1.2rem;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.27;
+    letter-spacing: 0.3px;
+    color: #e74c3c;
+    margin: 0 0 0 5.5%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
