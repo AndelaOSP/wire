@@ -14,4 +14,14 @@ const decodeToken = () => {
   return { error: 'Unknown user' };
 };
 
-export default decodeToken;
+const currentUser = () => {
+  const token = localStorage.getItem('token');
+  try {
+    const userInfo = jwtDecode(token);
+    return userInfo;
+  } catch (InvalidTokenError) {
+    return false;
+  }
+};
+
+export { decodeToken, currentUser };

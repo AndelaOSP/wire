@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as actions from '../src/actions/timelineAction';
 import * as types from '../src/actions/actionTypes';
-import { testIncident, notes, chats } from '../mock_endpoints/mockData';
+import { testIncidents, notes, chats } from '../mock_endpoints/mockData';
 import moxios from 'moxios';
 
 const middlewares = [thunk];
@@ -20,10 +20,10 @@ describe('async actions', () => {
   let updatedNote = notes[0];
   updatedNote['note'] = 'A new note';
 
-  let incidentWithNewStatus = testIncident;
+  let incidentWithNewStatus = testIncidents[0];
   incidentWithNewStatus['statusId'] = 2;
 
-  let incidentWithNewAssignee = testIncident;
+  let incidentWithNewAssignee = testIncidents[0];
   incidentWithNewAssignee['assigneeId'] = 1;
 
   const expectedActions = [
@@ -33,7 +33,7 @@ describe('async actions', () => {
     },
     {
       type: types.FETCH_INCIDENT,
-      incident: testIncident,
+      incident: testIncidents[0],
       isLoading: false,
       isError: false
     },
@@ -73,7 +73,7 @@ describe('async actions', () => {
 
   it('creates all appropriate actions when loading incident details', done => {
     const store = mockStore();
-    store.dispatch(actions.loadIncidentDetails(testIncident.id));
+    store.dispatch(actions.loadIncidentDetails(testIncidents[0].id));
     moxios.wait(() => {
       let incidentRequest = moxios.requests.at(0);
       let notesRequest = moxios.requests.at(1);
@@ -82,7 +82,7 @@ describe('async actions', () => {
         status: 200,
         response: {
           status: 'success',
-          data: testIncident
+          data: testIncidents[0]
         }
       });
       notesRequest.respondWith({
@@ -191,9 +191,9 @@ describe('async actions', () => {
   });
 
   it('creates all appropriate actions when changing incident status', done => {
-    let incidentId = testIncident.id;
+    let incidentId = testIncidents[0].id;
     let statusId = 2;
-    let incidentWithNewStatus = testIncident;
+    let incidentWithNewStatus = testIncidents[0];
     incidentWithNewStatus['statusId'] = 2;
 
     const store = mockStore();
@@ -217,9 +217,9 @@ describe('async actions', () => {
   });
 
   it('creates all appropriate actions when changing incident assignee', done => {
-    let incidentId = testIncident.id;
+    let incidentId = testIncidents[0].id;
     let assigneeId = 1;
-    let incidentWithNewAssignee = testIncident;
+    let incidentWithNewAssignee = testIncidents[0];
     incidentWithNewAssignee['assigneeId'] = assigneeId;
 
     const store = mockStore();
@@ -243,7 +243,7 @@ describe('async actions', () => {
   });
 
   it('creates all appropriate actions when sending messages', done => {
-    let incidentId = testIncident.id;
+    let incidentId = testIncidents[0].id;
     let userId = 3;
     let message = chats[2].chat;
 
@@ -268,7 +268,7 @@ describe('async actions', () => {
   });
 
   it('dispatches error action when there is an error with a request', done => {
-    let incidentId = testIncident.id;
+    let incidentId = testIncidents[0].id;
     let userId = 3;
     let message = chats[2].chat;
 

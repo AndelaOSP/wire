@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import IncidentSection from '../src/Components/IncidentList/IncidentSection.Component';
-import { newTestIncidents } from '../mock_endpoints/mockData';
+import { testIncidents } from '../mock_endpoints/mockData';
 
 describe('IncidentCard component', () => {
   it('should render no cards when there are no incidents', () => {
@@ -16,7 +16,7 @@ describe('IncidentCard component', () => {
     const incidentSection = shallow(
       <IncidentSection
         incidentStatus={'IN PROGRESS'}
-        incidents={newTestIncidents}
+        incidents={testIncidents}
       />
     );
 

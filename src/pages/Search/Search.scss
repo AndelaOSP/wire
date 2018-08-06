@@ -115,6 +115,22 @@
         height: 1rem;
         border-radius: 3px;
         font-size: 0.7rem;
+
+        .tooltip-text{
+          visibility: hidden;
+          background-color: #000000;
+          color: white;
+          text-align: center;
+          border-radius: 6px;
+          width: 120px;
+          position: absolute;
+          z-index: 1;
+          padding: 5px 0;
+        }
+
+        &:hover .tooltip-text{
+          visibility: visible;
+        }
       }
       .unassigned {
         display: flex;
