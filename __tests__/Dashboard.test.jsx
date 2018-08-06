@@ -6,7 +6,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import initialState from '../src/reducers/initialState';
 import createRouterContext from 'react-router-test-context';
-import { newTestIncidents } from '../mock_endpoints/mockData';
+import { testIncidents } from '../mock_endpoints/mockData';
 import { Dashboard } from '../src/pages/Dashboard/Dashboard.Component';
 import CircularProgressIndicator from '../src/Components/Progress/Progress.Component';
 import IncidentFilter from '../src/Components/IncidentFilter/IncidentFilter.Component';
@@ -123,7 +123,7 @@ describe('Filter functionality', () => {
     expect(mockLoadIncidents.mock.calls.length).toBe(1);
 
     dashboard.setProps({
-      incidents: newTestIncidents
+      incidents: testIncidents
     });
 
     dashboard.setState({

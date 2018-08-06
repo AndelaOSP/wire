@@ -14,6 +14,12 @@ const {
   handleCCd,
   changeStatus,
   getStaff,
+  getRoles,
+  getLocations,
+  addUser,
+  editUser,
+  searchUser,
+  deleteUser,
   login
 } = require('./mockControllers');
 
@@ -57,8 +63,8 @@ module.exports = {
   addNoteToIncident: (req, res) => {
     setTimeout(() => {
       let incidentId = parseInt(req.params.id);
-      let { userId, note } = req.body;
-      res.send({ data: addNote(incidentId, userId, note), status: 'success' });
+      let { userEmail, note } = req.body;
+      res.send({ data: addNote(incidentId, userEmail, note), status: 'success' });
     }, 2000);
   },
   fetchIncidentNotes: (req, res) => {
@@ -103,6 +109,41 @@ module.exports = {
   fetchStaff: (req, res) => {
     setTimeout(() => {
       res.send({ data: { users: getStaff() }, status: 'success' });
+    }, 2000);
+  },
+  fetchRoles: (req, res) => {
+    setTimeout(() => {
+      res.send({ data: { roles: getRoles() }, status: 'success' });
+    }, 2000);
+  },
+  fetchLocations: (req, res) => {
+    setTimeout(() => {
+      res.send({ data: { locations: getLocations() }, status: 'success' });
+    }, 2000);
+  },
+  addUser: (req, res) => {
+    setTimeout(() => {
+      let { email, roleId, locationId } = req.body;
+      res.send({ data: addUser(email, roleId, locationId), status: 'success' });
+    }, 2000);
+  },
+  searchUser: (req, res) => {
+    setTimeout(() => {
+      let query = req.query.q ? req.query.q : '';
+      res.send({ data: { users: searchUser(query) }, status: 'success' });
+    }, 2000);
+  },
+  editUser: (req, res) => {
+    setTimeout(() => {
+      let userId = parseInt(req.params.id);
+      let { roleId } = req.body;
+      res.send({ data: editUser(userId, roleId), status: 'success' });
+    }, 2000);
+  },
+  deleteUser: (req, res) => {
+    setTimeout(() => {
+      let userId = parseInt(req.params.id);
+      res.send({ data: deleteUser(userId), status: 'success' });
     }, 2000);
   },
   login: (req, res) => {

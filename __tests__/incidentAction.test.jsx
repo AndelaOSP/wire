@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import * as actions from '../src/actions/incidentAction';
 import * as types from '../src/actions/actionTypes';
 import moxios from 'moxios';
-import {testIncident} from '../mock_endpoints/mockData';
+import { testIncidents } from '../mock_endpoints/mockData';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -114,13 +114,11 @@ describe('async actions', () => {
 
   it('creates CHANGE_STATUS when changing status', done => {
     const store = mockStore();
-    const newIncident = testIncident;
+    const newIncident = testIncidents[0];
     const expectedActions = [
       { type: types.CHANGE_STATUS,
         incidentId: newIncident.id }
       ];
-
-    newIncident['statusId'] = 2;
 
     store.dispatch(actions.changeStatus(2,1));
     moxios.wait(()=>{
@@ -142,7 +140,6 @@ describe('async actions', () => {
 
   it('creates ERROR_ACTION with 404 when an error occurs', done => {
     const store = mockStore();
-    const newIncident = testIncident;
     const expectedActions = [
         {
           type: types.ERROR_ACTION,
@@ -151,8 +148,6 @@ describe('async actions', () => {
           statusCode: 404,
         }
       ];
-
-    newIncident['statusId'] = 2;
 
     store.dispatch(actions.changeStatus(2,1));
     moxios.wait(()=>{
@@ -173,7 +168,6 @@ describe('async actions', () => {
 
   it('creates ERROR_ACTION with 401 when not logged in', done => {
     const store = mockStore();
-    const newIncident = testIncident;
     const expectedActions = [
         {
           type: types.ERROR_ACTION,
@@ -182,8 +176,6 @@ describe('async actions', () => {
           statusCode: 401,
         }
       ];
-
-    newIncident['statusId'] = 2;
 
     store.dispatch(actions.changeStatus(2,1));
     moxios.wait(()=>{

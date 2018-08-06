@@ -134,7 +134,7 @@ export default class TimelineSidebar extends Component {
         <div className="incident-details">
           <span className="incident-subject"> {incident.subject || 'No subject provided.'} </span>
           <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
-          <div className="undeline" />
+          <div className="underline" />
           <div className="incident-description">
             <div className="description-details">
               <p> {incident.description || 'No description provided.'} </p>
