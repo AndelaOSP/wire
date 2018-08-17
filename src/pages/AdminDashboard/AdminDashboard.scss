@@ -1,0 +1,23 @@
+@import '../../theme.scss';
+
+.admin-dashboard {
+  background-color: white;
+  height: 91.5vh;
+  width: 100vw;
+}
+
+.available-users {
+  flex-direction: column;
+  align-items: flex-start;
+  height: 47.5vh;
+  position: relative;
+  top: 6vh;
+  left: 15vw;
+  width: 48vw;
+  overflow: scroll;
+}
+
+.no-users {
+  font-family: 'DIN Pro Extra Light';
+  text-align: center;
+}

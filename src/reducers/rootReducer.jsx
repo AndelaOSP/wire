@@ -6,6 +6,8 @@ import isLoading from './loadingReducer';
 import error from './errorReducer';
 import selectedIncident from './selectedIncidentReducer';
 import staff from './staffReducer';
+import roles from './rolesReducer';
+import locations from './locationsReducer';
 import hasToken from './tokenReducer';
 
 const rootReducer = combineReducers({
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   error,
   selectedIncident,
   staff,
+  roles,
+  locations,
   router: routerReducer
 });
 

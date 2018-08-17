@@ -139,7 +139,7 @@ export const changeStatus = (statusId, incidentId) => {
       .put(
         `${config.INCIDENTS_URL}/${incidentId}/`,
         {
-          statusId: statusId
+          statusId
         },
         { headers }
       )

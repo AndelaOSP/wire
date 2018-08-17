@@ -11,5 +11,7 @@ export default {
     notes: [],
     chats: []
   },
-  staff: []
+  staff: [],
+  roles: [],
+  locations: []
 };

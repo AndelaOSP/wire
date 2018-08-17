@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import PropTypes from 'prop-types';
-import * as axios from 'axios';
-import config from '../../config/index';
 
 // styling
 import './Search.scss';
 
+// actions
+import { searchIncidents } from '../../actions/incidentAction';
+
+// Components
 import IncidentCard from '../../Components/IncidentList/IncidentCard.Component';
 
 /**
@@ -15,32 +19,19 @@ import IncidentCard from '../../Components/IncidentList/IncidentCard.Component';
 class SearchComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      incidents: []
-    };
   }
 
   componentDidMount() {
-    this.nameInput.focus();
+    this.searchInput.focus();
   }
 
   /**
    * Method to handle search input change
    */
   handleInputChange = () => {
-    let token = localStorage.getItem('token');
-    let headers = { Authorization: token };
-    let searchQuery = this.nameInput.input.value.toLowerCase();
+    let searchQuery = this.searchInput.input.value.toLowerCase();
     if (searchQuery) {
-      axios.get(config.SEARCH_INCIDENTS_URL + '?q=' + searchQuery, { headers }).then(response => {
-        this.setState({
-          incidents: response.data.data.incidents
-        });
-      });
-    } else {
-      this.setState({
-        incidents: []
-      });
+      this.props.searchIncidents(searchQuery);
     }
   };
 
@@ -63,10 +54,11 @@ class SearchComponent extends Component {
     });
 
   render() {
+    const incidents = this.searchInput ? this.props.incidents : [];
     return (
       <div className="search-container">
         <TextField
-          ref={input => (this.nameInput = input)}
+          ref={input => (this.searchInput = input)}
           floatingLabelText="Search for an incident"
           fullWidth
           rows={2}
@@ -75,8 +67,8 @@ class SearchComponent extends Component {
         />
         <i className="fa fa-times-circle" title="Click to exit search" onClick={this.handleExit} />
         <div className="incident-cards">
-          {this.state.incidents.length
-            ? this.state.incidents.map(incident => (
+          {incidents.length
+            ? incidents.map(incident => (
                 <IncidentCard
                   key={incident.id}
                   incidentId={incident.id}
@@ -99,7 +91,32 @@ class SearchComponent extends Component {
  * Search Component Props validation
  */
 SearchComponent.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  incidents: PropTypes.array.isRequired,
+  searchIncidents: PropTypes.func.isRequired
 };
 
-export default SearchComponent;
+/**
+ * map state from the store to props
+ * @param {*} state
+ * @returns {*} partial state
+ */
+const mapStateToProps = state => {
+  return {
+    incidents: state.incidents
+  };
+};
+
+/**
+ * map dispatch to props
+ * @param {*} dispatch
+ */
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      searchIncidents
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(SearchComponent);
