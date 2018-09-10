@@ -18,6 +18,7 @@ export default class TimelineSidebar extends Component {
     super(props);
     this.state = {
       checked: false,
+      assignee: null,
       selectedValues: [],
       reportDialogOpen: false,
       resolveValue: 0
@@ -25,12 +26,44 @@ export default class TimelineSidebar extends Component {
   }
 
   /**
-   * This lifecycle hook is used to populate the list of ccd associates
+   * This lifecycle hook is used to update the list of ccd associates
+   * on initial render
+   */
+  componentWillMount() {
+    this.updateAssignee(this.props);
+    this.updateCcdAssociates(this.props);
+  }
+
+  /**
+   * This lifecycle hook is used to update the list of ccd associates
+   * after incident assignees array changes
    */
   componentWillReceiveProps(nextProps) {
-    let ccdAssociates = nextProps.incident.assignees
+    this.updateAssignee(nextProps);
+    this.updateCcdAssociates(nextProps);
+  }
+
+  updateAssignee = props => {
+    let assignee = props.incident.assignees.find(user => {
+      if (user.assigneeIncidents) {
+        return user.assigneeIncidents.assignedRole === 'assignee';
+      } else {
+        return user.assignedRole === 'assignee';
+      }
+    });
+    if (this.state.assignee !== assignee) {
+      this.setState({ assignee });
+    }
+  };
+
+  updateCcdAssociates = props => {
+    let ccdAssociates = props.incident.assignees
       .filter(user => {
-        return user.assignedRole === 'ccd';
+        if (user.assigneeIncidents) {
+          return user.assigneeIncidents.assignedRole === 'ccd';
+        } else {
+          return user.assignedRole === 'ccd';
+        }
       })
       .map(user => {
         return user.id;
@@ -38,7 +71,7 @@ export default class TimelineSidebar extends Component {
     if (this.state.selectedValues !== ccdAssociates) {
       this.setState({ selectedValues: ccdAssociates });
     }
-  }
+  };
 
   handleDateString = date => {
     return moment(date).format('MMM Do YYYY [at] h:mm a');
@@ -78,6 +111,7 @@ export default class TimelineSidebar extends Component {
 
   handleChangeAssignee = (e, index, value) => {
     e.preventDefault();
+    this.setState({ assignee: this.props.staff.find(user => user.id === value) });
     this.props.changeAssignee({ userId: value, incidentId: this.props.incident.id });
   };
 
@@ -86,17 +120,15 @@ export default class TimelineSidebar extends Component {
   };
 
   renderCC = staff => {
-    return staff.map(staffMember => {
-      return (
-        <MenuItem
-          key={staffMember.id}
-          insetChildren
-          value={staffMember.id}
-          checked={this.state.selectedValues && this.state.selectedValues.indexOf(staffMember.id) > -1}
-          primaryText={staffMember.username}
-        />
-      );
-    });
+    return staff.map(staffMember => (
+      <MenuItem
+        key={staffMember.id}
+        insetChildren
+        value={staffMember.id}
+        checked={this.state.selectedValues && this.state.selectedValues.indexOf(staffMember.id) > -1}
+        primaryText={staffMember.username}
+      />
+    ));
   };
 
   onSelectClose = () => {
@@ -118,10 +150,7 @@ export default class TimelineSidebar extends Component {
 
   render() {
     let { incident, staff } = this.props;
-
-    let assignee = incident.assignees.find(user => {
-      return user.assignedRole === 'assignee';
-    });
+    let { assignee } = this.state;
     let ccdAssociates = incident.assignees.filter(user => {
       return user.assignedRole === 'ccd';
     });

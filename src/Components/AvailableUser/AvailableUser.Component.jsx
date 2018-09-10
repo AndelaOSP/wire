@@ -39,7 +39,7 @@ class AvailableUser extends Component {
         height: '5vh',
         backgroundColor: '#ffffff'
       },
-      iconStyles: { 
+      iconStyles: {
         fill: '#95989a',
         left: '3vw'
       },
@@ -51,7 +51,7 @@ class AvailableUser extends Component {
         fontWeight: 'normal',
         fontStyle: 'normal',
         fontStretch: 'normal',
-        letterSpacing: '0.3px',
+        letterSpacing: '0.3px'
       },
       hintStyles: {
         backgroundColor: '#e0e0e0',
@@ -102,9 +102,9 @@ class AvailableUser extends Component {
             <MenuItem value="Assignee" primaryText="Assignee" />
           </SelectField>
         </div>
-        
+
         <div className="user-country">{country}</div>
-        
+
         <div className="remove" onClick={this.handleRemove}>
           Remove
         </div>
@@ -114,10 +114,7 @@ class AvailableUser extends Component {
 }
 
 AvailableUser.propTypes = {
-  id: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string
-  ]).isRequired,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   index: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
