@@ -1,6 +1,7 @@
 export default {
   incidents: [],
   isLoading: false,
+  isSending: false,
   hasToken: false,
   error: {
     status: false,

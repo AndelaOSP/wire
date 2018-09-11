@@ -3,6 +3,7 @@ import { FETCH_STAFF, ADD_USER, SEARCH_USER, EDIT_USER, DELETE_USER } from './ac
 import config from '../config/index';
 import { loadingAction } from './LoadingAction';
 import { errorAction } from './errorAction';
+import { sendingAction } from './sendingAction';
 
 // Fetch staff action creator
 export const fetchStaffSuccess = staff => {
@@ -43,11 +44,12 @@ export const searchUsers = query => {
 
 // Invite User action creator
 export const inviteUserSuccess = staff => {
-  return { type: ADD_USER, staff, isError: false };
+  return { type: ADD_USER, staff, isError: false, isSending: false };
 };
 
 export const inviteUser = (email, roleId, locationId) => {
   return dispatch => {
+    dispatch(sendingAction(true));
     return axios
       .post(`${config.API_URL}/users/invite`, { email, roleId, locationId })
       .then(res => {

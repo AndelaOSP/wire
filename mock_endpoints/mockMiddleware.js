@@ -125,7 +125,7 @@ module.exports = {
     setTimeout(() => {
       let { email, roleId, locationId } = req.body;
       res.send({ data: addUser(email, roleId, locationId), status: 'success' });
-    }, 2000);
+    }, 5000);
   },
   searchUser: (req, res) => {
     setTimeout(() => {

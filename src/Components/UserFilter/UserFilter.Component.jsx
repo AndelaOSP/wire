@@ -34,8 +34,13 @@ class UserFilter extends Component {
   /**
    * Method to handle closing invite modal
    */
-  handleClose = () => {
-    this.setState({ open: false });
+  handleClose = isSending => {
+    setTimeout(() => {
+      if (!isSending) {
+        this.setState({ open: false });
+      } 
+    },1000);
+  
   };
 
   /**
@@ -54,7 +59,7 @@ class UserFilter extends Component {
   };
 
   render() {
-    const { staff } = this.props;
+    const { staff, isSending } = this.props;
     const styles = {
       selectField: {
         fontSize: '12px',
@@ -120,7 +125,7 @@ class UserFilter extends Component {
                 hoverColor="none"
                 style={styles.flatButton}
               />
-              <Modal open={this.state.open} handleClose={this.handleClose} handleInvite={this.handleInvite} />
+              <Modal open={this.state.open} handleClose={this.handleClose} handleInvite={this.handleInvite} isSending={isSending} />
             </div>
           </div>
         </div>
@@ -130,6 +135,7 @@ class UserFilter extends Component {
 }
 
 UserFilter.propTypes = {
+  isSending: PropTypes.bool.isRequired,
   staff: PropTypes.array.isRequired,
   handleSearch: PropTypes.func.isRequired,
   handleInvite: PropTypes.func.isRequired,

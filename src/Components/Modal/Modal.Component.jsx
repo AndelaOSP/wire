@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import CircularProgress from 'material-ui/CircularProgress';
+
 
 import './Modal.scss';
 
@@ -43,7 +45,7 @@ class Modal extends Component {
   };
 
   render() {
-    const { open } = this.props;
+    const { open, isSending } = this.props;
     const styles = {
       marginTop: '3.3rem',
       marginLeft: '.85rem',
@@ -54,7 +56,7 @@ class Modal extends Component {
     return (
       <div id="myModal" className="modal" style={{ display: open ? 'block' : 'none' }}>
         <div className="modal-content">
-          <span className="close" onClick={this.props.handleClose}>
+          <span className="close" onClick={() => this.props.handleClose(isSending)}>
             &times;
           </span>
           <div className="modal-header">
@@ -99,8 +101,9 @@ class Modal extends Component {
               <MenuItem value="Uganda" primaryText="Uganda" />
             </SelectField>
             <div className="invite-button">
-              <button type="submit" id="send-invite" onClick={this.props.handleClose}>
-                Send Invite
+              <button type="submit" id="send-invite" onClick={() => this.props.handleClose(isSending)}>
+                {isSending ? (<div id="sending-ivite"> <CircularProgress color ={'white'} size = {25}/> Sending</div>) : 
+                  (<div>Send Invite</div>)}
               </button>
             </div>
           </form>
@@ -113,7 +116,8 @@ class Modal extends Component {
 Modal.propTypes = {
   open: PropTypes.bool,
   handleClose: PropTypes.func,
-  handleInvite: PropTypes.func
+  handleInvite: PropTypes.func,
+  isSending: PropTypes.bool
 };
 
 export default Modal;

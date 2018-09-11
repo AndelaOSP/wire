@@ -91,7 +91,7 @@ export class AdminDashboard extends Component {
   };
 
   render() {
-    const { isLoading, isError, errorMessage } = this.props;
+    const { isLoading, isError, errorMessage, isSending } = this.props;
     const staff = this.filterStaff();
     return (
       <div>
@@ -101,6 +101,7 @@ export class AdminDashboard extends Component {
         ) : (
           <div className="admin-dashboard">
             <UserFilter
+              isSending={isSending}
               staff={staff}
               handleSearch={this.handleSearch}
               handleInvite={this.handleInvite}
@@ -144,6 +145,7 @@ export class AdminDashboard extends Component {
  */
 AdminDashboard.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  isSending: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
   fetchStaff: PropTypes.func.isRequired,
@@ -166,6 +168,7 @@ AdminDashboard.propTypes = {
 const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
+    isSending: state.isSending,
     isError: state.error.status,
     errorMessage: state.error.message,
     staff: state.staff,
