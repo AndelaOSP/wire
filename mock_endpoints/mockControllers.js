@@ -123,7 +123,9 @@ module.exports = {
       return user.id === userId;
     });
     newAssignee['assignedRole'] = 'assignee';
-    incident.assignees.push(newAssignee);
+    if (incident.assignees.indexOf(newAssignee) == -1) {
+      incident.assignees.push(newAssignee);
+    }
     incident['reporter'] =
       users.find(user => {
         return user.id === incident.reporterId;
@@ -145,13 +147,15 @@ module.exports = {
     let incident = incidents.find(incident => {
       return incident.id === incidentId;
     });
-    incident.assignees = [];
+    incident.assignees = incident.assignees.filter(assignee => assignee.assignedRole === 'assignee');
     ccdUsers.map(ccdUser => {
       let newCCd = users.find(user => {
         return user.id === ccdUser.userId;
       });
       newCCd['assignedRole'] = 'ccd';
-      incident.assignees.push(newCCd);
+      if (incident.assignees.indexOf(newCCd) == -1) {
+        incident.assignees.push(newCCd);
+      }
     });
     incident['reporter'] =
       users.find(user => {

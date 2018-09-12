@@ -36,23 +36,7 @@ module.exports = {
       levelId: 3,
       locationId: 1,
       updatedAt: '2018-02-13T15:58:06.202Z',
-      assignees: [{
-          id: '-KhLsOxrKcKZC8i2n888',
-          email: 'mercy.muchai@andela.com',
-          username: 'Mercy Muchai',
-          imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
-          roleId: 2,
-          assignedRole: 'assignee'
-        },
-        {
-          id: '-KhLsOxrKcKZC8i2n889',
-          email: 'carol.nkirote@andela.com',
-          username: 'Carol Nkirote',
-          imageUrl: 'https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg',
-          roleId: 2,
-          assignedRole: 'ccd'
-        }
-      ],
+      assignees: [],
       categoryId: null
     },
     {
