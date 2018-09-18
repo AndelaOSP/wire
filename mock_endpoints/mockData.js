@@ -597,6 +597,21 @@ module.exports = {
         centre: 'Nairobi',
         country: 'Kenya'
       }
+    },
+    {
+      id: 10,
+      email: 'james.kimani@andela.com',
+      username: 'James Kimani',
+      imageUrl: 'https://lh3.googleusercontent.com/-Jlt5VItDH60/AAAAAAAAAAI/AAAAAAAAAAc/sFHgXrT4PBs/photo.jpg?sz=50',
+      roleId: 3,
+      Role: {
+        name: 'Admin'
+      },
+      Location: {
+        name: 'Tsavo',
+        centre: 'Nairobi',
+        country: 'Kenya'
+      }
     }
   ],
   locations: [{
