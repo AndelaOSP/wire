@@ -124,6 +124,10 @@ module.exports = {
   addUser: (req, res) => {
     setTimeout(() => {
       let { email, roleId, locationId } = req.body;
+      let andelaEmailRegex =  /@andela.com$/;
+      if(!andelaEmailRegex.test(email)) {
+        return res.status(500).send({ error: true, message: 'Please use Andela emails only', status: 'error' });
+      }
       res.send({ data: addUser(email, roleId, locationId), status: 'success' });
     }, 2000);
   },

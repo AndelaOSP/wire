@@ -6,7 +6,7 @@ import IncidentFilter from '../src/Components/IncidentFilter/IncidentFilter.Comp
 
 describe('IncidentFilter component', () => {
   it('should have all the IncidentFilter content', () => {
-    const incidentFilter = shallow(<IncidentFilter />);
+    const incidentFilter = shallow(<IncidentFilter  staff={[]} />);
     const tree = shallowToJSON(incidentFilter);
     expect(tree.props.className).toEqual('filters-container');
     expect(tree.type).toEqual('div');

@@ -6,6 +6,10 @@ import moment from 'moment';
 
 // actions
 import { loadIncidents } from '../../actions/incidentAction';
+import { fetchStaff } from '../../actions/staffAction';
+
+// helpers
+import authenticateUser from '../../helpers/auth';
 
 // styling
 import './Dashboard.scss';
@@ -25,16 +29,18 @@ export class Dashboard extends Component {
     super(props);
     this.state = {
       filterKey: 'All Countries',
+      assigneeFilter: 'All Assignees',
       flagFilterKey: 'All Incidents',
       typeFilter: 'Pending',
       timeFilter: 'All',
-      assignedToMe: false,
+      assignedToMe: !authenticateUser.isAdmin(),
       showNotesDialog: false,
       value: 1
     };
   }
 
   componentDidMount() {
+    this.props.fetchStaff();
     this.props.loadIncidents();
   }
 
@@ -68,6 +74,12 @@ export class Dashboard extends Component {
     };
   }
 
+  changeAssigneeFilter() {
+    return key => {
+      this.setState({ assigneeFilter: key });
+    };
+  }
+
   getDate = timestamp => new Date(timestamp).toDateString();
 
   getWeek = timestamp => moment(timestamp).format('W');
@@ -89,6 +101,13 @@ export class Dashboard extends Component {
       incidents = incidents.filter(incident => {
         const stateKey = this.state.flagFilterKey.toLocaleLowerCase();
         return incident.Level && stateKey === incident.Level.name.toLocaleLowerCase();
+      });
+    }
+
+    // filter by assignee
+    if (this.state.assigneeFilter !== 'All Assignees') {
+      incidents = incidents.filter(incident => {
+        return incident.assignees.some(assignee => assignee.username === this.state.assigneeFilter);
       });
     }
 
@@ -144,7 +163,7 @@ export class Dashboard extends Component {
 
   render() {
     const incidents = this.filterIncidents();
-    const { isLoading, isError, errorMessage } = this.props;
+    const { isLoading, isError, errorMessage, staff } = this.props;
 
     return (
       <div>
@@ -155,11 +174,13 @@ export class Dashboard extends Component {
           <div>
             <IncidentFilter
               incident={this.state.selectedIncident}
+              staff={staff}
               changeCountryFilter={this.changeFilter()}
               filterByFlag={this.changeFlagFilter()}
               filterByType={this.changeTypeFilter()}
               changeTime={this.changeTimeFilter()}
               changeMineAll={this.changeAssignedToMeFilter()}
+              filterByAssignee={this.changeAssigneeFilter()}
             />
             <div className="dashboard-container">
               {<IncidentList incidents={incidents} incidentsType={this.state.typeFilter} />}
@@ -185,7 +206,9 @@ Dashboard.propTypes = {
   location: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string.isRequired
+  errorMessage: PropTypes.string.isRequired,
+  staff: PropTypes.array.isRequired,
+  fetchStaff: PropTypes.func.isRequired
 };
 
 /**
@@ -198,7 +221,8 @@ const mapStateToProps = state => {
     incidents: state.incidents,
     isLoading: state.isLoading,
     isError: state.error.status,
-    errorMessage: state.error.message
+    errorMessage: state.error.message,
+    staff: state.staff
   };
 };
 
@@ -209,7 +233,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      loadIncidents
+      loadIncidents,
+      fetchStaff
     },
     dispatch
   );

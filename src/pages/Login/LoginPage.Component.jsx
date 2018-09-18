@@ -50,7 +50,7 @@ class LoginPage extends React.Component {
       localStorage.clear();
     }
 
-    if (authenticateUser.isAuthenticated && hasToken) {
+    if (authenticateUser.isAuthenticated && hasToken && !isError) {
       return <Redirect to={(from.pathname = referrer)} />;
     }
 

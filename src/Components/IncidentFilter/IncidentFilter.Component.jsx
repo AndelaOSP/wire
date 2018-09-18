@@ -10,6 +10,9 @@ import './IncidentFilter.scss';
 //Components
 import CustomMenu from '../CustomMenu/CustomMenu.Component';
 
+// helpers
+import authenticateUser from '../../helpers/auth';
+
 /**
  * @class IncidentFilter
  */
@@ -19,8 +22,9 @@ export default class IncidentFilter extends Component {
     this.state = {
       durationFilterValue: 0,
       flagFilterValue: 'All Incidents',
+      assigneesFilter: 'All Assignees',
       incidentsType: 'Pending',
-      assignedToMe: false
+      assignedToMe: !authenticateUser.isAdmin()
     };
   }
 
@@ -52,7 +56,14 @@ export default class IncidentFilter extends Component {
     this.setState({ assignedToMe: !this.state.assignedToMe });
   };
 
+  handleAssigneesFilter = (event, index, value) => {
+    this.props.filterByAssignee(value);
+    this.setState({ assigneesFilter: value });
+  };
+
   render() {
+    const { staff } = this.props;
+    const assignees = staff.filter(user => user.hasOwnProperty('assignedRole'));
     const styles = {
       thumbOff: {
         backgroundColor: '#616161'
@@ -79,11 +90,29 @@ export default class IncidentFilter extends Component {
             trackSwitchedStyle={styles.trackSwitched}
             onToggle={() => this.handleMineAllChange()}
             toggled={!this.state.assignedToMe}
+            disabled={!authenticateUser.isAdmin()}
           />
           <span className="toggle-label">All</span>
         </div>
         <div className="filters">
           <span className="incidents-label">Incidents</span>
+
+          {authenticateUser.isAdmin() ? (
+            <SelectField
+              underlineStyle={{ display: 'none' }}
+              iconStyle={{ fill: '#000000', marginRight: '1vw', textAlign: 'center' }}
+              labelStyle={{ textAlign: 'center', marginLeft: '1.85vw' }}
+              value={this.state.assigneesFilter}
+              onChange={this.handleAssigneesFilter}
+              className="incidents-filter"
+              style={styles.selectField}
+            >
+              <MenuItem value={'All Assignees'} primaryText="All Assignees" />
+              {assignees.map((assignee, i) => {
+                return <MenuItem key={i} value={assignee.username} primaryText={assignee.username} />;
+              })}
+            </SelectField>
+          ) : null}
 
           <CustomMenu changeCountryFilter={this.props.changeCountryFilter} />
 
@@ -144,5 +173,7 @@ IncidentFilter.propTypes = {
   changeTime: PropTypes.func,
   changeMineAll: PropTypes.func,
   incident: PropTypes.object,
-  onSelectStatus: PropTypes.func
+  onSelectStatus: PropTypes.func,
+  staff: PropTypes.array,
+  filterByAssignee: PropTypes.func
 };

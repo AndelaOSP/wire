@@ -1,9 +1,11 @@
 const getUserName = email => {
-  let username = {};
-  const [firstName, lastName] = email.split('@')[0].split('.');
-  const first = firstName[0].toUpperCase() + firstName.substr(1, firstName.length);
-  const last = lastName[0].toUpperCase() + lastName.substr(1, lastName.length);
-  username = `${first} ${last}`;
+  let username = email.split('@')[0];
+  if (username.includes('.')) {
+    const [firstName, lastName] = username.split('.');
+    const first = firstName[0].toUpperCase() + firstName.substr(1, firstName.length);
+    const last = lastName[0].toUpperCase() + lastName.substr(1, lastName.length);
+    username = `${first} ${last}`;
+  }
   return username;
 };
 

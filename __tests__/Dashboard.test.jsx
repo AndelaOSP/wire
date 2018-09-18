@@ -30,7 +30,9 @@ describe('Dashboard', () => {
         location={{}}
         history={{}}
         incidents={[]}
+        staff={[]}
         loadIncidents={() => {}}
+        fetchStaff={() => {}}
         isLoading={false}
         isError={false}
         errorMessage={''}
@@ -52,7 +54,9 @@ describe('Dashboard', () => {
         location={{}}
         history={{}}
         incidents={[]}
+        staff={[]}
         loadIncidents={() => {}}
+        fetchStaff={() => {}}
         isLoading
         isError={false}
         errorMessage={''}
@@ -77,7 +81,9 @@ describe('Dashboard', () => {
         location={{}}
         history={{}}
         incidents={[]}
+        staff={[]}
         loadIncidents={() => {}}
+        fetchStaff={() => {}}
         isLoading={false}
         isError
         errorMessage={'Fake test error'}
@@ -107,7 +113,9 @@ describe('Filter functionality', () => {
         location={{}}
         history={{}}
         incidents={[]}
+        staff={[]}
         loadIncidents={mockLoadIncidents}
+        fetchStaff={() => {}}
         isLoading={false}
         isError={false}
         errorMessage={''}
@@ -127,7 +135,8 @@ describe('Filter functionality', () => {
     });
 
     dashboard.setState({
-      typeFilter: 'All Incidents'
+      typeFilter: 'All Incidents',
+      assignedToMe: false
     });
 
     expect(dashboard.find('.incidents-progress').exists()).toEqual(true);

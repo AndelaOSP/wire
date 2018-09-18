@@ -10,6 +10,9 @@ import moment from 'moment';
 // styling
 import './TimelineSidebar.scss';
 
+// helpers
+import authenticateUser from '../../helpers/auth';
+
 // components
 import CustomButton from '../Button/Button.Component';
 
@@ -212,13 +215,19 @@ export default class TimelineSidebar extends Component {
                 value={assignee.id}
                 onChange={this.handleChangeAssignee}
                 className="dropdown dropdown-assigned"
+                disabled={!authenticateUser.isAdmin()}
               >
                 {staff.map((staffMember, i) => {
                   return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.username} />;
                 })}
               </DropDownMenu>
             ) : (
-              <DropDownMenu value={0} onChange={this.handleChangeAssignee} className="dropdown dropdown-assigned">
+              <DropDownMenu
+                value={0}
+                onChange={this.handleChangeAssignee}
+                className="dropdown dropdown-assigned"
+                disabled={!authenticateUser.isAdmin()}
+              >
                 <MenuItem value={0} primaryText="Assign someone" />
                 {staff ? (
                   staff.map((staffMember, i) => {
