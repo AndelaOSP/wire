@@ -119,6 +119,13 @@ export default class TimelineSidebar extends Component {
     this.setState({ selectedValues: values });
   };
 
+  generateInitials = witness => {
+    let names = witness.split(' ');
+    let firstInitial = names[0][0].toUpperCase();
+    let secondInitial = names[1][0].toUpperCase();
+    return firstInitial + secondInitial;
+  };
+
   renderCC = staff => {
     return staff.map(staffMember => (
       <MenuItem
@@ -184,7 +191,10 @@ export default class TimelineSidebar extends Component {
                 return (
                   <div key={i} className="witness-image">
                     {' '}
-                    <p>JK</p>
+                    <p>{this.generateInitials(witness.username)}</p>
+                    <div>
+                      <span className="tooltip-text">{witness.username}</span>
+                    </div>
                   </div>
                 );
               })

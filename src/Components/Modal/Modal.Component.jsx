@@ -42,7 +42,7 @@ class Modal extends Component {
     this.props.handleInvite(email, position, location);
     this.setState({
       email:''
-    })
+    });
   };
 
   render() {
