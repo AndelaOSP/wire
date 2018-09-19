@@ -35,22 +35,6 @@
     }
   }
 
-  .toggle-section {
-    @include flex-row;
-    position: relative;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    margin-left: auto;
-    align-items: center;
-    right: 2.7%;
-    .toggle-label {
-      font-weight: 200;
-      font-size: 0.8em;
-      color: map_get($grey, 300);
-      margin: 0.2rem;
-    }
-  }
-
   .filters {
     @include flex-row;
     width: 90vw;

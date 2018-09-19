@@ -36,17 +36,24 @@ export class NavBar extends Component {
   };
 
   render() {
+    let { showSearch, notify } = this.props;
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <Link to="/dashboard">
           <img className="logo" src="/assets/images/andelaLogo.png" alt="Wire" />
         </Link>
         <div className="right-nav-section">
-          <input className="search-input" onFocus={this.handleSearch} type="text" placeholder="Search" />
-          <div className="notifications">
-            <img src="/assets/images/bell_icon.svg" color="#3960ad" className="notification-icon" />
-            <Badge badgeContent={3} className="badge" />
-          </div>
+          {showSearch ? (
+            <div className="search">
+              <input className="search-input" onFocus={this.handleSearch} type="text" placeholder="Search" />
+            </div>
+          ) : null}
+          {notify ? (
+            <div className="notifications">
+              <img src="/assets/images/bell_icon.svg" color="#3960ad" className="notification-icon" />
+              <Badge badgeContent={3} className="badge" />
+            </div>
+          ) : null}
           <div className="profile">
             <div className="dropdowntn">
               <img className="profile-img" src={localStorage.getItem('user_avatar')} alt="Wire" />
@@ -54,8 +61,11 @@ export class NavBar extends Component {
               <i className="fa fa-caret-down" aria-hidden="true" />
             </div>
             <div className="dropdown-content">
-              <span>Profile</span>
-              <span>Settings</span>
+              {authenticateUser.isAdmin() ? (
+                <Link to="/settings">
+                  <span>Settings</span>
+                </Link>
+              ) : null}
               <span onClick={this.handleSignOut}>Logout</span>
             </div>
           </div>
@@ -69,7 +79,9 @@ export class NavBar extends Component {
  * Navbar Component Props validation
  */
 NavBar.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  showSearch: PropTypes.bool,
+  notify: PropTypes.bool
 };
 
 export default NavBar;
