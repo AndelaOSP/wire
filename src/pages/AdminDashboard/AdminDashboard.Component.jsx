@@ -29,7 +29,8 @@ export class AdminDashboard extends Component {
     super(props);
     this.state = {
       countryFilter: 'All Countries',
-      selectedUser: null
+      selectedUser: null,
+      loggedInUser: localStorage.getItem('email')
     };
   }
 
@@ -79,15 +80,17 @@ export class AdminDashboard extends Component {
 
   filterStaff = () => {
     let staff = this.props.staff;
-
+    let {loggedInUser} = this.state;
     // filter by countries
     if (this.state.countryFilter !== 'All Countries') {
       staff = staff.filter(user => {
         return this.state.countryFilter.toLocaleLowerCase() === user.Location.country.toLowerCase();
       });
     }
-
-    return staff;
+    const newStaff = staff.filter(user => {
+      return user.email !== loggedInUser;
+    });
+    return newStaff;
   };
 
   render() {
