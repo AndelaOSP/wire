@@ -23,7 +23,6 @@
       height: 0.3rem;
       border-radius: 5px;
       background-color: #3359df;
-      // position: absolute;
     }
   }
   .filter-search {
@@ -32,14 +31,13 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 1rem;
-    // position: absolute;
     top: 16vh;
-    width: 45vw;
+    width: 68vw;
     height: 8vh;
     .location-filter {
       display: flex;
       flex-direction: row;
-      // width: auto;
+      
       p {
         font-size: 1.5rem;
         font-weight: 500;
@@ -52,6 +50,7 @@
       height: 7vh;
       width: auto;
       margin-left: 27rem;
+      margin-left: auto;
       align-items: center;
       .search-bar {
         position: relative;
