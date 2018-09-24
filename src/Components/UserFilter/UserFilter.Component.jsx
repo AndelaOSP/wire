@@ -58,19 +58,24 @@ class UserFilter extends Component {
     const styles = {
       selectField: {
         fontSize: '12px',
-        backgroundColor: '#ffffff',
         width: '9.7vw',
         height: '5vh',
-        marginTop: '1vh'
+        marginTop: '1rem'
       },
-      flatButton: { marginLeft: '1vw', borderRadius: '3px' },
+      flatButton: {
+        marginLeft: '1.5rem',
+        borderRadius: '3px',
+        minWidth: '12rem',
+       },
       iconStyle: {
         fill: '#95989a',
-        left: '5.7vw'
+        left: '5.7vw',
       },
       labelStyle: {
-        backgroundColor: '#e0e0e0',
+        backgroundColor: '#95989a',
+        color:'white',
         height: '30px',
+        fontFamily: 'DIN Pro',
         width: '90px',
         lineHeight: '30px',
         paddingTop: '0',
@@ -114,7 +119,7 @@ class UserFilter extends Component {
             <div className="invite-button">
               <FlatButton
                 label="Invite"
-                labelStyle={{ verticalAlign: 'none', color: '#fff' }}
+                labelStyle={{ verticalAlign: 'none', color: '#ffff', fontFamily: 'DIN Pro', fontWeight:'700'}}
                 onClick={this.handleOpen}
                 backgroundColor="#3359df"
                 hoverColor="none"

@@ -3,10 +3,10 @@
 .user-filter {
   display: flex;
   flex-direction: column;
-  height: 25vh;
+  height: 13rem;
   width: auto;
   position: relative;
-  left: 15vw;
+  left: 5vw;
   top: 1.5vh;
   .heading-admin {
     display: flex;
@@ -14,15 +14,15 @@
     align-items: flex-start;
     position: relative;
     p {
-      font-size: 36px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1rem !important;
     }
     .underline-admin {
-      width: 11vw;
-      height: 6px;
+      width: 6rem;
+      height: 0.3rem;
       border-radius: 5px;
       background-color: #3359df;
-      position: absolute;
-      top: 10vh;
     }
   }
   .filter-search {
@@ -30,18 +30,17 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    position: absolute;
+    margin-top: 1rem;
     top: 16vh;
-    width: 45vw;
+    width: 68vw;
     height: 8vh;
     .location-filter {
       display: flex;
       flex-direction: row;
-      width: auto;
       p {
-        font-size: 20px;
-        font-weight: 300;
-        font-family: 'DIN Pro Light';
+        font-size: 1.5rem;
+        font-weight: 500;
+        font-family: 'DIN Pro';
       }
     }
     .right-side-search {
@@ -49,6 +48,7 @@
       flex-direction: row;
       height: 7vh;
       width: auto;
+      margin-left: auto;
       align-items: center;
       .search-bar {
         position: relative;
@@ -69,12 +69,13 @@
         }
       }
       .admin-search {
+        background-color: #f9f9f9;
         width: 1vw;
         height: 3.9vh;
         border: 0.05rem;
         border-width: 0.05rem;
         border-style: none;
-        border-color: #95989a;
+        border-color: #ededed;
         border-radius: 0.2rem;
         padding-top: .1rem;
         padding-left: 2.5rem;

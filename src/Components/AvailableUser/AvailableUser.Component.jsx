@@ -26,7 +26,8 @@ class AvailableUser extends Component {
    * Method to handle user removal
    */
   handleRemove = () => {
-    let { id, index } = this.props;
+    let { id, index,username} = this.props;
+    alert(`Are you sure you want to remove ${username}`);
     this.props.handleRemove(id, index);
   };
 
@@ -40,32 +41,32 @@ class AvailableUser extends Component {
         backgroundColor: '#ffffff'
       },
       iconStyles: {
-        fill: '#95989a',
+        fill: '#00000',
         left: '3vw'
       },
       labelStyles: {
         textAlign: 'center',
         paddingRight: '0',
         color: '#49abb0',
-        fontFamily: 'DIN Pro Extra Light',
+        fontFamily: 'DIN Pro',
         fontWeight: 'normal',
         fontStyle: 'normal',
         fontStretch: 'normal',
         letterSpacing: '0.3px'
       },
       hintStyles: {
-        backgroundColor: '#e0e0e0',
+        backgroundColor: '#F1F6F8',
         color: '#000',
         fontSize: '.9rem',
-        height: '35px',
+        height: '40px',
         width: '90px',
-        lineHeight: '35px',
+        lineHeight: '40px',
         paddingTop: '0',
         paddingRight: '0',
-        top: '7px',
+        top: '3px',
         textAlign: 'center',
         verticalAlign: 'none',
-        borderRadius: '20px'
+        borderRadius: '6px'
       },
       menuStyles: {
         width: '7vw',
@@ -73,7 +74,7 @@ class AvailableUser extends Component {
       },
       menuItemStyles: {
         fontSize: '1rem',
-        fontFamily: 'DIN Pro Extra Light',
+        fontFamily: 'DIN Pro',
         fontWeight: '300',
         fontStyle: 'normal',
         fontStretch: 'normal',
@@ -84,6 +85,7 @@ class AvailableUser extends Component {
       <div className="user-card">
         <img className="user-img" src={imageUrl} />
         <div className="username">{username}</div>
+        <div className="user-country">{country}</div>
         <div className="change-role">
           <SelectField
             underlineStyle={{ display: 'none' }}
@@ -102,9 +104,6 @@ class AvailableUser extends Component {
             <MenuItem value="Assignee" primaryText="Assignee" />
           </SelectField>
         </div>
-
-        <div className="user-country">{country}</div>
-
         <div className="remove" onClick={this.handleRemove}>
           Remove
         </div>
