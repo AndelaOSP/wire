@@ -37,6 +37,7 @@
     .location-filter {
       display: flex;
       flex-direction: row;
+      
       p {
         font-size: 1.5rem;
         font-weight: 500;
@@ -48,6 +49,7 @@
       flex-direction: row;
       height: 7vh;
       width: auto;
+      margin-left: 27rem;
       margin-left: auto;
       align-items: center;
       .search-bar {
