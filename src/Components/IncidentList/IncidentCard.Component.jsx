@@ -60,7 +60,6 @@ class IncidentCard extends Component {
               assignees.map((assignee, index) => (
                 <div className="assignee" key={index} style={{ backgroundColor: index == 0 ? '#fbaf31' : '#358fe2' }}>
                   {this.generateInitials(assignee) ? (<span className="tooltip-text">{assignee.username}</span>) : '' }
-                  
                 </div>
               ))
             ) : (
