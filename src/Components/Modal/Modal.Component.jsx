@@ -40,6 +40,9 @@ class Modal extends Component {
     e.preventDefault();
     let { email, position, location } = this.state;
     this.props.handleInvite(email, position, location);
+    this.setState({
+      email:''
+    });
   };
 
   render() {
@@ -48,6 +51,7 @@ class Modal extends Component {
       marginTop: '3.3rem',
       marginLeft: '.85rem',
       border: '1px solid #e0e0e0',
+      borderRadius:'5px',
       width: '92%',
       height: '3.2rem'
     };
@@ -58,7 +62,7 @@ class Modal extends Component {
             &times;
           </span>
           <div className="modal-header">
-            <p className="modal-heading">Add Users</p>
+            <p className="modal-heading">Invite User</p>
             <div className="modal-underline" />
           </div>
           <form className="modal-body" onSubmit={this.handleSubmit}>
@@ -66,7 +70,7 @@ class Modal extends Component {
               type="email"
               name="email"
               id="email-input"
-              placeholder="Email Address"
+              placeholder="Example@andela.com"
               value={this.state.email}
               onChange={this.handleEmailChange}
             />
@@ -74,7 +78,7 @@ class Modal extends Component {
               underlineStyle={{ display: 'none' }}
               iconStyle={{ display: 'none' }}
               labelStyle={{ top: '-0.3vh', marginLeft: '1rem', color: '#95989a' }}
-              hintText="Position"
+              hintText="Select Position"
               hintStyle={{ top: '1.4vh', marginLeft: '1rem', color: '#95989a' }}
               value={this.state.position}
               onChange={this.handlePositionChange}
@@ -87,7 +91,7 @@ class Modal extends Component {
               underlineStyle={{ display: 'none' }}
               iconStyle={{ display: 'none' }}
               labelStyle={{ top: '-0.3vh', marginLeft: '1rem', color: '#95989a' }}
-              hintText="Country"
+              hintText="Select Country"
               hintStyle={{ top: '1.4vh', marginLeft: '1rem', color: '#95989a' }}
               value={this.state.location}
               onChange={this.handleLocationChange}

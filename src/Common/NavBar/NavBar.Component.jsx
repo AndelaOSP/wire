@@ -36,7 +36,7 @@ export class NavBar extends Component {
   };
 
   render() {
-    let { showSearch } = this.props;
+    let { showSearch, notify } = this.props;
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <Link to="/dashboard">
@@ -48,10 +48,12 @@ export class NavBar extends Component {
               <input className="search-input" onFocus={this.handleSearch} type="text" placeholder="Search" />
             </div>
           ) : null}
-          <div className="notifications">
-            <img src="/assets/images/bell_icon.svg" color="#3960ad" className="notification-icon" />
-            <Badge badgeContent={3} className="badge" />
-          </div>
+          {notify ? (
+            <div className="notifications">
+              <img src="/assets/images/bell_icon.svg" color="#3960ad" className="notification-icon" />
+              <Badge badgeContent={3} className="badge" />
+            </div>
+          ) : null}
           <div className="profile">
             <div className="dropdowntn">
               <img className="profile-img" src={localStorage.getItem('user_avatar')} alt="Wire" />
@@ -78,7 +80,8 @@ export class NavBar extends Component {
  */
 NavBar.propTypes = {
   history: PropTypes.object.isRequired,
-  showSearch: PropTypes.bool
+  showSearch: PropTypes.bool,
+  notify: PropTypes.bool
 };
 
 export default NavBar;

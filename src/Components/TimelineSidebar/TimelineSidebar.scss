@@ -6,7 +6,8 @@
   padding: 1.5rem;
   margin-top: 0;
   background-color: #f1f6f8;
-  box-shadow: 0 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.2), 0 0.4rem 1rem 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.2),
+    0 0.4rem 1rem 0 rgba(0, 0, 0, 0.19);
   overflow: scroll;
   max-height: 88vh !important;
   .divider {
@@ -19,11 +20,11 @@
     padding: 0.1rem;
   }
   .incident-details {
-    padding-top: 0.5rem 0 .5rem 0;
+    padding-top: 0.5rem 0 0.5rem 0;
     .incident-subject {
       font-size: 20px;
       font-weight: 300;
-      font-family: 'DIN Pro Light';
+      font-family: "DIN Pro Light";
       text-transform: capitalize;
     }
     .incident-flag {
@@ -54,26 +55,26 @@
       .description-details {
         p {
           padding: 1rem;
-          font-family: 'DIN Pro Light';
+          font-family: "DIN Pro Light";
           font-size: 12px;
           font-weight: 300;
           line-height: 2.08;
           letter-spacing: normal;
           color: #000000;
           b {
-            font-family: 'DIN Pro';
+            font-family: "DIN Pro";
           }
         }
       }
     }
     .incident-extra {
       font-weight: 100;
-      font-family: 'DIN Pro Light';
+      font-family: "DIN Pro Light";
       font-size: 0.7rem;
     }
   }
   .incident-status {
-    font-family: 'DIN Pro Light';
+    font-family: "DIN Pro Light";
     font-weight: 400;
     .list {
       display: flex;
@@ -83,29 +84,45 @@
         width: 45px;
         height: 45px;
         background-color: #49abb0;
-        margin: .6rem .5rem 1.5rem .0rem;
+        margin: 0.6rem 0.5rem 1.5rem 0rem;
+        cursor: pointer;
         p {
-          font-family: 'DIN Pro Light';
+          font-family: "DIN Pro Light";
           font-size: 20px;
           line-height: 0.25;
           color: #ffffff;
           text-align: center;
         }
+        .tooltip-text {
+          visibility: hidden;
+          background-color: #000000;
+          color: white;
+          text-align: center;
+          border-radius: 6px;
+          width: 8rem;
+          position: absolute;
+          z-index: 1;
+          padding: 5px 0;
+        }
+        &:hover .tooltip-text {
+          visibility: visible;
+        }
       }
     }
-    .incident-dropdown {}
+    .incident-dropdown {
+    }
     .dropdown {
       position: relative;
-      &>div {
+      & > div {
         border-color: black !important;
-        &>button {
-          &>div {
+        & > button {
+          & > div {
             svg {
               fill: black !important;
             }
           }
         }
-        &>div {
+        & > div {
           border-color: black !important;
         }
       }
@@ -125,7 +142,7 @@
   }
   .loction-list {
     p {
-      font-family: 'DIN Pro Light';
+      font-family: "DIN Pro Light";
       font-size: 12px;
       font-weight: 300;
       line-height: 2.08;
