@@ -1,8 +1,8 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import shallowToJSON from 'enzyme-to-json';
+// import React from 'react';
+// import { shallow } from 'enzyme';
+// import shallowToJSON from 'enzyme-to-json';
 
-import IncidentCard from '../src/Components/IncidentList/IncidentCard.Component';
+// import IncidentCard from '../src/Components/IncidentList/IncidentCard.Component';
 
 describe('IncidentCard component', () => {
   // it('should render incident card', () => {
