@@ -29,7 +29,7 @@
         "format": "prettier --write --single-quote --print-width=120 --tab-width=2 \"src/**/*.{js,jsx}\"",
         "lint": "node_modules/.bin/eslint . --ext .jsx .js --fix",
         "lint:watch": "npm run lint --watch",
-        "start:dev": "npm run lint:watch && node server.js",
+        "start:dev": "npm run lint:watch && nodemon server.js",
         "start:prod": "npm run build && node server.js",
         "test": "npm run test:fend",
         "test:fend": "./node_modules/.bin/jest -u --coverage",

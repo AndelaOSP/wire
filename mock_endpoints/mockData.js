@@ -14,9 +14,9 @@ module.exports = {
       dateOccurred: '2018-06-10T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
-          username: 'akash banga',
-          imageUrl: 'akash banga.jpeg',
+          email: 'akash baga@g.com',
+          username: 'akash baga',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -47,9 +47,9 @@ module.exports = {
       dateOccurred: '2018-06-04T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
-          username: 'akash banga',
-          imageUrl: 'akash banga.jpeg',
+          email: 'akash baga@g.com',
+          username: 'akash baga',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -80,9 +80,9 @@ module.exports = {
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
-          username: 'akash banga',
-          imageUrl: 'akash banga.jpeg',
+          email: 'akash baga@g.com',
+          username: 'akash baga',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -113,9 +113,9 @@ module.exports = {
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
-          username: 'akash banga',
-          imageUrl: 'akash banga.jpeg',
+          email: 'akash baga@g.com',
+          username: 'akash baga',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -146,9 +146,9 @@ module.exports = {
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
-          username: 'akash banga',
-          imageUrl: 'akash banga.jpeg',
+          email: 'akash baga@g.com',
+          username: 'akash baga',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -179,9 +179,9 @@ module.exports = {
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
-          username: 'akash banga',
-          imageUrl: 'akash banga.jpeg',
+          email: 'akash baga@g.com',
+          username: 'akash baga',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -212,9 +212,9 @@ module.exports = {
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
-          username: 'akash banga',
-          imageUrl: 'akash banga.jpeg',
+          email: 'akash baga@g.com',
+          username: 'akash baga',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -245,9 +245,9 @@ module.exports = {
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
-          username: 'akash banga',
-          imageUrl: 'akash banga.jpeg',
+          email: 'akash baga@g.com',
+          username: 'akash baga',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -278,9 +278,9 @@ module.exports = {
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
-          username: 'akash banga',
-          imageUrl: 'akash banga.jpeg',
+          email: 'akash baga@g.com',
+          username: 'akash baga',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -311,9 +311,9 @@ module.exports = {
       dateOccurred: '2018-02-13T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
-          username: 'akash banga',
-          imageUrl: 'akash banga.jpeg',
+          email: 'akash baga@g.com',
+          username: 'akash baga',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -333,7 +333,43 @@ module.exports = {
       levelId: 1,
       locationId: 4,
       updatedAt: '2018-02-13T15:58:06.202Z',
-      assignees: [],
+      assignees: [
+        {
+          'id': 'cjm0mhomr000001mdfyhht9w6',
+          'slackId': null,
+          'email': 'james.kimani@andela.com',
+          'username': 'James Kimani',
+          'imageUrl': null,
+          'createdAt': '2018-09-13T13:41:45.844Z',
+          'updatedAt': '2018-09-26T11:47:17.992Z',
+          'locationId': 'cjee22lsq0000cqxs5tmmpf1g',
+          'roleId': 3,
+          'assignedRole': 'ccd'
+        },
+        {
+          'id': 'cjlp986ri000301jlt7glyyq3',
+          'slackId': 'U278UF5HR',
+          'email': 'brian.kimokoti@andela.com',
+          'username': 'Brian Assignee',
+          'imageUrl': null,
+          'createdAt': '2018-09-05T14:44:59.839Z',
+          'updatedAt': '2018-09-26T12:57:38.521Z',
+          'locationId': 'cjee22lsq0000cqxs5tmmpf1g',
+          'roleId': 2,
+          'assignedRole': 'assignee'
+        },   {
+          'id': 'cjlp986ri000301jlt7glyyq3',
+          'slackId': 'U278UF5HR',
+          'email': 'brian.kimokoti@andela.com',
+          'username': 'Brian CCD',
+          'imageUrl': null,
+          'createdAt': '2018-09-05T14:44:59.839Z',
+          'updatedAt': '2018-09-26T12:57:38.521Z',
+          'locationId': 'cjee22lsq0000cqxs5tmmpf1g',
+          'roleId': 2,
+          'assignedRole': 'ccd'
+        }
+      ],
       categoryId: null
     },
     {
@@ -344,9 +380,9 @@ module.exports = {
       dateOccurred: '2018-06-04T15:58:06.202Z',
       witnesses: [{
           id: '3rd',
-          email: 'akash banga@g.com',
+          email: 'akash baga@g.com',
           username: 'peter musonye',
-          imageUrl: 'akash banga.jpeg',
+          imageUrl: 'akash baga.jpeg',
           createdAt: '2018-03-26T09:44:48.701Z',
           updatedAt: '2018-03-26T09:44:48.701Z',
           roleId: 1
@@ -354,7 +390,7 @@ module.exports = {
         {
           id: '2nd',
           email: 'peter musonye@g.com',
-          username: 'akash banga',
+          username: 'akash baga',
           imageUrl: 'peter musonye.jpeg',
           createdAt: '2018-03-26T09:44:48.681Z',
           updatedAt: '2018-03-26T09:44:48.681Z',

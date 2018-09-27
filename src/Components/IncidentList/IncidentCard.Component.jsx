@@ -20,14 +20,9 @@ class IncidentCard extends Component {
   generateInitials = assignee => {
     let names = assignee.username.split(' ');
     if(names) {
-      if(names.length>1) {
-        let firstInitial = (names[0] && names[0][0].toUpperCase()) || '';
-        let secondInitial = (names[1]&& names[1][0].toUpperCase()) || '';
-        return firstInitial.trim() + secondInitial.trim();
-      } else {
-        let firstInitial = names[0][0].toUpperCase();
-        return firstInitial;
-      }
+      let firstInitial = (names[0] && names[0][0].toUpperCase()) || '';
+      let secondInitial = (names[1]&& names[1][0].toUpperCase()) || '';
+      return firstInitial.trim() + secondInitial.trim();
     }
   };
 
@@ -58,8 +53,9 @@ class IncidentCard extends Component {
           <div className="assigned-to">
             {assignees && assignees.length ? (
               assignees.map((assignee, index) => (
-                <div className="assignee" key={index} style={{ backgroundColor: index == 0 ? '#fbaf31' : '#358fe2' }}>
-                  {this.generateInitials(assignee) ? (<span className="tooltip-text">{assignee.username}</span>) : '' }
+                <div className="assignee" key={index} style={{ backgroundColor: assignee.assignedRole === 'assignee' ? '#358fe2' : '#fbaf31' }}>
+                  {this.generateInitials(assignee)}
+                  <span className="tooltip-text">{assignee.username}</span>
                 </div>
               ))
             ) : (
