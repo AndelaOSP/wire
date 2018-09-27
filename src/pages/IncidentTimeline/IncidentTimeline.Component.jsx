@@ -66,9 +66,9 @@ export class IncidentTimeline extends Component {
                 <Tab label="Notes" className="notes-tab">
                   <TimelineNotes className="notes-content" {...this.props} />
                 </Tab>
-                <Tab label="Chat" className="chat-tab">
+                {/* <Tab label="Chat" className="chat-tab">
                   <TimelineChat className="chat-content" {...this.props} />
-                </Tab>
+                </Tab> */}
               </Tabs>
             </div>
           </div>
