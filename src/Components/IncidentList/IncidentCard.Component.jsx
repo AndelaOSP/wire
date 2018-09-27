@@ -19,9 +19,11 @@ class IncidentCard extends Component {
 
   generateInitials = assignee => {
     let names = assignee.username.split(' ');
-    let firstInitial = names[0][0].toUpperCase();
-    let secondInitial = names[1][0].toUpperCase();
-    return firstInitial + secondInitial;
+    if(names) {
+      let firstInitial = (names[0] && names[0][0].toUpperCase()) || '';
+      let secondInitial = (names[1]&& names[1][0].toUpperCase()) || '';
+      return firstInitial.trim() + secondInitial.trim();
+    }
   };
 
   trimText = (text, length) => {
@@ -49,9 +51,9 @@ class IncidentCard extends Component {
           <div className="incident-subject">{this.trimText(incidentSubject, 30)}</div>
           <div className="incident-description">{this.trimText(incidentDescription, 280)}</div>
           <div className="assigned-to">
-            {assignees.length ? (
+            {assignees && assignees.length ? (
               assignees.map((assignee, index) => (
-                <div className="assignee" key={index} style={{ backgroundColor: index == 0 ? '#fbaf31' : '#358fe2' }}>
+                <div className="assignee" key={index} style={{ backgroundColor: assignee.assignedRole === 'assignee' ? '#358fe2' : '#fbaf31' }}>
                   {this.generateInitials(assignee)}
                   <span className="tooltip-text">{assignee.username}</span>
                 </div>
