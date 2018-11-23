@@ -9,7 +9,7 @@
     min-width: 340px;
     .andela-logo {
       margin: 20% 0% 0% 10%;
-      width: 8.3rem;
+      width: 10.3rem;
       height: 3.2rem;
     }
     .welcome-text {
@@ -41,25 +41,29 @@
   .right-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     .right-text {
       position: absolute;
       color: #fbaf31;
       font-size: 40px;
       font-weight: 500;
-      left: 75rem;
-      top: 17rem;
+      margin-left: 40%;
+      text-align: left;
+      top: 12rem;
       min-width: 10rem;
       white-space: nowrap;
     }
     .underline {
       position: absolute;
       background-color: #fdb237;
+      margin-left: 40%;
       min-width: 8rem;
       height: 0.5vh;
+      width: 13.5%;
       border-radius: 5px;
-      left: 80rem;
-      top: 27rem;
+      top: 22rem;
     }
   }
 }
