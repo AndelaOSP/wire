@@ -6,19 +6,20 @@
   width: 100vw;
   .left-container {
     height: 100vh;
-    min-width: 340px;
+    width: 28.5%;
+    //min-width: 340px;
     .andela-logo {
-      margin: 20% 0% 0% 10%;
-      width: 10.3rem;
-      height: 3.2rem;
+      margin: 20% 0% 0% 13%;
+      width: 7.3rem;
+      height: 2.2rem;
     }
     .welcome-text {
-      margin-top: 40vh;
-      margin-left: 2vw;
-      width: 70%;
+      margin-top: 48vh;
+      margin-left: 3vw;
+      width: 60%;
       p {
         font-family: 'DIN Pro Extra Light';
-        font-size: 25px;
+        font-size: 20px;
         .wire {
           font-family: 'DIN Pro Light';
           font-style: italic;
@@ -28,10 +29,9 @@
     .button {
       .google-logo {
         display: inline-block;
-        min-width: 3vw;
-        height: 60%;
-        padding: 0%;
-        margin-left: 0%;
+        min-width: 2vw;
+        height: 50%;
+        margin-left: 3vw;
       }
       .label {
         display: inline-block;
@@ -40,30 +40,29 @@
   }
   .right-container {
     display: flex;
-    flex-direction: column;
-    width: 100%;
+    flex-direction: row;
     height: 100%;
     overflow: hidden;
     .right-text {
       position: absolute;
       color: #fbaf31;
-      font-size: 40px;
-      font-weight: 500;
-      margin-left: 40%;
+      font-size: 30px;
+      font-weight: 400;
+      margin-left: 48%;
       text-align: left;
-      top: 12rem;
+      top: 12.5rem;
       min-width: 10rem;
       white-space: nowrap;
     }
     .underline {
       position: absolute;
       background-color: #fdb237;
-      margin-left: 40%;
+      margin-left: 51%;
       min-width: 8rem;
       height: 0.5vh;
-      width: 13.5%;
+      width: 8%;
       border-radius: 5px;
-      top: 22rem;
+      top: 19.5rem;
     }
   }
 }
