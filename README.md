@@ -13,6 +13,7 @@ To get this project up and running locally proceed as follows:
 Software you need to install and how to install:
 
  * You will need to have npm, you can install node using the [node.js installer](https://nodejs.org/en/download/). npm is installed as part of node.
+ * To use `yarn`, you'll first need to install it on your system. You can install yarn using [yarn installer](https://yarnpkg.com/lang/en/docs/install/#mac-stable).
 
 ### Installing
 
@@ -40,13 +41,16 @@ Series of steps to setup development environment
 ```
 NODE_ENV=development
 API_URL=http://wire.andela.com:8080/api
-ANDELA_API_BASE_URL=https://api.andela.com
+ANDELA_API_BASE_URL=https://api-prod.andela.com
 BASE_URL=http://wire.andela.com:8080
 ```
 
+* Run the following command on the terminal to start the server:
+  ``` $ yarn start:dev ```
+
 ## Running the tests
 
-*Tests can can be run using one of the following commands
+* Tests can can be run using one of the following commands
 ```
 jest
 npm run test:fend
