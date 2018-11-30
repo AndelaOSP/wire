@@ -6,10 +6,10 @@ const getErrorMessage = (error) => {
   }
 };
 
-// Incidents Error Action Creator
-export const errorAction = (error) => {
+export const errorAction = error => {
   if (error.response) {
     let message;
+
     switch (error.response.status) {
       case 401 || 403:
         message = getErrorMessage(error) || 'You might not be logged in/authorized. Please try again.';
@@ -23,6 +23,7 @@ export const errorAction = (error) => {
       default:
         message = getErrorMessage(error) || 'Oops! Something went wrong. Please try again.';
     }
+
     return {
       type: ERROR_ACTION,
       status: true,

@@ -1,12 +1,14 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import * as ActionTypes from './actionTypes';
 import * as ActionCreators from './locationsAction';
 import { locations } from '../../mock_endpoints/mockData';
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-
+import {
+  httpResponse,
+  mockStore,
+  mockAxios,
+  expectedActionFailure,
+  mockDispatchAction
+} from '../testHelpers';
 
 describe('async actions', () => {
   beforeEach(() => {
@@ -17,55 +19,27 @@ describe('async actions', () => {
     moxios.uninstall();
   });
 
-  it('gets all locations', done => {
+  it('gets all locations', () => {
+    const mockResponse = httpResponse(200, { data: { locations: locations }});
     const store = mockStore();
-    const expectedActions = [{ type: ActionTypes.FETCH_LOCATIONS }];
+    const expectedActions = [
+      {
+        type: ActionTypes.FETCH_LOCATIONS,
+        locations,
+        isError: false
+      }
+    ];
+    moxios.wait(() => mockAxios(mockResponse, moxios));
 
-    store.dispatch(ActionCreators.fetchLocations());
-
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 200,
-          response: {
-            status: 'success',
-            data: {
-              locations: [
-                locations
-              ]
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0].type).toEqual(expectedActions[0].type);
-          done();
-        });
-    });
+    return mockDispatchAction(store, ActionCreators.fetchLocations(), expectedActions);
   });
-  it('creates ERROR_ACTION when there is an error fetching locations', done => {
+
+  it('creates ERROR_ACTION when there is an error fetching locations', () => {
+    const mockResponse = httpResponse(401, { message: 'You might not be logged in/authorized. Please try again.' });
     const store = mockStore();
-    const expectedActions = [{ type: ActionTypes.ERROR_ACTION }];
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 401);
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
 
-    store.dispatch(ActionCreators.fetchLocations());
-
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      const errorResponse = {
-        status: 404,
-        response: {
-          status: 404,
-          data: {
-            error: 'Resource Not Found'
-          }
-        }
-      };
-      request.respondWith(errorResponse).then(() => {
-        const storeActions = store.getActions();
-        expect(storeActions[0].type).toEqual(expectedActions[0].type);
-        done();
-      });
-    });
+    return mockDispatchAction(store, ActionCreators.fetchLocations(), [expectedActions[1]]);
   });
 });
