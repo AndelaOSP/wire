@@ -648,6 +648,21 @@ module.exports = {
         centre: 'Nairobi',
         country: 'Kenya'
       }
+    },
+    {
+      id: 11,
+      email: 'cosmas.billa@andela.com',
+      username: 'Cosmas Billa',
+      imageUrl: 'https://lh4.googleusercontent.com/-cpsyP61EMkw/AAAAAAAAAAI/AAAAAAAAABQ/gj2O9P_m5Ok/photo.jpg?sz=50',
+      roleId: 3,
+      Role: {
+        name: 'Admin'
+      },
+      Location: {
+        name: 'Tsavo',
+        centre: 'Nairobi',
+        country: 'Kenya'
+      }
     }
   ],
   locations: [{
