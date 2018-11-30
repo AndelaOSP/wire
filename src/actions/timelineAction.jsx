@@ -1,7 +1,14 @@
+// third-party libraries
 import * as axios from 'axios';
+
+// helpers
 import config from '../config/index';
+
+// thunk actions
 import { loadingAction } from './LoadingAction';
 import { errorAction } from './errorAction';
+
+// action types
 import {
   FETCH_INCIDENT,
   ADD_NOTE,
@@ -12,26 +19,57 @@ import {
   ARCHIVE_NOTE
 } from './actionTypes';
 
+/**
+ * load all incident details
+ * 
+ * @param {string} incidentId
+ * 
+ * @returns {Promise}
+ */
 const loadIncident = incidentId => {
   let headers = { Authorization: localStorage.token };
   return axios.get(`${config.INCIDENTS_URL}/${incidentId}`, { headers });
 };
 
+/**
+ * load an incident notes
+ * 
+ * @param {string} incidentId
+ * 
+ * @returns {Promise}
+ */
 const loadNotes = incidentId => {
   return axios.get(`${config.INCIDENTS_URL}/${incidentId}/notes`);
 };
 
+/**
+ * load an incident chats
+ * 
+ * @param {string} incidentId
+ * 
+ * @returns {Promise}
+ */
 const loadChats = incidentId => {
   return axios.get(`${config.INCIDENTS_URL}/${incidentId}/chats`);
 };
 
-// load Incident Action Creator
+/**
+ * load Incident Action Creator
+ * 
+ * @param {Object} incident
+ * 
+ * @returns {Object}
+ */
 export const loadIncidentSuccess = incident => {
   return { type: FETCH_INCIDENT, incident, isLoading: false, isError: false };
 };
 
 /**
- * loadIncident Thunk
+ * load incident Thunk
+ * 
+ * @param {string} incidentId
+ * 
+ * @returns {Function}
  */
 export const loadIncidentDetails = incidentId => {
   return dispatch => {
@@ -50,15 +88,24 @@ export const loadIncidentDetails = incidentId => {
   };
 };
 
-// Add notes Action Creator
+/**
+ * Add notes Action Creator
+ * 
+ * @param {Object} note
+ * 
+ * @returns {Object}
+ */
 export const addNoteSuccess = note => {
   return { type: ADD_NOTE, note };
 };
 
 /**
  * Add notes to an incident
- * @param {*} notesText
- * @param {*} incidentId
+ * 
+ * @param {string} notesText
+ * @param {string} incidentId
+ * 
+ * @returns {Function}
  */
 export const addNote = (noteText, incidentId) => {
   let notesUrl = `${config.INCIDENTS_URL}/${incidentId}/notes`;
@@ -77,15 +124,26 @@ export const addNote = (noteText, incidentId) => {
   };
 };
 
-// Edit notes Action Creator
+/**
+ * Edit notes Action Creator
+ * 
+ * @param {Object} note
+ * @param {number} index
+ * 
+ * @returns {Object}
+ */
 export const editNoteSuccess = (note, index) => {
   return { type: EDIT_NOTE, note, index };
 };
 
 /**
  * Edit a note on an incident
- * @param {*} noteText
- * @param {*} noteId
+ * 
+ * @param {string} noteText
+ * @param {string} noteId
+ * @param {number}
+ * 
+ * @returns {Function}
  */
 export const editNote = (noteText, noteId, index) => {
   let noteUrl = `${config.NOTES_URL}/${noteId}`;
@@ -104,11 +162,26 @@ export const editNote = (noteText, noteId, index) => {
   };
 };
 
-// Archive note action creator
+/**
+ * Archive note action creator
+ * 
+ * @param {Object} note 
+ * @param {number} index 
+ * 
+ * @returns {Object}
+ */
 export const archiveNoteSuccess = (note, index) => {
   return { type: ARCHIVE_NOTE, note, index };
 };
 
+/**
+ * archive note thunk
+ * 
+ * @param {string} noteId 
+ * @param {number} index 
+ * 
+ * @returns {Function}
+ */
 export const archiveNote = (noteId, index) => {
   return dispatch => {
     return axios
@@ -122,15 +195,24 @@ export const archiveNote = (noteId, index) => {
   };
 };
 
-// Change incident status action creator
+/**
+ * Change incident status action creator
+ * 
+ * @param {Object} incident 
+ * 
+ * @returns {Object}
+ */
 export const changeStatusSuccess = incident => {
   return { type: CHANGE_STATUS, incident };
 };
 
 /**
  * Change the status of an incident whether open, closed or in progress
- * @param {*} statusId
- * @param {*} incidentId
+ * 
+ * @param {string} statusId
+ * @param {string} incidentId
+ * 
+ * @returns {Function}
  */
 export const changeStatus = (statusId, incidentId) => {
   let headers = { Authorization: localStorage.token };
@@ -152,15 +234,23 @@ export const changeStatus = (statusId, incidentId) => {
   };
 };
 
-// Change incident assignee action creator
+/**
+ * Change incident assignee action creator
+ * 
+ * @param {Object} incident 
+ * 
+ * @returns {Object}
+ */
 export const changeAssigneeSuccess = incident => {
   return { type: CHANGE_ASSIGNEE, incident };
 };
 
 /**
  * Change assignee thunk
- * @param {*} assigneeId
- * @param {*} incidentId
+ * 
+ * @param {Object} payload
+ * 
+ * @returns {Function}
  */
 export const changeAssignee = payload => {
   let headers = { Authorization: localStorage.token };
@@ -182,16 +272,23 @@ export const changeAssignee = payload => {
   };
 };
 
-// Handle CC'd action creator
+/**
+ * Handle CC'd action creator
+ * 
+ * @param {Object} incident 
+ * 
+ * @returns {Object}
+ */
 export const changeCCdSuccess = incident => {
   return { type: CHANGE_ASSIGNEE, incident };
 };
 
 /**
  * Handle CCd thunk
- * @param {*} assigneeId
- * @param {*} incidentId
- * @param {*} status
+ * 
+ * @param {Object} payload
+ * 
+ * @returns {Function}
  */
 export const handleCC = payload => {
   let headers = { Authorization: localStorage.token };
@@ -213,15 +310,24 @@ export const handleCC = payload => {
   };
 };
 
-// Send chat message action creator
+/**
+ * Send chat message action creator
+ * 
+ * @param {Object} chat 
+ * 
+ * @returns {Object}
+ */
 export const sendMessageSuccess = chat => {
   return { type: ADD_CHAT, chat };
 };
 
 /**
  * Send chat message thunk
- * @param {*} incidentId
- * @param {*} message
+ * 
+ * @param {string} incidentId
+ * @param {string} message
+ * 
+ * @returns {Function}
  */
 export const sendMessage = (incidentId, message) => {
   return dispatch => {

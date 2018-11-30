@@ -1,12 +1,21 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import * as actions from '../src/actions/timelineAction';
-import * as types from '../src/actions/actionTypes';
-import { testIncidents, notes, chats } from '../mock_endpoints/mockData';
+// third-party libraries
 import moxios from 'moxios';
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+// thunks
+import * as actions from '../src/actions/timelineAction';
+
+// types
+import * as types from '../src/actions/actionTypes';
+
+// mocks
+import { testIncidents, notes, chats } from '../mock_endpoints/mockData';
+
+// helpers
+import {
+  mockStore,
+  mockAxios,
+  mockDispatchAction
+} from '../src/testHelpers';
 
 describe('async actions', () => {
   beforeEach(() => {
@@ -113,32 +122,29 @@ describe('async actions', () => {
     });
   });
 
-  it('creates all appropriate actions when adding a note', done => {
+  it('creates all appropriate actions when adding a note', () => {
     let noteText = notes[0].note;
     let incidentId = notes[0].incidentId;
     let userId = notes[0].userId;
 
+    const mockResponse = {
+      status: 201,
+      response: {
+        status: 'success',
+        data: {
+          data: notes[0]
+        }
+      }
+    };
+
+    moxios.wait(() => mockAxios(mockResponse, moxios));
+
     const store = mockStore();
-    store.dispatch(actions.addNote(noteText, incidentId, userId));
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 201,
-          response: {
-            status: 'success',
-            data: notes[0]
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[2]);
-          done();
-        });
-    });
+
+    return mockDispatchAction(store, actions.addNote(noteText, incidentId, userId), [expectedActions[2]]);
   });
 
-  it('creates all appropriate actions when editing a note', done => {
+  it('creates all appropriate actions when editing a note', () => {
     let noteText = 'A new note';
     let noteId = notes[0].id;
     let index = 0;
@@ -146,151 +152,126 @@ describe('async actions', () => {
     let updatedNote = notes[0];
     updatedNote['note'] = noteText;
 
+    const mockResponse = {
+      status: 200,
+      response: {
+        status: 'success',
+        data: {
+          data: updatedNote
+        }
+      }
+    };
+
+    moxios.wait(() => mockAxios(mockResponse, moxios));
     const store = mockStore();
-    store.dispatch(actions.editNote(noteText, noteId, index));
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 200,
-          response: {
-            status: 'success',
-            data: updatedNote
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[3]);
-          done();
-        });
-    });
+
+    return mockDispatchAction(store, actions.editNote(noteText, noteId, index), [expectedActions[3]]);
   });
 
-  it('creates all appropriate actions when archiving a note', done => {
+  it('creates all appropriate actions when archiving a note', () => {
     let noteId = notes[0].id;
     let index = 0;
 
+    const mockResponse = {
+      status: 200,
+      response: {
+        status: 'success',
+        data: {
+          data: notes[0]
+        }
+      }
+    };
+
+    moxios.wait(() => mockAxios(mockResponse, moxios));
     const store = mockStore();
-    store.dispatch(actions.archiveNote(noteId, index));
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 200,
-          response: {
-            status: 'success',
-            data: notes[0]
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[4]);
-          done();
-        });
-    });
+
+    return mockDispatchAction(store, actions.archiveNote(noteId, index), [expectedActions[4]]);
   });
 
-  it('creates all appropriate actions when changing incident status', done => {
+  it('creates all appropriate actions when changing incident status', () => {
     let incidentId = testIncidents[0].id;
     let statusId = 2;
     let incidentWithNewStatus = testIncidents[0];
     incidentWithNewStatus['statusId'] = 2;
 
+    const mockResponse = {
+      status: 200,
+      response: {
+        status: 'success',
+        data: {
+          data: incidentWithNewStatus
+        }
+      }
+    };
+
+    moxios.wait(() => mockAxios(mockResponse, moxios));
     const store = mockStore();
-    store.dispatch(actions.changeStatus(statusId, incidentId));
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 200,
-          response: {
-            status: 'success',
-            data: incidentWithNewStatus
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[5]);
-          done();
-        });
-    });
+
+    return mockDispatchAction(store, actions.changeStatus(statusId, incidentId), [expectedActions[5]]);
   });
 
-  it('creates all appropriate actions when changing incident assignee', done => {
+  it('creates all appropriate actions when changing incident assignee', () => {
     let incidentId = testIncidents[0].id;
     let assigneeId = 1;
     let incidentWithNewAssignee = testIncidents[0];
     incidentWithNewAssignee['assigneeId'] = assigneeId;
 
+    const mockResponse = {
+      status: 200,
+      response: {
+        status: 'success',
+        data: {
+          data: incidentWithNewAssignee
+        }
+      }
+    };
+
+    moxios.wait(() => mockAxios(mockResponse, moxios));
     const store = mockStore();
-    store.dispatch(actions.changeAssignee(assigneeId, incidentId));
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 200,
-          response: {
-            status: 'success',
-            data: incidentWithNewAssignee
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[6]);
-          done();
-        });
-    });
+
+    return mockDispatchAction(store, actions.changeAssignee(assigneeId, incidentId), [expectedActions[6]]);
   });
 
-  it('creates all appropriate actions when sending messages', done => {
+  it('creates all appropriate actions when sending messages', () => {
     let incidentId = testIncidents[0].id;
     let userId = 3;
     let message = chats[2].chat;
 
+    const mockResponse = {
+      status: 200,
+      response: {
+        status: 'success',
+        data: {
+          data: chats[2]
+        }
+      }
+    };
+
+    moxios.wait(() => mockAxios(mockResponse, moxios));
     const store = mockStore();
-    store.dispatch(actions.sendMessage(incidentId, userId, message));
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 200,
-          response: {
-            status: 'success',
-            data: chats[2]
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[7]);
-          done();
-        });
-    });
+
+    return mockDispatchAction(store, actions.sendMessage(incidentId, userId, message), [expectedActions[7]]);
   });
 
-  it('dispatches error action when there is an error with a request', done => {
+  it('dispatches error action when there is an error with a request', () => {
     let incidentId = testIncidents[0].id;
     let userId = 3;
     let message = chats[2].chat;
 
+    const mockResponse = {
+      status: 401,
+      response: {
+        status: 401,
+        data: {
+          message: 'You might not be logged in/authorized. Please try again.'
+        }
+      }
+    };
+
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
     const store = mockStore();
-    store.dispatch(actions.sendMessage(incidentId, userId, message));
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 401,
-          response: {
-            status: 401,
-            data: {
-              error: 'Not authorized'
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[8]);
-          done();
-        });
-    });
+
+    return mockDispatchAction(store, actions.sendMessage(incidentId, userId, message), [expectedActions[8]]);
   });
 });

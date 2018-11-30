@@ -1,12 +1,23 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import * as actions from '../src/actions/staffAction';
-import * as types from '../src/actions/actionTypes';
-import { users } from '../mock_endpoints/mockData';
+// third-party libraries
 import moxios from 'moxios';
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+// thunks
+import * as actions from '../src/actions/staffAction';
+
+// types
+import * as types from '../src/actions/actionTypes';
+
+// mocks
+import { users } from '../mock_endpoints/mockData';
+
+// helpers
+import {
+  isLoading,
+  mockStore,
+  mockAxios,
+  expectedActionFailure,
+  mockDispatchAction
+} from '../src/testHelpers';
 
 describe('async actions', () => {
   beforeEach(() => {
@@ -17,67 +28,51 @@ describe('async actions', () => {
     moxios.uninstall();
   });
 
-  const expectedActions = [
-    {
-      type: types.IS_LOADING,
-      status: true
-    },
-    {
-      type: types.FETCH_STAFF,
-      staff: users,
-      isLoading: false,
-      isError: false
-    },
-    { type: types.ERROR_ACTION,
-      status: true,
-      message: 'You might not be logged in/authorized. Please try again.'
-    }
-  ];
-
-  it('creates all appropriate actions when fetching staff', done => {
-    const store = mockStore();
-    store.dispatch(actions.fetchStaff());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 201,
-          response: {
-            status: 'success',
-            data: {
-              users
-            }
+  it('creates all appropriate actions when fetching staff', () => {
+    const mockResponse = {
+      status: 201,
+      response: {
+        status: 'success',
+        data: {
+          data: {
+            users
           }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[0]);
-          expect(storeActions[1]).toEqual(expectedActions[1]);
-          done();
-        });
-    });
+        }
+      }
+    };
+
+    moxios.wait(() => mockAxios(mockResponse, moxios));
+
+    const store = mockStore();
+    const expectedActions = [
+      isLoading,
+      {
+        type: types.FETCH_STAFF,
+        staff: users,
+        isLoading: false,
+        isError: false
+      },
+    ];
+    
+    return mockDispatchAction(store, actions.fetchStaff(), expectedActions);
   });
 
-  it('dispatches error action when fetching staff fails', done => {
+  it('dispatches error action when fetching staff fails', () => {
+    const mockResponse = {
+      status: 401,
+      response: {
+        status: 401,
+        data: {
+          message: 'You might not be logged in/authorized. Please try again.'
+        }
+      }
+    };
+
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 401);
     const store = mockStore();
-    store.dispatch(actions.fetchStaff());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 401,
-          response: {
-            status: 401,
-            data: {
-              error: 'Not authorized'
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[0]);
-          done();
-        });
-    });
+
+    return mockDispatchAction(store, actions.fetchStaff(), expectedActions);
   });
 });

@@ -1,11 +1,24 @@
+// third-party libraries
 import * as axios from 'axios';
-import { GET_TOKEN_SUCCESS } from './actionTypes';
+
+// helpers
 import config from '../config/index';
+
+// action types
+import { GET_TOKEN_SUCCESS } from './actionTypes';
+
+// thunk actions
 import { loadingAction } from './LoadingAction';
 import { errorAction } from './errorAction';
 
-// Get Token Action creator
-
+/**
+ * Get Token Action creator
+ * 
+ * @param {boolean} hasToken 
+ * @param {string} token 
+ * 
+ * @returns {Object}
+ */
 export const getTokenSuccess = (hasToken, token) => {
   localStorage.setItem('token', token);
   return {
@@ -18,8 +31,11 @@ export const getTokenSuccess = (hasToken, token) => {
 
 /**
  * getToken Thunk
+ * 
+ * @param {string} email
+ * 
+ * @returns {Function}
  */
-
 export const getToken = email => {
   let loginUrl = `${config.API_URL}/users/login`;
   return dispatch => {
