@@ -2,7 +2,7 @@ import { ERROR_ACTION } from './actionTypes';
 
 const getErrorMessage = (error)=> {
   if(error.response && error.response.data && error.response.data.message) return error.response.data.message;
-}
+};
 
 // Incidents Error Action Creator
 export const errorAction = error => {
