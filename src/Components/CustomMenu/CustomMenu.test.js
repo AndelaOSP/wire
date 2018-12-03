@@ -1,7 +1,7 @@
 import React from 'react';
 import shallowToJSON from 'enzyme-to-json';
 import { shallow } from 'enzyme';
-import CustomMenu from '../src/Components/CustomMenu/CustomMenu.Component';
+import CustomMenu from './CustomMenu.Component';
 import SelectField from 'material-ui/SelectField';
 
 describe('CustomMenu component', () => {

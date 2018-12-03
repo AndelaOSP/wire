@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import IncidentList from '../src/Components/IncidentList/IncidentList.Component';
+import IncidentList from './IncidentList.Component';
 
 describe('IncidentList component', () => {
   it('should render incident sections', () => {
