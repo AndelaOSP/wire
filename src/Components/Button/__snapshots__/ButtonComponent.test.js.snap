@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonComponent Test Should render Button Component 1`] = `
+<FlatButton
+  className="button_"
+  disabled={false}
+  fullWidth={false}
+  label="Cancel"
+  labelPosition="after"
+  labelStyle={Object {}}
+  onKeyboardFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onTouchStart={[Function]}
+  primary={false}
+  secondary={false}
+/>
+`;

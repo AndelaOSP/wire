@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import shallowToJSON from 'enzyme-to-json';
 
-import TimelineSidebar from '../src/Components/TimelineSidebar/TimelineSidebar.Component';
-import { testIncidents } from '../mock_endpoints/mockData';
+import TimelineSidebar from './TimelineSidebar.Component';
+import { testIncidents } from '../../../mock_endpoints/mockData';
 
 describe('Timeline Sidebar component', () => {
   it('should have all the Timeline Sidebar content', () => {

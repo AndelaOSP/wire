@@ -3,12 +3,12 @@ import createRouterContext from 'react-router-test-context';
 import { mount } from 'enzyme';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import initialState from '../src/reducers/initialState';
+import initialState from '../../reducers/initialState';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import PropTypes from 'prop-types';
 import moxios from 'moxios';
 
-import SearchComponent from '../src/pages/Search/Search.Component';
+import SearchComponent from './Search.Component';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

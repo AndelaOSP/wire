@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import shallowToJSON from 'enzyme-to-json';
 
-import TimelineChat from '../src/Components/TimelineChat/TimelineChat.Component';
-import { testIncidents } from '../mock_endpoints/mockData';
+import TimelineChat from './TimelineChat.Component';
+import { testIncidents } from '../../../mock_endpoints/mockData';
 
 describe('Timeline Chat component', () => {
   it('should have all the Timeline Chat content', () => {

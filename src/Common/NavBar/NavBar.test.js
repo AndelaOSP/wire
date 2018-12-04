@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import shallowToJSON from 'enzyme-to-json';
 
-import { NavBar } from '../src/Common/NavBar/NavBar.Component';
+import { NavBar } from './NavBar.Component';
 
 describe('Navbar component', () => {
   it('should have all the Navbar content', () => {
