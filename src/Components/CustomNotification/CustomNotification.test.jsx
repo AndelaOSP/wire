@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import shallowToJSON from 'enzyme-to-json';
 
-import CustomNotification from '../src/Components/CustomNotification/CustomNotification.Component';
+import CustomNotification from './CustomNotification.Component';
 
 describe('Custom Notification component', () => {
   it('should display a success notification with the message passed', () => {

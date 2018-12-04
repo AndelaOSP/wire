@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import IncidentSection from '../src/Components/IncidentList/IncidentSection.Component';
-import { testIncidents } from '../mock_endpoints/mockData';
+import IncidentSection from './IncidentSection.Component';
+import { testIncidents } from '../../../mock_endpoints/mockData';
 
 describe('IncidentCard component', () => {
   it('should render no cards when there are no incidents', () => {

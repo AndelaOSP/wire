@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import shallowToJSON from 'enzyme-to-json';
 
-import IncidentFilter from '../src/Components/IncidentFilter/IncidentFilter.Component';
+import IncidentFilter from './IncidentFilter.Component';
 
 describe('IncidentFilter component', () => {
   it('should have all the IncidentFilter content', () => {

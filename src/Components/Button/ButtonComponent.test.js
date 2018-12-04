@@ -1,7 +1,7 @@
 import React from 'react';
 import shallowToJSON from 'enzyme-to-json';
 import { shallow } from 'enzyme';
-import CustomButton  from '../src/Components/Button/Button.Component';
+import CustomButton  from './Button.Component';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import PropTypes from   'prop-types';
 

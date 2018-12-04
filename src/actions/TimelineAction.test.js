@@ -1,8 +1,8 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import * as actions from '../src/actions/timelineAction';
-import * as types from '../src/actions/actionTypes';
-import { testIncidents, notes, chats } from '../mock_endpoints/mockData';
+import * as actions from './timelineAction';
+import * as types from './actionTypes';
+import { testIncidents, notes, chats } from '../../mock_endpoints/mockData';
 import moxios from 'moxios';
 
 const middlewares = [thunk];

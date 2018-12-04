@@ -83,7 +83,7 @@ class LoginPage extends React.Component {
               <img className="landing-image" src="/assets/images/wire_landing_page_vector@2x.png" />
               <div className="right-text">
                 <p>
-                  An Incident <br />Reporting Platform
+                  <span style={{fontWeight:600}}>An Incident</span> <br />Reporting Platform
                 </p>
               </div>
               <div className="underline" />

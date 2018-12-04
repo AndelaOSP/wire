@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomMenu component Should have all the CustomMenu content 1`] = `
+<SelectField
+  autoWidth={false}
+  className="custom-menu"
+  disabled={false}
+  fullWidth={false}
+  iconStyle={
+    Object {
+      "fill": "#000000",
+      "marginRight": "1vw",
+      "textAlign": "center",
+    }
+  }
+  labelStyle={
+    Object {
+      "marginLeft": "1.85vw",
+      "textAlign": "center",
+    }
+  }
+  multiple={false}
+  onChange={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#ffffff",
+      "fontSize": "0.75vw",
+      "height": "5vh",
+      "width": "9.7vw",
+    }
+  }
+  underlineStyle={
+    Object {
+      "display": "none",
+    }
+  }
+  value="All Countries"
+>
+  <MenuItem
+    anchorOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+    checked={false}
+    desktop={false}
+    disabled={false}
+    focusState="none"
+    insetChildren={false}
+    primaryText="All Countries"
+    targetOrigin={
+      Object {
+        "horizontal": "left",
+        "vertical": "top",
+      }
+    }
+    value="All Countries"
+  />
+  <MenuItem
+    anchorOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+    checked={false}
+    desktop={false}
+    disabled={false}
+    focusState="none"
+    insetChildren={false}
+    primaryText="Kenya"
+    targetOrigin={
+      Object {
+        "horizontal": "left",
+        "vertical": "top",
+      }
+    }
+    value="Kenya"
+  />
+  <MenuItem
+    anchorOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+    checked={false}
+    desktop={false}
+    disabled={false}
+    focusState="none"
+    insetChildren={false}
+    primaryText="Nigeria"
+    targetOrigin={
+      Object {
+        "horizontal": "left",
+        "vertical": "top",
+      }
+    }
+    value="Nigeria"
+  />
+  <MenuItem
+    anchorOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+    checked={false}
+    desktop={false}
+    disabled={false}
+    focusState="none"
+    insetChildren={false}
+    primaryText="Uganda"
+    targetOrigin={
+      Object {
+        "horizontal": "left",
+        "vertical": "top",
+      }
+    }
+    value="Uganda"
+  />
+  <MenuItem
+    anchorOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+    checked={false}
+    desktop={false}
+    disabled={false}
+    focusState="none"
+    insetChildren={false}
+    primaryText="USA"
+    targetOrigin={
+      Object {
+        "horizontal": "left",
+        "vertical": "top",
+      }
+    }
+    value="USA"
+  />
+</SelectField>
+`;
