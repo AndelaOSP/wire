@@ -7,7 +7,6 @@ import { testIncidents } from '../../mock_endpoints/mockData';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-
 describe('async actions', () => {
   beforeEach(() => {
     moxios.install();
@@ -16,13 +15,10 @@ describe('async actions', () => {
   afterEach(() => {
     moxios.uninstall();
   });
-
   it('creates IS_LOADING when fetching incidents', done => {
     const store = mockStore();
     const expectedActions = [{ type: types.IS_LOADING }];
-
     store.dispatch(actions.loadIncidents());
-
     moxios.wait(() => {
       let request = moxios.requests.mostRecent();
       request
@@ -43,8 +39,7 @@ describe('async actions', () => {
               ]
             }
           }
-        })
-        .then(() => {
+        }).then(() => {
           const storeActions = store.getActions();
           expect(storeActions[0].type).toEqual(expectedActions[0].type);
           done();
