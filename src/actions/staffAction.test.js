@@ -4,23 +4,17 @@ import * as actions from './staffAction';
 import * as types from './actionTypes';
 import { users } from '../../mock_endpoints/mockData';
 import moxios from 'moxios';
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+const middlewares = [thunk]; const mockStore = configureMockStore(middlewares);
 
 describe('async actions', () => {
   beforeEach(() => {
     moxios.install();
   });
-
   afterEach(() => {
     moxios.uninstall();
   });
-
   const expectedActions = [
-    {
-      type: types.IS_LOADING,
-      status: true
+    { type: types.IS_LOADING, status: true
     },
     {
       type: types.FETCH_STAFF,
@@ -35,12 +29,10 @@ describe('async actions', () => {
   ];
 
   it('creates all appropriate actions when fetching staff', done => {
-    const store = mockStore();
-    store.dispatch(actions.fetchStaff());
+    const store = mockStore(); store.dispatch(actions.fetchStaff());
     moxios.wait(() => {
       let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
+      request.respondWith({
           status: 201,
           response: {
             status: 'success',
@@ -223,25 +215,20 @@ describe('async actions', () => {
     store.dispatch(actions.removeUser());
     moxios.wait(() => {
       let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
+      request.respondWith({
           status: 201,
           response: {
             status: 'success',
-            data: {
-              'userId': 1,
-              'roleId': 3
+            data: { 'userId': 1, 'roleId': 3
             }
           }
-        })
-        .then(() => {
+        }).then(() => {
           const storeActions = store.getActions();
           expect(storeActions[3]).toEqual(expectedActions[3]);
           done();
         });
     });
   });
-
   it('dispatches error action when deleting a user fails', done => {
     const store = mockStore();
     store.dispatch(actions.removeUser());
@@ -249,17 +236,13 @@ describe('async actions', () => {
       let request = moxios.requests.mostRecent();
       request
         .respondWith({
-          status: 401,
-          response: {
+          status: 401, response: {
             status: 401,
-            data: {
-              message: 'You might not be logged in/authorized. Please try again'
-            }
+            data: { message: 'You might not be logged in/authorized. Please try again' }
           }
-        })
-        .then(() => {
+        }).then(() => {
           const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[0]);
+          expect(storeActions[3]).toEqual(expectedActions[3]);
           done();
         });
     });
