@@ -242,7 +242,7 @@ describe('async actions', () => {
     });
   });
 
-  it('dispatches error action when updating a user fails', done => {
+  it('dispatches error action when deleting a user fails', done => {
     const store = mockStore();
     store.dispatch(actions.removeUser());
     moxios.wait(() => {
