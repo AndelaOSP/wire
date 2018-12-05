@@ -3,7 +3,7 @@ import reducer from './locationsReducer';
 import initialState from './initialState';
 
 describe('Reducers :: Locations', () => {
-  const  getInitialState = initialState.locations;
+  const getInitialState = initialState.locations;
   it('should get initial state by default', () => {
     const action = { type: 'unknown' };
     const expected= getInitialState;

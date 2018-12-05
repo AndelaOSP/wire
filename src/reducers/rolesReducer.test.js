@@ -3,7 +3,7 @@ import reducer from './rolesReducer';
 import initialState from './initialState';
 
 describe('Reducers :: Roles', () => {
-  const  getInitialState = initialState.roles;
+  const getInitialState = initialState.roles;
   it('should get initial state by default', () => {
     const action = { type: 'unknown' };
     const expected= getInitialState;

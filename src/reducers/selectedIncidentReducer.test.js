@@ -4,7 +4,7 @@ import initialState from './initialState';
 
 
 describe('Reducers :: Selected Incident Reducer', () => {
-  const  getInitialState = initialState.selectedIncident;
+  const getInitialState = initialState.selectedIncident;
   it('should get initial state by default', () => {
     const action = { type: 'unknown' };
     const expected= getInitialState;

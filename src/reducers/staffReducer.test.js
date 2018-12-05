@@ -4,7 +4,7 @@ import initialState from './initialState';
 
 
 describe('Reducers :: Staff Reducer', () => {
-  const  getInitialState = initialState.staff;
+  const getInitialState = initialState.staff;
 
   it('should get initial state by default', () => {
     const action = { type: 'unknown' };

@@ -3,7 +3,7 @@ import reducer from './loadingReducer';
 import initialState from './initialState';
 
 describe('Reducers :: Loading', () => {
-  const  getInitialState = initialState;
+  const getInitialState = initialState;
   it('should get initial state by default', () => {
     const action = { type: 'unknown' };
     const expected= getInitialState.isLoading;
