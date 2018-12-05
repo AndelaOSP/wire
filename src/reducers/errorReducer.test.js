@@ -34,13 +34,5 @@ import initialState from './initialState';
     const expected = Object.assign({}, getInitialState, action.error.status);
     expect(reducer(getInitialState, action.error)).toEqual(expected);
   });
-  // it('should handle FETCH_STAFF', () => {
-  //   const action = {
-  //     type: ActionTypes.FETCH_STAFF,
-  //     error: {}
-  //   };
-  //   const expected = Object.assign({}, getInitialState, action.error);
-  //   expect(reducer(getInitialState, action.error)).toEqual(expected);
-  // });
 });
 
