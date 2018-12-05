@@ -1,5 +1,5 @@
 export default {
-  incidents: [],
+  incidents: {},
   isLoading: false,
   hasToken: false,
   error: {
@@ -13,5 +13,5 @@ export default {
   },
   staff: [],
   roles: [],
-  locations: []
+  locations: [],
 };

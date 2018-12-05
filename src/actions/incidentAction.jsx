@@ -29,6 +29,7 @@ export const loadIncidents = () => {
         dispatch(
           loadIncidentsSuccess(
             incidents.data.data.incidents.sort((a, b) => {
+              console.log(incidents.data.data.incidents);
               return new Date(b.createdAt).getTime() > new Date(a.createdAt).getTime() ? 1 : -1;
             })
           )
