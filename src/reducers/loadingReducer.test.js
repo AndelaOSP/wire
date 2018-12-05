@@ -4,12 +4,9 @@ import initialState from './initialState';
 
 describe('Reducers :: Loading', () => {
   const  getInitialState = initialState;
-  //let status = true;
-
   it('should get initial state by default', () => {
     const action = { type: 'unknown' };
     const expected= getInitialState.isLoading;
-
     expect(reducer(undefined, action)).toEqual(expected);
   });
   it('should handle IS_LOADING', () => {

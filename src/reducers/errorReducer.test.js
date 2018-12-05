@@ -27,10 +27,7 @@ import initialState from './initialState';
   });
 
   it('should handle SEARCH_INCIDENTS', () => {
-    const action = {
-      type: ActionTypes.SEARCH_INCIDENTS,
-      error: {status:true}
-    };
+    const action = { type: ActionTypes.SEARCH_INCIDENTS, error: {status:true} };
     const expected = Object.assign({}, getInitialState, action.error.status);
     expect(reducer(getInitialState, action.error)).toEqual(expected);
   });

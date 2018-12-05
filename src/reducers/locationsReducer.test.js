@@ -4,11 +4,9 @@ import initialState from './initialState';
 
 describe('Reducers :: Locations', () => {
   const  getInitialState = initialState.locations;
-
   it('should get initial state by default', () => {
     const action = { type: 'unknown' };
     const expected= getInitialState;
-
     expect(reducer(undefined, action)).toEqual(expected);
   });
   it('should handle FETCH_LOCATIONS', () => {
