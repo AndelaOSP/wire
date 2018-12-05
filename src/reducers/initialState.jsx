@@ -1,5 +1,5 @@
 export default {
-  incidents: {},
+  incidents: [],
   isLoading: false,
   hasToken: false,
   error: {
