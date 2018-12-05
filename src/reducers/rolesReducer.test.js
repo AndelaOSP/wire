@@ -9,12 +9,11 @@ describe('Reducers :: Roles', () => {
     const expected= getInitialState;
     expect(reducer(undefined, action)).toEqual(expected);
   });
+
   it('should handle FETCH_ROLES', () => {
     const action = { type: ActionTypes.FETCH_ROLES, roles: {} };
     const expected = Object.assign({}, getInitialState, action.roles);
     expect(reducer(getInitialState, action)).toEqual(expected);
   });
-
-
 });
 

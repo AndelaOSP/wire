@@ -9,6 +9,7 @@ describe('Reducers :: Loading', () => {
     const expected= getInitialState.isLoading;
     expect(reducer(undefined, action)).toEqual(expected);
   });
+
   it('should handle IS_LOADING', () => {
     const action = { type: ActionTypes.IS_LOADING, isLoading: true };
     const expected = Object.assign({}, getInitialState, action.isLoading);
@@ -44,6 +45,5 @@ describe('Reducers :: Loading', () => {
     const expected = Object.assign({}, getInitialState, action.isLoading);
     expect(reducer(getInitialState, action.isLoading)).toEqual(expected);
   });
-
 });
 

@@ -9,6 +9,7 @@ describe('Reducers :: Token Reducer', () => {
     const expected= getInitialState.hasToken;
     expect(reducer(undefined, action)).toEqual(expected);
   });
+
   it('should handle GET_TOKEN_SUCCESS', () => {
     const action = { type: ActionTypes.GET_TOKEN_SUCCESS, hasToken: true};
     const expected = Object.assign({}, getInitialState, action.hasToken);

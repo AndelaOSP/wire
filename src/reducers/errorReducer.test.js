@@ -9,11 +9,13 @@ import initialState from './initialState';
     const expected= getInitialState;
     expect(reducer(undefined, action)).toEqual(expected);
   });
+
   it('should handle Error Actions', () => {
     const action = { type: ActionTypes.ERROR_ACTION, error: {status: true}};
     const expected = Object.assign({}, getInitialState.status, action.error.status);
     expect(reducer(getInitialState, action)).toEqual(expected);
   });
+
   it('should handle FETCH_INCIDENT', () => {
     const action = { type: ActionTypes.FETCH_INCIDENT, error: {status: true}};
     const expected = Object.assign({}, getInitialState, action.error.status);
