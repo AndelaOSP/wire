@@ -14,27 +14,26 @@ import initialState from './initialState';
     const expected = Object.assign({}, getInitialState.status, action.error.status);
     expect(reducer(getInitialState, action)).toEqual(expected);
   });
-  // it('should handle FETCH_INCIDENT', () => {
-  //   const action = { type: ActionTypes.FETCH_INCIDENT, error: {status: true}};
-  //   const expected = Object.assign({}, getInitialState.status, action.error);
-  //   expect(reducer(getInitialState, action.error)).toEqual(expected);
-  // });
-
-  it('should handle FETCH_INCIDENTS_SUCCESS', () => {
-    let isError =
-    const action = { type: ActionTypes.FETCH_INCIDENTS_SUCCESS, error: { status: false } };
+  it('should handle FETCH_INCIDENT', () => {
+    const action = { type: ActionTypes.FETCH_INCIDENT, error: {status: true}};
     const expected = Object.assign({}, getInitialState, action.error.status);
-    expect(reducer(getInitialState, action.error.status)).toEqual(expected);
+    expect(reducer(getInitialState, action.error)).toEqual(expected);
   });
 
-  // it('should handle SEARCH_INCIDENTS', () => {
-  //   const action = {
-  //     type: ActionTypes.SEARCH_INCIDENTS,
-  //     error: {}
-  //   };
-  //   const expected = Object.assign({}, getInitialState, action.error);
-  //   expect(reducer(getInitialState, action.error)).toEqual(expected);
-  // });
+  it('should handle FETCH_INCIDENTS_SUCCESS', () => {
+    const action = { type: ActionTypes.FETCH_INCIDENTS_SUCCESS, error:{status: true} };
+    const expected = Object.assign({}, getInitialState, action.error.status);
+    expect(reducer(getInitialState, action.error)).toEqual(expected);
+  });
+
+  it('should handle SEARCH_INCIDENTS', () => {
+    const action = {
+      type: ActionTypes.SEARCH_INCIDENTS,
+      error: {status:true}
+    };
+    const expected = Object.assign({}, getInitialState, action.error.status);
+    expect(reducer(getInitialState, action.error)).toEqual(expected);
+  });
   // it('should handle FETCH_STAFF', () => {
   //   const action = {
   //     type: ActionTypes.FETCH_STAFF,
