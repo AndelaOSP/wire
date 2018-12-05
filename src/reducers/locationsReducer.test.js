@@ -6,7 +6,7 @@ describe('Reducers :: Locations', () => {
   const getInitialState = initialState.locations;
   it('should get initial state by default', () => {
     const action = { type: 'unknown' };
-    const expected= getInitialState;
+    const expected = getInitialState;
     expect(reducer(undefined, action)).toEqual(expected);
   });
 
