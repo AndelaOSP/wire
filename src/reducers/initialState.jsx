@@ -13,5 +13,5 @@ export default {
   },
   staff: [],
   roles: [],
-  locations: []
+  locations: [],
 };
