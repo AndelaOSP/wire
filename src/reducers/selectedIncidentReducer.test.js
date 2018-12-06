@@ -7,7 +7,7 @@ describe('Reducers :: Selected Incident Reducer', () => {
   const getInitialState = initialState.selectedIncident;
   it('should get initial state by default', () => {
     const action = { type: 'unknown' };
-    const expected= getInitialState;
+    const expected = getInitialState;
     expect(reducer(undefined, action)).toEqual(expected);
   });
 

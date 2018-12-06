@@ -6,7 +6,7 @@ describe('Reducers :: Loading', () => {
   const getInitialState = initialState;
   it('should get initial state by default', () => {
     const action = { type: 'unknown' };
-    const expected= getInitialState.isLoading;
+    const expected = getInitialState.isLoading;
     expect(reducer(undefined, action)).toEqual(expected);
   });
 
