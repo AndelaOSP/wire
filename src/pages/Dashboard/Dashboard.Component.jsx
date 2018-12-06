@@ -185,7 +185,7 @@ Dashboard.defaultProps = {
  * @param {*} state
  * @returns {*} partial state
  */
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   incidents: state.incidents,
   isLoading: state.isLoading,
   isError: state.error.status,
@@ -196,7 +196,7 @@ const mapStateToProps = state => ({
  * map dispatch to props
  * @param {*} dispatch
  */
-const mapDispatchToProps = dispatch => bindActionCreators(
+export const mapDispatchToProps = dispatch => bindActionCreators(
   {
     loadIncidents,
   },

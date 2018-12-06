@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import './Search.scss';
 import { searchIncidents } from '../../actions/incidentAction';
 import IncidentCard from '../../Components/IncidentList/IncidentCard.Component';
 
-class SearchComponent extends Component {
-  componentDidMount() {
-    this.searchInput.focus();
+const styles = {
+  input: {
+    boxSizing: 'border-box !important',
+    fontSize: '3rem !important',
+    fontWeight: '200 !important',
+    marginTop: '0.7rem !important',
+    marginBottom: '0.7rem',
+    color: '#929292 !important',
+    cursor: 'text !important',
+  },
+  focused: {
+    borderBottom: '1px solid #127dc5 !important',
+  },
+};
+
+export class SearchComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchQuery: '',
+    };
   }
 
-  /**
-   * Method to handle search input change
-   */
-  handleInputChange = () => {
-    const searchQuery = this.searchInput.input.value.toLowerCase();
-    if (searchQuery) {
-      this.props.searchIncidents(searchQuery);
-    }
-  };
+  handleInputChange = (event) => {
+    this.setState(
+      {
+        searchQuery: event.target.value,
+      },
+    );
+    this.props.searchIncidents(event.target.value);
+  }
 
   /**
    * Method to exit search
@@ -40,20 +58,29 @@ class SearchComponent extends Component {
   });
 
   render() {
-    const incidents = this.searchInput ? this.props.incidents : [];
+    const { searchQuery } = this.state;
+    const { incidents, classes } = this.props;
     return (
       <div className="search-container">
         <TextField
-          ref={input => (this.searchInput = input)}
-          floatingLabelText="Search for an incident"
+          label="Search for an incident"
+          name="title"
+          value={searchQuery}
+          autoFocus
           fullWidth
           rows={2}
-          className="input-style"
           onChange={this.handleInputChange}
+          InputProps={{
+            classes: {
+              root: classes.input,
+              focused: classes.focused,
+            },
+          }}
+          
         />
         <i className="fa fa-times-circle" title="Click to exit search" onClick={this.handleExit} />
         <div className="incident-cards">
-          {incidents.length
+          {incidents
             ? incidents.map(incident => (
               <IncidentCard
                   key={incident.id}
@@ -77,6 +104,7 @@ class SearchComponent extends Component {
  * Search Component Props validation
  */
 SearchComponent.propTypes = {
+  classes: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   incidents: PropTypes.array.isRequired,
   searchIncidents: PropTypes.func.isRequired,
@@ -87,7 +115,7 @@ SearchComponent.propTypes = {
  * @param {*} state
  * @returns {*} partial state
  */
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   incidents: state.incidents,
 });
 
@@ -95,13 +123,13 @@ const mapStateToProps = state => ({
  * map dispatch to props
  * @param {*} dispatch
  */
-const mapDispatchToProps = dispatch => bindActionCreators(
+export const mapDispatchToProps = dispatch => bindActionCreators(
   {
     searchIncidents,
   },
   dispatch,
 );
 
-export default connect(
+export default withStyles(styles)(connect(
   mapStateToProps, mapDispatchToProps, null, { withRef: true },
-)(SearchComponent);
+)(SearchComponent));

@@ -12,6 +12,7 @@ describe('should render <AvailableUser />', () => {
   const handleRemove = sinon.spy();
   const handlePositionChange = sinon.spy();
   beforeEach(() => {
+    global.alert = jest.fn();
     props = {
       id: '',
       index: 2,
