@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage component should render without crashing 1`] = `
+<div>
+  <div
+    className="login-page"
+  >
+    <div
+      className="left-container"
+    >
+      <div>
+        <img
+          className="andela-logo"
+          src="/assets/images/andelaLogo.png"
+        />
+      </div>
+      <div
+        className="welcome-text"
+      >
+        <p>
+          Welcome to
+           
+          <span
+            className="wire"
+          >
+            Wire 
+          </span>
+          <br />
+          Please sign in with your Google account to proceed
+        </p>
+      </div>
+      <RaisedButton
+        className="button"
+        disabled={false}
+        fullWidth={false}
+        href="undefined/login?redirect_url=undefined/login"
+        icon={
+          <img
+            className="google-logo"
+            src="../../../assets/images/icons8-google.svg"
+          />
+        }
+        label={
+          <p
+            className="label"
+          >
+            Sign In With Google
+          </p>
+        }
+        labelPosition="after"
+        primary={false}
+        secondary={false}
+        style={
+          Object {
+            "height": "3rem",
+            "marginLeft": "2vw",
+            "position": "relative",
+            "width": "15rem",
+          }
+        }
+      />
+    </div>
+    <div
+      className="right-container"
+    >
+      <img
+        className="landing-image"
+        src="/assets/images/wire_landing_page_vector@2x.png"
+      />
+      <div
+        className="right-text"
+      >
+        <p>
+          <span
+            style={
+              Object {
+                "fontWeight": 600,
+              }
+            }
+          >
+            An Incident
+          </span>
+           
+          <br />
+          Reporting Platform
+        </p>
+      </div>
+      <div
+        className="underline"
+      />
+    </div>
+  </div>
+  <CustomNotification
+    autoHideDuration={150000}
+    message=""
+    open={true}
+    type="error"
+  />
+</div>
+`;
