@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: circleci/node:9.8.0
+    - image: circleci/node:9.10.0
 
 version: 2
 jobs:
@@ -54,7 +54,7 @@ jobs:
             command: yarn coveralls
     deploy:
         docker:
-            - image: circleci/node:9.8.0
+            - image: circleci/node:9.10.0
         environment:
             GOOGLE_PROJECT_ID: bench-projects
             GOOGLE_COMPUTE_ZONE: europe-west1-b
