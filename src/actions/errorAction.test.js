@@ -1,11 +1,12 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import * as actions from './incidentAction';
-import * as types from './actionTypes';
 import moxios from 'moxios';
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+import {
+  httpResponse,
+  mockStore,
+  mockAxios,
+  expectedActionFailure,
+  mockDispatchAction
+} from '../testHelpers';
+import { loadIncidents } from './incidentAction';
 
 describe('async actions', () => {
   beforeEach(() => {
@@ -16,99 +17,39 @@ describe('async actions', () => {
     moxios.uninstall();
   });
 
-  it('displays the appropriate error message when there is an error fetching incidents', done => {
+  it('displays the appropriate error message when there is an error fetching incidents', () => {
+    const mockResponse = httpResponse(404, { message: 'The requested resource cannot be found' });
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 404);
     const store = mockStore();
-    const expectedActions = [
-      {
-        type: types.ERROR_ACTION,
-        status: true,
-        message: 'The requested resource cannot be found'
-      }
-    ];
 
-    store.dispatch(actions.loadIncidents());
-
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      const errorResponse = {
-        status: 404,
-        response: {
-          status: 404,
-          data: {
-            error: 'Resource Not Found'
-          }
-        }
-      };
-      request.respondWith(errorResponse).then(() => {
-        const storeActions = store.getActions();
-        expect(storeActions[1].type).toEqual(expectedActions[0].type);
-        expect(storeActions[1].message).toEqual(expectedActions[0].message);
-        done();
-      });
-    });
+    return mockDispatchAction(store, loadIncidents(), expectedActions);
   });
 
-  it('displays the appropriate error message when there is an auth error', done => {
+  it('displays the appropriate error message on status code 400', () => {
+    const mockResponse = httpResponse(400, { message: 'The requested resource cannot be found' });
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 400);
     const store = mockStore();
-    const expectedActions = [
-      {
-        type: types.ERROR_ACTION,
-        status: true,
-        message: 'You might not be logged in/authorized. Please try again.'
-      }
-    ];
 
-    store.dispatch(actions.loadIncidents());
-
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      const errorResponse = {
-        status: 401,
-        response: {
-          status: 401,
-          data: {
-            error: 'Not authorized'
-          }
-        }
-      };
-      request.respondWith(errorResponse).then(() => {
-        const storeActions = store.getActions();
-        expect(storeActions[1].type).toEqual(expectedActions[0].type);
-        expect(storeActions[1].message).toEqual(expectedActions[0].message);
-        done();
-      });
-    });
+    return mockDispatchAction(store, loadIncidents(), expectedActions);
   });
 
-  it('displays the appropriate error message for all other errors', done => {
+  it('displays the appropriate error message when there is an auth error', () => {
+    const mockResponse = httpResponse(401, { message: 'You might not be logged in/authorized. Please try again.' });
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
     const store = mockStore();
-    const expectedActions = [
-      {
-        type: types.ERROR_ACTION,
-        status: true,
-        message: 'Oops! Something went wrong. Please try again.'
-      }
-    ];
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 401);
 
-    store.dispatch(actions.loadIncidents());
+    return mockDispatchAction(store, loadIncidents(), expectedActions);
+  });
 
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      const errorResponse = {
-        status: 500,
-        response: {
-          status: 500,
-          data: {
-            error: 'Internal Server Error'
-          }
-        }
-      };
-      request.respondWith(errorResponse).then(() => {
-        const storeActions = store.getActions();
-        expect(storeActions[1].type).toEqual(expectedActions[0].type);
-        expect(storeActions[1].message).toEqual(expectedActions[0].message);
-        done();
-      });
-    });
+  it('displays the appropriate error message for all other errors', () => {
+    const mockResponse = httpResponse(500, { message: 'Oops! Something went wrong. Please try again.' });
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+    const store = mockStore();
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 500);
+
+    return mockDispatchAction(store, loadIncidents(), expectedActions);
   });
 });

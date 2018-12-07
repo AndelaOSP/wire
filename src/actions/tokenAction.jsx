@@ -1,10 +1,8 @@
 import * as axios from 'axios';
-import { GET_TOKEN_SUCCESS } from './actionTypes';
 import config from '../config/index';
+import { GET_TOKEN_SUCCESS } from './actionTypes';
 import { loadingAction } from './LoadingAction';
 import { errorAction } from './errorAction';
-
-// Get Token Action creator
 
 export const getTokenSuccess = (hasToken, token) => {
   localStorage.setItem('token', token);
@@ -16,13 +14,9 @@ export const getTokenSuccess = (hasToken, token) => {
   };
 };
 
-/**
- * getToken Thunk
- */
-
-export const getToken = (email) => {
-  const loginUrl = `${config.API_URL}/users/login`;
-  return (dispatch) => {
+export const getToken = email => {
+  let loginUrl = `${config.API_URL}/users/login`;
+  return dispatch => {
     dispatch(loadingAction(true));
     return axios
       .post(loginUrl, { email })

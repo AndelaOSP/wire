@@ -1,12 +1,19 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import * as actions from './incidentAction';
-import * as types from './actionTypes';
+import { loadIncidents, changeStatus } from './incidentAction';
+import {
+  CHANGE_STATUS,
+  FETCH_INCIDENTS_SUCCESS
+} from './actionTypes';
 import moxios from 'moxios';
 import { testIncidents } from '../../mock_endpoints/mockData';
+import {
+  isLoading,
+  httpResponse,
+  mockStore,
+  mockAxios,
+  expectedActionFailure,
+  mockDispatchAction
+} from '../testHelpers';
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
 describe('async actions', () => {
   beforeEach(() => {
     moxios.install();
@@ -15,177 +22,66 @@ describe('async actions', () => {
   afterEach(() => {
     moxios.uninstall();
   });
-  it('creates IS_LOADING when fetching incidents', done => {
-    const store = mockStore();
-    const expectedActions = [{ type: types.IS_LOADING }];
-    store.dispatch(actions.loadIncidents());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 200,
-          response: {
-            status: 'success',
-            data: {
-              incidents: [
-                {
-                  id: '12345667',
-                  subject: 'Stolen Phone',
-                  dateOccurred: '2017-02-11T00:00:00.000Z',
-                  createdAt: '2018-02-14T12:26:03.792Z',
-                  User: { name: 'Maureen Nyakio' },
-                  Level: { name: 'red' }
-                }
-              ]
-            }
+
+  it('should fetch incidents successfully', () => {
+    const mockResponse = httpResponse(200, {
+      data: {
+        incidents: [
+          {
+            id: '12345667',
+            subject: 'Stolen Phone',
+            dateOccurred: '2017-02-11T00:00:00.000Z',
+            createdAt: '2018-02-14T12:26:03.792Z',
+            User: { name: 'Maureen Nyakio' },
+            Level: { name: 'red' }
           }
-        }).then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0].type).toEqual(expectedActions[0].type);
-          done();
-        });
+        ]
+      }
     });
-  });
-
-  it('creates FETCH_INCIDENTS_SUCCESS when fetching incidents has been done', done => {
-    const store = mockStore();
-    const expectedActions = [{ type: types.FETCH_INCIDENTS_SUCCESS }];
-
-    store.dispatch(actions.loadIncidents());
-
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 200,
-          response: {
-            status: 'success',
-            data: {
-              incidents: [
-                {
-                  id: '12345667',
-                  subject: 'Stolen Phone',
-                  dateOccurred: '2017-02-11T00:00:00.000Z',
-                  createdAt: '2018-02-14T12:26:03.792Z',
-                  User: { name: 'Maureen Nyakio' },
-                  Level: { name: 'red' }
-                }
-              ]
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[1].type).toEqual(expectedActions[0].type);
-          done();
-        });
-    });
-  });
-
-  it('creates ERROR_ACTION when there is an error fetching incidents', done => {
-    const store = mockStore();
-    const expectedActions = [{ type: types.ERROR_ACTION }];
-
-    store.dispatch(actions.loadIncidents());
-
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      const errorResponse = {
-        status: 404,
-        response: {
-          status: 404,
-          data: {
-            error: 'Resource Not Found'
-          }
-        }
-      };
-      request.respondWith(errorResponse).then(() => {
-        const storeActions = store.getActions();
-        expect(storeActions[1].type).toEqual(expectedActions[0].type);
-        done();
-      });
-    });
-  });
-
-  it('creates CHANGE_STATUS when changing status', done => {
-    const store = mockStore();
-    const newIncident = testIncidents[0];
-    const expectedActions = [
-      { type: types.CHANGE_STATUS,
-        incidentId: newIncident.id }
-      ];
-
-    store.dispatch(actions.changeStatus(2,1));
-    moxios.wait(()=>{
-      let request = moxios.requests.mostRecent();
-      const statusResponse = {
-        status : 200,
-        response : {
-          status : 200,
-          data : newIncident.id
-        }
-      };
-      request.respondWith(statusResponse).then(()=>{
-        const storeActions = store.getActions();
-        expect(storeActions).toEqual(expectedActions);
-        done();
-      });
-    });
-  });
-
-  it('creates ERROR_ACTION with 404 when an error occurs', done => {
     const store = mockStore();
     const expectedActions = [
-        {
-          type: types.ERROR_ACTION,
-          status: true,
-          message: 'The requested resource cannot be found',
-          statusCode: 404,
-        }
-      ];
+      isLoading,
+      {
+        incidents: mockResponse.response.data.data.incidents,
+        type: FETCH_INCIDENTS_SUCCESS,
+        isLoading: false,
+        isError: false
+      }
+    ];
+    moxios.wait(() => mockAxios(mockResponse, moxios));
 
-    store.dispatch(actions.changeStatus(2,1));
-    moxios.wait(()=>{
-      let request = moxios.requests.mostRecent();
-      const statusResponse = {
-        status : 404,
-        response : {
-          status : 404
-        }
-      };
-      request.respondWith(statusResponse).then(()=>{
-        const storeActions = store.getActions();
-        expect(storeActions).toEqual(expectedActions);
-        done();
-      });
-    });
+    return mockDispatchAction(store, loadIncidents(), expectedActions);
   });
 
-  it('creates ERROR_ACTION with 401 when not logged in', done => {
+  it('creates CHANGE_STATUS when changing status', () => {
+    const mockResponse = httpResponse(200, { data: testIncidents[0] });
     const store = mockStore();
     const expectedActions = [
-        {
-          type: types.ERROR_ACTION,
-          status: true,
-          message: 'You might not be logged in/authorized. Please try again.',
-          statusCode: 401,
-        }
-      ];
+      {
+        type: CHANGE_STATUS,
+        incidentId: testIncidents[0],
+      }
+    ];
+    moxios.wait(() => mockAxios(mockResponse, moxios));
 
-    store.dispatch(actions.changeStatus(2,1));
-    moxios.wait(()=>{
-      let request = moxios.requests.mostRecent();
-      const statusResponse = {
-        status : 401,
-        response : {
-          status : 401
-        }
-      };
-      request.respondWith(statusResponse).then(()=>{
-        const storeActions = store.getActions();
-        expect(storeActions).toEqual(expectedActions);
-        done();
-      });
-    });
+    return mockDispatchAction(store, changeStatus(2,1), expectedActions);
+  });
+
+  it('creates ERROR_ACTION with 404 when an error occurs', () => {
+    const mockResponse = httpResponse(404, { message: 'The requested resource cannot be found' });
+    const store = mockStore();
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 404);
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
+    return mockDispatchAction(store, changeStatus(2, 3), [expectedActions[1]]);
+  });
+
+  it('creates ERROR_ACTION with 401 when not logged in', () => {
+    const mockResponse = httpResponse(401, { message: 'You might not be logged in/authorized. Please try again.' });
+    const store = mockStore();
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 401);
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
+    return mockDispatchAction(store, changeStatus(2, 3), [expectedActions[1]]);
   });
 });

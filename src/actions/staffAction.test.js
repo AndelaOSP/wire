@@ -1,250 +1,146 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import moxios from 'moxios';
 import * as actions from './staffAction';
 import * as types from './actionTypes';
 import { users } from '../../mock_endpoints/mockData';
-import moxios from 'moxios';
-const middlewares = [thunk]; const mockStore = configureMockStore(middlewares);
+import {
+  isLoading,
+  httpResponse,
+  mockStore,
+  mockAxios,
+  expectedActionFailure,
+  mockDispatchAction
+} from '../testHelpers';
 
 describe('async actions', () => {
   beforeEach(() => {
     moxios.install();
   });
+  
   afterEach(() => {
     moxios.uninstall();
   });
-  const expectedActions = [
-    { type: types.IS_LOADING, status: true
-    },
-    {
-      type: types.FETCH_STAFF,
-      staff: users,
-      isLoading: false,
-      isError: false
-    },
-    { type: types.ERROR_ACTION,
-      status: true,
-      message: 'You might not be logged in/authorized. Please try again.'
-    }
-  ];
 
-  it('creates all appropriate actions when fetching staff', done => {
-    const store = mockStore(); store.dispatch(actions.fetchStaff());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request.respondWith({
-          status: 201,
-          response: {
-            status: 'success',
-            data: {
-              users
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[0]);
-          expect(storeActions[1]).toEqual(expectedActions[1]);
-          done();
-        });
-    });
+  it('creates all appropriate actions when fetching staff', () => {
+    const mockResponse = httpResponse(201, { data: { users } });
+    const expectedActions = [
+      isLoading,
+      {
+        type: types.FETCH_STAFF,
+        staff: users,
+        isLoading: false,
+        isError: false
+      },
+    ];
+    const store = mockStore();
+    moxios.wait(() => mockAxios(mockResponse, moxios));
+
+    return mockDispatchAction(store, actions.fetchStaff(), expectedActions);
   });
 
-  it('dispatches error action when fetching staff fails', done => {
+  it('dispatches error action when fetching staff fails', () => {
+    const mockResponse = httpResponse(401, { message: 'You might not be logged in/authorized. Please try again.' });
     const store = mockStore();
-    store.dispatch(actions.fetchStaff());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 401,
-          response: {
-            status: 401,
-            data: {
-              error: 'Not authorized'
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[0]).toEqual(expectedActions[0]);
-          done();
-        });
-    });
-  });
-  it('searches for all users', done => {
-    const store = mockStore();
-    store.dispatch(actions.searchUsers());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 201,
-          response: {
-            status: 'success',
-            data: {
-              users:[users]
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[3]).toEqual(expectedActions[3]);
-          done();
-        });
-    });
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 401);
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
+    return mockDispatchAction(store, actions.fetchStaff(), expectedActions);
   });
 
-  it('dispatches error action when searching users fails', done => {
+  it('searches for all users', () => {
+    const mockResponse = httpResponse(200, { data: { users } });
     const store = mockStore();
-    store.dispatch(actions.searchUsers());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 401,
-          response: {
-            status: 401,
-            data: {
-              message: 'You might not be logged in/authorized. Please try again'
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[3]).toEqual(expectedActions[3]);
-          done();
-        });
-    });
-  });
-  it('Invites new users', done => {
-    const store = mockStore();
-    store.dispatch(actions.inviteUser());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 201,
-          response: {
-            status: 'success',
-            data: {
-              users: [
-                users
-              ]
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[3]).toEqual(expectedActions[3]);
-          done();
-        });
-    });
+    const expectedActions = [
+      {
+        staff: users,
+        type: types.SEARCH_USER,
+        isError: false
+      }
+    ];
+    moxios.wait(() => mockAxios(mockResponse, moxios));
+
+    return mockDispatchAction(store, actions.searchUsers(), expectedActions);
   });
 
-  it('dispatches error action when inviting user fails', done => {
+  it('dispatches error action when searching users fails', () => {
+    const mockResponse = httpResponse(401, { message: 'You might not be logged in/authorized. Please try again.' });
     const store = mockStore();
-    store.dispatch(actions.inviteUser());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 401,
-          response: {
-            status: 401,
-            data: {
-              message: 'You might not be logged in/authorized. Please try again'
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[3]).toEqual(expectedActions[3]);
-          done();
-        });
-    });
-  });
-  it('Updates a User', done => {
-    const store = mockStore();
-    store.dispatch(actions.updateUser());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 201,
-          response: {
-            status: 'success',
-            data: {
-               'userId': 1,
-                'roleId': 3
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[3]).toEqual(expectedActions[3]);
-          done();
-        });
-    });
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 401);
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
+    return mockDispatchAction(store, actions.searchUsers(), [expectedActions[1]]);
   });
 
-  it('dispatches error action when updating a user fails', done => {
+  it('Invites new users', () => {
+    const mockResponse = httpResponse(200, { data: users[0] });
     const store = mockStore();
-    store.dispatch(actions.updateUser());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 401,
-          response: {
-            status: 401,
-            data: {
-              message: 'You might not be logged in/authorized. Please try again'
-            }
-          }
-        })
-        .then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[3]).toEqual(expectedActions[3]);
-          done();
-        });
-    });
+    const expectedActions = [
+      {
+        type: types.ADD_USER,
+        staff: users[0],
+        isError: false
+      }
+    ];
+    moxios.wait(() => mockAxios(mockResponse, moxios));
+
+    return mockDispatchAction(store, actions.inviteUser(), expectedActions);
   });
-  it('Removes a User', done => {
+
+  it('dispatches error action when inviting user fails', () => {
+    const mockResponse = httpResponse(401, { message: 'You might not be logged in/authorized. Please try again.' });
     const store = mockStore();
-    store.dispatch(actions.removeUser());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request.respondWith({
-          status: 201,
-          response: {
-            status: 'success',
-            data: { 'userId': 1, 'roleId': 3
-            }
-          }
-        }).then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[3]).toEqual(expectedActions[3]);
-          done();
-        });
-    });
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 401);
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
+    return mockDispatchAction(store, actions.inviteUser(), [expectedActions[1]]);
   });
-  it('dispatches error action when deleting a user fails', done => {
+
+  it('Updates a User', () => {
+    const mockResponse = httpResponse(200, { data: users[0]});
     const store = mockStore();
-    store.dispatch(actions.removeUser());
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 401, response: {
-            status: 401,
-            data: { message: 'You might not be logged in/authorized. Please try again' }
-          }
-        }).then(() => {
-          const storeActions = store.getActions();
-          expect(storeActions[3]).toEqual(expectedActions[3]);
-          done();
-        });
-    });
+    const expectedActions = [
+      {
+        type: types.EDIT_USER,
+        staff: users[0],
+        index: 1,
+        isError: false
+      }
+    ];
+    moxios.wait(() => mockAxios(mockResponse, moxios));
+
+    return mockDispatchAction(store, actions.updateUser(2, 3, 1), expectedActions);
+  });
+
+  it('dispatches error action when updating a user fails', () => {
+    const mockResponse = httpResponse(401, { message: 'You might not be logged in/authorized. Please try again.' });
+    const store = mockStore();
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 401);
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
+    return mockDispatchAction(store, actions.updateUser(2, 3, 1), [expectedActions[1]]);
+  });
+
+  it('Removes a User', () => {
+    const mockResponse = httpResponse(201, { data: users[0] });
+    const store = mockStore();
+    const expectedActions = [
+      {
+        type: types.DELETE_USER,
+        staff: users[0],
+        index: 1,
+        isError: false
+      }
+    ];
+    moxios.wait(() => mockAxios(mockResponse, moxios));
+
+    return mockDispatchAction(store, actions.removeUser(1, 1), expectedActions);
+  });
+
+  it('dispatches error action when deleting a user fails', () => {
+    const mockResponse = httpResponse(401, { message: 'You might not be logged in/authorized. Please try again.' });
+    const store = mockStore();
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 401);
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
+    return mockDispatchAction(store, actions.removeUser(1, 1), [expectedActions[1]]);
   });
 });
