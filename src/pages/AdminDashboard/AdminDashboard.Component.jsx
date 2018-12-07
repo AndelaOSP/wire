@@ -2,19 +2,14 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-// actions
-import { fetchStaff, inviteUser, searchUsers, updateUser, removeUser } from '../../actions/staffAction';
+import {
+  fetchStaff, inviteUser, searchUsers,
+  updateUser, removeUser,
+} from '../../actions/staffAction';
 import { fetchRoles } from '../../actions/rolesAction';
 import { fetchLocations } from '../../actions/locationsAction';
-
-// helpers
 import { matchPositionToRoleId, matchLocationToLocationId } from '../../helpers/adminDashboard';
-
-// styling
 import './AdminDashboard.scss';
-
-// Components
 import NavBar from '../../Common/NavBar/NavBar.Component';
 import AvailableUser from '../../Components/AvailableUser/AvailableUser.Component';
 import UserFilter from '../../Components/UserFilter/UserFilter.Component';
@@ -29,8 +24,7 @@ export class AdminDashboard extends Component {
     super(props);
     this.state = {
       countryFilter: 'All Countries',
-      selectedUser: null,
-      loggedInUser: localStorage.getItem('email')
+      loggedInUser: localStorage.getItem('email'),
     };
   }
 
@@ -40,13 +34,7 @@ export class AdminDashboard extends Component {
     this.props.fetchLocations();
   }
 
-  changeCountryFilter() {
-    return key => {
-      this.setState({ countryFilter: key });
-    };
-  }
-
-  handleSearch = query => {
+  handleSearch = (query) => {
     if (query) {
       this.props.searchUsers(query);
     }
@@ -56,9 +44,9 @@ export class AdminDashboard extends Component {
    * Method to handle the invite user api call
    */
   handleInvite = (email, position, location) => {
-    let { roles, locations } = this.props;
-    let roleId = matchPositionToRoleId(roles, position);
-    let locationId = matchLocationToLocationId(locations, location);
+    const { roles, locations } = this.props;
+    const roleId = matchPositionToRoleId(roles, position);
+    const locationId = matchLocationToLocationId(locations, location);
     this.props.inviteUser(email, roleId, locationId);
   };
 
@@ -66,8 +54,8 @@ export class AdminDashboard extends Component {
    * Method to handle position change
    */
   handlePositionChange = (position, userId, index) => {
-    let { roles } = this.props;
-    let roleId = matchPositionToRoleId(roles, position);
+    const { roles } = this.props;
+    const roleId = matchPositionToRoleId(roles, position);
     this.props.updateUser(userId, roleId, index);
   };
 
@@ -79,19 +67,22 @@ export class AdminDashboard extends Component {
   };
 
   filterStaff = () => {
-    let staff = this.props.staff;
-    let {loggedInUser} = this.state;
+    let { staff } = this.props;
+    const { loggedInUser } = this.state;
     // filter by countries
     if (this.state.countryFilter !== 'All Countries') {
-      staff = staff.filter(user => {
-        return this.state.countryFilter.toLocaleLowerCase() === user.Location.country.toLowerCase();
-      });
+      staff = staff.filter(user => this.state.countryFilter
+        .toLocaleLowerCase() === user.Location.country.toLowerCase());
     }
-    const newStaff = staff.filter(user => {
-      return user.email !== loggedInUser;
-    });
+    const newStaff = staff.filter(user => user.email !== loggedInUser);
     return newStaff;
   };
+
+  changeCountryFilter() {
+    return (key) => {
+      this.setState({ countryFilter: key });
+    };
+  }
 
   render() {
     const { isLoading, isError, errorMessage } = this.props;
@@ -133,9 +124,9 @@ export class AdminDashboard extends Component {
           </div>
         )}
         {isError ? (
-          <CustomNotification type={'error'} message={errorMessage} autoHideDuration={15000} open />
+          <CustomNotification type="error" message={errorMessage} autoHideDuration={15000} open />
         ) : (
-          <CustomNotification type={'error'} message={errorMessage} open={false} />
+          <CustomNotification type="error" message={errorMessage} open={false} />
         )}
       </div>
     );
@@ -158,41 +149,38 @@ AdminDashboard.propTypes = {
   removeUser: PropTypes.func.isRequired,
   staff: PropTypes.array,
   roles: PropTypes.array,
-  locations: PropTypes.array
+  locations: PropTypes.array,
+};
+AdminDashboard.defaultProps = {
+  staff: [],
+  roles: [],
+  locations: [],
 };
 
-/**
- * map state from the store to props
- * @param {*} state
- * @returns {*} partial state
- */
-const mapStateToProps = state => {
-  return {
-    isLoading: state.isLoading,
-    isError: state.error.status,
-    errorMessage: state.error.message,
-    staff: state.staff,
-    roles: state.roles,
-    locations: state.locations
-  };
-};
+const mapStateToProps = state => ({
+  isLoading: state.isLoading,
+  isError: state.error.status,
+  errorMessage: state.error.message,
+  staff: state.staff,
+  roles: state.roles,
+  locations: state.locations,
+});
 
 /**
  * map dispatch to props
  * @param {*} dispatch
  */
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchStaff,
-      fetchRoles,
-      fetchLocations,
-      inviteUser,
-      searchUsers,
-      updateUser,
-      removeUser
-    },
-    dispatch
-  );
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    fetchStaff,
+    fetchRoles,
+    fetchLocations,
+    inviteUser,
+    searchUsers,
+    updateUser,
+    removeUser,
+  },
+  dispatch,
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);

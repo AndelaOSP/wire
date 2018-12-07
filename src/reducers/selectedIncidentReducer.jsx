@@ -6,7 +6,7 @@ import {
   EDIT_NOTE,
   ARCHIVE_NOTE,
   CHANGE_STATUS,
-  CHANGE_ASSIGNEE
+  CHANGE_ASSIGNEE,
 } from '../actions/actionTypes';
 
 const selectedIncidentReducer = (state = initialState.selectedIncident, action) => {
@@ -18,7 +18,8 @@ const selectedIncidentReducer = (state = initialState.selectedIncident, action) 
     case EDIT_NOTE:
       return {
         ...state,
-        notes: [...state.notes.slice(0, action.index), action.note, ...state.notes.slice(action.index + 1)]
+        notes: [...state.notes.slice(0, action.index),
+          action.note, ...state.notes.slice(action.index + 1)],
       };
     case CHANGE_STATUS:
       return { ...action.incident, notes: [...state.notes], chats: [...state.chats] };
@@ -27,7 +28,7 @@ const selectedIncidentReducer = (state = initialState.selectedIncident, action) 
     case ARCHIVE_NOTE:
       return {
         ...state,
-        notes: [...state.notes.slice(0, action.index), ...state.notes.slice(action.index + 1)]
+        notes: [...state.notes.slice(0, action.index), ...state.notes.slice(action.index + 1)],
       };
     case ADD_CHAT:
       return { ...state, chats: [...state.chats, action.chat] };

@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import IncidentCard from './IncidentCard.Component';
-
-// import styling
 import './IncidentList.scss';
 
 class IncidentSection extends Component {
-  constructor(props) {
-    super(props);
-  }
+  getTime = timestamp => new Date(timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
-  getTime = timestamp =>
-    new Date(timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-
-  getDate = timestamp =>
-    new Date(timestamp).toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
-    });
+  getDate = timestamp => new Date(timestamp).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
 
   render() {
     const { incidentStatus, incidents, underLineColor } = this.props;
@@ -46,7 +37,12 @@ class IncidentSection extends Component {
               <img className="folder" src="/assets/images/open_folder.png" alt="No incidents" />
               <p>
                 {' '}
-                No incidents <br />in <span className="status">{this.props.incidentStatus.toUpperCase()}</span>
+                No incidents
+                {' '}
+                <br />
+in
+                {' '}
+                <span className="status">{this.props.incidentStatus.toUpperCase()}</span>
               </p>
             </div>
           )}
@@ -56,13 +52,16 @@ class IncidentSection extends Component {
   }
 }
 
-// desructure proptypes
 const { string, array } = PropTypes;
 
 IncidentSection.propTypes = {
   incidentStatus: string.isRequired,
   incidents: array.isRequired,
-  underLineColor: string
+  underLineColor: string,
+};
+
+IncidentSection.defaultProps = {
+  underLineColor: '',
 };
 
 export default IncidentSection;

@@ -4,8 +4,8 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import authenticateUser from '../../helpers/auth';
 
-const RequireAdmin = Component => {
-  class AuthenticatedComponent extends React.Component {
+const RequireAdmin = (Component) => {
+  class AuthenticatedComponent extends React.Component { // eslint-disable-line
     render() {
       return authenticateUser.isAdmin() ? (
         <Component {...this.props} />
@@ -16,17 +16,17 @@ const RequireAdmin = Component => {
   }
 
   AuthenticatedComponent.propTypes = {
-    location: PropTypes.object
+    location: PropTypes.object,
+  };
+  AuthenticatedComponent.defaultProps = {
+    location: {},
   };
 
   return withRouter(AuthenticatedComponent);
 };
 
-/**
- * RequireAdmin PropTypes declaration
- */
 RequireAdmin.propTypes = {
-  component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]) // Container || functional react component
+  component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
 
 export default RequireAdmin;

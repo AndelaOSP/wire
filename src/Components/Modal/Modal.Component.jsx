@@ -11,13 +11,10 @@ class Modal extends Component {
     this.state = {
       email: '',
       position: null,
-      location: null
+      location: null,
     };
   }
 
-  /**
-   * Method to handle email selection
-   */
   handleEmailChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
@@ -36,12 +33,12 @@ class Modal extends Component {
     this.setState({ location: value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    let { email, position, location } = this.state;
+    const { email, position, location } = this.state;
     this.props.handleInvite(email, position, location);
     this.setState({
-      email:''
+      email: '',
     });
   };
 
@@ -51,9 +48,9 @@ class Modal extends Component {
       marginTop: '3.3rem',
       marginLeft: '.85rem',
       border: '1px solid #e0e0e0',
-      borderRadius:'5px',
+      borderRadius: '5px',
       width: '92%',
-      height: '3.2rem'
+      height: '3.2rem',
     };
     return (
       <div id="myModal" className="modal" style={{ display: open ? 'block' : 'none' }}>
@@ -117,7 +114,13 @@ class Modal extends Component {
 Modal.propTypes = {
   open: PropTypes.bool,
   handleClose: PropTypes.func,
-  handleInvite: PropTypes.func
+  handleInvite: PropTypes.func,
+};
+
+Modal.defaultProps = {
+  open: false,
+  handleClose: () => {},
+  handleInvite: () => {},
 };
 
 export default Modal;

@@ -9,51 +9,41 @@ import {
   CHANGE_STATUS,
   ADD_CHAT,
   CHANGE_ASSIGNEE,
-  ARCHIVE_NOTE
+  ARCHIVE_NOTE,
 } from './actionTypes';
 
-const loadIncident = incidentId => {
-  let headers = { Authorization: localStorage.token };
+const loadIncident = (incidentId) => {
+  const headers = { Authorization: localStorage.token };
   return axios.get(`${config.INCIDENTS_URL}/${incidentId}`, { headers });
 };
 
-const loadNotes = incidentId => {
-  return axios.get(`${config.INCIDENTS_URL}/${incidentId}/notes`);
-};
+const loadNotes = incidentId => axios.get(`${config.INCIDENTS_URL}/${incidentId}/notes`);
 
-const loadChats = incidentId => {
-  return axios.get(`${config.INCIDENTS_URL}/${incidentId}/chats`);
-};
+const loadChats = incidentId => axios.get(`${config.INCIDENTS_URL}/${incidentId}/chats`);
 
 // load Incident Action Creator
-export const loadIncidentSuccess = incident => {
-  return { type: FETCH_INCIDENT, incident, isLoading: false, isError: false };
-};
+export const loadIncidentSuccess = incident => ({
+  type: FETCH_INCIDENT, incident, isLoading: false, isError: false, 
+});
 
 /**
  * loadIncident Thunk
  */
-export const loadIncidentDetails = incidentId => {
-  return dispatch => {
-    dispatch(loadingAction(true));
-    return axios
-      .all([loadIncident(incidentId), loadNotes(incidentId), loadChats(incidentId)])
-      .then(arr => {
-        let incident = arr[0].data.data;
-        incident['notes'] = arr[1].data.data.notes;
-        incident['chats'] = arr[2].data.data.chats;
-        dispatch(loadIncidentSuccess(incident));
-      })
-      .catch(error => {
-        return dispatch(errorAction(error));
-      });
-  };
+export const loadIncidentDetails = incidentId => (dispatch) => {
+  dispatch(loadingAction(true));
+  return axios
+    .all([loadIncident(incidentId), loadNotes(incidentId), loadChats(incidentId)])
+    .then((arr) => {
+      const incident = arr[0].data.data;
+      incident.notes = arr[1].data.data.notes;
+      incident.chats = arr[2].data.data.chats;
+      dispatch(loadIncidentSuccess(incident));
+    })
+    .catch(error => dispatch(errorAction(error)));
 };
 
 // Add notes Action Creator
-export const addNoteSuccess = note => {
-  return { type: ADD_NOTE, note };
-};
+export const addNoteSuccess = note => ({ type: ADD_NOTE, note });
 
 /**
  * Add notes to an incident
@@ -61,26 +51,20 @@ export const addNoteSuccess = note => {
  * @param {*} incidentId
  */
 export const addNote = (noteText, incidentId) => {
-  let notesUrl = `${config.INCIDENTS_URL}/${incidentId}/notes`;
-  return dispatch => {
-    return axios
-      .post(notesUrl, {
-        note: noteText,
-        userEmail: localStorage.getItem('email')
-      })
-      .then(res => {
-        dispatch(addNoteSuccess(res.data.data));
-      })
-      .catch(error => {
-        return dispatch(errorAction(error));
-      });
-  };
+  const notesUrl = `${config.INCIDENTS_URL}/${incidentId}/notes`;
+  return dispatch => axios
+    .post(notesUrl, {
+      note: noteText,
+      userEmail: localStorage.getItem('email'),
+    })
+    .then((res) => {
+      dispatch(addNoteSuccess(res.data.data));
+    })
+    .catch(error => dispatch(errorAction(error)));
 };
 
 // Edit notes Action Creator
-export const editNoteSuccess = (note, index) => {
-  return { type: EDIT_NOTE, note, index };
-};
+export const editNoteSuccess = (note, index) => ({ type: EDIT_NOTE, note, index });
 
 /**
  * Edit a note on an incident
@@ -88,44 +72,30 @@ export const editNoteSuccess = (note, index) => {
  * @param {*} noteId
  */
 export const editNote = (noteText, noteId, index) => {
-  let noteUrl = `${config.NOTES_URL}/${noteId}`;
-  return dispatch => {
-    return axios
-      .put(noteUrl, {
-        note: noteText,
-        userEmail: localStorage.getItem('email')
-      })
-      .then(res => {
-        dispatch(editNoteSuccess(res.data.data, index));
-      })
-      .catch(error => {
-        return dispatch(errorAction(error));
-      });
-  };
+  const noteUrl = `${config.NOTES_URL}/${noteId}`;
+  return dispatch => axios
+    .put(noteUrl, {
+      note: noteText,
+      userEmail: localStorage.getItem('email'),
+    })
+    .then((res) => {
+      dispatch(editNoteSuccess(res.data.data, index));
+    })
+    .catch(error => dispatch(errorAction(error)));
 };
 
 // Archive note action creator
-export const archiveNoteSuccess = (note, index) => {
-  return { type: ARCHIVE_NOTE, note, index };
-};
+export const archiveNoteSuccess = (note, index) => ({ type: ARCHIVE_NOTE, note, index });
 
-export const archiveNote = (noteId, index) => {
-  return dispatch => {
-    return axios
-      .delete(`${config.NOTES_URL}/${noteId}`)
-      .then(res => {
-        dispatch(archiveNoteSuccess(res.data.data, index));
-      })
-      .catch(error => {
-        return dispatch(errorAction(error));
-      });
-  };
-};
+export const archiveNote = (noteId, index) => dispatch => axios
+  .delete(`${config.NOTES_URL}/${noteId}`)
+  .then((res) => {
+    dispatch(archiveNoteSuccess(res.data.data, index));
+  })
+  .catch(error => dispatch(errorAction(error)));
 
 // Change incident status action creator
-export const changeStatusSuccess = incident => {
-  return { type: CHANGE_STATUS, incident };
-};
+export const changeStatusSuccess = incident => ({ type: CHANGE_STATUS, incident });
 
 /**
  * Change the status of an incident whether open, closed or in progress
@@ -133,59 +103,47 @@ export const changeStatusSuccess = incident => {
  * @param {*} incidentId
  */
 export const changeStatus = (statusId, incidentId) => {
-  let headers = { Authorization: localStorage.token };
-  return dispatch => {
-    return axios
-      .put(
-        `${config.INCIDENTS_URL}/${incidentId}/`,
-        {
-          statusId
-        },
-        { headers }
-      )
-      .then(res => {
-        dispatch(changeStatusSuccess(res.data.data));
-      })
-      .catch(error => {
-        return dispatch(errorAction(error));
-      });
-  };
+  const headers = { Authorization: localStorage.token };
+  return dispatch => axios
+    .put(
+      `${config.INCIDENTS_URL}/${incidentId}/`,
+      {
+        statusId,
+      },
+      { headers },
+    )
+    .then((res) => {
+      dispatch(changeStatusSuccess(res.data.data));
+    })
+    .catch(error => dispatch(errorAction(error)));
 };
 
 // Change incident assignee action creator
-export const changeAssigneeSuccess = incident => {
-  return { type: CHANGE_ASSIGNEE, incident };
-};
+export const changeAssigneeSuccess = incident => ({ type: CHANGE_ASSIGNEE, incident });
 
 /**
  * Change assignee thunk
  * @param {*} assigneeId
  * @param {*} incidentId
  */
-export const changeAssignee = payload => {
-  let headers = { Authorization: localStorage.token };
-  return dispatch => {
-    return axios
-      .put(
-        `${config.INCIDENTS_URL}/${payload.incidentId}/`,
-        {
-          assignee: payload
-        },
-        { headers }
-      )
-      .then(res => {
-        dispatch(changeAssigneeSuccess(res.data.data));
-      })
-      .catch(error => {
-        return dispatch(errorAction(error));
-      });
-  };
+export const changeAssignee = (payload) => {
+  const headers = { Authorization: localStorage.token };
+  return dispatch => axios
+    .put(
+      `${config.INCIDENTS_URL}/${payload.incidentId}/`,
+      {
+        assignee: payload,
+      },
+      { headers },
+    )
+    .then((res) => {
+      dispatch(changeAssigneeSuccess(res.data.data));
+    })
+    .catch(error => dispatch(errorAction(error)));
 };
 
 // Handle CC'd action creator
-export const changeCCdSuccess = incident => {
-  return { type: CHANGE_ASSIGNEE, incident };
-};
+export const changeCCdSuccess = incident => ({ type: CHANGE_ASSIGNEE, incident });
 
 /**
  * Handle CCd thunk
@@ -193,48 +151,36 @@ export const changeCCdSuccess = incident => {
  * @param {*} incidentId
  * @param {*} status
  */
-export const handleCC = payload => {
-  let headers = { Authorization: localStorage.token };
-  return dispatch => {
-    return axios
-      .put(
-        `${config.INCIDENTS_URL}/${payload.incidentId}/`,
-        {
-          ccd: payload.ccdUsers
-        },
-        { headers }
-      )
-      .then(res => {
-        dispatch(changeCCdSuccess(res.data.data));
-      })
-      .catch(error => {
-        return dispatch(errorAction(error));
-      });
-  };
+export const handleCC = (payload) => {
+  const headers = { Authorization: localStorage.token };
+  return dispatch => axios
+    .put(
+      `${config.INCIDENTS_URL}/${payload.incidentId}/`,
+      {
+        ccd: payload.ccdUsers,
+      },
+      { headers },
+    )
+    .then((res) => {
+      dispatch(changeCCdSuccess(res.data.data));
+    })
+    .catch(error => dispatch(errorAction(error)));
 };
 
 // Send chat message action creator
-export const sendMessageSuccess = chat => {
-  return { type: ADD_CHAT, chat };
-};
+export const sendMessageSuccess = chat => ({ type: ADD_CHAT, chat });
 
 /**
  * Send chat message thunk
  * @param {*} incidentId
  * @param {*} message
  */
-export const sendMessage = (incidentId, message) => {
-  return dispatch => {
-    return axios
-      .post(`${config.INCIDENTS_URL}/${incidentId}/chats`, {
-        chat: message,
-        userEmail: localStorage.getItem('email')
-      })
-      .then(res => {
-        dispatch(sendMessageSuccess(res.data.data));
-      })
-      .catch(error => {
-        return dispatch(errorAction(error));
-      });
-  };
-};
+export const sendMessage = (incidentId, message) => dispatch => axios
+  .post(`${config.INCIDENTS_URL}/${incidentId}/chats`, {
+    chat: message,
+    userEmail: localStorage.getItem('email'),
+  })
+  .then((res) => {
+    dispatch(sendMessageSuccess(res.data.data));
+  })
+  .catch(error => dispatch(errorAction(error)));

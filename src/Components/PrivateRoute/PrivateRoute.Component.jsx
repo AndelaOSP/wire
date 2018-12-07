@@ -16,12 +16,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
-        authenticateUser.isAuthenticated && loginErrors.indexOf(statusCode) == -1 ? (
+      render={props => (
+        authenticateUser.isAuthenticated && loginErrors.indexOf(statusCode) === -1 ? (
           <Component {...props} />
         ) : (
           <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
-        )
+        ))
       }
     />
   );
@@ -31,20 +31,19 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
  * PrivateRoute PropTypes declaration
  */
 PrivateRoute.propTypes = {
-  component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]), // Container || functional react component
+  component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   location: PropTypes.object,
-  statusCode: PropTypes.number
+  statusCode: PropTypes.number,
 };
 
-/**
- * map state from the store to props
- * @param {*} state
- * @returns {*} partial state
- */
-const mapStateToProps = state => {
-  return {
-    statusCode: state.error.statusCode
-  };
+PrivateRoute.defaultProps = {
+  component: () => {},
+  location: {},
+  statusCode: 0,
 };
+
+const mapStateToProps = state => ({
+  statusCode: state.error.statusCode,
+});
 
 export default connect(mapStateToProps)(PrivateRoute);

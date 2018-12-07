@@ -8,6 +8,7 @@ exports[`ButtonComponent Test Should render Button Component 1`] = `
   label="Cancel"
   labelPosition="after"
   labelStyle={Object {}}
+  onClick={[Function]}
   onKeyboardFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}

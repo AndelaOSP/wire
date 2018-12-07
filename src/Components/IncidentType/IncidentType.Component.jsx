@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import IncidentCard from '../IncidentList/IncidentCard.Component';
-
-// import styling
 import './IncidentType.scss';
 
 class IncidentType extends Component {
-  constructor(props) {
-    super(props);
-  }
+  getTime = timestamp => new Date(timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
-  getTime = timestamp =>
-    new Date(timestamp).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-
-  getDate = timestamp =>
-    new Date(timestamp).toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
-    });
+  getDate = timestamp => new Date(timestamp).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
 
   render() {
     const { incidentStatus, incidents, underLineColor } = this.props;
@@ -37,9 +28,9 @@ class IncidentType extends Component {
     ));
     const renderCards = [];
 
-    for (let i = 1; i < cards.length + 1; i++) {
+    for (let i = 1; i < cards.length + 1; i += 1) {
       renderCards.push(cards[i - 1]);
-      if (i % 2 == 0) {
+      if (i % 2 === 0) {
         renderCards.push(<div key={i - 100} className="dotted-line" />);
       }
     }
@@ -56,7 +47,12 @@ class IncidentType extends Component {
               <img className="folder" src="/assets/images/open_folder.png" alt="No incidents" />
               <p>
                 {' '}
-                No incidents <br />in <span className="status">{this.props.incidentStatus.toUpperCase()}</span>
+                No incidents
+                {' '}
+                <br />
+in
+                {' '}
+                <span className="status">{this.props.incidentStatus.toUpperCase()}</span>
               </p>
             </div>
           )}
@@ -65,14 +61,16 @@ class IncidentType extends Component {
     );
   }
 }
-
-// desructure proptypes
 const { string, array } = PropTypes;
 
 IncidentType.propTypes = {
   incidentStatus: string.isRequired,
   underLineColor: string,
-  incidents: array.isRequired
+  incidents: array.isRequired,
+};
+
+IncidentType.defaultProps = {
+  underLineColor: '',
 };
 
 export default IncidentType;

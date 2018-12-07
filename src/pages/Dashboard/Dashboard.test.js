@@ -1,28 +1,27 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import createRouterContext from 'react-router-test-context';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import PropTypes from 'prop-types';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import SelectField from 'material-ui/SelectField';
 import initialState from '../../reducers/initialState';
-import createRouterContext from 'react-router-test-context';
 import { testIncidents } from '../../../mock_endpoints/mockData';
 import { Dashboard } from './Dashboard.Component';
 import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
 import IncidentFilter from '../../Components/IncidentFilter/IncidentFilter.Component';
 import CustomNotification from '../../Components/CustomNotification/CustomNotification.Component';
 import CustomMenu from '../../Components/CustomMenu/CustomMenu.Component';
-import SelectField from 'material-ui/SelectField';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 const state = initialState;
 const context = createRouterContext();
-context['muiTheme'] = getMuiTheme();
+context.muiTheme = getMuiTheme();
 
 describe('Dashboard', () => {
-
   it('renders without crashing', () => {
     mount(
       <Dashboard
@@ -33,20 +32,21 @@ describe('Dashboard', () => {
         loadIncidents={() => {}}
         isLoading={false}
         isError={false}
-        errorMessage={''}
+        errorMessage=""
       />,
       {
         context,
         childContextTypes: {
           muiTheme: PropTypes.object.isRequired,
-          router: PropTypes.object
-      }
-    });
+          router: PropTypes.object,
+        },
+      },
+    );
   });
 
   it('renders nothing when IS_LOADING is true', () => {
     // omitting isLoading value in props sets it to true
-    let dashboard = mount(
+    const dashboard = mount(
       <Dashboard
         store={mockStore(state)}
         location={{}}
@@ -55,15 +55,16 @@ describe('Dashboard', () => {
         loadIncidents={() => {}}
         isLoading
         isError={false}
-        errorMessage={''}
+        errorMessage=""
       />,
       {
         context,
         childContextTypes: {
           muiTheme: PropTypes.object.isRequired,
-          router: PropTypes.object
-      }
-    });
+          router: PropTypes.object,
+        },
+      },
+    );
 
     expect(dashboard.find(CircularProgressIndicator).exists()).toBe(true);
     expect(dashboard.find(IncidentFilter).exists()).toBe(false);
@@ -71,7 +72,7 @@ describe('Dashboard', () => {
 
   it('renders custom snackbar on error', () => {
     // omitting isError value in props sets it to true
-    let dashboard = mount(
+    const dashboard = mount(
       <Dashboard
         store={mockStore(state)}
         location={{}}
@@ -80,15 +81,16 @@ describe('Dashboard', () => {
         loadIncidents={() => {}}
         isLoading={false}
         isError
-        errorMessage={'Fake test error'}
+        errorMessage="Fake test error"
       />,
       {
         context,
         childContextTypes: {
           muiTheme: PropTypes.object.isRequired,
-          router: PropTypes.object
-      }
-    });
+          router: PropTypes.object,
+        },
+      },
+    );
 
     expect(dashboard.find(CustomNotification).exists()).toBe(true);
     expect(dashboard.find(CustomNotification).text()).toEqual('Fake test error');
@@ -96,12 +98,10 @@ describe('Dashboard', () => {
 });
 
 describe('Filter functionality', () => {
-
   it('renders incidents per the filter chosen', () => {
-
     const mockLoadIncidents = jest.fn();
 
-    let dashboard = mount(
+    const dashboard = mount(
       <Dashboard
         store={mockStore(state)}
         location={{}}
@@ -110,28 +110,29 @@ describe('Filter functionality', () => {
         loadIncidents={mockLoadIncidents}
         isLoading={false}
         isError={false}
-        errorMessage={''}
+        errorMessage=""
       />,
       {
         context,
         childContextTypes: {
           muiTheme: PropTypes.object.isRequired,
-          router: PropTypes.object
-      }
-    });
+          router: PropTypes.object,
+        },
+      },
+    );
 
     expect(mockLoadIncidents.mock.calls.length).toBe(1);
 
     dashboard.setProps({
-      incidents: testIncidents
+      incidents: testIncidents,
     });
 
     dashboard.setState({
-      typeFilter: 'All Incidents'
+      typeFilter: 'All Incidents',
     });
 
     expect(dashboard.find('.incidents-progress').exists()).toEqual(true);
-    let pendingIncidents = dashboard.find('.incidents-progress');
+    const pendingIncidents = dashboard.find('.incidents-progress');
     expect(pendingIncidents.find('.incident-cards').exists()).toEqual(true);
     expect(pendingIncidents.find('.incident-cards').first().text()).toContain('Theft');
     expect(pendingIncidents.find('.incident-cards').text()).toContain('Fighting');
@@ -149,7 +150,7 @@ describe('Filter functionality', () => {
     expect(pendingIncidents.find('.incident-cards').text()).not.toContain('Theft');
 
     dashboard.setState({
-      filterKey: 'All Countries'
+      filterKey: 'All Countries',
     });
 
     const filter = dashboard.find(IncidentFilter);

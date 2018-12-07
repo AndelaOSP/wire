@@ -12,7 +12,7 @@ export const getTokenSuccess = (hasToken, token) => {
     type: GET_TOKEN_SUCCESS,
     isLoading: false,
     isError: false,
-    hasToken
+    hasToken,
   };
 };
 
@@ -20,17 +20,15 @@ export const getTokenSuccess = (hasToken, token) => {
  * getToken Thunk
  */
 
-export const getToken = email => {
-  let loginUrl = `${config.API_URL}/users/login`;
-  return dispatch => {
+export const getToken = (email) => {
+  const loginUrl = `${config.API_URL}/users/login`;
+  return (dispatch) => {
     dispatch(loadingAction(true));
     return axios
       .post(loginUrl, { email })
-      .then(response => {
+      .then((response) => {
         dispatch(getTokenSuccess(true, response.data.userToken));
       })
-      .catch(error => {
-        return dispatch(errorAction(error));
-      });
+      .catch(error => dispatch(errorAction(error)));
   };
 };
