@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'material-ui/Tabs';
-
-// actions
 import {
   loadIncidentDetails,
   addNote,
@@ -13,29 +11,20 @@ import {
   changeAssignee,
   handleCC,
   changeStatus,
-  sendMessage
+  sendMessage,
 } from '../../actions/timelineAction';
 import { fetchStaff } from '../../actions/staffAction';
-
-// styling
 import './IncidentTimeline.scss';
-
-// Components
 import NavBar from '../../Common/NavBar/NavBar.Component';
 import CustomNotification from '../../Components/CustomNotification/CustomNotification.Component';
 import TimelineSidebar from '../../Components/TimelineSidebar/TimelineSidebar.Component';
 import TimelineNotes from '../../Components/TimelineNotes/TimelineNotes.Component';
-import TimelineChat from '../../Components/TimelineChat/TimelineChat.Component';
 import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
 
 /**
  * @class IncidentTimeline
  */
-export class IncidentTimeline extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+class IncidentTimeline extends Component {
   componentDidMount() {
     this.props.fetchStaff();
     this.props.loadIncidentDetails(this.props.match.params.incidentId);
@@ -53,9 +42,9 @@ export class IncidentTimeline extends Component {
         <NavBar {...this.props} />
         {isLoading ? <CircularProgressIndicator /> : null}
         {isError ? (
-          <CustomNotification type={'error'} message={errorMessage} autoHideDuration={1500000} open />
+          <CustomNotification type="error" message={errorMessage} autoHideDuration={1500000} open />
         ) : (
-          <CustomNotification type={'error'} message={errorMessage} open={false} />
+          <CustomNotification type="error" message={errorMessage} open={false} />
         )}
         {this.props.incident.id ? (
           <div className="timeline-container">
@@ -89,42 +78,37 @@ IncidentTimeline.propTypes = {
   staff: PropTypes.array,
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string.isRequired
+  errorMessage: PropTypes.string.isRequired,
 };
 
-/**
- * map state from the store to props
- * @param {*} state
- * @returns {*} partial state
- */
-const mapStateToProps = state => {
-  return {
-    incident: state.selectedIncident,
-    staff: state.staff,
-    isLoading: state.isLoading,
-    isError: state.error.status,
-    errorMessage: state.error.message
-  };
+IncidentTimeline.defaultProps = {
+  loadIncidentDetails: () => {},
+  incident: {},
+  fetchStaff: () => {},
+  staff: [],
 };
 
-/**
- * map dispatch to props
- * @param {*} dispatch
- */
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      loadIncidentDetails,
-      addNote,
-      editNote,
-      archiveNote,
-      changeAssignee,
-      handleCC,
-      changeStatus,
-      sendMessage,
-      fetchStaff
-    },
-    dispatch
-  );
+const mapStateToProps = state => ({
+  incident: state.selectedIncident,
+  staff: state.staff,
+  isLoading: state.isLoading,
+  isError: state.error.status,
+  errorMessage: state.error.message,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    loadIncidentDetails,
+    addNote,
+    editNote,
+    archiveNote,
+    changeAssignee,
+    handleCC,
+    changeStatus,
+    sendMessage,
+    fetchStaff,
+  },
+  dispatch,
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(IncidentTimeline);

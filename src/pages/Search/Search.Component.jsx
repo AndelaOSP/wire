@@ -3,24 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import PropTypes from 'prop-types';
-
-// styling
 import './Search.scss';
-
-// actions
 import { searchIncidents } from '../../actions/incidentAction';
-
-// Components
 import IncidentCard from '../../Components/IncidentList/IncidentCard.Component';
 
-/**
- * @class SearchComponent
- */
 class SearchComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.searchInput.focus();
   }
@@ -29,7 +16,7 @@ class SearchComponent extends Component {
    * Method to handle search input change
    */
   handleInputChange = () => {
-    let searchQuery = this.searchInput.input.value.toLowerCase();
+    const searchQuery = this.searchInput.input.value.toLowerCase();
     if (searchQuery) {
       this.props.searchIncidents(searchQuery);
     }
@@ -39,19 +26,18 @@ class SearchComponent extends Component {
    * Method to exit search
    * @param {event} event - Event triggering exit to dashboard
    */
-  handleExit = event => {
+  handleExit = (event) => {
     event.preventDefault();
     this.props.history.push('/dashboard');
   };
 
   getTime = timestamp => new Date(timestamp).toLocaleTimeString();
 
-  getDate = timestamp =>
-    new Date(timestamp).toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
-    });
+  getDate = timestamp => new Date(timestamp).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
 
   render() {
     const incidents = this.searchInput ? this.props.incidents : [];
@@ -69,7 +55,7 @@ class SearchComponent extends Component {
         <div className="incident-cards">
           {incidents.length
             ? incidents.map(incident => (
-                <IncidentCard
+              <IncidentCard
                   key={incident.id}
                   incidentId={incident.id}
                   incidentSubject={incident.subject}
@@ -79,7 +65,7 @@ class SearchComponent extends Component {
                   incidentFlag={incident.Level.name}
                   assignees={incident.assignees}
                 />
-              ))
+            ))
             : null}
         </div>
       </div>
@@ -93,7 +79,7 @@ class SearchComponent extends Component {
 SearchComponent.propTypes = {
   history: PropTypes.object.isRequired,
   incidents: PropTypes.array.isRequired,
-  searchIncidents: PropTypes.func.isRequired
+  searchIncidents: PropTypes.func.isRequired,
 };
 
 /**
@@ -101,22 +87,21 @@ SearchComponent.propTypes = {
  * @param {*} state
  * @returns {*} partial state
  */
-const mapStateToProps = state => {
-  return {
-    incidents: state.incidents
-  };
-};
+const mapStateToProps = state => ({
+  incidents: state.incidents,
+});
 
 /**
  * map dispatch to props
  * @param {*} dispatch
  */
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      searchIncidents
-    },
-    dispatch
-  );
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    searchIncidents,
+  },
+  dispatch,
+);
 
-export default connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(SearchComponent);
+export default connect(
+  mapStateToProps, mapDispatchToProps, null, { withRef: true },
+)(SearchComponent);

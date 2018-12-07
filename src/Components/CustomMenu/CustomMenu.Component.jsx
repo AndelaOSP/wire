@@ -6,12 +6,12 @@ import MenuItem from 'material-ui/MenuItem';
 /**
  * @class CustomMenu
  */
-export class CustomMenu extends React.Component {
+class CustomMenu extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      value: 'All Countries'
+      value: 'All Countries',
     };
   }
 
@@ -24,7 +24,9 @@ export class CustomMenu extends React.Component {
   };
 
   render() {
-    const styles = { fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.7vw', height: '5vh' };
+    const styles = {
+      fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.7vw', height: '5vh',
+    };
     return (
       <SelectField
         underlineStyle={{ display: 'none' }}
@@ -46,7 +48,11 @@ export class CustomMenu extends React.Component {
 }
 
 CustomMenu.propTypes = {
-  changeCountryFilter: PropTypes.func
+  changeCountryFilter: PropTypes.func,
+};
+
+CustomMenu.defaultProps = {
+  changeCountryFilter: () => {},
 };
 
 export default CustomMenu;

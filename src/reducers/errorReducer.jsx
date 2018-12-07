@@ -11,7 +11,7 @@ import {
   EDIT_USER,
   DELETE_USER,
   FETCH_ROLES,
-  FETCH_LOCATIONS
+  FETCH_LOCATIONS,
 } from '../actions/actionTypes';
 
 const errorReducer = (state = initialState.error, action) => {
@@ -20,84 +20,84 @@ const errorReducer = (state = initialState.error, action) => {
       return {
         status: action.status,
         statusCode: action.statusCode,
-        message: action.message
+        message: action.message,
       };
 
     case FETCH_INCIDENTS_SUCCESS:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     case FETCH_INCIDENT:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     case SEARCH_INCIDENTS:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     case FETCH_STAFF:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     case FETCH_ROLES:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     case FETCH_LOCATIONS:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     case ADD_USER:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     case EDIT_USER:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     case DELETE_USER:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     case SEARCH_USER:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     case GET_TOKEN_SUCCESS:
       return {
         status: action.isError,
         statusCode: null,
-        message: ''
+        message: '',
       };
 
     default:

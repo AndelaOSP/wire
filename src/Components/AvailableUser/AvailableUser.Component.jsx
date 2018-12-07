@@ -6,19 +6,11 @@ import MenuItem from 'material-ui/MenuItem';
 import './AvailableUser.scss';
 
 class AvailableUser extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      position: null
-    };
-  }
-
   /**
    * Method to handle position change
    */
   handlePositionChange = (e, i, value) => {
-    this.setState({ position: value });
-    let { id, index } = this.props;
+    const { id, index } = this.props;
     this.props.handlePositionChange(value, id, index);
   };
 
@@ -26,23 +18,25 @@ class AvailableUser extends Component {
    * Method to handle user removal
    */
   handleRemove = () => {
-    let { id, index,username} = this.props;
+    const { id, index, username } = this.props;
     alert(`Are you sure you want to remove ${username}`);
     this.props.handleRemove(id, index);
   };
 
   render() {
-    const { imageUrl, username, role, country } = this.props;
+    const {
+      imageUrl, username, role, country,
+    } = this.props;
     const styles = {
       selectField: {
         fontSize: '1.2rem',
         width: '10vw',
         height: '5vh',
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
       },
       iconStyles: {
         fill: '#00000',
-        left: '3vw'
+        left: '3vw',
       },
       labelStyles: {
         textAlign: 'center',
@@ -52,7 +46,7 @@ class AvailableUser extends Component {
         fontWeight: 'normal',
         fontStyle: 'normal',
         fontStretch: 'normal',
-        letterSpacing: '0.3px'
+        letterSpacing: '0.3px',
       },
       hintStyles: {
         backgroundColor: '#F1F6F8',
@@ -66,11 +60,11 @@ class AvailableUser extends Component {
         top: '3px',
         textAlign: 'center',
         verticalAlign: 'none',
-        borderRadius: '6px'
+        borderRadius: '6px',
       },
       menuStyles: {
         width: '7vw',
-        left: '2vw'
+        left: '2vw',
       },
       menuItemStyles: {
         fontSize: '1rem',
@@ -78,8 +72,8 @@ class AvailableUser extends Component {
         fontWeight: '300',
         fontStyle: 'normal',
         fontStretch: 'normal',
-        letterSpacing: '0.3px'
-      }
+        letterSpacing: '0.3px',
+      },
     };
     return (
       <div className="user-card">
@@ -120,7 +114,7 @@ AvailableUser.propTypes = {
   role: PropTypes.string.isRequired,
   country: PropTypes.string.isRequired,
   handlePositionChange: PropTypes.func.isRequired,
-  handleRemove: PropTypes.func.isRequired
+  handleRemove: PropTypes.func.isRequired,
 };
 
 export default AvailableUser;

@@ -8,7 +8,7 @@
         "jest":true
     },
     "extends": [
-        "eslint:recommended",
+        "airbnb",
         "plugin:import/errors",
         "plugin:import/warnings"
     ],
@@ -16,20 +16,24 @@
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
+        "allowImportExportEverywhere": true,
         "ecmaFeatures": {
             "jsx": true,
             "experimentalObjectRestSpread": true
         }
     },
     "rules": {
+        "arow-parens": 0,
+        "consistent-return": 0,
         "quotes": [2, "single"],
         "no-console": 1,
         "no-debugger": 1,
         "no-var": 1,
+        "no-return-assign": 0,
         "strict": [1],
         "semi": [1, "always"],
         "no-trailing-spaces": 0,
-        "eol-last": 1,
+        "eol-last": 0,
         "no-unused-vars": 1,
         "no-underscore-dangle": 0,
         "no-alert": 0,
@@ -37,11 +41,12 @@
         "jsx-quotes": 1,
         "react/display-name": [1, { "ignoreTranspilerName": false }],
         "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+        "react/jsx-filename-extension": 0,
         "react/jsx-boolean-value": 1,
         "react/jsx-closing-bracket-location": 0,
         "react/jsx-curly-spacing": 1,
         "react/jsx-indent-props": 0,
-        "react/jsx-key": 1,
+        "react/jsx-key": 0,
         "react/jsx-max-props-per-line": 0,
         "react/jsx-no-bind": 0,
         "react/jsx-no-duplicate-props": 1,
@@ -52,6 +57,9 @@
         "react/jsx-sort-props": 0,
         "react/jsx-uses-react": 1,
         "react/jsx-uses-vars": 1,
+        "react/no-access-state-in-setstate": 0,
+        "react/no-array-index-key": 0,
+        "react/no-string-refs": 0,
         "react/no-danger": 1,
         "react/no-did-mount-set-state": 1,
         "react/no-did-update-set-state": 1,
@@ -63,8 +71,15 @@
         "react/prop-types": 1,
         "react/react-in-jsx-scope": 1,
         "react/self-closing-comp": 1,
-        "react/sort-comp": 1,
-        "import/no-unresolved": 0
+        "react/destructuring-assignment": 0,
+        "import/no-unresolved": 0,
+        "import/prefer-default-export": 0,
+        "react/button-has-type": 0,
+        "jsx-a11y/alt-text": 0,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "jsx-a11y/no-static-element-interactions": 0
+
+
     },
     "plugins": [
         "react"

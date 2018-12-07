@@ -13,15 +13,14 @@ import './TimelineSidebar.scss';
 // components
 import CustomButton from '../Button/Button.Component';
 
-export default class TimelineSidebar extends Component {
+class TimelineSidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false,
       assignee: null,
       selectedValues: [],
       reportDialogOpen: false,
-      resolveValue: 0
+      resolveValue: 0,
     };
   }
 
@@ -43,39 +42,33 @@ export default class TimelineSidebar extends Component {
     this.updateCcdAssociates(nextProps);
   }
 
-  updateAssignee = props => {
-    let assignee = props.incident.assignees.find(user => {
+  updateAssignee = (props) => {
+    const assignee = props.incident.assignees.find((user) => {
       if (user.assigneeIncidents) {
         return user.assigneeIncidents.assignedRole === 'assignee';
-      } else {
-        return user.assignedRole === 'assignee';
       }
+      return user.assignedRole === 'assignee';
     });
     if (this.state.assignee !== assignee) {
       this.setState({ assignee });
     }
   };
 
-  updateCcdAssociates = props => {
-    let ccdAssociates = props.incident.assignees
-      .filter(user => {
+  updateCcdAssociates = (props) => {
+    const ccdAssociates = props.incident.assignees
+      .filter((user) => {
         if (user.assigneeIncidents) {
           return user.assigneeIncidents.assignedRole === 'ccd';
-        } else {
-          return user.assignedRole === 'ccd';
         }
+        return user.assignedRole === 'ccd';
       })
-      .map(user => {
-        return user.id;
-      });
+      .map(user => user.id);
     if (this.state.selectedValues !== ccdAssociates) {
       this.setState({ selectedValues: ccdAssociates });
     }
   };
 
-  handleDateString = date => {
-    return moment(date).format('MMM Do YYYY [at] h:mm a');
-  };
+  handleDateString = date => moment(date).format('MMM Do YYYY [at] h:mm a');
 
   /**
    * Method to handle status change for an incident
@@ -93,18 +86,18 @@ export default class TimelineSidebar extends Component {
    * Method to handle the resolution of an incident
    * The report is added as a note to the incident
    */
-  handleResolveIncident = e => {
+  handleResolveIncident = (e) => {
     e.preventDefault();
     this.props.changeStatus(this.state.resolveValue, this.props.incident.id);
     this.props.addNote(
       `Report: ${this.refs.reportTextField.getValue()}`,
       this.props.incident.id,
-      localStorage.getItem('userId')
+      localStorage.getItem('userId'),
     );
     this.setState({ reportDialogOpen: !this.state.reportDialogOpen, resolveValue: 0 });
   };
 
-  handleCloseReportDialog = e => {
+  handleCloseReportDialog = (e) => {
     e.preventDefault();
     this.setState({ reportDialogOpen: !this.state.reportDialogOpen, resolveValue: 0 });
   };
@@ -119,63 +112,75 @@ export default class TimelineSidebar extends Component {
     this.setState({ selectedValues: values });
   };
 
-  generateInitials = witness => {
-    let names = witness.split(' ');
-    let firstInitial = names[0][0].toUpperCase();
-    let secondInitial = names[1][0].toUpperCase();
+  generateInitials = (witness) => {
+    const names = witness.split(' ');
+    const firstInitial = names[0][0].toUpperCase();
+    const secondInitial = names[1][0].toUpperCase();
     return firstInitial + secondInitial;
   };
 
-  renderCC = staff => {
-    return staff.map(staffMember => (
-      <MenuItem
+  renderCC = staff => staff.map(staffMember => (
+    <MenuItem
         key={staffMember.id}
         insetChildren
         value={staffMember.id}
-        checked={this.state.selectedValues && this.state.selectedValues.indexOf(staffMember.id) > -1}
+        checked={
+          this.state.selectedValues && this.state.selectedValues
+            .indexOf(staffMember.id) > -1}
         primaryText={staffMember.username}
       />
-    ));
-  };
+  ));
 
   onSelectClose = () => {
-    let ccdUsers = this.state.selectedValues.map(selected => {
-      return { incidentId: this.props.incident.id, userId: selected };
-    });
+    const ccdUsers = this.state.selectedValues.map(
+      selected => ({ incidentId: this.props.incident.id, userId: selected }),
+    );
     this.props.handleCC({ incidentId: this.props.incident.id, ccdUsers });
   };
 
-  renderFlag = flagLevel => {
-    if (flagLevel == 'Red') {
+  renderFlag = (flagLevel) => {
+    if (flagLevel === 'Red') {
       return <img className="flag-image" src="/assets/images/red_flag.svg" alt="red" />;
-    } else if (flagLevel == 'Green') {
+    } if (flagLevel === 'Green') {
       return <img className="flag-image" src="/assets/images/green_flag.svg" alt="green" />;
-    } else {
-      return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;
     }
+    return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;
   };
 
   render() {
-    let { incident, staff } = this.props;
-    let { assignee } = this.state;
-    let ccdAssociates = incident.assignees.filter(user => {
-      return user.assignedRole === 'ccd';
-    });
+    const { incident, staff } = this.props;
+    const { assignee } = this.state;
+    const ccdAssociates = incident.assignees.filter(user => user.assignedRole === 'ccd');
     const resolveActions = [
       <CustomButton key={1} label="Cancel" onClick={this.handleCloseReportDialog} />,
-      <CustomButton key={2} label="Submit" onClick={this.handleResolveIncident} />
+      <CustomButton key={2} label="Submit" onClick={this.handleResolveIncident} />,
     ];
     return (
       <div className="sidebar-container">
         <div className="incident-details">
-          <span className="incident-subject"> {incident.subject || 'No subject provided.'} </span>
+          <span className="incident-subject">
+            {' '}
+            {incident.subject || 'No subject provided.'}
+            {' '}
+          </span>
           <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
           <div className="underline" />
           <div className="incident-description">
             <div className="description-details">
-              <p> {incident.description || 'No description provided.'} </p>
+              <p>
+                {' '}
+                {incident.description || 'No description provided.'}
+                {' '}
+              </p>
               <p className="incident-extra">
-                reported by <b>{incident.reporter.username}</b> on <b>{this.handleDateString(incident.dateOccurred)}</b>{' '}
+                reported by
+                {' '}
+                <b>{incident.reporter.username}</b>
+                {' '}
+on
+                {' '}
+                <b>{this.handleDateString(incident.dateOccurred)}</b>
+                {' '}
               </p>
             </div>
           </div>
@@ -187,17 +192,15 @@ export default class TimelineSidebar extends Component {
           <span> Witnesses: </span>
           <div className="list">
             {incident.witnesses ? (
-              incident.witnesses.map((witness, i) => {
-                return (
-                  <div key={i} className="witness-image">
-                    {' '}
-                    <p>{this.generateInitials(witness.username)}</p>
-                    <div>
-                      <span className="tooltip-text">{witness.username}</span>
-                    </div>
+              incident.witnesses.map((witness, i) => (
+                <div key={i} className="witness-image">
+                  {' '}
+                  <p>{this.generateInitials(witness.username)}</p>
+                  <div>
+                    <span className="tooltip-text">{witness.username}</span>
                   </div>
-                );
-              })
+                </div>
+              ))
             ) : (
               <p> No witnesses </p>
             )}
@@ -223,19 +226,21 @@ export default class TimelineSidebar extends Component {
                 onChange={this.handleChangeAssignee}
                 className="dropdown dropdown-assigned"
               >
-                {staff.map((staffMember, i) => {
-                  return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.username} />;
-                })}
+                {staff.map((staffMember, i) => (
+                  <MenuItem
+                  key={i} value={staffMember.id} primaryText={staffMember.username} />
+                ))}
               </DropDownMenu>
             ) : (
               <DropDownMenu value={0} onChange={this.handleChangeAssignee} className="dropdown dropdown-assigned">
                 <MenuItem value={0} primaryText="Assign someone" />
                 {staff ? (
-                  staff.map((staffMember, i) => {
-                    return <MenuItem key={i} value={staffMember.id} primaryText={staffMember.username} />;
-                  })
+                  staff.map((staffMember, i) => (
+                    <MenuItem
+                    key={i} value={staffMember.id} primaryText={staffMember.username} />
+                  ))
                 ) : (
-                  <MenuItem value={0} primaryText={'No assignees available'} />
+                  <MenuItem value={0} primaryText="No assignees available" />
                 )}
               </DropDownMenu>
             )}
@@ -249,7 +254,7 @@ export default class TimelineSidebar extends Component {
               value={this.state.selectedValues}
               onChange={this.handleSelectCCd}
               dropDownMenuProps={{
-                onClose: this.onSelectClose
+                onClose: this.onSelectClose,
               }}
             >
               {this.renderCC(staff, ccdAssociates)}
@@ -259,7 +264,11 @@ export default class TimelineSidebar extends Component {
           <span> Location: </span>
           <div className="loction-list">
             {incident.Location ? (
-              <p> {`${incident.Location.name}, ${incident.Location.centre}, ${incident.Location.country}`} </p>
+              <p>
+                {' '}
+                {`${incident.Location.name}, ${incident.Location.centre}, ${incident.Location.country}`}
+                {' '}
+              </p>
             ) : (
               <p> No location specified </p>
             )}
@@ -269,7 +278,7 @@ export default class TimelineSidebar extends Component {
         <hr className="divider" />
 
         <Dialog
-          title={'Resolve an incident'}
+          title="Resolve an incident"
           actions={resolveActions}
           modal={false}
           open={this.state.reportDialogOpen}
@@ -285,10 +294,16 @@ export default class TimelineSidebar extends Component {
 
 TimelineSidebar.propTypes = {
   incident: PropTypes.object.isRequired,
-  match: PropTypes.object,
   changeStatus: PropTypes.func.isRequired,
   changeAssignee: PropTypes.func.isRequired,
   handleCC: PropTypes.func.isRequired,
   staff: PropTypes.array,
-  addNote: PropTypes.func
+  addNote: PropTypes.func,
 };
+
+TimelineSidebar.defaultProps = {
+  staff: {},
+  addNote: () => {},
+};
+
+export default TimelineSidebar;

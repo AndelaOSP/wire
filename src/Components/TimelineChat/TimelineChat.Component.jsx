@@ -3,32 +3,28 @@ import { List } from 'material-ui/List';
 import TextField from 'material-ui/TextField';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-
-// styling
 import './TimelineChat.scss';
 
-export default class TimelineChat extends Component {
+class TimelineChat extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: ''
+      message: '',
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     e.preventDefault();
     this.setState({ message: e.target.value });
   };
 
-  handlePostMessage = e => {
+  handlePostMessage = (e) => {
     e.preventDefault();
     this.props.sendMessage(this.props.incident.id, this.refs.messageInput.getValue());
     this.setState({ message: '' });
   };
 
-  handleDateString = date => {
-    return moment(date).format('[at] h:mm a');
-  };
+  handleDateString = date => moment(date).format('[at] h:mm a');
 
   render() {
     const { chats } = this.props.incident;
@@ -36,18 +32,16 @@ export default class TimelineChat extends Component {
       <div className="chat-container">
         <List className="chat-list">
           {chats.length > 0 ? (
-            chats.map((chat, i) => {
-              return (
-                <div className="message-header" key={i}>
-                  <span>{chat.User ? `${chat.User.username}${this.handleDateString(chat.createdAt)}` : 'You'}</span>
-                  <div className="message-body">
-                    <div className="message-bubble">
-                      <p>{chat.chat}</p>
-                    </div>
+            chats.map((chat, i) => (
+              <div className="message-header" key={i}>
+                <span>{chat.User ? `${chat.User.username}${this.handleDateString(chat.createdAt)}` : 'You'}</span>
+                <div className="message-body">
+                  <div className="message-bubble">
+                    <p>{chat.chat}</p>
                   </div>
                 </div>
-              );
-            })
+              </div>
+            ))
           ) : (
             <div className="no-message">
               <p>No Messages</p>
@@ -79,5 +73,7 @@ export default class TimelineChat extends Component {
 
 TimelineChat.propTypes = {
   incident: PropTypes.object.isRequired,
-  sendMessage: PropTypes.func.isRequired
+  sendMessage: PropTypes.func.isRequired,
 };
+
+export default TimelineChat;
