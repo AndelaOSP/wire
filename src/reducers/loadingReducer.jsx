@@ -5,7 +5,7 @@ import {
   FETCH_INCIDENTS_SUCCESS,
   FETCH_INCIDENT,
   FETCH_STAFF,
-  GET_TOKEN_SUCCESS
+  GET_TOKEN_SUCCESS,
 } from '../actions/actionTypes';
 
 const loadingReducer = (state = initialState.isLoading, action) => {

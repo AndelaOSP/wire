@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   staff,
   roles,
   locations,
-  router: routerReducer
+  router: routerReducer,
 });
 
 export default rootReducer;

@@ -5,11 +5,11 @@ export default {
   error: {
     status: false,
     statusCode: null,
-    message: ''
+    message: '',
   },
   selectedIncident: {
     notes: [],
-    chats: []
+    chats: [],
   },
   staff: [],
   roles: [],

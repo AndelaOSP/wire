@@ -12,16 +12,12 @@ import authenticateUser from '../../helpers/auth';
 /**
  * @class NavBar
  */
-export class NavBar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+class NavBar extends Component {
   /**
    * Method to handle Sign out
    * @param {event} event - Event triggering signing out
    */
-  handleSignOut = event => {
+  handleSignOut = (event) => {
     event.preventDefault();
     authenticateUser.logoutUser();
   };
@@ -30,13 +26,13 @@ export class NavBar extends Component {
    * Method to redirect to search
    * @param {event} event - Event triggering search
    */
-  handleSearch = event => {
+  handleSearch = (event) => {
     event.preventDefault();
     this.props.history.push('/search');
   };
 
   render() {
-    let { showSearch, notify } = this.props;
+    const { showSearch, notify } = this.props;
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <Link to="/dashboard">
@@ -74,14 +70,15 @@ export class NavBar extends Component {
     );
   }
 }
-
-/**
- * Navbar Component Props validation
- */
 NavBar.propTypes = {
   history: PropTypes.object.isRequired,
   showSearch: PropTypes.bool,
-  notify: PropTypes.bool
+  notify: PropTypes.bool,
+};
+
+NavBar.defaultProps = {
+  showSearch: true,
+  notify: true,
 };
 
 export default NavBar;

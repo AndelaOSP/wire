@@ -4,23 +4,22 @@ import Toggle from 'material-ui/Toggle';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-//styling
+// styling
 import './IncidentFilter.scss';
 
-//Components
+// Components
 import CustomMenu from '../CustomMenu/CustomMenu.Component';
 
 /**
  * @class IncidentFilter
  */
-export default class IncidentFilter extends Component {
+class IncidentFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      durationFilterValue: 0,
       flagFilterValue: 'All Incidents',
       incidentsType: 'Pending',
-      assignedToMe: false
+      assignedToMe: false,
     };
   }
 
@@ -43,7 +42,7 @@ export default class IncidentFilter extends Component {
   /**
    * Method to handle change on time filter buttons
    */
-  handleTimeChange = value => {
+  handleTimeChange = (value) => {
     this.props.changeTime(value);
   };
 
@@ -55,18 +54,20 @@ export default class IncidentFilter extends Component {
   render() {
     const styles = {
       thumbOff: {
-        backgroundColor: '#616161'
+        backgroundColor: '#616161',
       },
       trackOff: {
-        backgroundColor: '#BCBCBC'
+        backgroundColor: '#BCBCBC',
       },
       thumbSwitched: {
-        backgroundColor: '#127dc5'
+        backgroundColor: '#127dc5',
       },
       trackSwitched: {
-        backgroundColor: '#81D4FA'
+        backgroundColor: '#81D4FA',
       },
-      selectField: { fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.7vw', height: '5vh' }
+      selectField: {
+        fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.7vw', height: '5vh',
+      },
     };
     return (
       <div className="filters-container">
@@ -96,10 +97,10 @@ export default class IncidentFilter extends Component {
             className="flag-filter"
             style={styles.selectField}
           >
-            <MenuItem value={'All Incidents'} primaryText="All Flags" />
-            <MenuItem value={'red'} primaryText="Red Flag" />
-            <MenuItem value={'yellow'} primaryText="Yellow Flag" />
-            <MenuItem value={'green'} primaryText="Green Flag" />
+            <MenuItem value="All Incidents" primaryText="All Flags" />
+            <MenuItem value="red" primaryText="Red Flag" />
+            <MenuItem value="yellow" primaryText="Yellow Flag" />
+            <MenuItem value="green" primaryText="Green Flag" />
           </SelectField>
 
           <SelectField
@@ -111,10 +112,10 @@ export default class IncidentFilter extends Component {
             className="incidents-filter"
             style={styles.selectField}
           >
-            <MenuItem value={'Pending'} primaryText="Pending" />
-            <MenuItem value={'In Progress'} primaryText="In Progress" />
-            <MenuItem value={'Resolved'} primaryText="Resolved" />
-            <MenuItem value={'All Incidents'} primaryText="All Incidents" />
+            <MenuItem value="Pending" primaryText="Pending" />
+            <MenuItem value="In Progress" primaryText="In Progress" />
+            <MenuItem value="Resolved" primaryText="Resolved" />
+            <MenuItem value="All Incidents" primaryText="All Incidents" />
           </SelectField>
 
           <div className="duration-filter">
@@ -143,6 +144,14 @@ IncidentFilter.propTypes = {
   filterByType: PropTypes.func,
   changeTime: PropTypes.func,
   changeMineAll: PropTypes.func,
-  incident: PropTypes.object,
-  onSelectStatus: PropTypes.func
 };
+
+IncidentFilter.defaultProps = {
+  changeCountryFilter: () => {},
+  filterByFlag: () => {},
+  filterByType: () => {},
+  changeTime: () => {},
+  changeMineAll: () => {},
+};
+
+export default IncidentFilter;

@@ -12,13 +12,10 @@ class UserFilter extends Component {
     super(props);
     this.state = {
       countryFilter: 'All Countries',
-      open: false
+      open: false,
     };
   }
 
-  /**
-   * Method to handle filtering by country
-   */
   handleCountryChange = (event, index, value) => {
     this.props.changeCountryFilter(value);
     this.setState({ countryFilter: value });
@@ -41,8 +38,8 @@ class UserFilter extends Component {
   /**
    * Method to handle searching users
    */
-  handleInputChange = e => {
-    let query = e.target.value;
+  handleInputChange = (e) => {
+    const query = e.target.value;
     this.props.handleSearch(query);
   };
 
@@ -60,20 +57,20 @@ class UserFilter extends Component {
         fontSize: '12px',
         width: '9.7vw',
         height: '5vh',
-        marginTop: '1rem'
+        marginTop: '1rem',
       },
       flatButton: {
         marginLeft: '1.5rem',
         borderRadius: '3px',
         minWidth: '12rem',
-       },
+      },
       iconStyle: {
         fill: '#95989a',
         left: '5.7vw',
       },
       labelStyle: {
         backgroundColor: '#95989a',
-        color:'white',
+        color: 'white',
         height: '30px',
         fontFamily: 'DIN Pro',
         width: '90px',
@@ -84,13 +81,17 @@ class UserFilter extends Component {
         textAlign: 'center',
         verticalAlign: 'none',
         marginLeft: '1vw',
-        borderRadius: '20px'
-      }
+        borderRadius: '20px',
+      },
     };
     return (
       <div className="user-filter">
         <div className="heading-admin">
-          <p>Available Users ({staff.length})</p>
+          <p>
+Available Users (
+            {staff.length}
+)
+          </p>
           <div className="underline-admin" />
         </div>
         <div className="filter-search">
@@ -119,13 +120,18 @@ class UserFilter extends Component {
             <div className="invite-button">
               <FlatButton
                 label="Invite"
-                labelStyle={{ verticalAlign: 'none', color: '#ffff', fontFamily: 'DIN Pro', fontWeight:'700'}}
+                labelStyle={{
+                  verticalAlign: 'none', color: '#ffff', fontFamily: 'DIN Pro', fontWeight: '700',
+                }}
                 onClick={this.handleOpen}
                 backgroundColor="#3359df"
                 hoverColor="none"
                 style={styles.flatButton}
               />
-              <Modal open={this.state.open} handleClose={this.handleClose} handleInvite={this.handleInvite} />
+              <Modal
+                open={this.state.open}
+                handleClose={this.handleClose}
+                handleInvite={this.handleInvite} />
             </div>
           </div>
         </div>
@@ -138,7 +144,7 @@ UserFilter.propTypes = {
   staff: PropTypes.array.isRequired,
   handleSearch: PropTypes.func.isRequired,
   handleInvite: PropTypes.func.isRequired,
-  changeCountryFilter: PropTypes.func.isRequired
+  changeCountryFilter: PropTypes.func.isRequired,
 };
 
 export default UserFilter;

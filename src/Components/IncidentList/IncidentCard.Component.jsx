@@ -3,32 +3,25 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class IncidentCard extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  renderFlag = flagLevel => {
-    if (flagLevel.toLowerCase() == 'red') {
+  renderFlag = (flagLevel) => {
+    if (flagLevel.toLowerCase() === 'red') {
       return <img className="flag-image" src="/assets/images/red_flag.svg" alt="red" />;
-    } else if (flagLevel.toLowerCase() == 'green') {
+    } if (flagLevel.toLowerCase() === 'green') {
       return <img className="flag-image" src="/assets/images/green_flag.svg" alt="green" />;
-    } else {
-      return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;
     }
+    return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;
   };
 
-  generateInitials = assignee => {
-    let names = assignee.username.split(' ');
-    if(names) {
-      let firstInitial = (names[0] && names[0][0].toUpperCase()) || '';
-      let secondInitial = (names[1]&& names[1][0].toUpperCase()) || '';
+  generateInitials = (assignee) => {
+    const names = assignee.username.split(' ');
+    if (names) {
+      const firstInitial = (names[0] && names[0][0].toUpperCase()) || '';
+      const secondInitial = (names[1] && names[1][0].toUpperCase()) || '';
       return firstInitial.trim() + secondInitial.trim();
     }
   };
 
-  trimText = (text, length) => {
-    return text.length > length ? text.substring(0, length) + ' ...' : text;
-  };
+  trimText = (text, length) => (text.length > length ? `${text.substring(0, length)} ...` : text);
 
   render() {
     const {
@@ -38,7 +31,7 @@ class IncidentCard extends Component {
       incidentReportDate,
       incidentTime,
       incidentFlag,
-      assignees
+      assignees,
     } = this.props;
     return (
       <div className="incident-card">
@@ -68,7 +61,9 @@ class IncidentCard extends Component {
   }
 }
 
-const { string, number, oneOfType, array } = PropTypes;
+const {
+  string, number, oneOfType, array,
+} = PropTypes;
 
 IncidentCard.propTypes = {
   incidentId: oneOfType([string, number]),
@@ -77,7 +72,11 @@ IncidentCard.propTypes = {
   incidentReportDate: string.isRequired,
   incidentTime: string.isRequired,
   incidentFlag: string.isRequired,
-  assignees: array.isRequired
+  assignees: array.isRequired,
+};
+IncidentCard.defaultProps = {
+  incidentId: '',
+  incidentDescription: '',
 };
 
 export default IncidentCard;

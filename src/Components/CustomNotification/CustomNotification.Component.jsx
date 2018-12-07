@@ -7,7 +7,7 @@ import './CustomNotification.scss';
 
 // Set default notification text color
 let textStyle = {
-  color: 'black'
+  color: 'black',
 };
 
 const CustomNotification = ({ type, open, message }) => {
@@ -32,7 +32,7 @@ const CustomNotification = ({ type, open, message }) => {
 CustomNotification.propTypes = {
   message: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
 };
 
 export default CustomNotification;

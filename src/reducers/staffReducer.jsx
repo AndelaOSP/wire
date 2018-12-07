@@ -1,5 +1,7 @@
 import initialState from './initialState';
-import { FETCH_STAFF, SEARCH_USER, ADD_USER, EDIT_USER, DELETE_USER } from '../actions/actionTypes';
+import {
+  FETCH_STAFF, SEARCH_USER, ADD_USER, EDIT_USER, DELETE_USER, 
+} from '../actions/actionTypes';
 
 const staffReducer = (state = initialState.staff, action) => {
   switch (action.type) {
