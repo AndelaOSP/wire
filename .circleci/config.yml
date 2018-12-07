@@ -38,7 +38,7 @@ jobs:
             bash ./.circleci/deploy.sh
     build:
       docker:
-        - image: circleci/node:9.8.0
+        - image: circleci/node:9.10.0
 
       steps:
         - checkout
