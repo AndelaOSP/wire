@@ -6,7 +6,7 @@ const getErrorMessage = (error) => {
   }
 };
 
-export const errorAction = error => {
+export const errorAction = (error) => {
   if (error.response) {
     let message;
 
