@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Progress component should render without crashing 1`] = `
+<div
+  className="progress-container"
+>
+  <CircularProgress
+    color="#127dc5"
+    max={100}
+    min={0}
+    mode="indeterminate"
+    size={50}
+    thickness={5}
+    value={0}
+  />
+</div>
+`;
