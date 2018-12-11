@@ -21,7 +21,8 @@
             "src/routes.jsx",
             "src/index.js",
             "src/store/*"
-        ]
+        ],
+        "testURL": "http://localhost/"
     },
     "scripts": {
         "babel": "babel",
