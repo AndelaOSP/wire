@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from '../reducers/rootReducer';
 import thunk from 'redux-thunk';
+import rootReducer from '../reducers/rootReducer';
 
 const store = createStore(
   rootReducer,
   process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(thunk)
+  applyMiddleware(thunk),
 );
 
 export default store;

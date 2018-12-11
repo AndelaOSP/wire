@@ -2,8 +2,8 @@
  * Login and log out user
  */
 
-import { decodeToken, currentUser } from '../helpers/decodeToken';
 import * as jscookie from 'js-cookie';
+import { decodeToken, currentUser } from './decodeToken';
 
 const authenticateUser = {
   andelaEmailRegex: /@andela.com$/,
@@ -53,7 +53,7 @@ const authenticateUser = {
   logoutUser() {
     this.removeToken();
     localStorage.clear();
-    location.reload();
+    location.reload(); /* eslint-disable-line */
   },
 
   /**
@@ -61,10 +61,10 @@ const authenticateUser = {
    */
   removeToken() {
     jscookie.remove('jwt-token', { path: '/', domain: '.andela.com' });
-    return;
-  }
+  },
 };
 
-authenticateUser.revokeAuthentication = authenticateUser.revokeAuthentication.bind(authenticateUser);
+authenticateUser.revokeAuthentication = authenticateUser
+  .revokeAuthentication.bind(authenticateUser);
 
 export default authenticateUser;
