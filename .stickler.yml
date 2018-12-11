@@ -1,0 +1,10 @@
+---
+linters:
+  eslint:
+    config: './.eslintrc'
+
+files:
+  ignore:
+  - 'coverage'
+  - 'src/*.test.js'
+

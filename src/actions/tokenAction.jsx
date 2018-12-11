@@ -14,9 +14,9 @@ export const getTokenSuccess = (hasToken, token) => {
   };
 };
 
-export const getToken = email => {
-  let loginUrl = `${config.API_URL}/users/login`;
-  return dispatch => {
+export const getToken = (email) => {
+  const loginUrl = `${config.API_URL}/users/login`;
+  return (dispatch) => {
     dispatch(loadingAction(true));
     return axios
       .post(loginUrl, { email })

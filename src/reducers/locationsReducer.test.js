@@ -16,4 +16,3 @@ describe('Reducers :: Locations', () => {
     expect(reducer(getInitialState, action)).toEqual(expected);
   });
 });
-
