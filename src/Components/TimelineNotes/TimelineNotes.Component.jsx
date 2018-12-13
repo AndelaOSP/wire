@@ -51,14 +51,19 @@ export default class TimelineNotes extends Component {
 
   handleAddNote = (e) => {
     e.preventDefault();
-    this.props.addNote(this.refs.noteInput.getValue(), this.props.incident.id);
+    this.props.addNote(this.state.content, this.props.incident.id);
     this.setState({ content: '' });
   };
+
+  handleEditNoteChange = (e) => {
+    e.preventDefault();
+    this.setState({ note: { ...this.state.note, note: e.target.value } });
+  }
 
   handleEditNote = (e) => {
     e.preventDefault();
     this.setState({ showEditDialog: !this.state.showEditDialog });
-    this.props.editNote(this.refs.notesTextField.getValue(), this.state.note.id, this.state.index);
+    this.props.editNote(this.state.note.note, this.state.note.id, this.state.index);
   };
 
   handleDateString = date => moment(date).format('MMM Do YYYY [at] h:mm a');
@@ -145,7 +150,14 @@ export default class TimelineNotes extends Component {
           open={this.state.showEditDialog}
           onRequestClose={this.handleCloseEditDialog}
         >
-          <TextField defaultValue={this.state.note.note} fullWidth multiLine rows={3} ref="notesTextField" />
+          <TextField
+            value={this.state.note.note}
+            onChange={this.handleEditNoteChange}
+            fullWidth
+            multiLine
+            rows={3}
+            ref="notesTextField"
+          />
         </Dialog>
       </div>
     );
