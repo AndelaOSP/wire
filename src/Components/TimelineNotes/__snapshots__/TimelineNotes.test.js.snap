@@ -1,0 +1,881 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timeline Notes component should match snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TimelineNotes
+    addNote={[MockFunction]}
+    archiveNote={[MockFunction]}
+    editNote={[MockFunction]}
+    incident={
+      Object {
+        "Level": Object {
+          "name": "Red",
+        },
+        "Location": Object {
+          "centre": "Nairobi",
+          "country": "Kenya",
+          "name": "Quiet Room",
+        },
+        "Status": Object {
+          "status": "In Progress",
+        },
+        "assignees": Array [
+          Object {
+            "assignedRole": "ccd",
+            "createdAt": "2018-03-20T15:45:48.778Z",
+            "email": "caroline.nkirote@andela.com",
+            "id": "-KhLsLqucbC1WAMylcFt",
+            "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+            "roleId": 2,
+            "updatedAt": "2018-03-20T15:45:48.778Z",
+            "username": "Caroline Nkirote",
+          },
+          Object {
+            "assignedRole": "assignee",
+            "createdAt": "2018-03-20T15:45:48.778Z",
+            "email": "mercy.muchai@andela.com",
+            "id": "-KhLsOxrKcKZC8i2n888",
+            "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+            "roleId": 2,
+            "updatedAt": "2018-03-20T15:45:48.778Z",
+            "username": "Mercy Muchai",
+          },
+        ],
+        "categoryId": 4,
+        "chats": Array [],
+        "createdAt": "2018-03-20T15:48:15.380Z",
+        "dateOccurred": "2018-02-02T00:00:00.000Z",
+        "description": "Some random thing happened and I didnt like it",
+        "id": "cjezu2kr700010wx1yy6kxu5z",
+        "levelId": 1,
+        "locationId": "cjezu2kqo00000wx1a5u0i2xt",
+        "notes": Array [],
+        "reporter": Object {
+          "createdAt": "2018-03-20T15:45:48.778Z",
+          "email": "caroline.nkirote@andela.com",
+          "id": "-KhLsLqucbC1WAMylcFt",
+          "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+          "roleId": 2,
+          "updatedAt": "2018-03-20T15:45:48.778Z",
+          "username": "Caroline Nkirote",
+        },
+        "statusId": 2,
+        "subject": "Theft",
+        "updatedAt": "2018-03-21T09:02:41.309Z",
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <List
+          className="notes-list"
+        >
+          <div
+            className="no-message"
+          >
+            <p>
+              No Notes Created
+            </p>
+          </div>
+        </List>,
+        <div
+          className="message-container"
+        >
+          <img
+            className="notification-icon"
+            color="red"
+            src="/assets/images/clip.svg"
+          />
+          <div
+            className="message-input"
+          >
+            <form
+              onSubmit={[Function]}
+            >
+              <TextField
+                className="text-input"
+                disabled={false}
+                floatingLabelFixed={false}
+                fullWidth={false}
+                hintText="Add a note"
+                multiLine={false}
+                onChange={[Function]}
+                rows={1}
+                type="text"
+                underlineShow={false}
+                value=""
+              />
+            </form>
+          </div>
+          <div
+            className="message-icon"
+          >
+            <img
+              className="message-icon"
+              src="/assets/images/smile.svg"
+            />
+          </div>
+        </div>,
+        <Dialog
+          actions={
+            Array [
+              <CustomButton
+                label="Cancel"
+                onClick={[Function]}
+              />,
+              <CustomButton
+                label="Archive"
+                onClick={[Function]}
+              />,
+            ]
+          }
+          autoDetectWindowHeight={true}
+          autoScrollBodyContent={false}
+          modal={false}
+          onRequestClose={[Function]}
+          open={false}
+          repositionOnUpdate={true}
+        >
+          Are you sure you want to archive this note?
+        </Dialog>,
+        <Dialog
+          actions={
+            Array [
+              <CustomButton
+                label="Cancel"
+                onClick={[Function]}
+              />,
+              <CustomButton
+                label="Submit"
+                onClick={[Function]}
+              />,
+            ]
+          }
+          autoDetectWindowHeight={true}
+          autoScrollBodyContent={false}
+          modal={false}
+          onRequestClose={[Function]}
+          open={false}
+          repositionOnUpdate={true}
+          title="Edit note"
+        >
+          <TextField
+            defaultValue={undefined}
+            disabled={false}
+            floatingLabelFixed={false}
+            fullWidth={true}
+            multiLine={true}
+            rows={3}
+            type="text"
+            underlineShow={true}
+          />
+        </Dialog>,
+      ],
+      "className": "notes-container",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <div
+            className="no-message"
+          >
+            <p>
+              No Notes Created
+            </p>
+          </div>,
+          "className": "notes-list",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <p>
+              No Notes Created
+            </p>,
+            "className": "no-message",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "No Notes Created",
+            },
+            "ref": null,
+            "rendered": "No Notes Created",
+            "type": "p",
+          },
+          "type": "div",
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <img
+              className="notification-icon"
+              color="red"
+              src="/assets/images/clip.svg"
+            />,
+            <div
+              className="message-input"
+            >
+              <form
+                onSubmit={[Function]}
+              >
+                <TextField
+                  className="text-input"
+                  disabled={false}
+                  floatingLabelFixed={false}
+                  fullWidth={false}
+                  hintText="Add a note"
+                  multiLine={false}
+                  onChange={[Function]}
+                  rows={1}
+                  type="text"
+                  underlineShow={false}
+                  value=""
+                />
+              </form>
+            </div>,
+            <div
+              className="message-icon"
+            >
+              <img
+                className="message-icon"
+                src="/assets/images/smile.svg"
+              />
+            </div>,
+          ],
+          "className": "message-container",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "notification-icon",
+              "color": "red",
+              "src": "/assets/images/clip.svg",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "img",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <form
+                onSubmit={[Function]}
+              >
+                <TextField
+                  className="text-input"
+                  disabled={false}
+                  floatingLabelFixed={false}
+                  fullWidth={false}
+                  hintText="Add a note"
+                  multiLine={false}
+                  onChange={[Function]}
+                  rows={1}
+                  type="text"
+                  underlineShow={false}
+                  value=""
+                />
+              </form>,
+              "className": "message-input",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <TextField
+                  className="text-input"
+                  disabled={false}
+                  floatingLabelFixed={false}
+                  fullWidth={false}
+                  hintText="Add a note"
+                  multiLine={false}
+                  onChange={[Function]}
+                  rows={1}
+                  type="text"
+                  underlineShow={false}
+                  value=""
+                />,
+                "onSubmit": [Function],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "className": "text-input",
+                  "disabled": false,
+                  "floatingLabelFixed": false,
+                  "fullWidth": false,
+                  "hintText": "Add a note",
+                  "multiLine": false,
+                  "onChange": [Function],
+                  "rows": 1,
+                  "type": "text",
+                  "underlineShow": false,
+                  "value": "",
+                },
+                "ref": "noteInput",
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "form",
+            },
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <img
+                className="message-icon"
+                src="/assets/images/smile.svg"
+              />,
+              "className": "message-icon",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "message-icon",
+                "src": "/assets/images/smile.svg",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "img",
+            },
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "actions": Array [
+            <CustomButton
+              label="Cancel"
+              onClick={[Function]}
+            />,
+            <CustomButton
+              label="Archive"
+              onClick={[Function]}
+            />,
+          ],
+          "autoDetectWindowHeight": true,
+          "autoScrollBodyContent": false,
+          "children": "Are you sure you want to archive this note?",
+          "modal": false,
+          "onRequestClose": [Function],
+          "open": false,
+          "repositionOnUpdate": true,
+        },
+        "ref": null,
+        "rendered": "Are you sure you want to archive this note?",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "actions": Array [
+            <CustomButton
+              label="Cancel"
+              onClick={[Function]}
+            />,
+            <CustomButton
+              label="Submit"
+              onClick={[Function]}
+            />,
+          ],
+          "autoDetectWindowHeight": true,
+          "autoScrollBodyContent": false,
+          "children": <TextField
+            defaultValue={undefined}
+            disabled={false}
+            floatingLabelFixed={false}
+            fullWidth={true}
+            multiLine={true}
+            rows={3}
+            type="text"
+            underlineShow={true}
+          />,
+          "modal": false,
+          "onRequestClose": [Function],
+          "open": false,
+          "repositionOnUpdate": true,
+          "title": "Edit note",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "defaultValue": undefined,
+            "disabled": false,
+            "floatingLabelFixed": false,
+            "fullWidth": true,
+            "multiLine": true,
+            "rows": 3,
+            "type": "text",
+            "underlineShow": true,
+          },
+          "ref": "notesTextField",
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <List
+            className="notes-list"
+          >
+            <div
+              className="no-message"
+            >
+              <p>
+                No Notes Created
+              </p>
+            </div>
+          </List>,
+          <div
+            className="message-container"
+          >
+            <img
+              className="notification-icon"
+              color="red"
+              src="/assets/images/clip.svg"
+            />
+            <div
+              className="message-input"
+            >
+              <form
+                onSubmit={[Function]}
+              >
+                <TextField
+                  className="text-input"
+                  disabled={false}
+                  floatingLabelFixed={false}
+                  fullWidth={false}
+                  hintText="Add a note"
+                  multiLine={false}
+                  onChange={[Function]}
+                  rows={1}
+                  type="text"
+                  underlineShow={false}
+                  value=""
+                />
+              </form>
+            </div>
+            <div
+              className="message-icon"
+            >
+              <img
+                className="message-icon"
+                src="/assets/images/smile.svg"
+              />
+            </div>
+          </div>,
+          <Dialog
+            actions={
+              Array [
+                <CustomButton
+                  label="Cancel"
+                  onClick={[Function]}
+                />,
+                <CustomButton
+                  label="Archive"
+                  onClick={[Function]}
+                />,
+              ]
+            }
+            autoDetectWindowHeight={true}
+            autoScrollBodyContent={false}
+            modal={false}
+            onRequestClose={[Function]}
+            open={false}
+            repositionOnUpdate={true}
+          >
+            Are you sure you want to archive this note?
+          </Dialog>,
+          <Dialog
+            actions={
+              Array [
+                <CustomButton
+                  label="Cancel"
+                  onClick={[Function]}
+                />,
+                <CustomButton
+                  label="Submit"
+                  onClick={[Function]}
+                />,
+              ]
+            }
+            autoDetectWindowHeight={true}
+            autoScrollBodyContent={false}
+            modal={false}
+            onRequestClose={[Function]}
+            open={false}
+            repositionOnUpdate={true}
+            title="Edit note"
+          >
+            <TextField
+              defaultValue={undefined}
+              disabled={false}
+              floatingLabelFixed={false}
+              fullWidth={true}
+              multiLine={true}
+              rows={3}
+              type="text"
+              underlineShow={true}
+            />
+          </Dialog>,
+        ],
+        "className": "notes-container",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <div
+              className="no-message"
+            >
+              <p>
+                No Notes Created
+              </p>
+            </div>,
+            "className": "notes-list",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <p>
+                No Notes Created
+              </p>,
+              "className": "no-message",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "No Notes Created",
+              },
+              "ref": null,
+              "rendered": "No Notes Created",
+              "type": "p",
+            },
+            "type": "div",
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <img
+                className="notification-icon"
+                color="red"
+                src="/assets/images/clip.svg"
+              />,
+              <div
+                className="message-input"
+              >
+                <form
+                  onSubmit={[Function]}
+                >
+                  <TextField
+                    className="text-input"
+                    disabled={false}
+                    floatingLabelFixed={false}
+                    fullWidth={false}
+                    hintText="Add a note"
+                    multiLine={false}
+                    onChange={[Function]}
+                    rows={1}
+                    type="text"
+                    underlineShow={false}
+                    value=""
+                  />
+                </form>
+              </div>,
+              <div
+                className="message-icon"
+              >
+                <img
+                  className="message-icon"
+                  src="/assets/images/smile.svg"
+                />
+              </div>,
+            ],
+            "className": "message-container",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "notification-icon",
+                "color": "red",
+                "src": "/assets/images/clip.svg",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "img",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <form
+                  onSubmit={[Function]}
+                >
+                  <TextField
+                    className="text-input"
+                    disabled={false}
+                    floatingLabelFixed={false}
+                    fullWidth={false}
+                    hintText="Add a note"
+                    multiLine={false}
+                    onChange={[Function]}
+                    rows={1}
+                    type="text"
+                    underlineShow={false}
+                    value=""
+                  />
+                </form>,
+                "className": "message-input",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <TextField
+                    className="text-input"
+                    disabled={false}
+                    floatingLabelFixed={false}
+                    fullWidth={false}
+                    hintText="Add a note"
+                    multiLine={false}
+                    onChange={[Function]}
+                    rows={1}
+                    type="text"
+                    underlineShow={false}
+                    value=""
+                  />,
+                  "onSubmit": [Function],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "className": "text-input",
+                    "disabled": false,
+                    "floatingLabelFixed": false,
+                    "fullWidth": false,
+                    "hintText": "Add a note",
+                    "multiLine": false,
+                    "onChange": [Function],
+                    "rows": 1,
+                    "type": "text",
+                    "underlineShow": false,
+                    "value": "",
+                  },
+                  "ref": "noteInput",
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "form",
+              },
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <img
+                  className="message-icon"
+                  src="/assets/images/smile.svg"
+                />,
+                "className": "message-icon",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "message-icon",
+                  "src": "/assets/images/smile.svg",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "img",
+              },
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "actions": Array [
+              <CustomButton
+                label="Cancel"
+                onClick={[Function]}
+              />,
+              <CustomButton
+                label="Archive"
+                onClick={[Function]}
+              />,
+            ],
+            "autoDetectWindowHeight": true,
+            "autoScrollBodyContent": false,
+            "children": "Are you sure you want to archive this note?",
+            "modal": false,
+            "onRequestClose": [Function],
+            "open": false,
+            "repositionOnUpdate": true,
+          },
+          "ref": null,
+          "rendered": "Are you sure you want to archive this note?",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "actions": Array [
+              <CustomButton
+                label="Cancel"
+                onClick={[Function]}
+              />,
+              <CustomButton
+                label="Submit"
+                onClick={[Function]}
+              />,
+            ],
+            "autoDetectWindowHeight": true,
+            "autoScrollBodyContent": false,
+            "children": <TextField
+              defaultValue={undefined}
+              disabled={false}
+              floatingLabelFixed={false}
+              fullWidth={true}
+              multiLine={true}
+              rows={3}
+              type="text"
+              underlineShow={true}
+            />,
+            "modal": false,
+            "onRequestClose": [Function],
+            "open": false,
+            "repositionOnUpdate": true,
+            "title": "Edit note",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "defaultValue": undefined,
+              "disabled": false,
+              "floatingLabelFixed": false,
+              "fullWidth": true,
+              "multiLine": true,
+              "rows": 3,
+              "type": "text",
+              "underlineShow": true,
+            },
+            "ref": "notesTextField",
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
