@@ -24,7 +24,7 @@ import CircularProgressIndicator from '../../Components/Progress/Progress.Compon
 /**
  * @class IncidentTimeline
  */
-class IncidentTimeline extends Component {
+export class IncidentTimeline extends Component {
   componentDidMount() {
     this.props.fetchStaff();
     this.props.loadIncidentDetails(this.props.match.params.incidentId);
@@ -88,7 +88,7 @@ IncidentTimeline.defaultProps = {
   staff: [],
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   incident: state.selectedIncident,
   staff: state.staff,
   isLoading: state.isLoading,
@@ -96,7 +96,7 @@ const mapStateToProps = state => ({
   errorMessage: state.error.message,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+export const mapDispatchToProps = dispatch => bindActionCreators(
   {
     loadIncidentDetails,
     addNote,

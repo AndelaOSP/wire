@@ -1,98 +1,68 @@
 import React from 'react';
-import createRouterContext from 'react-router-test-context';
-import { mount } from 'enzyme';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import initialState from '../../reducers/initialState';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import PropTypes from 'prop-types';
-import moxios from 'moxios';
-
-import SearchComponent from './Search.Component';
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-
-const state = initialState;
-const context = createRouterContext();
-context['muiTheme'] = getMuiTheme();
+import { createShallow } from '@material-ui/core/test-utils';
+import { SearchComponent, mapDispatchToProps, mapStateToProps } from './Search.Component';
+import { testIncidents } from '../../../mock_endpoints/mockData';
 
 describe('SearchComponent', () => {
-  beforeEach(() => {});
+  describe('Component rendering and methods', () => {
+    let wrapper;
+    let shallow;
+    const props = {
+      classes: {
+        input: {},
+        focused: {},
+      },
+      history: {
+        push: jest.fn(),
+      },
+      incidents: testIncidents,
+      searchIncidents: jest.fn(),
+    };
 
-  it('renders without crashing', () => {
-    mount(<SearchComponent store={mockStore(state)} history={{}} />, {
-      context,
-      childContextTypes: {
-        muiTheme: PropTypes.object.isRequired,
-        router: PropTypes.object
-      }
-    });
-  });
-});
-
-describe('Search functionality', () => {
-  beforeEach(() => {
-    moxios.install();
-  });
-
-  afterEach(() => {
-    moxios.uninstall();
-  });
-
-  it('renders no results when there is no search query', () => {
-    const searchInput = mount(<SearchComponent store={mockStore(state)} history={{}} />, {
-      context,
-      childContextTypes: {
-        muiTheme: PropTypes.object.isRequired,
-        router: PropTypes.object
-      }
-    });
-    expect(searchInput.find('div .incident-cards').text()).toEqual('');
-  });
-
-  it('renders results when there is a search query', done => {
-    const searchComponent = mount(<SearchComponent store={mockStore(state)} incidents={[]} history={{}} />, {
-      context,
-      childContextTypes: {
-        muiTheme: PropTypes.object.isRequired,
-        router: PropTypes.object
-      }
+    beforeEach(() => {
+      shallow = createShallow();
+      wrapper = shallow(<SearchComponent {...props} />);
     });
 
-    const searchInput = searchComponent.find('input');
-    searchInput.instance().value = 'Theft';
-    searchInput.simulate('change', searchInput.instance());
+    it('should match snapshot', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
 
-    moxios.wait(() => {
-      let request = moxios.requests.mostRecent();
-      request
-        .respondWith({
-          status: 200,
-          response: {
-            status: 'success',
-            data: {
-              incidents: [
-                {
-                  id: '12345667',
-                  subject: 'Theft and so on',
-                  dateOccurred: '2017-02-11T00:00:00.000Z',
-                  createdAt: '2018-02-14T12:26:03.792Z',
-                  reporter: { username: 'Maureen Nyakio' },
-                  Level: { name: 'red' },
-                  assignees: [{ username: 'Peter Musonye' }]
-                }
-              ]
-            }
-          }
-        })
-        .then(() => {
-          let lastAction = searchComponent.instance().store.getActions()[0];
-          expect(request.url).toContain('q=theft');
-          expect(lastAction.incidents[0].subject).toBe('Theft and so on');
-          expect(lastAction.type).toEqual('SEARCH_INCIDENTS');
-          done();
-        });
+    it('should should change the searchQuery state when handleInputChange is called', () => {
+      wrapper.find('TextField').simulate('change', {
+        target: { name: 'searchQuery', value: 'subject' },
+      });
+
+      expect(wrapper.instance().state.searchQuery).toEqual('subject');
+    });
+
+    it('should call the history push method when times button is clicked', () => {
+      wrapper.find('.fa-times-circle').simulate('click', {
+        preventDefault: jest.fn(),
+      });
+
+      expect(props.history.push).toHaveBeenCalled();
+    });
+  });
+
+  describe('The mapStateToProps', () => {
+    it('should return the expected props', () => {
+      const state = {
+        incidents: testIncidents,
+      };
+      const props = mapStateToProps(state);
+
+      expect(props.incidents).toEqual(state.incidents);
+    });
+  });
+
+  describe('The mapDispatchToProps', () => {
+    it('should dispatch actions', () => {
+      const dispatch = jest.fn(() => Promise.resolve());
+      const props = mapDispatchToProps(dispatch);
+
+      props.searchIncidents();
+      expect(dispatch).toHaveBeenCalled();
     });
   });
 });

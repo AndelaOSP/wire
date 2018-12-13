@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import LoginPage from './pages/Login/LoginPage.Component';
 import Dashboard from './pages/Dashboard/Dashboard.Component'; /* eslint-disable-line import/no-named-as-default */
-import IncidentTimeline from './pages/IncidentTimeline/IncidentTimeline.Component';
+import IncidentTimeline from './pages/IncidentTimeline/IncidentTimeline.Component';/* eslint-disable-line import/no-named-as-default */
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute.Component';
-import SearchComponent from './pages/Search/Search.Component';
+import SearchComponent from './pages/Search/Search.Component';/* eslint-disable-line import/no-named-as-default */
 import RequireAdmin from './Components/RequireAdmin/RequireAdmin.Component';
 import AdminDashboard from './pages/AdminDashboard/AdminDashboard.Component'; /* eslint-disable-line import/no-named-as-default */
 

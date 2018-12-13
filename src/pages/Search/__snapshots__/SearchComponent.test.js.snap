@@ -1,0 +1,753 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchComponent Component rendering and methods should match snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SearchComponent
+    classes={
+      Object {
+        "focused": Object {},
+        "input": Object {},
+      }
+    }
+    history={
+      Object {
+        "push": [MockFunction],
+      }
+    }
+    incidents={
+      Array [
+        Object {
+          "Level": Object {
+            "name": "Red",
+          },
+          "Location": Object {
+            "centre": "Nairobi",
+            "country": "Kenya",
+            "name": "Quiet Room",
+          },
+          "Status": Object {
+            "status": "In Progress",
+          },
+          "assignees": Array [
+            Object {
+              "assignedRole": "ccd",
+              "createdAt": "2018-03-20T15:45:48.778Z",
+              "email": "caroline.nkirote@andela.com",
+              "id": "-KhLsLqucbC1WAMylcFt",
+              "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+              "roleId": 2,
+              "updatedAt": "2018-03-20T15:45:48.778Z",
+              "username": "Caroline Nkirote",
+            },
+            Object {
+              "assignedRole": "assignee",
+              "createdAt": "2018-03-20T15:45:48.778Z",
+              "email": "mercy.muchai@andela.com",
+              "id": "-KhLsOxrKcKZC8i2n888",
+              "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+              "roleId": 2,
+              "updatedAt": "2018-03-20T15:45:48.778Z",
+              "username": "Mercy Muchai",
+            },
+          ],
+          "categoryId": 4,
+          "chats": Array [],
+          "createdAt": "2018-03-20T15:48:15.380Z",
+          "dateOccurred": "2018-02-02T00:00:00.000Z",
+          "description": "Some random thing happened and I didnt like it",
+          "id": "cjezu2kr700010wx1yy6kxu5z",
+          "levelId": 1,
+          "locationId": "cjezu2kqo00000wx1a5u0i2xt",
+          "notes": Array [],
+          "reporter": Object {
+            "createdAt": "2018-03-20T15:45:48.778Z",
+            "email": "caroline.nkirote@andela.com",
+            "id": "-KhLsLqucbC1WAMylcFt",
+            "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+            "roleId": 2,
+            "updatedAt": "2018-03-20T15:45:48.778Z",
+            "username": "Caroline Nkirote",
+          },
+          "statusId": 2,
+          "subject": "Theft",
+          "updatedAt": "2018-03-21T09:02:41.309Z",
+        },
+        Object {
+          "Level": Object {
+            "name": "Yellow",
+          },
+          "Location": Object {
+            "centre": "Lagos",
+            "country": "Nigeria",
+            "name": "First Floor",
+          },
+          "Status": Object {
+            "status": "In Progress",
+          },
+          "assignees": Array [
+            Object {
+              "assignedRole": "ccd",
+              "createdAt": "2018-03-20T15:45:48.778Z",
+              "email": "caroline.nkirote@andela.com",
+              "id": "-KhLsLqucbC1WAMylcFt",
+              "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+              "roleId": 2,
+              "updatedAt": "2018-03-20T15:45:48.778Z",
+              "username": "Caroline Nkirote",
+            },
+            Object {
+              "assignedRole": "assignee",
+              "createdAt": "2018-03-20T15:45:48.778Z",
+              "email": "mercy.muchai@andela.com",
+              "id": "-KhLsOxrKcKZC8i2n888",
+              "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+              "roleId": 2,
+              "updatedAt": "2018-03-20T15:45:48.778Z",
+              "username": "Mercy Muchai",
+            },
+          ],
+          "categoryId": 4,
+          "createdAt": "2018-03-20T15:48:15.380Z",
+          "dateOccurred": "2018-02-02T00:00:00.000Z",
+          "description": "Some other random thing happened and I hated it",
+          "id": "cjezu2kr700010wx1yy6kxu5y",
+          "levelId": 1,
+          "locationId": "cjezu2kqo00000wx1a5u0i2xt",
+          "reporter": Object {
+            "createdAt": "2018-03-20T15:45:48.778Z",
+            "email": "caroline.nkirote@andela.com",
+            "id": "-KhLsLqucbC1WAMylcFt",
+            "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+            "roleId": 2,
+            "updatedAt": "2018-03-20T15:45:48.778Z",
+            "username": "Caroline Nkirote",
+          },
+          "statusId": 2,
+          "subject": "Fighting",
+          "updatedAt": "2018-03-21T09:02:41.309Z",
+        },
+      ]
+    }
+    searchIncidents={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <TextField
+          InputProps={
+            Object {
+              "classes": Object {
+                "focused": Object {},
+                "root": Object {},
+              },
+            }
+          }
+          autoFocus={true}
+          fullWidth={true}
+          label="Search for an incident"
+          name="title"
+          onChange={[Function]}
+          required={false}
+          rows={2}
+          select={false}
+          value=""
+          variant="standard"
+        />,
+        <i
+          className="fa fa-times-circle"
+          onClick={[Function]}
+          title="Click to exit search"
+        />,
+        <div
+          className="incident-cards"
+        >
+          <IncidentCard
+            assignees={
+              Array [
+                Object {
+                  "assignedRole": "ccd",
+                  "createdAt": "2018-03-20T15:45:48.778Z",
+                  "email": "caroline.nkirote@andela.com",
+                  "id": "-KhLsLqucbC1WAMylcFt",
+                  "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                  "roleId": 2,
+                  "updatedAt": "2018-03-20T15:45:48.778Z",
+                  "username": "Caroline Nkirote",
+                },
+                Object {
+                  "assignedRole": "assignee",
+                  "createdAt": "2018-03-20T15:45:48.778Z",
+                  "email": "mercy.muchai@andela.com",
+                  "id": "-KhLsOxrKcKZC8i2n888",
+                  "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                  "roleId": 2,
+                  "updatedAt": "2018-03-20T15:45:48.778Z",
+                  "username": "Mercy Muchai",
+                },
+              ]
+            }
+            incidentDescription="Some random thing happened and I didnt like it"
+            incidentFlag="Red"
+            incidentId="cjezu2kr700010wx1yy6kxu5z"
+            incidentReportDate="reported on Feb 2, 2018"
+            incidentSubject="Theft"
+            incidentTime="03:00:00"
+          />
+          <IncidentCard
+            assignees={
+              Array [
+                Object {
+                  "assignedRole": "ccd",
+                  "createdAt": "2018-03-20T15:45:48.778Z",
+                  "email": "caroline.nkirote@andela.com",
+                  "id": "-KhLsLqucbC1WAMylcFt",
+                  "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                  "roleId": 2,
+                  "updatedAt": "2018-03-20T15:45:48.778Z",
+                  "username": "Caroline Nkirote",
+                },
+                Object {
+                  "assignedRole": "assignee",
+                  "createdAt": "2018-03-20T15:45:48.778Z",
+                  "email": "mercy.muchai@andela.com",
+                  "id": "-KhLsOxrKcKZC8i2n888",
+                  "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                  "roleId": 2,
+                  "updatedAt": "2018-03-20T15:45:48.778Z",
+                  "username": "Mercy Muchai",
+                },
+              ]
+            }
+            incidentDescription="Some other random thing happened and I hated it"
+            incidentFlag="Yellow"
+            incidentId="cjezu2kr700010wx1yy6kxu5y"
+            incidentReportDate="reported on Feb 2, 2018"
+            incidentSubject="Fighting"
+            incidentTime="03:00:00"
+          />
+        </div>,
+      ],
+      "className": "search-container",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "InputProps": Object {
+            "classes": Object {
+              "focused": Object {},
+              "root": Object {},
+            },
+          },
+          "autoFocus": true,
+          "fullWidth": true,
+          "label": "Search for an incident",
+          "name": "title",
+          "onChange": [Function],
+          "required": false,
+          "rows": 2,
+          "select": false,
+          "value": "",
+          "variant": "standard",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "className": "fa fa-times-circle",
+          "onClick": [Function],
+          "title": "Click to exit search",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "i",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <IncidentCard
+              assignees={
+                Array [
+                  Object {
+                    "assignedRole": "ccd",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "caroline.nkirote@andela.com",
+                    "id": "-KhLsLqucbC1WAMylcFt",
+                    "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Caroline Nkirote",
+                  },
+                  Object {
+                    "assignedRole": "assignee",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "mercy.muchai@andela.com",
+                    "id": "-KhLsOxrKcKZC8i2n888",
+                    "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Mercy Muchai",
+                  },
+                ]
+              }
+              incidentDescription="Some random thing happened and I didnt like it"
+              incidentFlag="Red"
+              incidentId="cjezu2kr700010wx1yy6kxu5z"
+              incidentReportDate="reported on Feb 2, 2018"
+              incidentSubject="Theft"
+              incidentTime="03:00:00"
+            />,
+            <IncidentCard
+              assignees={
+                Array [
+                  Object {
+                    "assignedRole": "ccd",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "caroline.nkirote@andela.com",
+                    "id": "-KhLsLqucbC1WAMylcFt",
+                    "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Caroline Nkirote",
+                  },
+                  Object {
+                    "assignedRole": "assignee",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "mercy.muchai@andela.com",
+                    "id": "-KhLsOxrKcKZC8i2n888",
+                    "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Mercy Muchai",
+                  },
+                ]
+              }
+              incidentDescription="Some other random thing happened and I hated it"
+              incidentFlag="Yellow"
+              incidentId="cjezu2kr700010wx1yy6kxu5y"
+              incidentReportDate="reported on Feb 2, 2018"
+              incidentSubject="Fighting"
+              incidentTime="03:00:00"
+            />,
+          ],
+          "className": "incident-cards",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "cjezu2kr700010wx1yy6kxu5z",
+            "nodeType": "class",
+            "props": Object {
+              "assignees": Array [
+                Object {
+                  "assignedRole": "ccd",
+                  "createdAt": "2018-03-20T15:45:48.778Z",
+                  "email": "caroline.nkirote@andela.com",
+                  "id": "-KhLsLqucbC1WAMylcFt",
+                  "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                  "roleId": 2,
+                  "updatedAt": "2018-03-20T15:45:48.778Z",
+                  "username": "Caroline Nkirote",
+                },
+                Object {
+                  "assignedRole": "assignee",
+                  "createdAt": "2018-03-20T15:45:48.778Z",
+                  "email": "mercy.muchai@andela.com",
+                  "id": "-KhLsOxrKcKZC8i2n888",
+                  "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                  "roleId": 2,
+                  "updatedAt": "2018-03-20T15:45:48.778Z",
+                  "username": "Mercy Muchai",
+                },
+              ],
+              "incidentDescription": "Some random thing happened and I didnt like it",
+              "incidentFlag": "Red",
+              "incidentId": "cjezu2kr700010wx1yy6kxu5z",
+              "incidentReportDate": "reported on Feb 2, 2018",
+              "incidentSubject": "Theft",
+              "incidentTime": "03:00:00",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "cjezu2kr700010wx1yy6kxu5y",
+            "nodeType": "class",
+            "props": Object {
+              "assignees": Array [
+                Object {
+                  "assignedRole": "ccd",
+                  "createdAt": "2018-03-20T15:45:48.778Z",
+                  "email": "caroline.nkirote@andela.com",
+                  "id": "-KhLsLqucbC1WAMylcFt",
+                  "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                  "roleId": 2,
+                  "updatedAt": "2018-03-20T15:45:48.778Z",
+                  "username": "Caroline Nkirote",
+                },
+                Object {
+                  "assignedRole": "assignee",
+                  "createdAt": "2018-03-20T15:45:48.778Z",
+                  "email": "mercy.muchai@andela.com",
+                  "id": "-KhLsOxrKcKZC8i2n888",
+                  "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                  "roleId": 2,
+                  "updatedAt": "2018-03-20T15:45:48.778Z",
+                  "username": "Mercy Muchai",
+                },
+              ],
+              "incidentDescription": "Some other random thing happened and I hated it",
+              "incidentFlag": "Yellow",
+              "incidentId": "cjezu2kr700010wx1yy6kxu5y",
+              "incidentReportDate": "reported on Feb 2, 2018",
+              "incidentSubject": "Fighting",
+              "incidentTime": "03:00:00",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <TextField
+            InputProps={
+              Object {
+                "classes": Object {
+                  "focused": Object {},
+                  "root": Object {},
+                },
+              }
+            }
+            autoFocus={true}
+            fullWidth={true}
+            label="Search for an incident"
+            name="title"
+            onChange={[Function]}
+            required={false}
+            rows={2}
+            select={false}
+            value=""
+            variant="standard"
+          />,
+          <i
+            className="fa fa-times-circle"
+            onClick={[Function]}
+            title="Click to exit search"
+          />,
+          <div
+            className="incident-cards"
+          >
+            <IncidentCard
+              assignees={
+                Array [
+                  Object {
+                    "assignedRole": "ccd",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "caroline.nkirote@andela.com",
+                    "id": "-KhLsLqucbC1WAMylcFt",
+                    "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Caroline Nkirote",
+                  },
+                  Object {
+                    "assignedRole": "assignee",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "mercy.muchai@andela.com",
+                    "id": "-KhLsOxrKcKZC8i2n888",
+                    "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Mercy Muchai",
+                  },
+                ]
+              }
+              incidentDescription="Some random thing happened and I didnt like it"
+              incidentFlag="Red"
+              incidentId="cjezu2kr700010wx1yy6kxu5z"
+              incidentReportDate="reported on Feb 2, 2018"
+              incidentSubject="Theft"
+              incidentTime="03:00:00"
+            />
+            <IncidentCard
+              assignees={
+                Array [
+                  Object {
+                    "assignedRole": "ccd",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "caroline.nkirote@andela.com",
+                    "id": "-KhLsLqucbC1WAMylcFt",
+                    "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Caroline Nkirote",
+                  },
+                  Object {
+                    "assignedRole": "assignee",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "mercy.muchai@andela.com",
+                    "id": "-KhLsOxrKcKZC8i2n888",
+                    "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Mercy Muchai",
+                  },
+                ]
+              }
+              incidentDescription="Some other random thing happened and I hated it"
+              incidentFlag="Yellow"
+              incidentId="cjezu2kr700010wx1yy6kxu5y"
+              incidentReportDate="reported on Feb 2, 2018"
+              incidentSubject="Fighting"
+              incidentTime="03:00:00"
+            />
+          </div>,
+        ],
+        "className": "search-container",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "InputProps": Object {
+              "classes": Object {
+                "focused": Object {},
+                "root": Object {},
+              },
+            },
+            "autoFocus": true,
+            "fullWidth": true,
+            "label": "Search for an incident",
+            "name": "title",
+            "onChange": [Function],
+            "required": false,
+            "rows": 2,
+            "select": false,
+            "value": "",
+            "variant": "standard",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "fa fa-times-circle",
+            "onClick": [Function],
+            "title": "Click to exit search",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "i",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <IncidentCard
+                assignees={
+                  Array [
+                    Object {
+                      "assignedRole": "ccd",
+                      "createdAt": "2018-03-20T15:45:48.778Z",
+                      "email": "caroline.nkirote@andela.com",
+                      "id": "-KhLsLqucbC1WAMylcFt",
+                      "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                      "roleId": 2,
+                      "updatedAt": "2018-03-20T15:45:48.778Z",
+                      "username": "Caroline Nkirote",
+                    },
+                    Object {
+                      "assignedRole": "assignee",
+                      "createdAt": "2018-03-20T15:45:48.778Z",
+                      "email": "mercy.muchai@andela.com",
+                      "id": "-KhLsOxrKcKZC8i2n888",
+                      "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                      "roleId": 2,
+                      "updatedAt": "2018-03-20T15:45:48.778Z",
+                      "username": "Mercy Muchai",
+                    },
+                  ]
+                }
+                incidentDescription="Some random thing happened and I didnt like it"
+                incidentFlag="Red"
+                incidentId="cjezu2kr700010wx1yy6kxu5z"
+                incidentReportDate="reported on Feb 2, 2018"
+                incidentSubject="Theft"
+                incidentTime="03:00:00"
+              />,
+              <IncidentCard
+                assignees={
+                  Array [
+                    Object {
+                      "assignedRole": "ccd",
+                      "createdAt": "2018-03-20T15:45:48.778Z",
+                      "email": "caroline.nkirote@andela.com",
+                      "id": "-KhLsLqucbC1WAMylcFt",
+                      "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                      "roleId": 2,
+                      "updatedAt": "2018-03-20T15:45:48.778Z",
+                      "username": "Caroline Nkirote",
+                    },
+                    Object {
+                      "assignedRole": "assignee",
+                      "createdAt": "2018-03-20T15:45:48.778Z",
+                      "email": "mercy.muchai@andela.com",
+                      "id": "-KhLsOxrKcKZC8i2n888",
+                      "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                      "roleId": 2,
+                      "updatedAt": "2018-03-20T15:45:48.778Z",
+                      "username": "Mercy Muchai",
+                    },
+                  ]
+                }
+                incidentDescription="Some other random thing happened and I hated it"
+                incidentFlag="Yellow"
+                incidentId="cjezu2kr700010wx1yy6kxu5y"
+                incidentReportDate="reported on Feb 2, 2018"
+                incidentSubject="Fighting"
+                incidentTime="03:00:00"
+              />,
+            ],
+            "className": "incident-cards",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "cjezu2kr700010wx1yy6kxu5z",
+              "nodeType": "class",
+              "props": Object {
+                "assignees": Array [
+                  Object {
+                    "assignedRole": "ccd",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "caroline.nkirote@andela.com",
+                    "id": "-KhLsLqucbC1WAMylcFt",
+                    "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Caroline Nkirote",
+                  },
+                  Object {
+                    "assignedRole": "assignee",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "mercy.muchai@andela.com",
+                    "id": "-KhLsOxrKcKZC8i2n888",
+                    "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Mercy Muchai",
+                  },
+                ],
+                "incidentDescription": "Some random thing happened and I didnt like it",
+                "incidentFlag": "Red",
+                "incidentId": "cjezu2kr700010wx1yy6kxu5z",
+                "incidentReportDate": "reported on Feb 2, 2018",
+                "incidentSubject": "Theft",
+                "incidentTime": "03:00:00",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "cjezu2kr700010wx1yy6kxu5y",
+              "nodeType": "class",
+              "props": Object {
+                "assignees": Array [
+                  Object {
+                    "assignedRole": "ccd",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "caroline.nkirote@andela.com",
+                    "id": "-KhLsLqucbC1WAMylcFt",
+                    "imageUrl": "https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Caroline Nkirote",
+                  },
+                  Object {
+                    "assignedRole": "assignee",
+                    "createdAt": "2018-03-20T15:45:48.778Z",
+                    "email": "mercy.muchai@andela.com",
+                    "id": "-KhLsOxrKcKZC8i2n888",
+                    "imageUrl": "https://lh3.googleusercontent.com/-XxYl2Ryrfns/AAAAAAAAAAI/AAAAAAAAABg/QJRPuQnerrk/photo.jpg",
+                    "roleId": 2,
+                    "updatedAt": "2018-03-20T15:45:48.778Z",
+                    "username": "Mercy Muchai",
+                  },
+                ],
+                "incidentDescription": "Some other random thing happened and I hated it",
+                "incidentFlag": "Yellow",
+                "incidentId": "cjezu2kr700010wx1yy6kxu5y",
+                "incidentReportDate": "reported on Feb 2, 2018",
+                "incidentSubject": "Fighting",
+                "incidentTime": "03:00:00",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+    "context": Object {},
+  },
+}
+`;

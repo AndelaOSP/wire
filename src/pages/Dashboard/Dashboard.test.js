@@ -1,169 +1,206 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import createRouterContext from 'react-router-test-context';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import PropTypes from 'prop-types';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import SelectField from 'material-ui/SelectField';
-import initialState from '../../reducers/initialState';
+import { shallow } from 'enzyme';
 import { testIncidents } from '../../../mock_endpoints/mockData';
-import { Dashboard } from './Dashboard.Component';
-import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
-import IncidentFilter from '../../Components/IncidentFilter/IncidentFilter.Component';
-import CustomNotification from '../../Components/CustomNotification/CustomNotification.Component';
-import CustomMenu from '../../Components/CustomMenu/CustomMenu.Component';
+import { Dashboard, mapStateToProps, mapDispatchToProps } from './Dashboard.Component';
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+class LocalStorageMock {
+  constructor() {
+    this.store = {};
+  }
 
-const state = initialState;
-const context = createRouterContext();
-context.muiTheme = getMuiTheme();
+  clear() {
+    this.store = {};
+  }
 
-describe('Dashboard', () => {
-  it('renders without crashing', () => {
-    mount(
-      <Dashboard
-        store={mockStore(state)}
-        location={{}}
-        history={{}}
-        incidents={[]}
-        loadIncidents={() => {}}
-        isLoading={false}
-        isError={false}
-        errorMessage=""
-      />,
-      {
-        context,
-        childContextTypes: {
-          muiTheme: PropTypes.object.isRequired,
-          router: PropTypes.object,
-        },
-      },
-    );
-  });
+  getItem(key) {
+    return this.store[key] || null;
+  }
 
-  it('renders nothing when IS_LOADING is true', () => {
-    // omitting isLoading value in props sets it to true
-    const dashboard = mount(
-      <Dashboard
-        store={mockStore(state)}
-        location={{}}
-        history={{}}
-        incidents={[]}
-        loadIncidents={() => {}}
-        isLoading
-        isError={false}
-        errorMessage=""
-      />,
-      {
-        context,
-        childContextTypes: {
-          muiTheme: PropTypes.object.isRequired,
-          router: PropTypes.object,
-        },
-      },
-    );
+  setItem(key, value) {
+    this.store[key] = value.toString();
+  }
 
-    expect(dashboard.find(CircularProgressIndicator).exists()).toBe(true);
-    expect(dashboard.find(IncidentFilter).exists()).toBe(false);
-  });
+  removeItem(key) {
+    delete this.store[key];
+  }
+}
+global.localStorage = new LocalStorageMock();
 
-  it('renders custom snackbar on error', () => {
-    // omitting isError value in props sets it to true
-    const dashboard = mount(
-      <Dashboard
-        store={mockStore(state)}
-        location={{}}
-        history={{}}
-        incidents={[]}
-        loadIncidents={() => {}}
-        isLoading={false}
-        isError
-        errorMessage="Fake test error"
-      />,
-      {
-        context,
-        childContextTypes: {
-          muiTheme: PropTypes.object.isRequired,
-          router: PropTypes.object,
-        },
-      },
-    );
-
-    expect(dashboard.find(CustomNotification).exists()).toBe(true);
-    expect(dashboard.find(CustomNotification).text()).toEqual('Fake test error');
-  });
-});
-
-describe('Filter functionality', () => {
-  it('renders incidents per the filter chosen', () => {
-    const mockLoadIncidents = jest.fn();
-
-    const dashboard = mount(
-      <Dashboard
-        store={mockStore(state)}
-        location={{}}
-        history={{}}
-        incidents={[]}
-        loadIncidents={mockLoadIncidents}
-        isLoading={false}
-        isError={false}
-        errorMessage=""
-      />,
-      {
-        context,
-        childContextTypes: {
-          muiTheme: PropTypes.object.isRequired,
-          router: PropTypes.object,
-        },
-      },
-    );
-
-    expect(mockLoadIncidents.mock.calls.length).toBe(1);
-
-    dashboard.setProps({
+describe('Dashboard component', () => {
+  describe('Component rendering and methods', () => {
+    let wrapper;
+    let wrapperInstance;
+    const props = {
       incidents: testIncidents,
+      loadIncidents: jest.fn(),
+      location: {},
+      isLoading: false,
+      isError: false,
+      errorMessage: 'Oops! Something went wrong. Please try again.',
+      history: {},
+    };
+
+    beforeEach(() => {
+      wrapper = shallow(<Dashboard {...props} />);
+      wrapperInstance = wrapper.instance();
     });
 
-    dashboard.setState({
-      typeFilter: 'All Incidents',
+    it('should match snapshot', () => {
+      expect(wrapper).toMatchSnapshot();
     });
 
-    expect(dashboard.find('.incidents-progress').exists()).toEqual(true);
-    const pendingIncidents = dashboard.find('.incidents-progress');
-    expect(pendingIncidents.find('.incident-cards').exists()).toEqual(true);
-    expect(pendingIncidents.find('.incident-cards').first().text()).toContain('Theft');
-    expect(pendingIncidents.find('.incident-cards').text()).toContain('Fighting');
-
-    const menu = dashboard.find(CustomMenu);
-    const countrySelect = menu.find(SelectField);
-    countrySelect.props().onChange('click', 1, 'Kenya');
-
-    expect(pendingIncidents.find('.incident-cards').text()).toContain('Theft');
-    expect(pendingIncidents.find('.incident-cards').text()).not.toContain('Fighting');
-
-    countrySelect.props().onChange('click', 1, 'Nigeria');
-
-    expect(pendingIncidents.find('.incident-cards').text()).toContain('Fighting');
-    expect(pendingIncidents.find('.incident-cards').text()).not.toContain('Theft');
-
-    dashboard.setState({
-      filterKey: 'All Countries',
+    it('should display circular progress indicator when isLoading is true', () => {
+      wrapper.setProps({
+        isLoading: true,
+      });
+      expect(wrapper.find('CircularProgressIndicator').length).toBe(1);
     });
 
-    const filter = dashboard.find(IncidentFilter);
-    const flagSelect = filter.find(SelectField).at(1);
+    it('should change the filterKey state when the changeFilter method is called', () => {
+      wrapperInstance.changeFilter()('Kenya');
 
-    flagSelect.props().onChange('click', 1, 'red');
+      expect(wrapperInstance.state.filterKey).toEqual('Kenya');
+    });
 
-    expect(pendingIncidents.find('.incident-cards').text()).toContain('Theft');
-    expect(pendingIncidents.find('.incident-cards').text()).not.toContain('Fighting');
+    it('should change the flagFilterKey state when the changeFlagFilter is called', () => {
+      wrapperInstance.changeFlagFilter()('Yellow');
 
-    flagSelect.props().onChange('click', 1, 'yellow');
+      expect(wrapperInstance.state.flagFilterKey).toEqual('Yellow');
+    });
 
-    expect(pendingIncidents.find('.incident-cards').text()).toContain('Fighting');
-    expect(pendingIncidents.find('.incident-cards').text()).not.toContain('Theft');
+    it('should reset the typeFilter state when changeTypeFilter method is called', () => {
+      wrapperInstance.changeTypeFilter()('All Incidents');
+
+      expect(wrapperInstance.state.typeFilter).toEqual('All Incidents');
+    });
+
+    it('should reset the timeFilter state when changeTimeFilter method is called', () => {
+      wrapperInstance.changeTimeFilter()('Month');
+
+      expect(wrapperInstance.state.timeFilter).toEqual('Month');
+    });
+
+    it('should change assignedToMe state when changeAssignedToMeFilter method is called', () => {
+      wrapperInstance.changeAssignedToMeFilter()(true);
+
+      expect(wrapperInstance.state.assignedToMe).toBeTruthy();
+    });
+
+    it('should filter incidents by countries', () => {
+      wrapper.setState({
+        filterKey: 'Nigeria',
+        typeFilter: 'All Incidents',
+      });
+      
+      expect(wrapperInstance.filterIncidents()).toEqual([testIncidents[1]]);
+    });
+
+    it('should filter incidents by day', () => {
+      const date = wrapperInstance.getDate(new Date());
+      const newIncident = [
+        {
+          ...testIncidents[0],
+          dateOccurred: date,
+        },
+      ];
+      wrapper.setState({
+        timeFilter: 'Day',
+        typeFilter: 'All Incidents',
+      });
+      wrapper.setProps({
+        incidents: newIncident,
+      });
+
+      expect(wrapperInstance.filterIncidents()).toEqual(newIncident);
+    });
+
+    it('should filter incidents by week', () => {
+      const date = wrapperInstance.getDate(new Date());
+      const newIncident = [
+        {
+          ...testIncidents[0],
+          dateOccurred: date,
+        },
+      ];
+      wrapper.setState({
+        timeFilter: 'Week',
+        typeFilter: 'All Incidents',
+      });
+      wrapper.setProps({
+        incidents: newIncident,
+      });
+
+      expect(wrapperInstance.filterIncidents()).toEqual(newIncident);
+    });
+
+    it('should filter incidents by month', () => {
+      const date = wrapperInstance.getDate(new Date());
+      const newIncident = [
+        {
+          ...testIncidents[0],
+          dateOccurred: date,
+        },
+      ];
+      wrapper.setState({
+        timeFilter: 'Month',
+        typeFilter: 'All Incidents',
+      });
+      wrapper.setProps({
+        incidents: newIncident,
+      });
+
+      expect(wrapperInstance.filterIncidents()).toEqual(newIncident);
+    });
+    it('should filter incidents by assignedToMe', () => {
+      localStorage.setItem('email', 'caroline.nkirote@andela.com');
+      wrapper.setState({
+        filterKey: 'All Countries',
+        typeFilter: 'All Incidents',
+        assignedToMe: true,
+      });
+    
+      expect(wrapperInstance.filterIncidents()).toEqual(testIncidents);
+    });
+
+    it('should filter incidents by incidents flag', () => {
+      wrapper.setState({
+        flagFilterKey: 'Yellow',
+        typeFilter: 'All Incidents',
+      });
+      
+      expect(wrapperInstance.filterIncidents()).toEqual([testIncidents[1]]);
+    });
+  });
+
+  describe('The mapStateToProps', () => {
+    it('should return the expected props', () => {
+      const state = {
+        isLoading: false,
+        error: {
+          status: false,
+          message: 'Oops! Something went wrong. Please try again.',
+        },
+        incidents: testIncidents,
+      };
+      const props = mapStateToProps(state);
+
+      expect(props.isLoading).toEqual(state.isLoading);
+      expect(props.isError).toEqual(state.error.status);
+    });
+  });
+
+  describe('The mapDispatchToProps', () => {
+    let dispatch;
+    let props;
+
+    beforeEach(() => {
+      dispatch = jest.fn(() => Promise.resolve());
+      props = mapDispatchToProps(dispatch);
+    });
+
+    it('should dispatch actions', () => {
+      props.loadIncidents();
+      expect(dispatch).toHaveBeenCalled();
+    });
   });
 });

@@ -151,13 +151,14 @@ AdminDashboard.propTypes = {
   roles: PropTypes.array,
   locations: PropTypes.array,
 };
+
 AdminDashboard.defaultProps = {
   staff: [],
   roles: [],
   locations: [],
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   isLoading: state.isLoading,
   isError: state.error.status,
   errorMessage: state.error.message,
@@ -170,7 +171,7 @@ const mapStateToProps = state => ({
  * map dispatch to props
  * @param {*} dispatch
  */
-const mapDispatchToProps = dispatch => bindActionCreators(
+export const mapDispatchToProps = dispatch => bindActionCreators(
   {
     fetchStaff,
     fetchRoles,
