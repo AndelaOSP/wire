@@ -25,11 +25,4 @@ describe('Incident Card', () => {
     wrapper = shallow(<IncidentCard {...props} />);
     expect(wrapper.find('div').length).toEqual(9);
   });
-  it('should render renderFlag', () => {
-    wrapper = shallow(<IncidentCard {...props} />);
-    const spied = sinon.spy(wrapper.instance(), 'renderFlag');
-    wrapper.update();
-    wrapper.instance().renderFlag();
-    expect(spied.calledOnce).toBeTruthy();
-  });
 });
