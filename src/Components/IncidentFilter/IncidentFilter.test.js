@@ -27,7 +27,7 @@ describe('IncidentFilter component', () => {
     wrapper = shallow(<IncidentFilter />);
     expect(wrapper.find('MenuItem').length).toEqual(8);
   });
-  it('should render handleFlagChange', () => {
+  it('should handle flag change', () => {
     wrapper = shallow(<IncidentFilter />);
     const value = '';
     const spied = sinon.spy(wrapper.instance(), 'handleFlagChange');
@@ -36,7 +36,7 @@ describe('IncidentFilter component', () => {
     wrapper.instance().handleFlagChange();
     expect(spied.calledOnce).toBeTruthy();
   });
-  it('should render handleTypeChange', () => {
+  it('should handle type change', () => {
     wrapper = shallow(<IncidentFilter />);
     const value = '';
     const spied = sinon.spy(wrapper.instance(), 'handleTypeChange');
@@ -45,13 +45,13 @@ describe('IncidentFilter component', () => {
     wrapper.instance().handleTypeChange();
     expect(spied.calledOnce).toBeTruthy();
   });
-  it('should render handleTimeChange', () => {
+  it('should handle time change', () => {
     wrapper = shallow(<IncidentFilter />);
     const spied = sinon.spy(wrapper.instance(), 'handleTimeChange');
     wrapper.instance().handleTimeChange();
     expect(spied.calledOnce).toBeTruthy();
   });
-  it('should render handleMineAllChange', () => {
+  it('should handle mine all change', () => {
     wrapper = shallow(<IncidentFilter />);
     const value = '';
     const spied = sinon.spy(wrapper.instance(), 'handleMineAllChange');
