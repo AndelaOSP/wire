@@ -173,14 +173,15 @@ ShallowWrapper {
           title="Edit note"
         >
           <TextField
-            defaultValue={undefined}
             disabled={false}
             floatingLabelFixed={false}
             fullWidth={true}
             multiLine={true}
+            onChange={[Function]}
             rows={3}
             type="text"
             underlineShow={true}
+            value={undefined}
           />
         </Dialog>,
       ],
@@ -432,14 +433,15 @@ ShallowWrapper {
           "autoDetectWindowHeight": true,
           "autoScrollBodyContent": false,
           "children": <TextField
-            defaultValue={undefined}
             disabled={false}
             floatingLabelFixed={false}
             fullWidth={true}
             multiLine={true}
+            onChange={[Function]}
             rows={3}
             type="text"
             underlineShow={true}
+            value={undefined}
           />,
           "modal": false,
           "onRequestClose": [Function],
@@ -453,14 +455,15 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "defaultValue": undefined,
             "disabled": false,
             "floatingLabelFixed": false,
             "fullWidth": true,
             "multiLine": true,
+            "onChange": [Function],
             "rows": 3,
             "type": "text",
             "underlineShow": true,
+            "value": undefined,
           },
           "ref": "notesTextField",
           "rendered": null,
@@ -571,14 +574,15 @@ ShallowWrapper {
             title="Edit note"
           >
             <TextField
-              defaultValue={undefined}
               disabled={false}
               floatingLabelFixed={false}
               fullWidth={true}
               multiLine={true}
+              onChange={[Function]}
               rows={3}
               type="text"
               underlineShow={true}
+              value={undefined}
             />
           </Dialog>,
         ],
@@ -830,14 +834,15 @@ ShallowWrapper {
             "autoDetectWindowHeight": true,
             "autoScrollBodyContent": false,
             "children": <TextField
-              defaultValue={undefined}
               disabled={false}
               floatingLabelFixed={false}
               fullWidth={true}
               multiLine={true}
+              onChange={[Function]}
               rows={3}
               type="text"
               underlineShow={true}
+              value={undefined}
             />,
             "modal": false,
             "onRequestClose": [Function],
@@ -851,14 +856,15 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "defaultValue": undefined,
               "disabled": false,
               "floatingLabelFixed": false,
               "fullWidth": true,
               "multiLine": true,
+              "onChange": [Function],
               "rows": 3,
               "type": "text",
               "underlineShow": true,
+              "value": undefined,
             },
             "ref": "notesTextField",
             "rendered": null,

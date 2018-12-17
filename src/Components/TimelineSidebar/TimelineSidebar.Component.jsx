@@ -21,6 +21,7 @@ class TimelineSidebar extends Component {
       selectedValues: [],
       reportDialogOpen: false,
       resolveValue: 0,
+      reportText: '',
     };
   }
 
@@ -82,6 +83,13 @@ class TimelineSidebar extends Component {
     }
   };
 
+  handleReportTextChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      reportText: event.target.value,
+    });
+  }
+
   /**
    * Method to handle the resolution of an incident
    * The report is added as a note to the incident
@@ -90,7 +98,7 @@ class TimelineSidebar extends Component {
     e.preventDefault();
     this.props.changeStatus(this.state.resolveValue, this.props.incident.id);
     this.props.addNote(
-      `Report: ${this.refs.reportTextField.getValue()}`,
+      `Report: ${this.state.reportText}`,
       this.props.incident.id,
       localStorage.getItem('userId'),
     );
@@ -285,7 +293,14 @@ on
           onRequestClose={this.handleCloseReportDialog}
         >
           Add the report to the incident or attach a link to the document containing the report
-          <TextField fullWidth multiLine rows={3} ref="reportTextField" />
+          <TextField
+            fullWidth
+            multiLine
+            rows={3}
+            // ref="reportTextField"
+            value={this.state.reportText}
+            onChange={this.handleReportTextChange}
+          />
         </Dialog>
       </div>
     );
