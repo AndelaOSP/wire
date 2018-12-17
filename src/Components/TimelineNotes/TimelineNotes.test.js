@@ -1,7 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import shallowToJSON from 'enzyme-to-json';
-
 import TimelineNotes from './TimelineNotes.Component';
 import { testIncidents } from '../../../mock_endpoints/mockData';
 
@@ -96,5 +94,67 @@ describe('Timeline Notes component', () => {
     });
     
     expect(wrapperInstance.state.content).toEqual('Note');
+  });
+  
+  it('should initiate addNote action when handleAddNote method is called', () => {
+    wrapper.setState({
+      content: 'Some notes',
+    });
+    wrapperInstance.handleAddNote({
+      preventDefault: jest.fn(),
+    });
+
+    expect(props.addNote).toHaveBeenLastCalledWith('Some notes', props.incident.id);
+    expect(wrapperInstance.state.content).toEqual('');
+  });
+
+  it('should change the note state when handleEditNoteChange method is called', () => {
+    wrapper.setState({
+      note: {
+        id: '1',
+        note: 'important notes',
+      },
+    });
+    wrapperInstance.handleEditNoteChange({
+      preventDefault: jest.fn(),
+      target: {
+        value: 'Detailed notes',
+      },
+    });
+
+    expect(wrapperInstance.state.note.note).toEqual('Detailed notes');
+  });
+
+  it('should initiate editNote action when handleEditNote method is called', () => {
+    wrapper.setState({
+      note: {
+        id: '1',
+        note: 'default notes',
+      },
+      showEditDialog: true,
+      index: 1,
+    });
+    wrapperInstance.handleEditNote({
+      preventDefault: jest.fn(),
+    });
+
+    expect(props.editNote).toHaveBeenCalledWith('default notes', '1', 1);
+    expect(wrapperInstance.state.showEditDialog).toBeFalsy();
+  });
+
+  it('should display a list of ListItem when an incident has notes', () => {
+    wrapper.setProps({
+      incident: {
+        ...props.incident,
+        notes: [
+          {
+            id: '1',
+            note: 'some dummy notes',
+          },
+        ],
+      },
+    });
+
+    expect(wrapper.find('ListItem').length).toEqual(1);
   });
 });
