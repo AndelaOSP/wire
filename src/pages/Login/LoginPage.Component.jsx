@@ -23,7 +23,10 @@ const setReferrerInlocationStorage = (path) => {
   }
 };
 
-class LoginPage extends React.Component {
+/**
+ * LoginPage class
+ */
+export class LoginPage extends React.Component {
   componentDidMount() {
     authenticateUser.authenticate();
     const email = localStorage.getItem('email');
