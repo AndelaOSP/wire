@@ -80,6 +80,7 @@ class Modal extends Component {
               value={this.state.position}
               onChange={this.handlePositionChange}
               style={styles}
+              id="position-select-field"
             >
               <MenuItem value="Admin" primaryText="Admin" />
               <MenuItem value="Assignee" primaryText="Assignee" />
@@ -93,6 +94,7 @@ class Modal extends Component {
               value={this.state.location}
               onChange={this.handleLocationChange}
               style={styles}
+              id="location-select-field"
             >
               <MenuItem value="Kenya" primaryText="Kenya" />
               <MenuItem value="Nigeria" primaryText="Nigeria" />

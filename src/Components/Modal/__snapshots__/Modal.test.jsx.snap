@@ -1,0 +1,276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal component should render without crashing 1`] = `
+<div
+  className="modal"
+  id="myModal"
+  style={
+    Object {
+      "display": "none",
+    }
+  }
+>
+  <div
+    className="modal-content"
+  >
+    <span
+      className="close"
+      onClick={[Function]}
+    >
+      ×
+    </span>
+    <div
+      className="modal-header"
+    >
+      <p
+        className="modal-heading"
+      >
+        Invite User
+      </p>
+      <div
+        className="modal-underline"
+      />
+    </div>
+    <form
+      className="modal-body"
+      onSubmit={[Function]}
+    >
+      <input
+        id="email-input"
+        name="email"
+        onChange={[Function]}
+        placeholder="Example@andela.com"
+        type="email"
+        value=""
+      />
+      <SelectField
+        autoWidth={false}
+        disabled={false}
+        fullWidth={false}
+        hintStyle={
+          Object {
+            "color": "#95989a",
+            "marginLeft": "1rem",
+            "top": "1.4vh",
+          }
+        }
+        hintText="Select Position"
+        iconStyle={
+          Object {
+            "display": "none",
+          }
+        }
+        id="position-select-field"
+        labelStyle={
+          Object {
+            "color": "#95989a",
+            "marginLeft": "1rem",
+            "top": "-0.3vh",
+          }
+        }
+        multiple={false}
+        onChange={[Function]}
+        style={
+          Object {
+            "border": "1px solid #e0e0e0",
+            "borderRadius": "5px",
+            "height": "3.2rem",
+            "marginLeft": ".85rem",
+            "marginTop": "3.3rem",
+            "width": "92%",
+          }
+        }
+        underlineStyle={
+          Object {
+            "display": "none",
+          }
+        }
+        value={null}
+      >
+        <MenuItem
+          anchorOrigin={
+            Object {
+              "horizontal": "right",
+              "vertical": "top",
+            }
+          }
+          checked={false}
+          desktop={false}
+          disabled={false}
+          focusState="none"
+          insetChildren={false}
+          primaryText="Admin"
+          targetOrigin={
+            Object {
+              "horizontal": "left",
+              "vertical": "top",
+            }
+          }
+          value="Admin"
+        />
+        <MenuItem
+          anchorOrigin={
+            Object {
+              "horizontal": "right",
+              "vertical": "top",
+            }
+          }
+          checked={false}
+          desktop={false}
+          disabled={false}
+          focusState="none"
+          insetChildren={false}
+          primaryText="Assignee"
+          targetOrigin={
+            Object {
+              "horizontal": "left",
+              "vertical": "top",
+            }
+          }
+          value="Assignee"
+        />
+      </SelectField>
+      <SelectField
+        autoWidth={false}
+        disabled={false}
+        fullWidth={false}
+        hintStyle={
+          Object {
+            "color": "#95989a",
+            "marginLeft": "1rem",
+            "top": "1.4vh",
+          }
+        }
+        hintText="Select Country"
+        iconStyle={
+          Object {
+            "display": "none",
+          }
+        }
+        id="location-select-field"
+        labelStyle={
+          Object {
+            "color": "#95989a",
+            "marginLeft": "1rem",
+            "top": "-0.3vh",
+          }
+        }
+        multiple={false}
+        onChange={[Function]}
+        style={
+          Object {
+            "border": "1px solid #e0e0e0",
+            "borderRadius": "5px",
+            "height": "3.2rem",
+            "marginLeft": ".85rem",
+            "marginTop": "3.3rem",
+            "width": "92%",
+          }
+        }
+        underlineStyle={
+          Object {
+            "display": "none",
+          }
+        }
+        value={null}
+      >
+        <MenuItem
+          anchorOrigin={
+            Object {
+              "horizontal": "right",
+              "vertical": "top",
+            }
+          }
+          checked={false}
+          desktop={false}
+          disabled={false}
+          focusState="none"
+          insetChildren={false}
+          primaryText="Kenya"
+          targetOrigin={
+            Object {
+              "horizontal": "left",
+              "vertical": "top",
+            }
+          }
+          value="Kenya"
+        />
+        <MenuItem
+          anchorOrigin={
+            Object {
+              "horizontal": "right",
+              "vertical": "top",
+            }
+          }
+          checked={false}
+          desktop={false}
+          disabled={false}
+          focusState="none"
+          insetChildren={false}
+          primaryText="Nigeria"
+          targetOrigin={
+            Object {
+              "horizontal": "left",
+              "vertical": "top",
+            }
+          }
+          value="Nigeria"
+        />
+        <MenuItem
+          anchorOrigin={
+            Object {
+              "horizontal": "right",
+              "vertical": "top",
+            }
+          }
+          checked={false}
+          desktop={false}
+          disabled={false}
+          focusState="none"
+          insetChildren={false}
+          primaryText="USA"
+          targetOrigin={
+            Object {
+              "horizontal": "left",
+              "vertical": "top",
+            }
+          }
+          value="USA"
+        />
+        <MenuItem
+          anchorOrigin={
+            Object {
+              "horizontal": "right",
+              "vertical": "top",
+            }
+          }
+          checked={false}
+          desktop={false}
+          disabled={false}
+          focusState="none"
+          insetChildren={false}
+          primaryText="Uganda"
+          targetOrigin={
+            Object {
+              "horizontal": "left",
+              "vertical": "top",
+            }
+          }
+          value="Uganda"
+        />
+      </SelectField>
+      <div
+        className="invite-button"
+      >
+        <button
+          id="send-invite"
+          onClick={[Function]}
+          type="submit"
+        >
+          Send Invite
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;
