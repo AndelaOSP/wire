@@ -67,10 +67,6 @@ class IncidentList extends Component {
   }
 }
 
-/**
- * PropTypes
- */
-
 IncidentList.propTypes = {
   incidents: PropTypes.array,
   incidentsType: PropTypes.string,
