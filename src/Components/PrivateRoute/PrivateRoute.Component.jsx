@@ -9,7 +9,7 @@ import authenticateUser from '../../helpers/auth';
 /**
  * PrivateRoute Component
  */
-const PrivateRoute = ({ component: Component, ...rest }) => {
+export const PrivateRoute = ({ component: Component, ...rest }) => {
   authenticateUser.authenticate();
   const { statusCode } = rest;
   const loginErrors = [401, 403];
