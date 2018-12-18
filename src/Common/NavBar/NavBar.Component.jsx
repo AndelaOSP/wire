@@ -12,7 +12,7 @@ import authenticateUser from '../../helpers/auth';
 /**
  * @class NavBar
  */
-class NavBar extends Component {
+export class NavBar extends Component {
   /**
    * Method to handle Sign out
    * @param {event} event - Event triggering signing out
@@ -62,7 +62,7 @@ class NavBar extends Component {
                   <span>Settings</span>
                 </Link>
               ) : null}
-              <span onClick={this.handleSignOut}>Logout</span>
+              <span id="logout" onClick={this.handleSignOut}>Logout</span>
             </div>
           </div>
         </div>
