@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrivateRoute Component should render without crashing 1`] = `
+<Route
+  location="Nigeria"
+  render={[Function]}
+  statusCode={200}
+/>
+`;
