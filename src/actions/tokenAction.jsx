@@ -1,8 +1,7 @@
-import * as axios from 'axios';
-import config from '../config/index';
 import { GET_TOKEN_SUCCESS } from './actionTypes';
 import { loadingAction } from './LoadingAction';
 import { errorAction } from './errorAction';
+import { http } from './http';
 
 export const getTokenSuccess = (hasToken, token) => {
   localStorage.setItem('token', token);
@@ -14,15 +13,12 @@ export const getTokenSuccess = (hasToken, token) => {
   };
 };
 
-export const getToken = (email) => {
-  const loginUrl = `${config.API_URL}/users/login`;
-  return (dispatch) => {
-    dispatch(loadingAction(true));
-    return axios
-      .post(loginUrl, { email })
-      .then((response) => {
-        dispatch(getTokenSuccess(true, response.data.userToken));
-      })
-      .catch(error => dispatch(errorAction(error)));
-  };
+export const getToken = email => (dispatch) => {
+  dispatch(loadingAction(true));
+  return http()
+    .post('/users/login', { email })
+    .then((response) => {
+      dispatch(getTokenSuccess(true, response.data.userToken));
+    })
+    .catch(error => dispatch(errorAction(error)));
 };

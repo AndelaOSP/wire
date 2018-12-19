@@ -1,9 +1,11 @@
-import { loadIncidents, changeStatus } from './incidentAction';
+import moxios from 'moxios';
+import { loadIncidents, changeStatus, searchIncidents } from './incidentAction';
 import {
   CHANGE_STATUS,
-  FETCH_INCIDENTS_SUCCESS
+  FETCH_INCIDENTS_SUCCESS,
+  SEARCH_INCIDENTS,
+  ERROR_ACTION,
 } from './actionTypes';
-import moxios from 'moxios';
 import { testIncidents } from '../../mock_endpoints/mockData';
 import {
   isLoading,
@@ -11,7 +13,7 @@ import {
   mockStore,
   mockAxios,
   expectedActionFailure,
-  mockDispatchAction
+  mockDispatchAction,
 } from '../testHelpers';
 
 describe('async actions', () => {
@@ -33,10 +35,10 @@ describe('async actions', () => {
             dateOccurred: '2017-02-11T00:00:00.000Z',
             createdAt: '2018-02-14T12:26:03.792Z',
             User: { name: 'Maureen Nyakio' },
-            Level: { name: 'red' }
-          }
-        ]
-      }
+            Level: { name: 'red' },
+          },
+        ],
+      },
     });
     const store = mockStore();
     const expectedActions = [
@@ -45,10 +47,19 @@ describe('async actions', () => {
         incidents: mockResponse.response.data.data.incidents,
         type: FETCH_INCIDENTS_SUCCESS,
         isLoading: false,
-        isError: false
-      }
+        isError: false,
+      },
     ];
     moxios.wait(() => mockAxios(mockResponse, moxios));
+
+    return mockDispatchAction(store, loadIncidents(), expectedActions);
+  });
+
+  it('should dispatch errorAction when loadIncidents action failed', () => {
+    const mockResponse = httpResponse(404, { message: 'The requested resource cannot be found' });
+    const store = mockStore();
+    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 404);
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
 
     return mockDispatchAction(store, loadIncidents(), expectedActions);
   });
@@ -60,11 +71,11 @@ describe('async actions', () => {
       {
         type: CHANGE_STATUS,
         incidentId: testIncidents[0],
-      }
+      },
     ];
     moxios.wait(() => mockAxios(mockResponse, moxios));
 
-    return mockDispatchAction(store, changeStatus(2,1), expectedActions);
+    return mockDispatchAction(store, changeStatus(2, 1), expectedActions);
   });
 
   it('creates ERROR_ACTION with 404 when an error occurs', () => {
@@ -83,5 +94,36 @@ describe('async actions', () => {
     moxios.wait(() => mockAxios(mockResponse, moxios, false));
 
     return mockDispatchAction(store, changeStatus(2, 3), [expectedActions[1]]);
+  });
+
+  it('should dispatch searchIncidentsSuccess when http request is successful', () => {
+    const mockResponse = httpResponse(200, { data: { incidents: testIncidents } });
+    const store = mockStore();
+    const expectedActions = [
+      {
+        type: SEARCH_INCIDENTS,
+        incidents: testIncidents,
+        isError: false,
+      },
+    ];
+    moxios.wait(() => mockAxios(mockResponse, moxios));
+
+    return mockDispatchAction(store, searchIncidents('search query'), expectedActions);
+  });
+
+  it('should dispatch errorAction when http request failed', () => {
+    const mockResponse = httpResponse(404, { message: 'The requested resource cannot be found' });
+    const store = mockStore();
+    const expectedActions = [
+      {
+        type: ERROR_ACTION,
+        status: true,
+        statusCode: 404,
+        message: mockResponse.response.data.message,
+      },
+    ];
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
+    return mockDispatchAction(store, searchIncidents('search query'), expectedActions);
   });
 });

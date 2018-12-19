@@ -203,7 +203,7 @@ ShallowWrapper {
             incidentId="cjezu2kr700010wx1yy6kxu5z"
             incidentReportDate="reported on Feb 2, 2018"
             incidentSubject="Theft"
-            incidentTime="1:00:00 AM"
+            incidentTime="03:00:00"
           />
           <IncidentCard
             assignees={
@@ -235,7 +235,7 @@ ShallowWrapper {
             incidentId="cjezu2kr700010wx1yy6kxu5y"
             incidentReportDate="reported on Feb 2, 2018"
             incidentSubject="Fighting"
-            incidentTime="1:00:00 AM"
+            incidentTime="03:00:00"
           />
         </div>,
       ],
@@ -318,7 +318,7 @@ ShallowWrapper {
               incidentId="cjezu2kr700010wx1yy6kxu5z"
               incidentReportDate="reported on Feb 2, 2018"
               incidentSubject="Theft"
-              incidentTime="1:00:00 AM"
+              incidentTime="03:00:00"
             />,
             <IncidentCard
               assignees={
@@ -350,7 +350,7 @@ ShallowWrapper {
               incidentId="cjezu2kr700010wx1yy6kxu5y"
               incidentReportDate="reported on Feb 2, 2018"
               incidentSubject="Fighting"
-              incidentTime="1:00:00 AM"
+              incidentTime="03:00:00"
             />,
           ],
           "className": "incident-cards",
@@ -389,7 +389,7 @@ ShallowWrapper {
               "incidentId": "cjezu2kr700010wx1yy6kxu5z",
               "incidentReportDate": "reported on Feb 2, 2018",
               "incidentSubject": "Theft",
-              "incidentTime": "1:00:00 AM",
+              "incidentTime": "03:00:00",
             },
             "ref": null,
             "rendered": null,
@@ -427,7 +427,7 @@ ShallowWrapper {
               "incidentId": "cjezu2kr700010wx1yy6kxu5y",
               "incidentReportDate": "reported on Feb 2, 2018",
               "incidentSubject": "Fighting",
-              "incidentTime": "1:00:00 AM",
+              "incidentTime": "03:00:00",
             },
             "ref": null,
             "rendered": null,
@@ -504,7 +504,7 @@ ShallowWrapper {
               incidentId="cjezu2kr700010wx1yy6kxu5z"
               incidentReportDate="reported on Feb 2, 2018"
               incidentSubject="Theft"
-              incidentTime="1:00:00 AM"
+              incidentTime="03:00:00"
             />
             <IncidentCard
               assignees={
@@ -536,7 +536,7 @@ ShallowWrapper {
               incidentId="cjezu2kr700010wx1yy6kxu5y"
               incidentReportDate="reported on Feb 2, 2018"
               incidentSubject="Fighting"
-              incidentTime="1:00:00 AM"
+              incidentTime="03:00:00"
             />
           </div>,
         ],
@@ -619,7 +619,7 @@ ShallowWrapper {
                 incidentId="cjezu2kr700010wx1yy6kxu5z"
                 incidentReportDate="reported on Feb 2, 2018"
                 incidentSubject="Theft"
-                incidentTime="1:00:00 AM"
+                incidentTime="03:00:00"
               />,
               <IncidentCard
                 assignees={
@@ -651,7 +651,7 @@ ShallowWrapper {
                 incidentId="cjezu2kr700010wx1yy6kxu5y"
                 incidentReportDate="reported on Feb 2, 2018"
                 incidentSubject="Fighting"
-                incidentTime="1:00:00 AM"
+                incidentTime="03:00:00"
               />,
             ],
             "className": "incident-cards",
@@ -690,7 +690,7 @@ ShallowWrapper {
                 "incidentId": "cjezu2kr700010wx1yy6kxu5z",
                 "incidentReportDate": "reported on Feb 2, 2018",
                 "incidentSubject": "Theft",
-                "incidentTime": "1:00:00 AM",
+                "incidentTime": "03:00:00",
               },
               "ref": null,
               "rendered": null,
@@ -728,7 +728,7 @@ ShallowWrapper {
                 "incidentId": "cjezu2kr700010wx1yy6kxu5y",
                 "incidentReportDate": "reported on Feb 2, 2018",
                 "incidentSubject": "Fighting",
-                "incidentTime": "1:00:00 AM",
+                "incidentTime": "03:00:00",
               },
               "ref": null,
               "rendered": null,
