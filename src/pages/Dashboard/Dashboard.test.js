@@ -2,28 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { testIncidents } from '../../../mock_endpoints/mockData';
 import { Dashboard, mapStateToProps, mapDispatchToProps } from './Dashboard.Component';
+import { LocalStorageMock } from '../../testHelpers';
 
-class LocalStorageMock {
-  constructor() {
-    this.store = {};
-  }
-
-  clear() {
-    this.store = {};
-  }
-
-  getItem(key) {
-    return this.store[key] || null;
-  }
-
-  setItem(key, value) {
-    this.store[key] = value.toString();
-  }
-
-  removeItem(key) {
-    delete this.store[key];
-  }
-}
 global.localStorage = new LocalStorageMock();
 
 describe('Dashboard component', () => {

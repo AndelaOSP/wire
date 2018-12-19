@@ -4,9 +4,11 @@ import {
   mockStore,
   mockAxios,
   expectedActionFailure,
-  mockDispatchAction
+  mockDispatchAction,
 } from '../testHelpers';
+import { ERROR_ACTION } from './actionTypes';
 import { loadIncidents } from './incidentAction';
+import { errorAction } from './errorAction';
 
 describe('async actions', () => {
   beforeEach(() => {
@@ -26,13 +28,16 @@ describe('async actions', () => {
     return mockDispatchAction(store, loadIncidents(), expectedActions);
   });
 
-  it('displays the appropriate error message on status code 400', () => {
+  it('should catch status code 400', () => {
     const mockResponse = httpResponse(400, { message: 'The requested resource cannot be found' });
-    moxios.wait(() => mockAxios(mockResponse, moxios, false));
-    const expectedActions = expectedActionFailure(mockResponse.response.data.message, 400);
-    const store = mockStore();
+    const expectedActions = {
+      type: ERROR_ACTION,
+      status: true,
+      statusCode: 400,
+      message: mockResponse.response.data.message,
+    };
 
-    return mockDispatchAction(store, loadIncidents(), expectedActions);
+    expect(errorAction(mockResponse)).toEqual(expectedActions);
   });
 
   it('displays the appropriate error message when there is an auth error', () => {
