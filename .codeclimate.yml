@@ -1,0 +1,75 @@
+version: "2"
+checks:
+  argument-count:
+    config:
+      threshold: 8
+  complex-logic:
+    config:
+      threshold: 4
+  file-lines:
+    config:
+      threshold: 800
+  method-complexity:
+    config:
+      threshold: 5
+  method-count:
+    config:
+      threshold: 20
+  method-lines:
+    config:
+      threshold: 50
+  nested-control-flow:
+    config:
+      threshold: 4
+  return-statements:
+    config:
+      threshold: 4
+  similar-code:
+    enabled: false
+    config:
+      threshold: # language-specific defaults. an override will affect all languages.
+  identical-code:
+    enabled: false
+    config:
+      threshold: # language-specific defaults. an override will affect all languages.
+plugins:
+  eslint:
+    enabled: true
+    channel: "eslint-4"
+  config:
+    config: .eslintrc.json
+    extensions:
+    - .es6
+    - .js
+    - .jsx
+  fixme:
+    enabled: true
+    config:
+      strings:
+      - FIXME
+      - BUG
+      - TODO
+ratings:
+  paths:
+  - "src/actions/**/*.jsx"
+  - "src/common/**/*.jsx"
+  - "src/Components/**/*.jsx"
+  - "src/pages/**/*.jsx"
+  - "src/reducers/**/*.jsx"
+  - "src/store/**/*.jsx"
+exclude_patterns:
+- ".circleci/"
+- "__mocks__/"
+- "assets"
+- "mock_endpoints"
+- "**/spec/"
+- "**/test/"
+- "**/*.test.js"
+- "config/"
+- "coverage/"
+- "docs/"
+- "src/helpers"
+- "node_modules/"
+- "**/node_modules/"
+- "**server**"
+- "**webpack**"
