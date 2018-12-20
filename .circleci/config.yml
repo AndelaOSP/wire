@@ -16,11 +16,8 @@ jobs:
           name: Run tests
           command: yarn test
       - run:
-          name: Push Coverage to CodeClimate
-          command: |
-            for pid in `ps aux | grep 'istanbul' | grep -v grep | awk '{print $2}'` ; do kill -INT $pid ; done
-            node_modules/.bin/istanbul-combine -d coverage -p both -r lcov -r html coverage/unit/coverage-final.json coverage/coverage.json
-            node_modules/.bin/gulp codeclimate
+          name: Collect test coverage
+          command: yarn coveralls
   deploy:
     <<: *defaults
     environment:
@@ -53,11 +50,8 @@ jobs:
             name: Run tests
             command: yarn test
         - run:
-            name: Push Coverage to CodeClimate
-            command: |
-              for pid in `ps aux | grep 'istanbul' | grep -v grep | awk '{print $2}'` ; do kill -INT $pid ; done
-              node_modules/.bin/istanbul-combine -d coverage -p both -r lcov -r html coverage/unit/coverage-final.json coverage/coverage.json
-              node_modules/.bin/gulp codeclimate
+            name: Collect test coverage
+            command: yarn coveralls
     deploy:
         docker:
             - image: circleci/node:9.10.0
