@@ -6,6 +6,8 @@ version: 2
 jobs:
   build:
     <<: *defaults
+    environment:
+      CC_TEST_REPORTER_ID: 9576c3ea871b02d0acec567f2cdad644ecae01c81c723da4c986ae2dcc81a04c
     steps:
       - checkout
       - setup_remote_docker
@@ -25,6 +27,7 @@ jobs:
     environment:
         GOOGLE_PROJECT_ID: bench-projects
         GOOGLE_COMPUTE_ZONE: europe-west1-b
+        CC_TEST_REPORTER_ID: 9576c3ea871b02d0acec567f2cdad644ecae01c81c723da4c986ae2dcc81a04c
     steps:
       - checkout
       - setup_remote_docker
