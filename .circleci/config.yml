@@ -5,6 +5,8 @@ defaults: &defaults
 version: 2
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: 9576c3ea871b02d0acec567f2cdad644ecae01c81c723da4c986ae2dcc81a04c
     <<: *defaults
     steps:
       - checkout
@@ -13,11 +15,16 @@ jobs:
           name: Install packages
           command: yarn install
       - run:
-          name: Run tests
-          command: yarn test
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
       - run:
-          name: Collect test coverage
-          command: yarn coveralls
+          name: Run tests
+          command: |
+            ./cc-test-reporter before-build
+            yarn test
+            ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
   deploy:
     <<: *defaults
     environment:
@@ -47,15 +54,21 @@ jobs:
             name: Install packages
             command: yarn install
         - run:
-            name: Run tests
-            command: yarn test
-        - run:
-            name: Collect test coverage
-            command: yarn coveralls
+            name: Setup Code Climate test-reporter
+            command: |
+              curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+              chmod +x ./cc-test-reporter
+            - run:
+                name: Run tests
+                command: |
+                  ./cc-test-reporter before-build
+                  yarn test
+                  ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
     deploy:
         docker:
             - image: circleci/node:9.10.0
         environment:
+            CC_TEST_REPORTER_ID: 9576c3ea871b02d0acec567f2cdad644ecae01c81c723da4c986ae2dcc81a04c
             GOOGLE_PROJECT_ID: bench-projects
             GOOGLE_COMPUTE_ZONE: europe-west1-b
         steps:
@@ -85,4 +98,4 @@ workflows:
             branches:
               only:
                 - master
-                - staging
+                - develop
