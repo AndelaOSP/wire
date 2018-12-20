@@ -72,4 +72,5 @@ exclude_patterns:
 - "src/helpers"
 - "node_modules/"
 - "**/node_modules/"
+- "**server**"
 - "**webpack**"
