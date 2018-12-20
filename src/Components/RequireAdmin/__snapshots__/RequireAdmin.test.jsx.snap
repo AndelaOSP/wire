@@ -1,3 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RequireAdmin Component should render without crashing 1`] = `<Route />`;
+exports[`RequireAdmin Component should render without crashing 1`] = `
+<Route>
+  <Component />
+</Route>
+`;
