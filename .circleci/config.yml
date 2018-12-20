@@ -31,6 +31,7 @@ jobs:
   deploy:
     <<: *defaults
     environment:
+        CC_TEST_REPORTER_ID: 9576c3ea871b02d0acec567f2cdad644ecae01c81c723da4c986ae2dcc81a04c
         GOOGLE_PROJECT_ID: bench-projects
         GOOGLE_COMPUTE_ZONE: europe-west1-b
     steps:
