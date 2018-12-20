@@ -25,6 +25,9 @@ jobs:
             ./cc-test-reporter before-build
             yarn test
             ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
+      - run:
+          name: Collect test coverage
+          command: yarn coveralls
   deploy:
     <<: *defaults
     environment:
@@ -64,6 +67,9 @@ jobs:
               ./cc-test-reporter before-build
               yarn test
               ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
+        - run:
+            name: Collect test coverage
+            command: yarn coveralls
     deploy:
         docker:
             - image: circleci/node:9.10.0
