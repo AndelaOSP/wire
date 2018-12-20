@@ -65,7 +65,7 @@ exclude_patterns:
 - "**/spec/"
 - "**/test/"
 - "**.test.js"
-- - "**.test.jsx"
+- "**.test.jsx"
 - "**.spec.**"
 - "config/"
 - "coverage/"
