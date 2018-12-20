@@ -11,9 +11,8 @@ describe('Reducers :: Token Reducer', () => {
   });
 
   it('should handle GET_TOKEN_SUCCESS', () => {
-    const action = { type: ActionTypes.GET_TOKEN_SUCCESS, hasToken: true};
-    const expected = Object.assign({}, getInitialState, action.hasToken);
-    expect(reducer(getInitialState, action.hasToken)).toEqual(expected);
+    const action = { type: ActionTypes.GET_TOKEN_SUCCESS, hasToken: true };
+    const expectedState = reducer(initialState, action);
+    expect(expectedState).toBeTruthy();
   });
 });
-

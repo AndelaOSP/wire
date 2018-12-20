@@ -1,6 +1,9 @@
 import * as ActionTypes from '../actions/actionTypes';
 import reducer from './loadingReducer';
 import initialState from './initialState';
+import { errorAction } from '../actions/errorAction';
+import { getTokenSuccess } from '../actions/tokenAction';
+import { fetchStaffSuccess } from '../actions/staffAction';
 
 describe('Reducers :: Loading', () => {
   const getInitialState = initialState;
@@ -11,39 +14,44 @@ describe('Reducers :: Loading', () => {
   });
 
   it('should handle IS_LOADING', () => {
-    const action = { type: ActionTypes.IS_LOADING, isLoading: true };
-    const expected = Object.assign({}, getInitialState, action.isLoading);
-    expect(reducer(getInitialState, action.isLoading)).toEqual(expected);
+    const action = { type: ActionTypes.IS_LOADING, status: true };
+    const expectedState = reducer(initialState, action);
+
+    expect(expectedState).toBeTruthy();
   });
 
   it('should handle FETCH_INCIDENTS_SUCCESS', () => {
     const action = { type: ActionTypes.FETCH_INCIDENTS_SUCCESS, isLoading: true };
-    const expected = Object.assign({}, getInitialState, action.isLoading);
-    expect(reducer(getInitialState, action.isLoading)).toEqual(expected);
+    const expectedState = reducer(initialState, action);
+
+    expect(expectedState).toBeTruthy();
   });
 
   it('should handle FETCH_INCIDENT', () => {
     const action = { type: ActionTypes.FETCH_INCIDENT, isLoading: true };
-    const expected = Object.assign({}, getInitialState, action.isLoading);
-    expect(reducer(getInitialState, action.isLoading)).toEqual(expected);
+    const expectedState = reducer(initialState, action);
+
+    expect(expectedState).toBeTruthy();
   });
 
   it('should handle FETCH_STAFF', () => {
-    const action = { type: ActionTypes.FETCH_STAFF, isLoading: true };
-    const expected = Object.assign({}, getInitialState, action.isLoading);
-    expect(reducer(getInitialState, action.isLoading)).toEqual(expected);
+    const fetchStaffSuccessAction = fetchStaffSuccess([]);
+    const expectedState = reducer(initialState, fetchStaffSuccessAction);
+
+    expect(expectedState).toBeFalsy();
   });
 
   it('should handle GET_TOKEN_SUCCESS', () => {
-    const action = { type: ActionTypes.GET_TOKEN_SUCCESS, isLoading: true };
-    const expected = Object.assign({}, getInitialState, action.isLoading);
-    expect(reducer(getInitialState, action.isLoading)).toEqual(expected);
+    const getTokenSuccessAction = getTokenSuccess(true, '');
+    const newState = reducer(initialState, getTokenSuccessAction);
+
+    expect(newState).toBeFalsy();
   });
 
   it('should handle ERROR_ACTION', () => {
-    const action = { type: ActionTypes.ERROR_ACTION, isLoading: true };
-    const expected = Object.assign({}, getInitialState, action.isLoading);
-    expect(reducer(getInitialState, action.isLoading)).toEqual(expected);
+    const errorActionAction = errorAction({ response: {} });
+    const newState = reducer(initialState, errorActionAction);
+    
+    expect(newState).toBeFalsy();
   });
 });
-
