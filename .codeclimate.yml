@@ -64,6 +64,7 @@ exclude_patterns:
 - "mock_endpoints"
 - "**/spec/"
 - "**/test/"
+- "**/*.test.js"
 - "config/"
 - "coverage/"
 - "docs/"
