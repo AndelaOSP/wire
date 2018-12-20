@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/AndelaOSP/wire/badge.svg?branch=ch-redesign-dashboard)](https://coveralls.io/github/AndelaOSP/wire?branch=ch-redesign-dashboard)
+[![Coverage Status](https://coveralls.io/repos/github/AndelaOSP/wire/badge.svg?branch=develop)](https://coveralls.io/github/AndelaOSP/wire?branch=develop)
 
 # WIRE
 
