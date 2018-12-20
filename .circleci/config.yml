@@ -6,8 +6,6 @@ version: 2
 jobs:
   build:
     <<: *defaults
-    environment:
-      CC_TEST_REPORTER_ID: 9576c3ea871b02d0acec567f2cdad644ecae01c81c723da4c986ae2dcc81a04c
     steps:
       - checkout
       - setup_remote_docker
@@ -15,20 +13,16 @@ jobs:
           name: Install packages
           command: yarn install
       - run:
-          name: Setup Code Climate test-reporter
-          command: |
-            # download test reporter as a static binary
-                     curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-                     chmod +x ./cc-test-reporter
-      - run:
           name: Run tests
           command: yarn test
+      - run:
+          name: Collect test coverage
+          command: yarn coveralls
   deploy:
     <<: *defaults
     environment:
         GOOGLE_PROJECT_ID: bench-projects
         GOOGLE_COMPUTE_ZONE: europe-west1-b
-        CC_TEST_REPORTER_ID: 9576c3ea871b02d0acec567f2cdad644ecae01c81c723da4c986ae2dcc81a04c
     steps:
       - checkout
       - setup_remote_docker
@@ -53,14 +47,11 @@ jobs:
             name: Install packages
             command: yarn install
         - run:
-            name: Setup Code Climate test-reporter
-            command: |
-              # download test reporter as a static binary
-                       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-                       chmod +x ./cc-test-reporter
-        - run:
             name: Run tests
             command: yarn test
+        - run:
+            name: Collect test coverage
+            command: yarn coveralls
     deploy:
         docker:
             - image: circleci/node:9.10.0
