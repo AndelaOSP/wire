@@ -117,9 +117,11 @@ describe('async actions', () => {
     const expectedActions = [
       {
         type: ERROR_ACTION,
-        status: true,
-        statusCode: 404,
-        message: mockResponse.response.data.message,
+        payload: {
+          status: true,
+          statusCode: 404,
+          message: mockResponse.response.data.message,
+        },
       },
     ];
     moxios.wait(() => mockAxios(mockResponse, moxios, false));
