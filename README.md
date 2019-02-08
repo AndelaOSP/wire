@@ -1,4 +1,5 @@
-
+[![CircleCI](https://circleci.com/gh/AndelaOSP/wire/tree/develop.svg?style=svg)](https://circleci.com/gh/AndelaOSP/wire/tree/develop)
+[![Coverage Status](https://coveralls.io/repos/github/AndelaOSP/wire/badge.svg?branch=develop)](https://coveralls.io/github/AndelaOSP/wire?branch=develop)
 # WIRE
 
 WIRE - Workspace Incident Reporting platform
