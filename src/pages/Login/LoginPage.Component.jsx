@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import CustomNotification from '../../Components/CustomNotification/CustomNotification.Component';
-import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
 import { getToken } from '../../actions/tokenAction';
 import './LoginPage.scss';
 import authenticateUser from '../../helpers/auth';
@@ -48,9 +47,8 @@ export class LoginPage extends React.Component {
     setReferrerInlocationStorage(from.pathname);
     const referrer = getReferrerInlocationStorage();
     const {
-      isLoading, isError, errorMessage, hasToken,
+      isError, errorMessage, hasToken,
     } = this.props;
-
     if (isError) {
       authenticateUser.removeToken();
       localStorage.clear();
@@ -59,48 +57,43 @@ export class LoginPage extends React.Component {
     if (authenticateUser.isAuthenticated && hasToken) {
       return <Redirect to={(from.pathname = referrer)} />;
     }
-
     return (
       <div>
-        {isLoading ? (
-          <CircularProgressIndicator />
-        ) : (
-          <div className="login-page">
-            <div className="left-container">
-              <div>
-                <img className="andela-logo" src="/assets/images/andelaLogo.png" />
-              </div>
-              <div className="welcome-text">
-                <p>
+        <div className="login-page">
+          <div className="left-container">
+            <div>
+              <img className="andela-logo" src="/assets/images/andelaLogo.png" />
+            </div>
+            <div className="welcome-text">
+              <p>
                   Welcome to
-                  {' '}
-                  <span className="wire">Wire </span>
-                  <br />
+                {' '}
+                <span className="wire">Wire </span>
+                <br />
                   Please sign in with your Google account to proceed
-                </p>
-              </div>
-              <RaisedButton
-                className="button"
-                icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg" />}
-                href={`${config.ANDELA_API_BASE_URL}/login?redirect_url=${config.BASE_URL}/login`}
-                label={<p className="label">Sign In With Google</p>}
-                style={styles.button}
-              />
+              </p>
             </div>
-            <div className="right-container">
-              <img className="landing-image" src="/assets/images/wire_landing_page_vector@2x.png" />
-              <div className="right-text">
-                <p>
-                  <span style={{ fontWeight: 600 }}>An Incident</span>
-                  {' '}
-                  <br />
-Reporting Platform
-                </p>
-              </div>
-              <div className="underline" />
-            </div>
+            <RaisedButton
+              className="button"
+              icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg" />}
+              href={`${config.ANDELA_API_BASE_URL}/login?redirect_url=${config.BASE_URL}/login`}
+              label={<p className="label">Sign In With Google</p>}
+              style={styles.button}
+            />
           </div>
-        )}
+          <div className="right-container">
+            <img className="landing-image" src="/assets/images/wire_landing_page_vector@2x.png" />
+            <div className="right-text">
+              <p>
+                <span style={{ fontWeight: 600 }}>An Incident</span>
+                {' '}
+                <br />
+                Reporting Platform
+              </p>
+            </div>
+            <div className="underline" />
+          </div>
+        </div>
         {isError ? (
           <CustomNotification type="error" message={errorMessage} autoHideDuration={150000} open />
         ) : (
@@ -117,7 +110,6 @@ Reporting Platform
 LoginPage.propTypes = {
   location: PropTypes.object,
   getToken: PropTypes.func,
-  isLoading: PropTypes.bool,
   isError: PropTypes.bool,
   hasToken: PropTypes.bool,
   errorMessage: PropTypes.string,
@@ -126,14 +118,12 @@ LoginPage.propTypes = {
 LoginPage.defaultProps = {
   location: {},
   getToken: () => {},
-  isLoading: false,
   isError: false,
   hasToken: false,
   errorMessage: '',
 };
 
 const mapStateToProps = state => ({
-  isLoading: state.isLoading,
   hasToken: state.hasToken,
   isError: state.error.status,
   errorMessage: state.error.message,

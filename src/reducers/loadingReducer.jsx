@@ -8,7 +8,7 @@ import {
   GET_TOKEN_SUCCESS,
 } from '../actions/actionTypes';
 
-const loadingReducer = (state = initialState.isLoading, action) => {
+const loadingReducer = (state = initialState, action) => {
   switch (action.type) {
     case IS_LOADING:
       return action.status;
@@ -26,7 +26,7 @@ const loadingReducer = (state = initialState.isLoading, action) => {
       return action.isLoading;
 
     case ERROR_ACTION:
-      return !action.status;
+      return !action.payload.status;
 
     default:
       return state;
