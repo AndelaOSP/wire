@@ -44,7 +44,7 @@ export const updateUserSuccess = (staff, index) => ({
 });
 
 export const updateUser = (userId, roleId, index) => dispatch => http()
-  .put(`/users/${userId}`, { roleId })
+  .patch(`/users/${userId}`, { roleId })
   .then((res) => {
     dispatch(updateUserSuccess(res.data.data, index));
   })

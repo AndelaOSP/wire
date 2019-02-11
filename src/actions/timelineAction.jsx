@@ -30,7 +30,7 @@ export const loadIncidentDetails = incidentId => (dispatch) => {
     .then((arr) => {
       const incident = arr[0].data.data;
       incident.notes = arr[1].data.data.notes;
-      incident.chats = arr[2].data.data.chats;
+      incident.chats = arr[2].data.data ? arr[2].data.data.chats : [];
       dispatch(loadIncidentSuccess(incident));
     })
     .catch(error => dispatch(errorAction(error)));
