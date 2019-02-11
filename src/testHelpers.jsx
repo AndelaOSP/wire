@@ -34,9 +34,11 @@ export const expectedActionFailure = (errorMessage, statusCode) => ([
   isLoading,
   {
     type: ERROR_ACTION,
-    status: true,
-    statusCode,
-    message: errorMessage,
+    payload: {
+      status: true,
+      statusCode,
+      message: errorMessage,
+    },
   },
 ]);
 

@@ -133,6 +133,7 @@ ShallowWrapper {
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
     "getNode": [Function],
     "render": [Function],
     "simulateError": [Function],
@@ -201,9 +202,9 @@ ShallowWrapper {
             incidentDescription="Some random thing happened and I didnt like it"
             incidentFlag="Red"
             incidentId="cjezu2kr700010wx1yy6kxu5z"
-            incidentReportDate="reported on Feb 2, 2018"
+            incidentReportDate="reported on 2 Feb 2018"
             incidentSubject="Theft"
-            incidentTime="03:00:00"
+            incidentTime="3:00:00 AM"
           />
           <IncidentCard
             assignees={
@@ -233,9 +234,9 @@ ShallowWrapper {
             incidentDescription="Some other random thing happened and I hated it"
             incidentFlag="Yellow"
             incidentId="cjezu2kr700010wx1yy6kxu5y"
-            incidentReportDate="reported on Feb 2, 2018"
+            incidentReportDate="reported on 2 Feb 2018"
             incidentSubject="Fighting"
-            incidentTime="03:00:00"
+            incidentTime="3:00:00 AM"
           />
         </div>,
       ],
@@ -316,9 +317,9 @@ ShallowWrapper {
               incidentDescription="Some random thing happened and I didnt like it"
               incidentFlag="Red"
               incidentId="cjezu2kr700010wx1yy6kxu5z"
-              incidentReportDate="reported on Feb 2, 2018"
+              incidentReportDate="reported on 2 Feb 2018"
               incidentSubject="Theft"
-              incidentTime="03:00:00"
+              incidentTime="3:00:00 AM"
             />,
             <IncidentCard
               assignees={
@@ -348,9 +349,9 @@ ShallowWrapper {
               incidentDescription="Some other random thing happened and I hated it"
               incidentFlag="Yellow"
               incidentId="cjezu2kr700010wx1yy6kxu5y"
-              incidentReportDate="reported on Feb 2, 2018"
+              incidentReportDate="reported on 2 Feb 2018"
               incidentSubject="Fighting"
-              incidentTime="03:00:00"
+              incidentTime="3:00:00 AM"
             />,
           ],
           "className": "incident-cards",
@@ -387,9 +388,9 @@ ShallowWrapper {
               "incidentDescription": "Some random thing happened and I didnt like it",
               "incidentFlag": "Red",
               "incidentId": "cjezu2kr700010wx1yy6kxu5z",
-              "incidentReportDate": "reported on Feb 2, 2018",
+              "incidentReportDate": "reported on 2 Feb 2018",
               "incidentSubject": "Theft",
-              "incidentTime": "03:00:00",
+              "incidentTime": "3:00:00 AM",
             },
             "ref": null,
             "rendered": null,
@@ -425,9 +426,9 @@ ShallowWrapper {
               "incidentDescription": "Some other random thing happened and I hated it",
               "incidentFlag": "Yellow",
               "incidentId": "cjezu2kr700010wx1yy6kxu5y",
-              "incidentReportDate": "reported on Feb 2, 2018",
+              "incidentReportDate": "reported on 2 Feb 2018",
               "incidentSubject": "Fighting",
-              "incidentTime": "03:00:00",
+              "incidentTime": "3:00:00 AM",
             },
             "ref": null,
             "rendered": null,
@@ -502,9 +503,9 @@ ShallowWrapper {
               incidentDescription="Some random thing happened and I didnt like it"
               incidentFlag="Red"
               incidentId="cjezu2kr700010wx1yy6kxu5z"
-              incidentReportDate="reported on Feb 2, 2018"
+              incidentReportDate="reported on 2 Feb 2018"
               incidentSubject="Theft"
-              incidentTime="03:00:00"
+              incidentTime="3:00:00 AM"
             />
             <IncidentCard
               assignees={
@@ -534,9 +535,9 @@ ShallowWrapper {
               incidentDescription="Some other random thing happened and I hated it"
               incidentFlag="Yellow"
               incidentId="cjezu2kr700010wx1yy6kxu5y"
-              incidentReportDate="reported on Feb 2, 2018"
+              incidentReportDate="reported on 2 Feb 2018"
               incidentSubject="Fighting"
-              incidentTime="03:00:00"
+              incidentTime="3:00:00 AM"
             />
           </div>,
         ],
@@ -617,9 +618,9 @@ ShallowWrapper {
                 incidentDescription="Some random thing happened and I didnt like it"
                 incidentFlag="Red"
                 incidentId="cjezu2kr700010wx1yy6kxu5z"
-                incidentReportDate="reported on Feb 2, 2018"
+                incidentReportDate="reported on 2 Feb 2018"
                 incidentSubject="Theft"
-                incidentTime="03:00:00"
+                incidentTime="3:00:00 AM"
               />,
               <IncidentCard
                 assignees={
@@ -649,9 +650,9 @@ ShallowWrapper {
                 incidentDescription="Some other random thing happened and I hated it"
                 incidentFlag="Yellow"
                 incidentId="cjezu2kr700010wx1yy6kxu5y"
-                incidentReportDate="reported on Feb 2, 2018"
+                incidentReportDate="reported on 2 Feb 2018"
                 incidentSubject="Fighting"
-                incidentTime="03:00:00"
+                incidentTime="3:00:00 AM"
               />,
             ],
             "className": "incident-cards",
@@ -688,9 +689,9 @@ ShallowWrapper {
                 "incidentDescription": "Some random thing happened and I didnt like it",
                 "incidentFlag": "Red",
                 "incidentId": "cjezu2kr700010wx1yy6kxu5z",
-                "incidentReportDate": "reported on Feb 2, 2018",
+                "incidentReportDate": "reported on 2 Feb 2018",
                 "incidentSubject": "Theft",
-                "incidentTime": "03:00:00",
+                "incidentTime": "3:00:00 AM",
               },
               "ref": null,
               "rendered": null,
@@ -726,9 +727,9 @@ ShallowWrapper {
                 "incidentDescription": "Some other random thing happened and I hated it",
                 "incidentFlag": "Yellow",
                 "incidentId": "cjezu2kr700010wx1yy6kxu5y",
-                "incidentReportDate": "reported on Feb 2, 2018",
+                "incidentReportDate": "reported on 2 Feb 2018",
                 "incidentSubject": "Fighting",
-                "incidentTime": "03:00:00",
+                "incidentTime": "3:00:00 AM",
               },
               "ref": null,
               "rendered": null,
@@ -745,9 +746,13 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
         "lifecycles": Object {
           "componentDidUpdate": Object {
             "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
           },
           "getDerivedStateFromProps": true,
           "getSnapshotBeforeUpdate": true,

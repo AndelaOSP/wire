@@ -32,9 +32,11 @@ describe('async actions', () => {
     const mockResponse = httpResponse(400, { message: 'The requested resource cannot be found' });
     const expectedActions = {
       type: ERROR_ACTION,
-      status: true,
-      statusCode: 400,
-      message: mockResponse.response.data.message,
+      payload: {
+        status: true,
+        statusCode: 400,
+        message: mockResponse.response.data.message,
+      },
     };
 
     expect(errorAction(mockResponse)).toEqual(expectedActions);

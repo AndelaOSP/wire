@@ -9,7 +9,6 @@ const getErrorMessage = (error) => {
 export const errorAction = (error) => {
   if (error.response) {
     let message;
-
     switch (error.response.status) {
       case 401 || 403:
         message = getErrorMessage(error) || 'You might not be logged in/authorized. Please try again.';
@@ -26,9 +25,11 @@ export const errorAction = (error) => {
 
     return {
       type: ERROR_ACTION,
-      status: true,
-      statusCode: error.response.status,
-      message: `${message}`,
+      payload: {
+        status: true,
+        statusCode: error.response.status,
+        message: `${message}`,
+      },
     };
   }
 };

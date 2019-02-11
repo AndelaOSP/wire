@@ -26,7 +26,7 @@ const loadingReducer = (state = initialState.isLoading, action) => {
       return action.isLoading;
 
     case ERROR_ACTION:
-      return !action.status;
+      return !action.payload.status;
 
     default:
       return state;
