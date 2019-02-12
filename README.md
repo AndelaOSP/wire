@@ -40,13 +40,15 @@ Series of steps to setup development environment
 * You will need to add the following to your `.env` file:
 ```
 NODE_ENV=development
-API_URL=http://wire.andela.com:8080/api
-ANDELA_API_BASE_URL=https://api-prod.andela.com
+API_URL=http://localhost:3000/api
+ANDELA_API_BASE_URL=https://api-staging.andela.com
 BASE_URL=http://wire.andela.com:8080
 ```
 
 * Run the following command on the terminal to start the server:
   ``` $ yarn start:dev ```
+
+* NB: To access the Reported Incidents - Ensure you have an `Admin` role within the database - which you you can setup after configuring the Wire-API [here](https://github.com/AndelaOSP/wire-api).
 
 ## Running the tests
 
