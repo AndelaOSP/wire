@@ -15,10 +15,11 @@ import {
 } from '../../actions/timelineAction';
 import { fetchStaff } from '../../actions/staffAction';
 import './IncidentTimeline.scss';
-import NavBar from '../../Common/NavBar/NavBar.Component';
+import { NavBar } from '../../Common/NavBar/NavBar.Component';
 import CustomNotification from '../../Components/CustomNotification/CustomNotification.Component';
 import TimelineSidebar from '../../Components/TimelineSidebar/TimelineSidebar.Component';
 import TimelineNotes from '../../Components/TimelineNotes/TimelineNotes.Component';
+import TimelineChat from '../../Components/TimelineChat/TimelineChat.Component';
 import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
 
 /**
@@ -55,9 +56,9 @@ export class IncidentTimeline extends Component {
                 <Tab label="Notes" className="notes-tab">
                   <TimelineNotes className="notes-content" {...this.props} />
                 </Tab>
-                {/* <Tab label="Chat" className="chat-tab">
+                <Tab label="Chat" className="chat-tab">
                   <TimelineChat className="chat-content" {...this.props} />
-                </Tab> */}
+                </Tab>
               </Tabs>
             </div>
           </div>
