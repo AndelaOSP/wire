@@ -48,7 +48,7 @@ BASE_URL=http://wire.andela.com:8080
 * Run the following command on the terminal to start the server:
   ``` $ yarn start:dev ```
 
-* NB: To access the Reported Incidents - Ensure you have an `Admin` role within the database - which you you can setup after configuring the Wire-API [here](https://github.com/AndelaOSP/wire-api).
+* NB: To access the Reported Incidents - Ensure you have an `Admin` role within the database - which you can setup after configuring the Wire-API [here](https://github.com/AndelaOSP/wire-api).
 
 ## Running the tests
 
