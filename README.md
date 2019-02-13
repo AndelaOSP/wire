@@ -41,7 +41,7 @@ Series of steps to setup development environment
 ```
 NODE_ENV=development
 API_URL=http://localhost:3000/api
-ANDELA_API_BASE_URL=https://api-staging.andela.com
+ANDELA_API_BASE_URL=https://api-prod.andela.com
 BASE_URL=http://wire.andela.com:8080
 ```
 
