@@ -105,9 +105,9 @@ export default class TimelineNotes extends Component {
               width: '25px',
               height: '25px',
             }}
-            thumbSwitchedStyle={{
-              backgroundColor: '#1273bc',
-            }}
+            thumbSwitchedStyle={{ // eslint-disable-line
+              backgroundColor: '#1273bc', // eslint-disable-line
+            }} // eslint-disable-line
             trackStyle={{
               overflow: 'hidden',
               width: '60px',
