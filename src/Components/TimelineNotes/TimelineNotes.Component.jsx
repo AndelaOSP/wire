@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import Archive from 'material-ui/svg-icons/content/archive';
 import Dialog from 'material-ui/Dialog';
+import Toggle from 'material-ui/Toggle';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import './TimelineNotes.scss';
@@ -19,6 +20,7 @@ export default class TimelineNotes extends Component {
       content: '',
       note: {},
       index: null,
+      myNotes: true,
     };
   }
 
@@ -66,6 +68,16 @@ export default class TimelineNotes extends Component {
     this.props.editNote(this.state.note.note, this.state.note.id, this.state.index);
   };
 
+  handleMineAllNotesChange = () => {
+    this.setState({ myNotes: !this.state.myNotes });
+  }
+
+  filterMyNotes = (notes) => {
+    const myEmail = localStorage.getItem('email');
+    const myNotes = notes.filter(note => note.userEmail === myEmail);
+    return myNotes;
+  }
+
   handleDateString = date => moment(date).format('MMM Do YYYY [at] h:mm a');
 
   render() {
@@ -78,11 +90,42 @@ export default class TimelineNotes extends Component {
       <CustomButton key={4} label="Submit" onClick={this.handleEditNote} />,
     ];
     const { notes } = this.props.incident;
+    const incidentNotes = (this.state.myNotes) ? notes : this.filterMyNotes(notes)
+
     return (
       <div className="notes-container">
         <List className="notes-list">
-          {notes.length > 0 ? (
-            notes.map((note, i) => (
+          <div className="toggle-notes">
+            <span className={ !this.state.myNotes ? 'toggle-label mine' : 'toggle-label' }>Mine</span>
+            <Toggle
+              thumbSwitchedStyle={{ backgroundColor: 'yellow' }}
+              labelStyle={{ color: 'red' }}
+              thumbStyle={{
+                backgroundColor: '#1273bc',
+                top: '0px',
+                width: '25px',
+                height: '25px',
+              }}
+              thumbSwitchedStyle={{
+                width: '25px',
+                height: '25px',
+                backgroundColor: '#1273bc',
+              }}
+              trackStyle={{
+                overflow: 'hidden',
+                width: '60px',
+                backgroundColor: 'transparent',
+                border: '1px solid #1273bc',
+              }}
+              trackSwitchedStyle={{ backgroundColor: 'rgba(18, 115, 188, 0.5)' }}
+              style={{ width: '50px' }}
+              onToggle={this.handleMineAllNotesChange}
+              toggled={this.state.myNotes}
+            />
+            <span className={!this.state.myNotes ? 'toggle-label' : 'toggle-label all'}>All Notes</span>
+          </div>
+          {incidentNotes.length > 0 ? (
+            incidentNotes.map((note, i) => (
               <ListItem className="notes-list-item" key={i} disabled>
                 <div className="single-note-container">
                   <div className="note-header">
