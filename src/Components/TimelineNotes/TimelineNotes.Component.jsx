@@ -90,118 +90,123 @@ export default class TimelineNotes extends Component {
       <CustomButton key={4} label="Submit" onClick={this.handleEditNote} />,
     ];
     const { notes } = this.props.incident;
-    const incidentNotes = (this.state.myNotes) ? notes : this.filterMyNotes(notes)
+    const incidentNotes = (this.state.myNotes) ? notes : this.filterMyNotes(notes);
 
     return (
-      <div className="notes-container">
-        <List className="notes-list">
-          <div className="toggle-notes">
-            <span className={ !this.state.myNotes ? 'toggle-label mine' : 'toggle-label' }>Mine</span>
-            <Toggle
-              thumbSwitchedStyle={{ backgroundColor: 'yellow' }}
-              labelStyle={{ color: 'red' }}
-              thumbStyle={{
-                backgroundColor: '#1273bc',
-                top: '0px',
-                width: '25px',
-                height: '25px',
-              }}
-              thumbSwitchedStyle={{
-                width: '25px',
-                height: '25px',
-                backgroundColor: '#1273bc',
-              }}
-              trackStyle={{
-                overflow: 'hidden',
-                width: '60px',
-                backgroundColor: 'transparent',
-                border: '1px solid #1273bc',
-              }}
-              trackSwitchedStyle={{ backgroundColor: 'rgba(18, 115, 188, 0.5)' }}
-              style={{ width: '50px' }}
-              onToggle={this.handleMineAllNotesChange}
-              toggled={this.state.myNotes}
-            />
-            <span className={!this.state.myNotes ? 'toggle-label' : 'toggle-label all'}>All Notes</span>
-          </div>
-          {incidentNotes.length > 0 ? (
-            incidentNotes.map((note, i) => (
-              <ListItem className="notes-list-item" key={i} disabled>
-                <div className="single-note-container">
-                  <div className="note-header">
-                    <span className="timestamp">
-                      {' '}
-                      {this.handleDateString(note.createdAt)}
-                      {' '}
-                    </span>
-                  </div>
-                  <Divider className="note-divider" />
-                  <div className="note-container">
-                    <div className="note-content">
-                      <p>{note.note}</p>
+      <div>
+        <div className='notes-toggle'>
+          <span className={!this.state.myNotes ? 'toggle-label mine' : 'toggle-label'}>Mine</span>
+          <Toggle
+            thumbSwitchedStyle={{ backgroundColor: 'yellow' }}
+            labelStyle={{ color: 'red' }}
+            thumbStyle={{
+              backgroundColor: '#1273bc',
+              top: '0px',
+              width: '25px',
+              height: '25px',
+            }}
+            thumbSwitchedStyle={{
+              width: '25px',
+              height: '25px',
+              backgroundColor: '#1273bc',
+            }}
+            trackStyle={{
+              overflow: 'hidden',
+              width: '60px',
+              backgroundColor: 'transparent',
+              border: '1px solid #1273bc',
+            }}
+            trackSwitchedStyle={{ backgroundColor: 'rgba(18, 115, 188, 0.5)' }}
+            style={{ width: '50px' }}
+            onToggle={this.handleMineAllNotesChange}
+            toggled={this.state.myNotes}
+          />
+          <span className={!this.state.myNotes ? 'toggle-label' : 'toggle-label all'}>All Notes</span>
+        </div>
+        <div className="notes-container">
+          <List className="notes-list">
+            <div className="toggle-notes">
+
+            </div>
+            {incidentNotes.length > 0 ? (
+              incidentNotes.map((note, i) => (
+                <ListItem className="notes-list-item" key={i} disabled>
+                  <div className="single-note-container">
+                    <div className="note-header">
+                      <span className="timestamp">
+                        {' '}
+                        {this.handleDateString(note.createdAt)}
+                        {' '}
+                      </span>
+                    </div>
+                    <Divider className="note-divider" />
+                    <div className="note-container">
+                      <div className="note-content">
+                        <p>{note.note}</p>
+                      </div>
+                    </div>
+                    <div className="note-actions">
+                      <ModeEdit className="note-action-edit" onClick={this.handleOpenEditDialog.bind(null, note, i)} />
+                      <Archive
+                          className="note-action-archive"
+                          onClick={this.handleOpenArchiveDialog.bind(null, note, i)}
+                        />
                     </div>
                   </div>
-                  <div className="note-actions">
-                    <ModeEdit className="note-action-edit" onClick={this.handleOpenEditDialog.bind(null, note, i)} />
-                    <Archive
-                        className="note-action-archive"
-                        onClick={this.handleOpenArchiveDialog.bind(null, note, i)}
-                      />
-                  </div>
-                </div>
-              </ListItem>
-            ))
-          ) : (
-            <div className="no-message">
-              <p>No Notes Created</p>
+                </ListItem>
+              ))
+            ) : (
+              <div className="no-message">
+                <p>No Notes Created</p>
+              </div>
+            )}
+          </List>
+
+          <div className="message-container">
+            <img src="/assets/images/clip.svg" color="red" className="notification-icon" />
+            <div className="message-input">
+              <form onSubmit={this.handleAddNote}>
+                <TextField
+                  value={this.state.content}
+                  onChange={this.handleChange}
+                  hintText="Add a note"
+                  ref="noteInput"
+                  underlineShow={false}
+                  className="text-input"
+                />
+              </form>
             </div>
-          )}
-        </List>
+            <div className="message-icon">
+              <img src="/assets/images/smile.svg" className="message-icon" />
+            </div>
+          </div>
 
-        <div className="message-container">
-          <img src="/assets/images/clip.svg" color="red" className="notification-icon" />
-          <div className="message-input">
-            <form onSubmit={this.handleAddNote}>
-              <TextField
-                value={this.state.content}
-                onChange={this.handleChange}
-                hintText="Add a note"
-                ref="noteInput"
-                underlineShow={false}
-                className="text-input"
-              />
-            </form>
-          </div>
-          <div className="message-icon">
-            <img src="/assets/images/smile.svg" className="message-icon" />
-          </div>
+          <Dialog
+            actions={archiveActions}
+            modal={false}
+            open={this.state.showArchiveDialog}
+            onRequestClose={this.handleCloseArchiveDialog}
+          >
+            Are you sure you want to archive this note?
+          </Dialog>
+
+          <Dialog
+            title="Edit note"
+            actions={editActions}
+            modal={false}
+            open={this.state.showEditDialog}
+            onRequestClose={this.handleCloseEditDialog}
+          >
+            <TextField
+              value={this.state.note.note}
+              onChange={this.handleEditNoteChange}
+              fullWidth
+              multiLine
+              rows={3}
+              ref="notesTextField"
+            />
+          </Dialog>
         </div>
-
-        <Dialog
-          actions={archiveActions}
-          modal={false}
-          open={this.state.showArchiveDialog}
-          onRequestClose={this.handleCloseArchiveDialog}
-        >
-          Are you sure you want to archive this note?
-        </Dialog>
-
-        <Dialog
-          title="Edit note"
-          actions={editActions}
-          modal={false}
-          open={this.state.showEditDialog}
-          onRequestClose={this.handleCloseEditDialog}
-        >
-          <TextField
-            value={this.state.note.note}
-            onChange={this.handleEditNoteChange}
-            fullWidth
-            multiLine
-            rows={3}
-            ref="notesTextField"
-          />
-        </Dialog>
       </div>
     );
   }
