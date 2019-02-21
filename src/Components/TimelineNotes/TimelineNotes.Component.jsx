@@ -94,7 +94,7 @@ export default class TimelineNotes extends Component {
 
     return (
       <div>
-        <div className='notes-toggle'>
+        <div className="notes-toggle">
           <span className={!this.state.myNotes ? 'toggle-label mine' : 'toggle-label'}>Mine</span>
           <Toggle
             thumbSwitchedStyle={{ backgroundColor: 'yellow' }}
@@ -125,9 +125,6 @@ export default class TimelineNotes extends Component {
         </div>
         <div className="notes-container">
           <List className="notes-list">
-            <div className="toggle-notes">
-
-            </div>
             {incidentNotes.length > 0 ? (
               incidentNotes.map((note, i) => (
                 <ListItem className="notes-list-item" key={i} disabled>
