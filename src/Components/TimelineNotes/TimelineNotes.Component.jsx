@@ -106,8 +106,6 @@ export default class TimelineNotes extends Component {
               height: '25px',
             }}
             thumbSwitchedStyle={{
-              width: '25px',
-              height: '25px',
               backgroundColor: '#1273bc',
             }}
             trackStyle={{
