@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Toggle from 'material-ui/Toggle';
+import Switch from '@material-ui/core/Switch';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -72,16 +72,13 @@ class IncidentFilter extends Component {
     return (
       <div className="filters-container">
         <div className="toggle-section">
-          <span className="toggle-label">Mine</span>
-          <Toggle
-            thumbStyle={styles.thumbOff}
-            trackStyle={styles.trackOff}
-            thumbSwitchedStyle={styles.thumbSwitched}
-            trackSwitchedStyle={styles.trackSwitched}
-            onToggle={() => this.handleMineAllChange()}
-            toggled={!this.state.assignedToMe}
+          <span className={`${this.state.assignedToMe ? 'toggle-label toggle-label--active' : 'toggle-label'}`}>Mine</span>
+          <Switch
+            color="default"
+            onChange={() => this.handleMineAllChange()}
+            checked={!this.state.assignedToMe}
           />
-          <span className="toggle-label">All</span>
+          <span className={`${!this.state.assignedToMe ? 'toggle-label toggle-label--active' : 'toggle-label'}`}>All incidents</span>
         </div>
         <div className="filters">
           <span className="incidents-label">Incidents</span>

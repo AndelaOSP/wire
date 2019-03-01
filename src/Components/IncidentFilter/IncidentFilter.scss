@@ -32,6 +32,10 @@
       font-size: 0.8em;
       color: map_get($grey, 300);
       margin: 0.2rem;
+
+      &--active {
+        color: #127dc5;
+      }
     }
   }
 
