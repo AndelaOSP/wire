@@ -1,4 +1,39 @@
 @import "../../theme";
+
+.notes-toggle{
+  display: flex;
+  width: 200px;
+  color: #9ca4ab;
+  justify-content: space-between;
+  margin-right: 12vw;
+  margin-left: auto;
+  padding: 20px 0px;
+
+  input{
+    width: 70px;
+    left: -5px;
+  }
+
+  div:nth-child(1){
+    width: 50px;
+    left: -15px;
+  }
+
+  span.toggle-label.mine, span.toggle-label.all{
+    color: #1273bc !important;
+  }
+
+  div:nth-child(2) {
+    div:nth-child(1){
+      div:nth-child(2){
+        div:nth-child(1){
+          background: purple;
+          width: auto !important;
+        }
+      }
+    }
+  }
+}
 .notes-container {
   height: 83vh !important;
   overflow: scroll;

@@ -11,6 +11,7 @@ describe('Timeline Notes component', () => {
     addNote: jest.fn(),
     editNote: jest.fn(),
     archiveNote: jest.fn(),
+    myNotes: true,
   };
 
   beforeEach(() => {
@@ -80,7 +81,7 @@ describe('Timeline Notes component', () => {
     wrapperInstance.handleArchiveNote({
       preventDefault: jest.fn(),
     });
-    
+
     expect(props.archiveNote).toHaveBeenLastCalledWith('2', 2);
     expect(wrapperInstance.state.showArchiveDialog).toBeFalsy();
   });
@@ -92,10 +93,10 @@ describe('Timeline Notes component', () => {
         value: 'Note',
       },
     });
-    
+
     expect(wrapperInstance.state.content).toEqual('Note');
   });
-  
+
   it('should initiate addNote action when handleAddNote method is called', () => {
     wrapper.setState({
       content: 'Some notes',
@@ -157,4 +158,10 @@ describe('Timeline Notes component', () => {
 
     expect(wrapper.find('ListItem').length).toEqual(1);
   });
+
+  it('should make modification to state when handleMineAllNotesChange is called', () =>{
+    expect(wrapperInstance.state.myNotes).toEqual(true);
+    wrapperInstance.handleMineAllNotesChange();
+    expect(wrapperInstance.state.myNotes).toEqual(false);
+  })
 });
