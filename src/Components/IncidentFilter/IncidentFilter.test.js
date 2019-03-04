@@ -60,15 +60,15 @@ describe('IncidentFilter component', () => {
     wrapper.instance().handleMineAllChange();
     expect(spied.calledOnce).toBeTruthy();
   });
-  it('should render Toggle', () => {
+  it('should render Switch', () => {
     wrapper = shallow(<IncidentFilter />);
-    expect(wrapper.find('Toggle').length).toEqual(1);
+    expect(wrapper.find('WithStyles(Switch)').length).toEqual(1);
   });
   it('should handle onToggle', () => {
     wrapper = shallow(<IncidentFilter />);
     const spied = sinon.spy(wrapper.instance(), 'handleMineAllChange');
     const event = { target: { name: 'position ', value: 'new position' } };
-    wrapper.find('Toggle').simulate('toggle', event);
+    wrapper.find('WithStyles(Switch)').simulate('change', event);
     expect(spied.called).toEqual(true);
   });
   it('should render Button', () => {
