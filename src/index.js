@@ -5,8 +5,12 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux';
 import Routes from './routes';
 import store from './store/store';
+import { Socket, SocketProvider } from './socket';
 
 const HotApp = require('./routes').default;
+
+// Establish socket connection with server.
+const socket = new Socket('http://wire.andela.com:3000');
 
 const muiTheme = getMuiTheme({
   datePicker: {
@@ -23,7 +27,9 @@ const renderApp = (Component) => {
   ReactDOM.render(
     <Provider store={store}>
       <MuiThemeProvider muiTheme={muiTheme}>
-        <Component />
+        <SocketProvider socket={socket}>
+          <Component />
+        </SocketProvider>
       </MuiThemeProvider>
     </Provider>,
     document.getElementById('root'),
