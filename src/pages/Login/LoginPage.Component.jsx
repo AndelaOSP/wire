@@ -37,10 +37,12 @@ export class LoginPage extends React.Component {
   render() {
     const styles = {
       button: {
-        width: '15rem',
+        width: '17rem',
         height: '3rem',
         position: 'relative',
         marginLeft: '2vw',
+        borderRadius: '10px',
+        marginRight: '-5vw',
       },
     };
     const { from } = this.props.location.state || { from: { pathname: '/' } };
@@ -61,7 +63,7 @@ export class LoginPage extends React.Component {
       <div>
         <div className="login-page">
           <div className="left-container">
-            <div>
+            <div className="logo-container">
               <img className="andela-logo" src="/assets/images/andelaLogo.png" />
             </div>
             <div className="welcome-text">
@@ -73,25 +75,28 @@ export class LoginPage extends React.Component {
                   Please sign in with your Google account to proceed
               </p>
             </div>
-            <RaisedButton
-              className="button"
-              icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg" />}
-              href={`${config.ANDELA_API_BASE_URL}/login?redirect_url=${config.BASE_URL}/login`}
-              label={<p className="label">Sign In With Google</p>}
-              style={styles.button}
-            />
+            <div className="raised-button">
+              <RaisedButton
+                className="button"
+                icon={<img className="google-logo" src="../../../assets/images/icons8-google.svg" />}
+                href={`${config.ANDELA_API_BASE_URL}/login?redirect_url=${config.BASE_URL}/login`}
+                label={<p className="label">Sign In With Google</p>}
+                style={styles.button}
+              />
+            </div>
           </div>
           <div className="right-container">
-            <img className="landing-image" src="/assets/images/wire_landing_page_vector@2x.png" />
-            <div className="right-text">
-              <p>
-                <span style={{ fontWeight: 600 }}>An Incident</span>
-                {' '}
-                <br />
-                Reporting Platform
-              </p>
+            <div className="right-content">
+              <div className="right-text">
+                <p>
+                  <span style={{ fontWeight: 600 }}>An Incident</span>
+                  {' '}
+                  <br />
+                  Reporting Platform
+                </p>
+                <div className="underline" />
+              </div>
             </div>
-            <div className="underline" />
           </div>
         </div>
         {isError ? (
