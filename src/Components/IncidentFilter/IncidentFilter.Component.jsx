@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Switch from '@material-ui/core/Switch';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 // styling
+import '../CustomMenu/CustomMenu.scss';
 import './IncidentFilter.scss';
 
 // Components
@@ -26,7 +27,8 @@ class IncidentFilter extends Component {
   /**
    * Method to handle change on flag filter drop down
    */
-  handleFlagChange = (event, index, value) => {
+  handleFlagChange = (event) => {
+    const { value } = event.target;
     this.props.filterByFlag(value);
     this.setState({ flagFilterValue: value });
   };
@@ -34,7 +36,8 @@ class IncidentFilter extends Component {
   /**
    * Method to handle change on type filter drop down
    */
-  handleTypeChange = (event, index, value) => {
+  handleTypeChange = (event) => {
+    const { value } = event.target;
     this.props.filterByType(value);
     this.setState({ incidentsType: value });
   };
@@ -65,8 +68,13 @@ class IncidentFilter extends Component {
       trackSwitched: {
         backgroundColor: '#81D4FA',
       },
-      selectField: {
-        fontSize: '0.75vw', backgroundColor: '#ffffff', width: '9.7vw', height: '5vh',
+      select: {
+        fontSize: '0.75vw',
+        color: '#000',
+        backgroundColor: '#ffffff',
+        width: '9.7vw',
+        height: '5vh',
+        textAlign: 'center',
       },
     };
     return (
@@ -85,36 +93,30 @@ class IncidentFilter extends Component {
 
           <CustomMenu changeCountryFilter={this.props.changeCountryFilter} />
 
-          <SelectField
-            underlineStyle={{ display: 'none' }}
-            iconStyle={{ fill: '#000000', marginRight: '1vw', textAlign: 'center' }}
-            labelStyle={{ textAlign: 'center', marginLeft: '1.85vw' }}
+          <Select
             value={this.state.flagFilterValue}
             onChange={this.handleFlagChange}
-            className="flag-filter"
-            style={styles.selectField}
-          >
-            <MenuItem value="All Incidents" primaryText="All Flags" />
-            <MenuItem value="red" primaryText="Red Flag" />
-            <MenuItem value="yellow" primaryText="Yellow Flag" />
-            <MenuItem value="green" primaryText="Green Flag" />
-          </SelectField>
+            className="custom-menu"
+            style={styles.select}
+            >
+            <MenuItem value="All Incidents">All Flags</MenuItem>
+            <MenuItem value="red">Red Flag</MenuItem>
+            <MenuItem value="yellow">Yellow Flag</MenuItem>
+            <MenuItem value="green">Green Flag</MenuItem>
+          </Select>
 
-          <SelectField
-            underlineStyle={{ display: 'none' }}
-            iconStyle={{ fill: '#000000', marginRight: '1vw', textAlign: 'center' }}
-            labelStyle={{ textAlign: 'center', marginLeft: '1.85vw' }}
+          <Select
             value={this.state.incidentsType}
             onChange={this.handleTypeChange}
-            className="incidents-filter"
-            style={styles.selectField}
-          >
-            <MenuItem value="Pending" primaryText="Pending" />
-            <MenuItem value="In Progress" primaryText="In Progress" />
-            <MenuItem value="Resolved" primaryText="Resolved" />
-            <MenuItem value="All Incidents" primaryText="All Incidents" />
-          </SelectField>
-
+            className="custom-menu"
+            style={styles.select}
+            >
+            <MenuItem value="Pending">Pending</MenuItem>
+            <MenuItem value="In Progress">In Progress</MenuItem>
+            <MenuItem value="Resolved">Resolved</MenuItem>
+            <MenuItem value="All Incidents">All Incidents</MenuItem>
+          </Select>
+          
           <div className="duration-filter">
             <button className="duration-button" onClick={() => this.handleTimeChange('Day')}>
               <span>Day</span>

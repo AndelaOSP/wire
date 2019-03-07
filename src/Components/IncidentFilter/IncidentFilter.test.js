@@ -19,30 +19,30 @@ describe('IncidentFilter component', () => {
     wrapper = shallow(<IncidentFilter />);
     expect(wrapper.find('div').length).toEqual(4);
   });
-  it('should render SelectField', () => {
+  it('should render Select', () => {
     wrapper = shallow(<IncidentFilter />);
-    expect(wrapper.find('SelectField').length).toEqual(2);
+    expect(wrapper.find('WithStyles(WithFormControlContext(Select))').length).toEqual(2);
   });
   it('should render MenuItem', () => {
     wrapper = shallow(<IncidentFilter />);
-    expect(wrapper.find('MenuItem').length).toEqual(8);
+    expect(wrapper.find('WithStyles(MenuItem)').length).toEqual(8);
   });
   it('should handle flag change', () => {
     wrapper = shallow(<IncidentFilter />);
-    const value = '';
+    const event = { target: { value: '' } };
     const spied = sinon.spy(wrapper.instance(), 'handleFlagChange');
     wrapper.update();
-    wrapper.setState({ flagFilterValue: value });
-    wrapper.instance().handleFlagChange();
+    wrapper.setState({ flagFilterValue: event });
+    wrapper.instance().handleFlagChange(event);
     expect(spied.calledOnce).toBeTruthy();
   });
   it('should handle type change', () => {
     wrapper = shallow(<IncidentFilter />);
-    const value = '';
+    const event = { target: { value: '' } };
     const spied = sinon.spy(wrapper.instance(), 'handleTypeChange');
     wrapper.update();
-    wrapper.setState({ flagFilterType: value });
-    wrapper.instance().handleTypeChange();
+    wrapper.setState({ flagFilterType: event });
+    wrapper.instance().handleTypeChange(event);
     expect(spied.calledOnce).toBeTruthy();
   });
   it('should handle time change', () => {
