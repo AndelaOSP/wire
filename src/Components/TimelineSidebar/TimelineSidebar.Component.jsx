@@ -194,8 +194,6 @@ on
           </div>
         </div>
 
-        <hr className="divider" />
-
         <div className="incident-status">
           <span> Witnesses: </span>
           <div className="list">
@@ -282,8 +280,6 @@ on
             )}
           </div>
         </div>
-
-        <hr className="divider" />
 
         <Dialog
           title="Resolve an incident"
