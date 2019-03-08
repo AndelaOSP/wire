@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import DropDownMenu from 'material-ui/DropDownMenu';
 import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import Dialog from 'material-ui/Dialog';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -29,7 +29,7 @@ class TimelineSidebar extends Component {
    * This lifecycle hook is used to update the list of ccd associates
    * on initial render
    */
-  componentWillMount() {
+  componentDidMount() {
     this.updateAssignee(this.props);
     this.updateCcdAssociates(this.props);
   }
@@ -110,9 +110,9 @@ class TimelineSidebar extends Component {
     this.setState({ reportDialogOpen: !this.state.reportDialogOpen, resolveValue: 0 });
   };
 
-  handleChangeAssignee = (e, index, value) => {
-    e.preventDefault();
-    this.setState({ assignee: this.props.staff.find(user => user.id === value) });
+  handleChangeAssignee = (event, index, value) => {
+    event.preventDefault();
+    this.setState({ assignee: this.props.staff.find(user => user.id === event.target.value) });
     this.props.changeAssignee({ userId: value, incidentId: this.props.incident.id });
   };
 
@@ -156,6 +156,11 @@ class TimelineSidebar extends Component {
   };
 
   render() {
+    const { styles } = {
+      width: '',
+      marginLeft: '0',
+      fontSize: '30px',
+    };
     const { incident, staff } = this.props;
     const { assignee } = this.state;
     const ccdAssociates = incident.assignees.filter(user => user.assignedRole === 'ccd');
@@ -212,43 +217,50 @@ on
             )}
           </div>
           <span className="incident-status-title"> Incident status: </span>
-          <div className="incident-dropdown">
-            <DropDownMenu
+          <div>
+            <Select
               value={incident.statusId || 1}
               onChange={this.handleStatusChange}
               className="dropdown dropdown-status"
             >
-              <MenuItem value={1} primaryText="Pending" />
-              <MenuItem value={2} primaryText="In Progress" />
-              <MenuItem value={3} primaryText="Resolved" />
-            </DropDownMenu>
+              <MenuItem value={1}>Pending</MenuItem>
+              <MenuItem value={2}>In Progress</MenuItem>
+              <MenuItem value={3}>Resolved</MenuItem>
+            </Select>
           </div>
 
           <span> Assigned to: </span>
           <div>
             {assignee ? (
-              <DropDownMenu
-                value={assignee.id}
-                onChange={this.handleChangeAssignee}
-                className="dropdown dropdown-assigned"
+              <Select
+              value={assignee.id}
+              onChange={this.handleChangeAssignee}
+              className="dropdown dropdown-assigned"
               >
                 {staff.map((staffMember, i) => (
                   <MenuItem
-                  key={i} value={staffMember.id} primaryText={staffMember.username} />
+                  key={i} value={staffMember.id}>
+                    {staffMember.username}
+                  </MenuItem>
                 ))}
-              </DropDownMenu>
+              </Select>
             ) : (
-              <DropDownMenu value={0} onChange={this.handleChangeAssignee} className="dropdown dropdown-assigned">
-                <MenuItem value={0} primaryText="Assign someone" />
+              <Select
+              value="Unassigned"
+              onChange={this.handleChangeAssignee}
+              className="dropdown dropdown-assigned"
+              >
                 {staff ? (
                   staff.map((staffMember, i) => (
                     <MenuItem
-                    key={i} value={staffMember.id} primaryText={staffMember.username} />
+                      key={i} value={staffMember.id}>
+                      {staffMember.username}
+                    </MenuItem>
                   ))
                 ) : (
-                  <MenuItem value={0} primaryText="No assignees available" />
+                  <MenuItem value={0}>No assignees available</MenuItem>
                 )}
-              </DropDownMenu>
+              </Select>
             )}
           </div>
 
@@ -259,6 +271,7 @@ on
               hintText="Select a name"
               value={this.state.selectedValues}
               onChange={this.handleSelectCCd}
+              styles={styles}
               dropDownMenuProps={{
                 onClose: this.onSelectClose,
               }}
@@ -268,7 +281,7 @@ on
           </div>
 
           <span> Location: </span>
-          <div className="loction-list">
+          <div className="location-list">
             {incident.Location ? (
               <p>
                 {' '}

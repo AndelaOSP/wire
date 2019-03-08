@@ -45,6 +45,7 @@ describe('Timeline Sidebar component', () => {
       },
     });
     wrapperInstance.updateAssignee(props);
+    
     expect(wrapperInstance.state.assignee).toBeDefined();
   });
 
@@ -66,6 +67,7 @@ describe('Timeline Sidebar component', () => {
         value: 'some texts',
       },
     });
+
     expect(wrapperInstance.state.reportText).toEqual('some texts');
   });
 
@@ -76,6 +78,7 @@ describe('Timeline Sidebar component', () => {
     wrapperInstance.handleResolveIncident({
       preventDefault: jest.fn(),
     });
+
     expect(props.changeStatus).toHaveBeenCalled();
   });
 
@@ -87,12 +90,20 @@ describe('Timeline Sidebar component', () => {
     wrapperInstance.handleCloseReportDialog({
       preventDefault: jest.fn(),
     });
+
     expect(wrapperInstance.state.reportDialogOpen).toBeFalsy();
     expect(wrapperInstance.state.resolveValue).toEqual(0);
   });
 
-  it('should intiate the changeAssignee action when handleChangeAssignee method is called', () => {
-    wrapperInstance.handleChangeAssignee({ preventDefault: jest.fn() }, 1, 'cosmas');
+  it('should initiate the changeAssignee action when handleChangeAssignee method is called', () => {
+    const event = {
+      target: {
+        value: '1',
+      },
+      preventDefault: jest.fn(),
+    };
+
+    wrapperInstance.handleChangeAssignee(event, 1, 'cosmas');
     expect(props.changeAssignee).toHaveBeenCalled();
   });
 
@@ -121,6 +132,7 @@ describe('Timeline Sidebar component', () => {
         witnesses: incidents[0].witnesses,
       },
     });
+
     expect(wrapper.find('.witness-image').length).toEqual(2);
   });
 
@@ -129,9 +141,10 @@ describe('Timeline Sidebar component', () => {
       incident: {
         ...props.incident,
         assignee: [],
+        staff: [],
       },
     });
 
-    expect(wrapper.find('MenuItem').at(3).length).toEqual(1);
+    expect(wrapper.find('WithStyles(MenuItem)').at(3).length).toEqual(1);
   });
 });

@@ -5,15 +5,6 @@ import IncidentType from '../IncidentType/IncidentType.Component';
 import './IncidentList.scss';
 
 class IncidentList extends Component {
-  getIncidentFlag = (flag) => {
-    if (flag.toLowerCase() === 'green') {
-      return this.state.flags.green;
-    } if (flag.toLowerCase() === 'yellow') {
-      return this.state.flags.yellow;
-    }
-    return this.state.flags.red;
-  };
-
   getUnderlineColor = (status) => {
     if (status === 'Pending') {
       return '#fdb237';
@@ -44,21 +35,21 @@ class IncidentList extends Component {
         <div className="incidents incidents-pending">
           <IncidentSection
             incidentStatus="PENDING"
-            underLineColor="#fdb237"
+            underLineColor={this.getUnderlineColor('Pending')}
             incidents={this.sortIncidentsByType('Pending')}
           />
         </div>
         <div className="incidents incidents-progress">
           <IncidentSection
             incidentStatus="IN PROGRESS"
-            underLineColor="#49abb0"
+            underLineColor={this.getUnderlineColor('In Progress')}
             incidents={this.sortIncidentsByType('In Progress')}
           />
         </div>
         <div className="incidents incidents-resolved">
           <IncidentSection
             incidentStatus="RESOLVED"
-            underLineColor="#3960ad"
+            underLineColor={this.getUnderlineColor('Resolved')}
             incidents={this.sortIncidentsByType('Resolved')}
           />
         </div>

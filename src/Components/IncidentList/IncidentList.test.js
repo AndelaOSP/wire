@@ -1,8 +1,9 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import { configure, shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import Adapter from 'enzyme-adapter-react-16';
 import IncidentList from './IncidentList.Component';
+import { incidents } from '../../../mock_endpoints/mockData';
 
 configure({ adapter: new Adapter() });
 
@@ -43,4 +44,11 @@ describe('IncidentList component', () => {
     wrapper.instance().sortIncidentsByType();
     expect(spied.calledOnce).toBeTruthy();
   });
+  it('should render incidents', () => {
+    props = {
+      incidents,
+      incidentsType: 'All Incidents',
+    };
+    wrapper = shallow(<IncidentList {...props} />);
+  })
 });
