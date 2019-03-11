@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 /**
- * TODO: Using the old experimental context API because of old React version
+ * REVIEW: Using the old experimental context API because of old React version
  * This component class makes down socket object available to children component
  */
 export default class SocketProvider extends React.Component {
@@ -26,7 +26,7 @@ SocketProvider.childContextTypes = {
 
 SocketProvider.propTypes = {
   socket: PropTypes.object,
-  children: PropTypes.array,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 SocketProvider.defaultProps = {

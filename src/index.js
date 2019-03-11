@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux';
 import Routes from './routes';
 import store from './store/store';
-import { Socket, SocketProvider } from './socket';
+import { Socket, SocketProvider } from '../socket';
 
 const HotApp = require('./routes').default;
 

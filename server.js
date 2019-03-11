@@ -1,10 +1,12 @@
+/* eslint-disable global-require, import/no-extraneous-dependencies */
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
-const mockMiddleware = require('./mock_endpoints/mockMiddleware');
 const path = require('path');
+const mockMiddleware = require('./mock_endpoints/mockMiddleware');
 const auth = require('./mock_endpoints/auth');
 require('dotenv').config();
+
+const app = express();
 
 if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
@@ -12,11 +14,22 @@ if (process.env.NODE_ENV === 'development') {
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const webpackConfig = require('./webpack.dev.js');
   const compiler = webpack(webpackConfig);
+
+  // Socket
+  const server = require('http').Server(app);
+  const Socket = require('./mock_endpoints/mockSocket');
+
+  // Create a socket connection for this server.
+  const socket = Socket(server);
+
+  // Attach socket to app for use in express middleware.
+  app.socket = socket;
+
   app.use(
     webpackDevMiddleware(compiler, {
       hot: true,
-      publicPath: webpackConfig.output.publicPath
-    })
+      publicPath: webpackConfig.output.publicPath,
+    }),
   );
   app.use(webpackHotMiddleware(compiler));
   app.use(express.static(path.join(__dirname, '/')));
@@ -56,9 +69,9 @@ if (process.env.NODE_ENV === 'development') {
   // Login route
   app.post('/api/users/login', mockMiddleware.login);
 
-  app.use('*', function(req, res, next) {
-    let filename = path.join(compiler.outputPath, 'index.html');
-    compiler.outputFileSystem.readFile(filename, function(err, result) {
+  app.use('*', (req, res, next) => {
+    const filename = path.join(compiler.outputPath, 'index.html');
+    compiler.outputFileSystem.readFile(filename, (err, result) => {
       if (err) {
         return next(err);
       }
@@ -68,18 +81,18 @@ if (process.env.NODE_ENV === 'development') {
     });
   });
 
-  app.use(function (err, req, res, next) {
+  app.use((err, req, res) => {
     res.status(500).send('Something broke!');
   });
 } else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   // Configuration for production environment
   app.use(express.static(path.join(__dirname, 'dist')));
-  app.get('*', function response(req, res) {
+  app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
   });
 }
 
-const server = app.listen(process.env.PORT || 8080, function() {
+const server = app.listen(process.env.PORT || 8080, () => {
   const host = server.address().address;
   const port = server.address().port;
   console.log('App listening at http://%s:%s', host, port);

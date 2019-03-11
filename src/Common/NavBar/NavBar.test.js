@@ -12,9 +12,16 @@ const props = {
   showSearch: true,
 };
 
+const socket = {
+  subscribeToNotifyCC: () => { },
+};
+
 describe('Navbar component', () => {
   it('should have all the Navbar content', () => {
-    const navbar = shallow(<NavBar {...props} history={{}} />);
+    const navbar = shallow(
+      <NavBar {...props} history={{}} />,
+      { context: { socket } },
+    );
     const tree = shallowToJSON(navbar);
     expect(tree.props.className).toEqual('navbar');
     expect(tree.props.role).toEqual('navigation');
@@ -23,14 +30,20 @@ describe('Navbar component', () => {
   });
 
   it('should handle sign out', () => {
-    const wrapper = shallow(<NavBar history={{}} />);
+    const wrapper = shallow(
+      <NavBar history={{}} />,
+      { context: { socket } },
+    );
     const signOutSpan = wrapper.find('.dropdown-content #logout');
     expect(signOutSpan.length).toEqual(1);
     signOutSpan.simulate('click', { preventDefault: jest.fn() });
   });
 
   it('should handle search', () => {
-    const wrapper = shallow(<NavBar {...props} history={{ push: () => {} }} />);
+    const wrapper = shallow(
+      <NavBar {...props} history={{ push: () => {} }} />,
+      { context: { socket } },
+    );
     const searchInput = wrapper.find('input.search-input');
     expect(searchInput.length).toEqual(1);
     const spy = jest.spyOn(wrapper.instance().props.history, 'push');

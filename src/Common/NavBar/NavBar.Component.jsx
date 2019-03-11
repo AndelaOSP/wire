@@ -22,10 +22,12 @@ export class NavBar extends Component {
   }
 
   componentDidMount() {
-    // Establish a socket subscription that handles for new notification messages from the server
-    this.context.socket.subscribeToNotifyCC(() => this.setState({
-      notificationCount: this.state.notificationCount,
-    }));
+    // Subscribe to CC events from the server
+    this.context.socket.subscribeToNotifyCC(() => {
+      this.setState({
+        notificationCount: this.state.notificationCount + 1,
+      });
+    });
   }
 
   /**

@@ -10,7 +10,6 @@ export default class Socket {
 
     // Display a message when server is connected to
     this.socket.on('connect', () => {
-      console.log(`[client] (${this.socket.id}) Connected to server!`);
       this.emitNewConnection();
     });
   }
@@ -19,9 +18,10 @@ export default class Socket {
   /**
    * Emits a message to the server when connected. The message holds a token.
    */
+  // eslint-disable-next-line class-methods-use-this
   emitNewConnection() {
     // Get token from cookie.
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)jwt-token\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    const token = localStorage.getItem('token');
     this.socket.emit('new-connection', { token });
   }
 
