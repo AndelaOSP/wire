@@ -38,7 +38,12 @@ describe('UserFilter component', () => {
   });
 
   it('should initiate the changeCountryFilter action when the handleCountryChange method is called', () => {
-    wrapperInstance.handleCountryChange({}, 1, 'Kenya');
+    const event = {
+      target: {
+        value: 'Kenya',
+      },
+    };
+    wrapperInstance.handleCountryChange(event);
     expect(wrapperInstance.state.countryFilter).toEqual('Kenya');
     expect(props.changeCountryFilter).toHaveBeenCalledWith('Kenya');
   });

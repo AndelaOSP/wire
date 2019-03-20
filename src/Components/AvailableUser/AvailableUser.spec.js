@@ -35,11 +35,11 @@ describe('should render <AvailableUser />', () => {
   });
   it('should render SelectField', () => {
     wrapper = shallow(<AvailableUser {...props} />);
-    expect(wrapper.find('SelectField').length).toEqual(1);
+    expect(wrapper.find('WithStyles(WithFormControlContext(Select))').length).toEqual(1);
   });
   it('should render MenuItems', () => {
     wrapper = shallow(<AvailableUser {...props} />);
-    expect(wrapper.find('MenuItem').length).toEqual(2);
+    expect(wrapper.find('WithStyles(MenuItem)').length).toEqual(2);
   });
   it('should renders handleRemove', () => {
     wrapper = shallow(<AvailableUser {...props} prepareStyles="" />);
@@ -49,7 +49,7 @@ describe('should render <AvailableUser />', () => {
   it('should renders handlePositionChange', () => {
     wrapper = shallow(<AvailableUser {...props} prepareStyles="" />);
     const event = { target: { name: 'position ', value: 'new position' } };
-    wrapper.find('SelectField').simulate('change', event);
+    wrapper.find('WithStyles(WithFormControlContext(Select))').simulate('change', event);
     expect(handlePositionChange.called).toEqual(true);
   });
 });
