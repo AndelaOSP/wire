@@ -54,18 +54,15 @@ export const editNoteSuccess = (note, index) => ({
   type: EDIT_NOTE, note, index,
 });
 
-export const editNote = (noteText, noteId, index) => {
-  const noteUrl = `${config.NOTES_URL}/${noteId}`;
-  return dispatch => axios
-    .put(noteUrl, {
-      note: noteText,
-      userEmail: localStorage.getItem('email'),
-    })
-    .then((res) => {
-      dispatch(editNoteSuccess(res.data.data, index));
-    })
-    .catch(error => dispatch(errorAction(error)));
-};
+export const editNote = (noteText, noteId, index) => dispatch => http()
+  .put(`${config.NOTES_URL}/${noteId}`, {
+    note: noteText,
+    userEmail: localStorage.getItem('email'),
+  })
+  .then((res) => {
+    dispatch(editNoteSuccess(res.data.data, index));
+  })
+  .catch(error => dispatch(errorAction(error)));
 
 export const archiveNoteSuccess = (note, index) => ({
   type: ARCHIVE_NOTE, note, index,

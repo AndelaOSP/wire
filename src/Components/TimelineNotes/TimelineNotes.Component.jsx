@@ -7,6 +7,7 @@ import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import Archive from 'material-ui/svg-icons/content/archive';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Toggle from 'material-ui/Toggle';
 import PropTypes from 'prop-types';
@@ -67,8 +68,8 @@ export default class TimelineNotes extends Component {
 
   handleEditNote = (e) => {
     e.preventDefault();
-    this.setState({ showEditDialog: !this.state.showEditDialog });
     this.props.editNote(this.state.note.note, this.state.note.id, this.state.index);
+    this.setState({ showEditDialog: !this.state.showEditDialog });
   };
 
   handleMineAllNotesChange = () => {
@@ -126,16 +127,13 @@ export default class TimelineNotes extends Component {
       archiveButton: {
         backgroundColor: '#1273bc',
         color: '#ffffff',
+        marginLeft: '10px',
       },
       dialogtext: {
         paddingRight: '150px',
         marginBottom: '20px',
       },
     };
-    const editActions = [
-      <CustomButton key={3} label="Cancel" onClick={this.handleCloseEditDialog} />,
-      <CustomButton key={4} label="Submit" onClick={this.handleEditNote} />,
-    ];
     const { notes: propNotes } = this.props.incident;
     const incidentNotes = (this.state.myNotes) ? propNotes : this.filterMyNotes(propNotes);
     const dayNotes = this.sortGroupedNotes(this.groupNotesByDate(incidentNotes));
@@ -264,19 +262,34 @@ export default class TimelineNotes extends Component {
 
           <Dialog
             title="Edit note"
-            actions={editActions}
             modal={false}
             open={this.state.showEditDialog}
-            onRequestClose={this.handleCloseEditDialog}
+            onClose={this.handleCloseEditDialog}
+            PaperProps={
+              {
+                style:
+                  {
+                    width: '2500px',
+                  },
+              }
+            }
           >
-            <TextField
-              value={this.state.note.note}
-              onChange={this.handleEditNoteChange}
-              fullWidth
-              multiLine
-              rows={3}
-              ref="notesTextField"
-            />
+            <DialogContent>
+              <TextField
+                value={this.state.note.note}
+                onChange={this.handleEditNoteChange}
+                fullWidth
+                multiLine
+                rows={2}
+                ref="notesTextField"
+              />
+            </DialogContent>
+            <DialogActions>
+              <div className="archive-note-dialog">
+                <Button size="small" onClick={this.handleCloseEditDialog}> Cancel </Button>
+                <Button variant="contained" style={styles.archiveButton} size="small" onClick={this.handleEditNote}> Submit </Button>
+              </div>
+            </DialogActions>
           </Dialog>
         </div>
       </div>
