@@ -24,12 +24,12 @@ class TimelineSidebar extends Component {
       reportText: '',
     };
   }
-
+  
   /**
    * This lifecycle hook is used to update the list of ccd associates
    * on initial render
    */
-  componentWillMount() {
+  componentDidMount() {
     this.updateAssignee(this.props);
     this.updateCcdAssociates(this.props);
   }
@@ -155,6 +155,18 @@ class TimelineSidebar extends Component {
     return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;
   };
 
+  renderCCdImage =() => {
+    const { incident } = this.props;
+    const ccdAssociates = incident.assignees.filter(user => user.assignedRole === 'ccd');
+    return ccdAssociates.map(imageUrl => (
+      <img
+       className="cc-avatar" 
+       src={imageUrl.imageUrl} width="40px"
+       alt="Avatar"
+       height="40px" />
+    ));
+  }
+  
   render() {
     const { incident, staff } = this.props;
     const { assignee } = this.state;
@@ -265,6 +277,10 @@ on
             >
               {this.renderCC(staff, ccdAssociates)}
             </SelectField>
+          </div>
+
+          <div className="ccd-section">
+            {this.renderCCdImage()}
           </div>
 
           <span> Location: </span>
