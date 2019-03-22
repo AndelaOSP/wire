@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { List, ListItem } from 'material-ui/List';
+import Button from '@material-ui/core/Button';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import Archive from 'material-ui/svg-icons/content/archive';
-import Dialog from 'material-ui/Dialog';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import Toggle from 'material-ui/Toggle';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -81,10 +84,16 @@ export default class TimelineNotes extends Component {
   handleDateString = date => moment(date).format('MMM Do YYYY [at] h:mm a');
 
   render() {
-    const archiveActions = [
-      <CustomButton key={1} label="Cancel" onClick={this.handleCloseArchiveDialog} />,
-      <CustomButton key={2} label="Archive" onClick={this.handleArchiveNote} />,
-    ];
+    const styles = {
+      archiveButton: {
+        backgroundColor: '#1273bc',
+        color: '#ffffff',
+      },
+      dialogtext: {
+        paddingRight: '150px',
+        marginBottom: '20px',
+      },
+    };
     const editActions = [
       <CustomButton key={3} label="Cancel" onClick={this.handleCloseEditDialog} />,
       <CustomButton key={4} label="Submit" onClick={this.handleEditNote} />,
@@ -177,12 +186,29 @@ export default class TimelineNotes extends Component {
           </div>
 
           <Dialog
-            actions={archiveActions}
             modal={false}
             open={this.state.showArchiveDialog}
-            onRequestClose={this.handleCloseArchiveDialog}
+            onClose={this.handleCloseArchiveDialog}
+            PaperProps={
+              {
+                style:
+                  {
+                    paddingTop: '20px',
+                    paddingRight: '5px',
+                    paddingLeft: '20px',
+                  },
+              }
+            }
           >
-            Are you sure you want to archive this note?
+            <DialogContentText style={styles.dialogtext}>
+              Are you sure you want to archive this note?
+            </DialogContentText>
+            <DialogActions>
+              <div className="archive-note-dialog">
+                <Button size="small" onClick={this.handleCloseArchiveDialog}> Cancel </Button>
+                <Button variant="contained" style={styles.archiveButton} size="small" onClick={this.handleArchiveNote}> Archive </Button>
+              </div>
+            </DialogActions>
           </Dialog>
 
           <Dialog
