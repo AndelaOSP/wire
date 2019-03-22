@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 
 import './UserFilter.scss';
 import Modal from '../Modal/Modal.Component';
@@ -16,9 +16,9 @@ class UserFilter extends Component {
     };
   }
 
-  handleCountryChange = (event, index, value) => {
-    this.props.changeCountryFilter(value);
-    this.setState({ countryFilter: value });
+  handleCountryChange = (event) => {
+    this.props.changeCountryFilter(event.target.value);
+    this.setState({ countryFilter: event.target.value });
   };
 
   /**
@@ -54,34 +54,23 @@ class UserFilter extends Component {
     const { staff } = this.props;
     const styles = {
       selectField: {
-        fontSize: '12px',
+        fontSize: '0.75vw',
+        color: '#000',
+        backgroundColor: '#ffffff',
         width: '9.7vw',
         height: '5vh',
-        marginTop: '1rem',
+        textAlign: 'center',
       },
       flatButton: {
         marginLeft: '1.5rem',
         borderRadius: '3px',
         minWidth: '12rem',
+        backgroundColor: '#3359df',
+        color: '#ffffff',
       },
       iconStyle: {
         fill: '#95989a',
         left: '5.7vw',
-      },
-      labelStyle: {
-        backgroundColor: '#95989a',
-        color: 'white',
-        height: '30px',
-        fontFamily: 'DIN Pro',
-        width: '90px',
-        lineHeight: '30px',
-        paddingTop: '0',
-        paddingRight: '0',
-        top: '10px',
-        textAlign: 'center',
-        verticalAlign: 'none',
-        marginLeft: '1vw',
-        borderRadius: '20px',
       },
     };
     return (
@@ -97,37 +86,30 @@ Available Users (
         <div className="filter-search">
           <div className="location-filter">
             <p>Location:</p>
-            <SelectField
-              underlineStyle={{ display: 'none' }}
-              iconStyle={styles.iconStyle}
-              labelStyle={styles.labelStyle}
+            <Select
               value={this.state.countryFilter}
               onChange={this.handleCountryChange}
               className="custom-menu"
               style={styles.selectField}
             >
-              <MenuItem value="All Countries" primaryText="ALL" />
-              <MenuItem value="Kenya" primaryText="KENYA" />
-              <MenuItem value="Nigeria" primaryText="NIGERIA" />
-              <MenuItem value="UGANDA" primaryText="UGANDA" />
-              <MenuItem value="USA" primaryText="USA" />
-            </SelectField>
+              <MenuItem value="All Countries">ALL</MenuItem>
+              <MenuItem value="Kenya"> KENYA </MenuItem>
+              <MenuItem value="Nigeria"> NIGERIA </MenuItem>
+              <MenuItem value="UGANDA"> UGANDA </MenuItem>
+              <MenuItem value="USA"> USA </MenuItem>
+            </Select>
           </div>
           <div className="right-side-search">
             <div className="search-bar">
               <input className="admin-search" type="search" onChange={this.handleInputChange} />
             </div>
             <div className="invite-button">
-              <FlatButton
-                label="Invite"
-                labelStyle={{
-                  verticalAlign: 'none', color: '#ffff', fontFamily: 'DIN Pro', fontWeight: '700',
-                }}
+              <Button
                 onClick={this.handleOpen}
-                backgroundColor="#3359df"
-                hoverColor="none"
                 style={styles.flatButton}
-              />
+              >
+              Invite
+              </Button>
               <Modal
                 open={this.state.open}
                 handleClose={this.handleClose}

@@ -34,10 +34,12 @@
     top: 16vh;
     width: 68vw;
     height: 8vh;
+    
     .location-filter {
       display: flex;
       flex-direction: row;
-      
+      align-items: center;
+
       p {
         font-size: 1.5rem;
         font-weight: 500;

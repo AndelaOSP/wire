@@ -109,7 +109,7 @@ export class AdminDashboard extends Component {
                     index={this.props.staff.indexOf(staffMember)}
                     imageUrl={staffMember.imageUrl}
                     username={staffMember.username}
-                    role={staffMember.Role.name.toUpperCase()}
+                    role={staffMember.Role.name}
                     country={staffMember.Location.country}
                     handlePositionChange={this.handlePositionChange}
                     handleRemove={this.handleRemove}
