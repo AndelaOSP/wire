@@ -13,6 +13,23 @@ import authenticateUser from '../../helpers/auth';
  * @class NavBar
  */
 export class NavBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      notificationCount: 3,
+    };
+  }
+
+  componentDidMount() {
+    // Subscribe to CC events from the server
+    this.context.socket.subscribeToNotifyCC(() => {
+      this.setState({
+        notificationCount: this.state.notificationCount + 1,
+      });
+    });
+  }
+
   /**
    * Method to handle Sign out
    * @param {event} event - Event triggering signing out
@@ -47,7 +64,7 @@ export class NavBar extends Component {
           {notify ? (
             <div className="notifications">
               <img src="/assets/images/bell_icon.svg" color="#3960ad" className="notification-icon" />
-              <Badge badgeContent={3} className="badge" />
+              <Badge badgeContent={this.state.notificationCount} className="badge" />
             </div>
           ) : null}
           <div className="profile">
@@ -70,10 +87,16 @@ export class NavBar extends Component {
     );
   }
 }
+
 NavBar.propTypes = {
   history: PropTypes.object.isRequired,
   showSearch: PropTypes.bool,
   notify: PropTypes.bool,
+};
+
+// Needed for getting context from parent
+NavBar.contextTypes = {
+  socket: PropTypes.object,
 };
 
 NavBar.defaultProps = {
