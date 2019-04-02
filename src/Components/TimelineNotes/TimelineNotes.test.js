@@ -151,6 +151,7 @@ describe('Timeline Notes component', () => {
           {
             id: '1',
             note: 'some dummy notes',
+            createdAt: '2019-03-19 09:56:02.604+01',
           },
         ],
       },
@@ -159,9 +160,9 @@ describe('Timeline Notes component', () => {
     expect(wrapper.find('ListItem').length).toEqual(1);
   });
 
-  it('should make modification to state when handleMineAllNotesChange is called', () =>{
+  it('should make modification to state when handleMineAllNotesChange is called', () => {
     expect(wrapperInstance.state.myNotes).toEqual(true);
     wrapperInstance.handleMineAllNotesChange();
     expect(wrapperInstance.state.myNotes).toEqual(false);
-  })
+  });
 });
