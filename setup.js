@@ -15,7 +15,7 @@ class LocalStorageMock {
   }
 
   setItem(key, val) {
-    return val || '';
+    this.store[key] = val || '';
   }
 
   clear() {
