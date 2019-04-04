@@ -213,6 +213,7 @@ export default class TimelineNotes extends Component {
             ))
             }
           </List>
+          <div className="message-border" />
 
           <div className="message-container">
             <img src="/assets/images/clip.svg" color="red" className="attachment-icon" />
@@ -232,7 +233,7 @@ export default class TimelineNotes extends Component {
               <img src="/assets/images/smile.svg" className="message-icon" />
             </div>
             <div className="at-icon">@</div>
-            <button className="add-button">ADD</button>
+            <button className="add-button" onClick={this.handleAddNote}>ADD</button>
           </div>
 
           <Dialog

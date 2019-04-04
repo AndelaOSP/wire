@@ -39,8 +39,9 @@
   height: 65vh !important;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   overflow-y: scroll;
-  padding-bottom: 80px;
+
   .notes-list {
     width: 70vw;
     margin: 2rem auto;
@@ -91,7 +92,7 @@
             p {
               margin-top: 20px;
               font-family: 'DIN Pro' !important;
-              font-size: 11px;
+              font-size: 14px;
               line-height: 2.17;
               font-weight: 300;
               color: #000000;
@@ -116,6 +117,7 @@
       padding: 0 26px 0 26px !important;
       height: 1px;
       margin-left: 26px;
+      margin-right: 20px;
       background:
         repeating-linear-gradient(to right, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.3) 5px, transparent 5px, transparent 12px)
     }
@@ -139,9 +141,9 @@
       }
     }
   }
+
   .message-container {
     position: fixed;
-    z-index: 2;
     bottom: 0px;
     display: flex;
     flex-direction: row;
@@ -151,31 +153,34 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 50px;
+
     .attachment-icon {
       cursor: pointer;
-      margin-left: 15px;
-      margin-right: 15px;
+      margin-left: calc(31vw - 380px);
+      margin-right: 25px;
       margin-top: 15px;
       width: 24px;
       height: 24px;
       fill: rgba(0, 0, 0, 0.6) !important;
     }
+
     .message-input {
-      border-top: 1.6px solid black;
-      width: 70vw;
+      flex: 1 1 auto;
       height: 60px;
-      margin-left: calc(30vw - 380px);
+      max-width: 980px;
+      border-top: 1.6px solid black;
+
       .text-input {
-        width: 100% !important;
         text-align: center;
         padding-top: 15px;
+        width: 100% !important;
         input[type="text"] {
-          width: 100% !important;
           font-size: 18px !important;
         }
         align-items: center;
       }
     }
+
     .message-icon {
       cursor: pointer;
       height: 24px;
@@ -183,6 +188,7 @@
       margin-left: 5px;
       opacity: 0.7;
     }
+
     .at-icon {
       cursor: pointer;
       font-family: 'Source Sans Pro';
@@ -191,6 +197,7 @@
       margin-left: 15px;
       opacity: 0.6;
     }
+
     .add-button {
       cursor: pointer;
       margin-top: 15px;
@@ -200,6 +207,18 @@
       box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
       border-style: none;
+
+      &:hover {
+        transform: scale(1.1, 1.1);
+        background-color: #f5f5f5;
+      }
     }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .message-container .message-input {
+    // width: 50vw !important;
+    margin-left: 0 !important;
   }
 }
