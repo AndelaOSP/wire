@@ -1,5 +1,6 @@
 @import "../../theme";
-
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 .notes-toggle{
   display: flex;
   width: 200px;
@@ -35,17 +36,26 @@
   }
 }
 .notes-container {
-  height: 83vh !important;
-  overflow: scroll;
+  height: 65vh !important;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow-y: scroll;
+
   .notes-list {
-    overflow: scroll;
     width: 70vw;
     margin: 2rem auto;
+    max-width: 980px;
     .subheader {
       padding-left: 0 !important;
       font-weight: 900 !important;
     }
+    .note-date {
+      padding-left: 26px;
+      font-weight: 1000 !important;
+    }
     .notes-list-item {
+      padding: 16px 26px 0px 26px !important;
       &>div {
         &>div {
           padding: 0 !important;
@@ -60,31 +70,29 @@
           width: 202px;
           height: 22px;
           font-family: 'DIN Pro';
-          font-size: 17px;
-          font-weight: 500;
+          font-size: 14px;
+          font-weight: 900;
           font-style: normal;
           font-stretch: normal;
           line-height: 1.29;
           text-align: left;
           color: #000000;
         }
-        .note-divider {
+        .note-time-underline {
           width: 150px !important;
-          height: 6px !important;
-          background-color: #dff3fc !important;
+          height: 5px !important;
+          background-color: #F1F6F8 !important;
           border-radius: 5px !important;
         }
         .note-container {
           height: 100%;
           width: 100%;
           border-radius: 5px;
-          background-color: #f3f6f9;
           .note-content {
             p {
-              padding: 1rem;
-              text-transform: capitalize;
-              font-family: 'DIN Pro';
-              font-size: 12px;
+              margin-top: 20px;
+              font-family: 'DIN Pro' !important;
+              font-size: 14px;
               line-height: 2.17;
               font-weight: 300;
               color: #000000;
@@ -92,18 +100,26 @@
           }
         }
         .note-actions {
-          margin: 0.5rem;
+          margin-top: 0.7rem;
           padding: 1rem 0;
-          svg {
-            fill: #747474 !important;
-          }
           .note-action-edit,
           .note-action-archive {
-            padding: 0 0.25rem;
+            padding-right: 0.4rem;
             cursor: pointer;
+            fill: rgba(0, 0, 0, 0.4) !important;
+            height: 20px !important;
           }
         }
       }
+    }
+    .note-divider {
+      margin-top: 45px;
+      padding: 0 26px 0 26px !important;
+      height: 1px;
+      margin-left: 26px;
+      margin-right: 20px;
+      background:
+        repeating-linear-gradient(to right, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.3) 5px, transparent 5px, transparent 12px)
     }
     .archive-button {
       background-color: #1273bc !important;
@@ -125,45 +141,84 @@
       }
     }
   }
+
   .message-container {
-    top: auto !important;
-    bottom: 0 !important;
-    position: absolute !important;
-    .notification-icon {
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    width: 75vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 50px;
+
+    .attachment-icon {
       cursor: pointer;
-      margin-top: 1rem;
-      width: 30.4px;
-      height: 32.1px;
-      margin-left: 1rem;
-      position: absolute !important;
+      margin-left: calc(31vw - 380px);
+      margin-right: 25px;
+      margin-top: 15px;
+      width: 24px;
+      height: 24px;
+      fill: rgba(0, 0, 0, 0.6) !important;
     }
+
     .message-input {
-      margin-left: 4rem;
-      width: 70vw;
+      flex: 1 1 auto;
       height: 60px;
-      border-radius: 9px;
-      background-color: #F1F1F4;
+      max-width: 980px;
+      border-top: 1.6px solid black;
+
       .text-input {
-        border-top-color: map_get($grey, 700) !important;
-        width: 100% !important;
         text-align: center;
-        padding: .3rem 0 0 1.5rem;
+        padding-top: 15px;
+        width: 100% !important;
+        input[type="text"] {
+          font-size: 18px !important;
+        }
         align-items: center;
       }
     }
+
     .message-icon {
-      cursor: pointer; // padding-right: 1rem;
-      width: 25.3px;
-      height: 25.3px;
-      position: absolute;
-      top: 10px;
-      right: 13px;
-      font-size: 25px;
       cursor: pointer;
-      opacity: 0.6;
-      -webkit-transition: all ease-out 0.3s 0s;
-      -o-transition: all ease-out 0.3s 0s;
-      transition: all ease-out 0.3s 0s;
+      height: 24px;
+      margin-top: 5px;
+      margin-left: 5px;
+      opacity: 0.7;
     }
+
+    .at-icon {
+      cursor: pointer;
+      font-family: 'Source Sans Pro';
+      font-size: 24px;
+      margin-top: 15px;
+      margin-left: 15px;
+      opacity: 0.6;
+    }
+
+    .add-button {
+      cursor: pointer;
+      margin-top: 15px;
+      margin-left: 25px;
+      width: 130px;
+      height: 40px;
+      box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      border-style: none;
+
+      &:hover {
+        transform: scale(1.1, 1.1);
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .message-container .message-input {
+    // width: 50vw !important;
+    margin-left: 0 !important;
   }
 }

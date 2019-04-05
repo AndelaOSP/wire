@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { shallow } from 'enzyme';
 import TimelineNotes from './TimelineNotes.Component';
 import { testIncidents } from '../../../mock_endpoints/mockData';
@@ -144,24 +145,39 @@ describe('Timeline Notes component', () => {
   });
 
   it('should display a list of ListItem when an incident has notes', () => {
+    global.localStorage.setItem.email = 'steve.akinyemi@andela.com';
     wrapper.setProps({
       incident: {
         ...props.incident,
         notes: [
           {
             id: '1',
-            note: 'some dummy notes',
+            note: 'some dummy note',
+            createdAt: moment().format(),
+            userEmail: 'steve.akinyemi@andela.com',
+          },
+          {
+            id: '2',
+            note: 'another dummy note',
+            createdAt: moment().format(),
+            userEmail: 'steve.akinyemi@andela.com',
+          },
+          {
+            id: '3',
+            note: 'yet another dummy note',
+            createdAt: moment().subtract(1, 'day').format(),
+            userEmail: 'steve.akinyemi@andela.com',
           },
         ],
       },
     });
 
-    expect(wrapper.find('ListItem').length).toEqual(1);
+    expect(wrapper.find('ListItem').length).toEqual(3);
   });
 
-  it('should make modification to state when handleMineAllNotesChange is called', () =>{
+  it('should make modification to state when handleMineAllNotesChange is called', () => {
     expect(wrapperInstance.state.myNotes).toEqual(true);
     wrapperInstance.handleMineAllNotesChange();
     expect(wrapperInstance.state.myNotes).toEqual(false);
-  })
+  });
 });

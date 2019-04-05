@@ -81,7 +81,45 @@ export default class TimelineNotes extends Component {
     return myNotes;
   }
 
-  handleDateString = date => moment(date).format('MMM Do YYYY [at] h:mm a');
+  groupNotesByDate = (notes) => {
+    const dayNotes = notes.reduce((groupedNotes, note) => {
+      const date = note.createdAt.slice(0, 10);
+      if (!groupedNotes[date]) {
+        // eslint-disable-next-line no-param-reassign
+        groupedNotes[date] = { date: note.createdAt, notes: [note] };
+      } else {
+        groupedNotes[date].notes.push(note);
+      }
+      return groupedNotes;
+    }, {});
+
+    return dayNotes;
+  }
+
+  sortGroupedNotes = (notes) => {
+    const ordered = {};
+    Object.keys(notes).sort().forEach((key) => {
+      ordered[key] = notes[key];
+    });
+    return ordered;
+  }
+
+  handleDateString = (date) => {
+    let dateString = moment(date).format('LL');
+
+    const today = moment();
+    const yesterday = moment().subtract(1, 'day');
+
+    if (moment(date).isSame(today, 'day')) {
+      dateString = 'Today';
+    } else if (moment(date).isSame(yesterday, 'day')) {
+      dateString = 'Yesterday';
+    }
+
+    return dateString;
+  };
+
+  handleTimeString = date => moment(date).format('h:mm a');
 
   render() {
     const styles = {
@@ -98,8 +136,9 @@ export default class TimelineNotes extends Component {
       <CustomButton key={3} label="Cancel" onClick={this.handleCloseEditDialog} />,
       <CustomButton key={4} label="Submit" onClick={this.handleEditNote} />,
     ];
-    const { notes } = this.props.incident;
-    const incidentNotes = (this.state.myNotes) ? notes : this.filterMyNotes(notes);
+    const { notes: propNotes } = this.props.incident;
+    const incidentNotes = (this.state.myNotes) ? propNotes : this.filterMyNotes(propNotes);
+    const dayNotes = this.sortGroupedNotes(this.groupNotesByDate(incidentNotes));
 
     return (
       <div>
@@ -131,43 +170,53 @@ export default class TimelineNotes extends Component {
           <span className={!this.state.myNotes ? 'toggle-label' : 'toggle-label all'}>All Notes</span>
         </div>
         <div className="notes-container">
-          <List className="notes-list">
-            {incidentNotes.length > 0 ? (
-              incidentNotes.map((note, i) => (
-                <ListItem className="notes-list-item" key={i} disabled>
-                  <div className="single-note-container">
-                    <div className="note-header">
-                      <span className="timestamp">
-                        {' '}
-                        {this.handleDateString(note.createdAt)}
-                        {' '}
-                      </span>
-                    </div>
-                    <Divider className="note-divider" />
-                    <div className="note-container">
-                      <div className="note-content">
-                        <p>{note.note}</p>
+          <List>
+            {/* Iterate through the each day entry */}
+            {Object.entries(dayNotes).map(([, { date, notes }]) => (
+              <List className="notes-list">
+                {/* DATE */}
+                <div className="note-date">{this.handleDateString(date)}</div>
+                {notes.length > 0 ? (
+                  notes.map((note, i) => (
+                    <ListItem className="notes-list-item" key={i} disabled>
+                      <div className="single-note-container">
+                        <div className="note-header">
+                          <span className="timestamp">
+                            {' '}
+                            {this.handleTimeString(note.createdAt)}
+                            {' '}
+                          </span>
+                        </div>
+                        <Divider className="note-time-underline" />
+                        <div className="note-container">
+                          <div className="note-content">
+                            <p>{note.note}</p>
+                          </div>
+                        </div>
+                        <div className="note-actions">
+                          <ModeEdit className="note-action-edit" onClick={this.handleOpenEditDialog.bind(null, note, i)} />
+                          <Archive
+                            className="note-action-archive"
+                            onClick={this.handleOpenArchiveDialog.bind(null, note, i)}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="note-actions">
-                      <ModeEdit className="note-action-edit" onClick={this.handleOpenEditDialog.bind(null, note, i)} />
-                      <Archive
-                          className="note-action-archive"
-                          onClick={this.handleOpenArchiveDialog.bind(null, note, i)}
-                        />
-                    </div>
+                    </ListItem>
+                  ))
+                ) : (
+                  <div className="no-message">
+                    <p>No Notes Created</p>
                   </div>
-                </ListItem>
-              ))
-            ) : (
-              <div className="no-message">
-                <p>No Notes Created</p>
-              </div>
-            )}
+                )}
+                <div className="note-divider" />
+              </List>
+            ))
+            }
           </List>
+          <div className="message-border" />
 
           <div className="message-container">
-            <img src="/assets/images/clip.svg" color="red" className="notification-icon" />
+            <img src="/assets/images/clip.svg" color="red" className="attachment-icon" />
             <div className="message-input">
               <form onSubmit={this.handleAddNote}>
                 <TextField
@@ -183,6 +232,8 @@ export default class TimelineNotes extends Component {
             <div className="message-icon">
               <img src="/assets/images/smile.svg" className="message-icon" />
             </div>
+            <div className="at-icon">@</div>
+            <button className="add-button" onClick={this.handleAddNote}>ADD</button>
           </div>
 
           <Dialog
