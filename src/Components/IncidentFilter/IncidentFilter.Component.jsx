@@ -10,6 +10,7 @@ import './IncidentFilter.scss';
 
 // Components
 import CustomMenu from '../CustomMenu/CustomMenu.Component';
+import { currentUser } from '../../helpers/decodeToken';
 
 /**
  * @class IncidentFilter
@@ -55,6 +56,7 @@ class IncidentFilter extends Component {
   };
 
   render() {
+    const userInfo = currentUser();
     const styles = {
       thumbOff: {
         backgroundColor: '#616161',
@@ -80,13 +82,17 @@ class IncidentFilter extends Component {
     return (
       <div className="filters-container">
         <div className="toggle-section">
-          <span className={`${this.state.assignedToMe ? 'toggle-label toggle-label--active' : 'toggle-label'}`}>Mine</span>
-          <Switch
-            color="default"
-            onChange={() => this.handleMineAllChange()}
-            checked={!this.state.assignedToMe}
-          />
-          <span className={`${!this.state.assignedToMe ? 'toggle-label toggle-label--active' : 'toggle-label'}`}>All incidents</span>
+          {userInfo.roleId === 3 ? (
+            <div>
+              <span className={`${this.state.assignedToMe ? 'toggle-label toggle-label--active' : 'toggle-label'}`}>Mine</span>
+              <Switch
+                color="default"
+                onChange={() => this.handleMineAllChange()}
+                checked={!this.state.assignedToMe}
+              />
+              <span className={`${!this.state.assignedToMe ? 'toggle-label toggle-label--active' : 'toggle-label'}`}>All incidents</span>
+            </div>
+          ) : ''}
         </div>
         <div className="filters">
           <span className="incidents-label">Incidents</span>

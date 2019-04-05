@@ -60,7 +60,8 @@ describe('IncidentFilter component', () => {
     wrapper.instance().handleMineAllChange();
     expect(spied.calledOnce).toBeTruthy();
   });
-  it('should render Switch', () => {
+  it('should render Switch if user is admin', () => {
+    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjMsImlhdCI6MTU1NDM3ODg3NywiZXhwIjoxNTU0NDY1Mjc3fQ.ErTZRWJAKOuJDJe0nFpcmjiSR5o7J0WFuXVBo8rHt28');
     wrapper = shallow(<IncidentFilter />);
     expect(wrapper.find('WithStyles(Switch)').length).toEqual(1);
   });
@@ -70,6 +71,11 @@ describe('IncidentFilter component', () => {
     const event = { target: { name: 'position ', value: 'new position' } };
     wrapper.find('WithStyles(Switch)').simulate('change', event);
     expect(spied.called).toEqual(true);
+  });
+  it('should not render Switch for assignee', () => {
+    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlSWQiOjIsImlhdCI6MTU1NDM3OTIzNSwiZXhwIjoxNTU0NDY1NjM1fQ.m1ly9LnbX0Ccu6mE7-Fb8BWRkYDkm7_ZzjWR6MaQzvg');
+    wrapper = shallow(<IncidentFilter />);
+    expect(wrapper.find('WithStyles(Switch)').length).toEqual(0);
   });
   it('should render Button', () => {
     wrapper = shallow(<IncidentFilter />);
