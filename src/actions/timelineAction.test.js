@@ -145,6 +145,19 @@ describe('async actions', () => {
       [expectedActions[3]]);
   });
 
+  it('dispatches error with edit note payload', () => {
+    const noteText = 'A new note for a ghost note';
+    const noteId = 1000000;
+    const index = 1000;
+
+    const mockResponse = httpResponse(401, { message: 'You might not be logged in/authorized. Please try again.' });
+    const store = mockStore();
+    moxios.wait(() => mockAxios(mockResponse, moxios, false));
+
+    return mockDispatchAction(store, actions.editNote(noteText, noteId, index),
+      [expectedActions[8]]);
+  });
+
   it('creates all appropriate actions when archiving a note', () => {
     const noteId = notes[0].id;
     const index = 0;
