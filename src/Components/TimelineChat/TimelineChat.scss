@@ -6,40 +6,20 @@
   .chat-list {
     overflow: scroll;
     padding-top: 16px !important;
-    width: 50%;
-    float: left;
+    width: 90%;
     margin: 2rem 0 2rem 5rem;
-    .message-header {
-      span {
-        font-family: 'DIN Pro';
-        font-size: 11px;
-        line-height: 1.25;
-        color: #000000;
-      }
-      .chat-img {
-        img {
-          border-radius: 50%;
-          width: 40px;
-          height: 40px;
-        }
-      }
-      .message-body {
-        .message-bubble {
-          width: fit-content;
-          border-radius: 0px 24px 24px 24px;
-          background-color: #dff3fc;
-          p {
-            padding: 10px 12px;
-            font-family: 'DIN Pro';
-            font-size: 12px;
-            line-height: 1.28;
-            letter-spacing: 0.2px;
-            color: #000000;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-          }
-        }
-      }
+    .chat-date {
+      padding-left: 25px;
+      font-weight: 1000 !important;
+    }
+    .chat-divider {
+      margin-top: 45px;
+      padding: 0 26px 0 26px !important;
+      height: 1px;
+      margin-left: 26px;
+      margin-right: 20px;
+      background:
+        repeating-linear-gradient(to right, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.3) 5px, transparent 5px, transparent 12px)
     }
     .no-message {
       width: 244.2px;
@@ -56,47 +36,6 @@
         text-align: center;
         padding: 2.5rem;
       }
-    }
-  }
-  .message-container {
-    top: auto !important;
-    bottom: 0 !important;
-    position: absolute !important;
-    .notification-icon {
-      cursor: pointer;
-      margin-top: 1rem;
-      width: 30.4px;
-      height: 32.1px;
-      margin-left: 1rem;
-      position: absolute !important;
-    }
-    .message-input {
-      margin-left: 5rem;
-      width: 70vw;
-      height: 60px;
-      border-radius: 9px;
-      background-color: #F1F1F4;
-      .text-input {
-        border-top-color: map_get($grey, 700) !important;
-        width: 100% !important;
-        text-align: center;
-        padding: .3rem 0 0 1.5rem;
-        align-items: center;
-      }
-    }
-    .message-icon {
-      cursor: pointer; // padding-right: 1rem;
-      width: 25.3px;
-      height: 25.3px;
-      position: absolute;
-      top: 10px;
-      right: 13px;
-      font-size: 25px;
-      cursor: pointer;
-      opacity: 0.6;
-      -webkit-transition: all ease-out 0.3s 0s;
-      -o-transition: all ease-out 0.3s 0s;
-      transition: all ease-out 0.3s 0s;
     }
   }
 }

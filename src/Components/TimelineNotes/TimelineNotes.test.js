@@ -172,7 +172,7 @@ describe('Timeline Notes component', () => {
       },
     });
 
-    expect(wrapper.find('ListItem').length).toEqual(3);
+    expect(wrapper.find('List').length).toEqual(3);
   });
 
   it('should make modification to state when handleMineAllNotesChange is called', () => {

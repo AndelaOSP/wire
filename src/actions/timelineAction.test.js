@@ -1,7 +1,7 @@
 import moxios from 'moxios';
 import * as actions from './timelineAction';
 import * as types from './actionTypes';
-import { testIncidents, notes, chats } from '../../mock_endpoints/mockData';
+import { testIncidents, notes, allChats } from '../../mock_endpoints/mockData';
 import {
   httpResponse,
   mockStore,
@@ -62,7 +62,7 @@ describe('async actions', () => {
     },
     {
       type: types.ADD_CHAT,
-      chat: chats[2],
+      chat: allChats[2],
     },
     {
       type: types.ERROR_ACTION,
@@ -103,7 +103,7 @@ describe('async actions', () => {
           response: {
             status: 'success',
             data: {
-              chats,
+              allChats,
             },
           },
         })
@@ -200,9 +200,9 @@ describe('async actions', () => {
   it('creates all appropriate actions when sending messages', () => {
     const incidentId = testIncidents[0].id;
     const userId = 3;
-    const message = chats[2].chat;
+    const message = allChats[2].text;
 
-    const mockResponse = httpResponse(200, { data: chats[2] });
+    const mockResponse = httpResponse(200, { data: allChats[2] });
     const store = mockStore();
     moxios.wait(() => mockAxios(mockResponse, moxios));
 
@@ -213,7 +213,7 @@ describe('async actions', () => {
   it('dispatches error action when there is an error with a request', () => {
     const incidentId = testIncidents[0].id;
     const userId = 3;
-    const message = chats[2].chat;
+    const message = allChats[2].text;
 
     const mockResponse = httpResponse(401, { message: 'You might not be logged in/authorized. Please try again.' });
     const store = mockStore();

@@ -1,0 +1,56 @@
+@import "../../theme";
+
+.message-item {
+  display: flex;
+  margin-top: 20px;
+  .message-sender-image {
+    img {
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+    }
+  } 
+  .message-content {
+    display: block;
+    .message-header {
+      margin-left: 10px;
+      margin-right: 10px;
+      .username {
+        font-weight: 700;
+      }
+      .time {
+        font-weight: 100;
+      }
+    }
+    .message-body {
+      span {
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: small;
+      }
+    }
+  }
+}
+
+.message-item--incoming {
+  float: left;
+  clear: right;
+}
+
+.message-item--outgoing {
+  float: right !important;
+  clear: left;
+  margin-right: 0px !important;
+}
+
+.message-header--outgoing {
+  text-align: right;
+}
+
+.message-body--incoming {
+  margin-right: 150px;
+}
+
+.message-body--outgoing {
+  margin-left: 150px;
+}

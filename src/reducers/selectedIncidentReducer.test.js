@@ -1,13 +1,13 @@
 import * as ActionTypes from '../actions/actionTypes';
 import reducer from './selectedIncidentReducer';
 import initialState from './initialState';
-import { chats, notes, testIncidents } from '../../mock_endpoints/mockData';
+import { allChats, notes, testIncidents } from '../../mock_endpoints/mockData';
 
 
 describe('Reducers :: Selected Incident Reducer', () => {
   const getInitialState = initialState.selectedIncident;
   const newInitialState = {
-    chats,
+    chats: allChats,
     notes,
   };
   it('should get initial state by default', () => {
@@ -70,7 +70,7 @@ describe('Reducers :: Selected Incident Reducer', () => {
     const action = { type: ActionTypes.ADD_CHAT, chat: newChat };
     const expectedState = reducer(newInitialState, action);
     
-    expect(expectedState.chats.length).toBe(chats.length + 1);
+    expect(expectedState.chats.length).toBe(allChats.length + 1);
   });
 
   it('should handle EDIT_NOTE', () => {

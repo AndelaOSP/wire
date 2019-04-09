@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { List, ListItem } from 'material-ui/List';
+import List from 'material-ui/List';
+import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
@@ -12,8 +13,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import Toggle from 'material-ui/Toggle';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import InputBox from '../InputBox/InputBox.Component';
 import './TimelineNotes.scss';
-import CustomButton from '../Button/Button.Component';
 
 export default class TimelineNotes extends Component {
   constructor(props) {
@@ -171,7 +172,7 @@ export default class TimelineNotes extends Component {
           <List>
             {/* Iterate through the each day entry */}
             {Object.entries(dayNotes).map(([, { date, notes }]) => (
-              <List className="notes-list">
+              <List className="notes-list" key={date}>
                 {/* DATE */}
                 <div className="note-date">{this.handleDateString(date)}</div>
                 {notes.length > 0 ? (
@@ -212,27 +213,14 @@ export default class TimelineNotes extends Component {
             }
           </List>
           <div className="message-border" />
-
-          <div className="message-container">
-            <img src="/assets/images/clip.svg" color="red" className="attachment-icon" />
-            <div className="message-input">
-              <form onSubmit={this.handleAddNote}>
-                <TextField
-                  value={this.state.content}
-                  onChange={this.handleChange}
-                  hintText="Add a note"
-                  ref="noteInput"
-                  underlineShow={false}
-                  className="text-input"
-                />
-              </form>
-            </div>
-            <div className="message-icon">
-              <img src="/assets/images/smile.svg" className="message-icon" />
-            </div>
-            <div className="at-icon">@</div>
-            <button className="add-button" onClick={this.handleAddNote}>ADD</button>
-          </div>
+          
+          <InputBox 
+            onSubmit={this.handleAddNote}
+            value={this.state.content}
+            onChange={this.handleChange}
+            hintText="Add a note"
+            ref="noteInput"
+          />
 
           <Dialog
             modal={false}
