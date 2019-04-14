@@ -3,7 +3,6 @@ import List from 'material-ui/List';
 import ListItem from '@material-ui/core/ListItem';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import Divider from 'material-ui/Divider';
 import Chat from '../Chat/Chat.Component';
 import InputBox from '../InputBox/InputBox.Component';
 import './TimelineChat.scss';
