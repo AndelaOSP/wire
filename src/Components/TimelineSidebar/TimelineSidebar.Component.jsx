@@ -110,10 +110,14 @@ class TimelineSidebar extends Component {
     this.setState({ reportDialogOpen: !this.state.reportDialogOpen, resolveValue: 0 });
   };
 
-  handleChangeAssignee = (event, index, value) => {
+  handleChangeAssignee = (event) => {
+    const { value } = event.target;
     event.preventDefault();
-    this.setState({ assignee: this.props.staff.find(user => user.id === event.target.value) });
-    this.props.changeAssignee({ userId: value, incidentId: this.props.incident.id });
+    this.setState({ assignee: this.props.staff.find(user => user.id === value) });
+    this.props.changeAssignee({ 
+      userId: value,
+      incidentId: this.props.incident.id, 
+    });
   };
 
   handleSelectCCd = (event, index, values) => {
