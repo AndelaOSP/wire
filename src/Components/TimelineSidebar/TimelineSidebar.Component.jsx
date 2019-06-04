@@ -182,15 +182,6 @@ class TimelineSidebar extends Component {
     this.props.handleCC({ incidentId: this.props.incident.id, ccdUsers });
   };
 
-  renderFlag = (flagLevel) => {
-    if (flagLevel === 'Red') {
-      return <img className="flag-image" src="/assets/images/red_flag.svg" alt="red" />;
-    } if (flagLevel === 'Green') {
-      return <img className="flag-image" src="/assets/images/green_flag.svg" alt="green" />;
-    }
-    return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;
-  };
-
   render() {
     const { incident, staff } = this.props;
     const { assignee, selectedValues } = this.state;
@@ -201,35 +192,6 @@ class TimelineSidebar extends Component {
     ];
     return (
       <div className="sidebar-container">
-        <div className="incident-details">
-          <span className="incident-subject">
-            {' '}
-            {incident.subject || 'No subject provided.'}
-            {' '}
-          </span>
-          <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
-          <div className="underline" />
-          <div className="incident-description">
-            <div className="description-details">
-              <p>
-                {' '}
-                {incident.description || 'No description provided.'}
-                {' '}
-              </p>
-              <p className="incident-extra">
-                reported by
-                {' '}
-                <b>{incident.reporter.username}</b>
-                {' '}
-on
-                {' '}
-                <b>{this.handleDateString(incident.dateOccurred)}</b>
-                {' '}
-              </p>
-            </div>
-          </div>
-        </div>
-
         <div className="incident-status">
           <span> Witnesses: </span>
           <div className="list">

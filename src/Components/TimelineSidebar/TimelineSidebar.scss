@@ -10,59 +10,7 @@
     0 0.4rem 1rem 0 rgba(0, 0, 0, 0.19);
   overflow: scroll;
   
-  .incident-details {
-    padding-top: 0.5rem 0 0.5rem 0;
-    .incident-subject {
-      font-size: 20px;
-      font-weight: 300;
-      font-family: "DIN Pro Light";
-      text-transform: capitalize;
-    }
-    .incident-flag {
-      img {
-        width: 2rem;
-        height: 1.5rem;
-        margin-left: 1rem;
-      }
-      &:hover {
-        cursor: pointer;
-      }
-    }
-    .underline {
-      width: 150px;
-      height: 5px;
-      border-radius: 5px;
-      position: relative;
-      margin-bottom: 3rem;
-      top: 1.2rem;
-      background-color: #fdb237;
-    }
-    .incident-description {
-      margin-top: 2rem;
-      width: 100%;
-      border-radius: 5px;
-      background-color: #ffffff;
-      .description-details {
-        p {
-          padding: 1rem;
-          font-family: "DIN Pro Light";
-          font-size: 12px;
-          font-weight: 300;
-          line-height: 2.08;
-          letter-spacing: normal;
-          color: #000000;
-          b {
-            font-family: "DIN Pro";
-          }
-        }
-      }
-    }
-    .incident-extra {
-      font-weight: 100;
-      font-family: "DIN Pro Light";
-      font-size: 0.7rem;
-    }
-  }
+
   .incident-status {
     font-family: "DIN Pro Light";
     font-weight: 400;
