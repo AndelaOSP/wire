@@ -108,12 +108,19 @@ describe('Timeline Sidebar component', () => {
   });
 
   it('should set the selectedValues state when handleSelectCCd is called', () => {
-    wrapperInstance.handleSelectCCd({}, 1, '01');
-    expect(wrapperInstance.state.selectedValues).toEqual('01');
+    const event = {
+      target: {
+        value: ['1', '2', '3'],
+      },
+    };
+
+    wrapperInstance.handleSelectCCd(event, 1, '01');
+    expect(wrapperInstance.state.selectedValues).toEqual(['1', '2', '3']);
   });
 
   it('should initiate the handleCC action when onSelectClose method is called', () => {
-    wrapperInstance.onSelectClose();
+    const value = ['1', '2', '3'];
+    wrapperInstance.onSelectClose(value);
     expect(props.handleCC).toHaveBeenCalled();
   });
 
