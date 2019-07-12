@@ -6,7 +6,6 @@ import moment from 'moment';
 import Chat from '../Chat/Chat.Component';
 import InputBox from '../InputBox/InputBox.Component';
 import './TimelineChat.scss';
-import { allChats } from '../../../mock_endpoints/mockData';
 
 class TimelineChat extends Component {
   constructor(props) {
@@ -14,6 +13,10 @@ class TimelineChat extends Component {
     this.state = {
       message: '',
     };
+  }
+
+  componentDidMount() {
+    this.props.getSlackchat();
   }
 
   handleChange = (e) => {
@@ -70,7 +73,7 @@ class TimelineChat extends Component {
   }
 
   render() {
-    const dayChats = this.sortGroupedChats(this.groupChatByDate(allChats));
+    const dayChats = this.sortGroupedChats(this.groupChatByDate(this.props.incident.chats));
     return (
       <div className="chat-container">
         {Object.entries(dayChats).map(([, { date, chats }]) => (
@@ -106,6 +109,7 @@ class TimelineChat extends Component {
 TimelineChat.propTypes = {
   incident: PropTypes.object.isRequired,
   sendMessage: PropTypes.func.isRequired,
+  getSlackchat: PropTypes.func.isRequired,
 };
 
 export default TimelineChat;

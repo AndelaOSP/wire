@@ -13,6 +13,7 @@ import {
   handleCC,
   changeStatus,
   sendMessage,
+  getSlackchat,
 } from '../../actions/timelineAction';
 import { fetchStaff } from '../../actions/staffAction';
 import './IncidentTimeline.scss';
@@ -167,6 +168,7 @@ export const mapDispatchToProps = dispatch => bindActionCreators(
     changeStatus,
     sendMessage,
     fetchStaff,
+    getSlackchat,
   },
   dispatch,
 );

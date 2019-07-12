@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
 import TimelineSidebar from './TimelineSidebar.Component';
 import { incidents, testIncidents, users } from '../../../mock_endpoints/mockData';
 
@@ -61,9 +62,10 @@ describe('Timeline Sidebar component', () => {
   });
 
   it('should handle date string', () => {
-    // it might fail locally since it only works with GMT timezone
     const dateString = wrapperInstance.handleDateString(new Date('2019-06-06T13:00:38.335Z'));
-    expect(dateString).toEqual('Jun 6th 2019 at 1:00 pm');
+    const expectedTimeFormat = moment('2019-06-06T13:00:38.335Z').format('MMM Do YYYY [at] h:mm a');
+
+    expect(dateString).toEqual(expectedTimeFormat);
   });
 
   it('should initiate the changeStatus action when the value parameter passed to handleStatusChange is not 3', () => {

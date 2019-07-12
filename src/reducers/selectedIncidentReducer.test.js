@@ -94,4 +94,16 @@ describe('Reducers :: Selected Incident Reducer', () => {
     
     expect(expectedState.id).toEqual('cjezu2kr700010wx1yy6kxu5z');
   });
+
+  it('should handle GET_SLACKCHATS', () => {
+    const action = {
+      type: ActionTypes.GET_SLACKCHATS,
+      chats: allChats,
+      isLoading: false,
+      isError: false,
+    };
+    const expectedState = reducer(newInitialState, action);
+    
+    expect(expectedState.chats.length).toBe(allChats.length);
+  });
 });
