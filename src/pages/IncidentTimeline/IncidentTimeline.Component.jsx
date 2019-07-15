@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'material-ui/Tabs';
+import moment from 'moment';
 import {
   loadIncidentDetails,
   addNote,
@@ -22,6 +23,7 @@ import TimelineNotes from '../../Components/TimelineNotes/TimelineNotes.Componen
 import TimelineChat from '../../Components/TimelineChat/TimelineChat.Component';
 import CircularProgressIndicator from '../../Components/Progress/Progress.Component';
 
+
 /**
  * @class IncidentTimeline
  */
@@ -31,12 +33,40 @@ export class IncidentTimeline extends Component {
     this.props.loadIncidentDetails(this.props.match.params.incidentId);
   }
 
+  handleDateString = (date) => {
+    let dateString = moment(date).format('LL');
+
+    const today = moment();
+    const yesterday = moment().subtract(1, 'day');
+
+    if (moment(date).isSame(today, 'day')) {
+      dateString = 'Today';
+    } else if (moment(date).isSame(yesterday, 'day')) {
+      dateString = 'Yesterday';
+    }
+
+    return dateString;
+  };
+
   handleRedirect() {
     this.setState({ redirect: !this.state.redirect });
   }
 
+  renderFlag = (flagLevel) => {
+    if (flagLevel === 'Red') {
+      return <img className="flag-image" src="/assets/images/red_flag.svg" alt="red" />;
+    } if (flagLevel === 'Green') {
+      return <img className="flag-image" src="/assets/images/green_flag.svg" alt="green" />;
+    }
+    return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;
+  };
+
+
   render() {
-    const { isLoading, isError, errorMessage } = this.props;
+    const {
+      incident, isLoading, isError, errorMessage, 
+    } = this.props;
+
 
     return (
       <div>
@@ -51,7 +81,36 @@ export class IncidentTimeline extends Component {
           <div className="timeline-container">
             <TimelineSidebar className="timeline-sidebar" {...this.props} />
 
+
             <div className="timeline-main-content">
+              <div className="incident-details">
+                <span className="incident-subject">
+                  {' '}
+                  {incident.subject || 'No subject provided.'}
+                  {' '}
+                </span>
+                <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
+                <div className="underline" />
+                <div className="incident-description">
+                  <div className="description-details">
+                    <p>
+                      {' '}
+                      {incident.description || 'No description provided.'}
+                      {' '}
+                    </p>
+                    <p className="incident-extra">
+                reported by
+                      {' '}
+                      <b>{incident.reporter.username}</b>
+                      {' '}
+on
+                      {' '}
+                      <b>{this.handleDateString(incident.dateOccurred)}</b>
+                      {' '}
+                    </p>
+                  </div>
+                </div>
+              </div>
               <Tabs contentContainerClassName="timeline-tabs" inkBarStyle={{ backgroundColor: '#E2E2E2' }} className="">
                 <Tab label="Notes" className="notes-tab">
                   <TimelineNotes className="notes-content" {...this.props} />

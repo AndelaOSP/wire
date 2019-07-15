@@ -28,3 +28,68 @@
     }
   }
 }
+
+.incident-details {
+  padding-top: 2em;
+
+  .incident-subject {
+    font-size: 20px;
+    font-weight: 300;
+    font-family: "DIN Pro Light";
+    text-transform: capitalize;
+  }
+
+  .incident-flag {
+    img {
+      width: 2rem;
+      height: 1.5rem;
+      float: right;
+      margin-right: 2em;
+
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .underline {
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    position: relative;
+    margin-bottom: 3rem;
+    top: 1.2rem;
+    background-color: #fdb237;
+  }
+
+  .incident-description {
+    margin-top: 2rem;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #ffffff;
+
+    .description-details {
+      p {
+        padding: 1rem;
+        font-family: "DIN Pro Light";
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 2.08;
+        letter-spacing: normal;
+        color: #000000;
+
+        b {
+          font-family: "DIN Pro";
+        }
+      }
+    }
+  }
+
+  .incident-extra {
+    font-weight: 100;
+    font-family: "DIN Pro Light";
+    font-size: 0.7rem;
+    font-style: italic;
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
 import { testIncidents, users } from '../../../mock_endpoints/mockData';
 import { IncidentTimeline, mapStateToProps, mapDispatchToProps } from './IncidentTimeline.Component';
 
@@ -8,8 +9,8 @@ describe('IncidentTimeline component', () => {
     loadIncidentDetails: jest.fn(),
     match: {
       params: {
-        incidentId: '1'
-      }
+        incidentId: '1',
+      },
     },
     history: {},
     incident: testIncidents[1],
@@ -24,7 +25,7 @@ describe('IncidentTimeline component', () => {
     staff: users,
     isLoading: false,
     isError: false,
-    errorMessage: 'Oops! Something went wrong. Please try again.'
+    errorMessage: 'Oops! Something went wrong. Please try again.',
   };
 
   describe('Component rendering and methods', () => {
@@ -40,16 +41,41 @@ describe('IncidentTimeline component', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
+    it('should handle todays date', () => {
+      const today = new Date();
+      const dateString = wrapperInstance.handleDateString(today);
+      expect(dateString).toEqual('Today');
+    });
+
+    it('should handle yestadays date', () => {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1)
+      const dateString = wrapperInstance.handleDateString(yesterday);
+      expect(dateString).toEqual('Yesterday');
+    });
+
     it('should display circular progress indicator when isLoading is true', () => {
       wrapper.setProps({
-        isLoading: true
+        isLoading: true,
       });
       expect(wrapper.find('CircularProgressIndicator').length).toBe(1);
     });
 
+    it('should return Green flag image when renderFlag method is called with Green parameter', () => {
+      expect(wrapperInstance.renderFlag('Green').props.alt).toEqual('green');
+    });
+  
+    it('should return yellow flag image when renderFlag method is called with yellow keyword parameter', () => {
+      expect(wrapperInstance.renderFlag('yellow').props.alt).toEqual('yellow');
+    });
+
+    it('should return red flag image when renderFlag method is called with red keyword parameter', () => {
+      expect(wrapperInstance.renderFlag('Red').props.alt).toEqual('red');
+    });
+
     it('should change the redirect state when handleRedirect method is called', () => {
       wrapper.setState({
-        redirect: false
+        redirect: false,
       });
       wrapperInstance.handleRedirect();
 
@@ -63,7 +89,7 @@ describe('IncidentTimeline component', () => {
         isLoading: false,
         error: {
           status: false,
-          message: 'Oops! Something went wrong. Please try again.'
+          message: 'Oops! Something went wrong. Please try again.',
         },
         staff: users,
         selectedIncident: testIncidents[1],
