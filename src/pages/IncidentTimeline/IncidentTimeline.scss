@@ -15,6 +15,8 @@
     padding: 0 1rem;
     z-index: 0;
     position: relative;
+    height: auto;
+    overflow: auto;
     .chat-tab,
     .notes-tab {
       &>div {
