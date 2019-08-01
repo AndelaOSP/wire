@@ -25,11 +25,10 @@ describe('Reducers :: Staff Reducer', () => {
     expect(reducer(getInitialState, action)).toEqual(expected);
   });
 
-  it('should handle DD_USER', () => {
-    const inviteUserSuccessAction = inviteUserSuccess({ staff: {} });
-    const expectedState = reducer(initialState, inviteUserSuccessAction);
-    
-    expect(expectedState).toEqual([{ staff: {} }]);
+  it('should handle ADD_USER', () => {
+    const inviteUserSuccessAction = inviteUserSuccess({type: ActionTypes.ADD_USER, staff: {} });
+    const expectedResult = Object.assign({}, getInitialState, inviteUserSuccessAction.staff);
+    expect(reducer(getInitialState, inviteUserSuccessAction)).toEqual([expectedResult]);
   });
 
   it('should handle EDIT_USER', () => {
@@ -50,21 +49,21 @@ describe('Reducers :: Staff Reducer', () => {
     };
     const updateUserSuccessAction = updateUserSuccess(editedStaff, 1);
     const expectedState = reducer(users, updateUserSuccessAction);
-    
+
     expect(expectedState[1]).toEqual(editedStaff);
   });
 
   it('should handle DELETE_USER', () => {
     const removeUserSuccessAction = removeUserSuccess(users[0], 0);
     const expectedState = reducer(users, removeUserSuccessAction);
-    
+
     expect(expectedState.length).toEqual(users.length - 1);
   });
 
   it('should handle SEARCH_USER', () => {
     const searchUserSuccessAction = searchUserSuccess([users[0]]);
     const expectedState = reducer(initialState, searchUserSuccessAction);
-    
+
     expect(expectedState).toEqual(searchUserSuccessAction.staff);
   });
 });
