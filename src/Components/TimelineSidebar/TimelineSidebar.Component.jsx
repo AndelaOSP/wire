@@ -22,6 +22,7 @@ class TimelineSidebar extends Component {
       reportDialogOpen: false,
       resolveValue: 0,
       reportText: '',
+      editStatus: false,
     };
   }
 
@@ -74,8 +75,9 @@ class TimelineSidebar extends Component {
   /**
    * Method to handle status change for an incident
    */
-  handleStatusChange = (e, index, value) => {
-    e.preventDefault();
+  handleStatusChange = (event) => {
+    event.preventDefault();
+    const { target: { value } } = event;
     if (value === 3) {
       this.setState({ reportDialogOpen: !this.state.reportDialogOpen, resolveValue: value });
     } else {
@@ -134,6 +136,7 @@ class TimelineSidebar extends Component {
       selectedValues: value,
     });
     this.onSelectClose(value);
+    this.toggleEditStatus();
   };
 
   generateInitials = (witness) => {
@@ -165,7 +168,7 @@ class TimelineSidebar extends Component {
    */
   renderCCdImage =() => {
     const { incident } = this.props;
-    const ccdAssociates = incident.assignees.filter(user => user.assignedRole || user.assigneeIncidents.assignedRole === 'ccd');
+    const ccdAssociates = incident.assignees.filter(user => (user.assignedRole || user.assigneeIncidents.assignedRole) === 'ccd');
     return ccdAssociates.map(imageUrl => (
       <img
        className="ccd-avatar" 
@@ -182,9 +185,16 @@ class TimelineSidebar extends Component {
     this.props.handleCC({ incidentId: this.props.incident.id, ccdUsers });
   };
 
+  toggleEditStatus = () => {
+    const { editStatus } = this.state;
+    this.setState({
+      editStatus: !editStatus,
+    });
+  }
+
   render() {
     const { incident, staff } = this.props;
-    const { assignee, selectedValues } = this.state;
+    const { assignee, selectedValues, editStatus } = this.state;
     const ccdAssociates = incident.assignees.filter(user => user.assignedRole === 'ccd');
     const resolveActions = [
       <CustomButton key={1} label="Cancel" onClick={this.handleCloseReportDialog} />,
@@ -211,15 +221,17 @@ class TimelineSidebar extends Component {
           </div>
           <span className="incident-status-title"> Incident status: </span>
           <div>
-            <Select
-              value={incident.statusId || 1}
-              onChange={this.handleStatusChange}
-              className="dropdown dropdown-status"
-            >
-              <MenuItem value={1}>Pending</MenuItem>
-              <MenuItem value={2}>In Progress</MenuItem>
-              <MenuItem value={3}>Resolved</MenuItem>
-            </Select>
+            <FormControl>
+              <Select
+                value={incident.statusId || 1}
+                onChange={this.handleStatusChange}
+                className="dropdown dropdown-status"
+              >
+                <MenuItem value={1}>Pending</MenuItem>
+                <MenuItem value={2}>In Progress</MenuItem>
+                <MenuItem value={3}>Resolved</MenuItem>
+              </Select>
+            </FormControl>
           </div>
 
           <span> Assigned to: </span>
@@ -256,20 +268,27 @@ class TimelineSidebar extends Component {
               </Select>
             )}
           </div>
-
-          <span> CC: </span>
-          <div>
-            <FormControl className="ccd-dropdown">
-              <Select
+          
+          <div className="ccd__header">
+            <span> CC: </span>
+            <span onClick={this.toggleEditStatus} className="ccd__header__image"><img src="/assets/images/baseline-edit-24px.svg" alt="edit" /></span>
+          </div>
+          {
+            editStatus && (
+            <div>
+              <FormControl className="ccd-dropdown">
+                <Select
                 multiple
                 value={selectedValues}
                 onChange={this.handleSelectCCd}
                 input={<Input id="select-multiple" />}
               >
-                {this.renderCC(staff, ccdAssociates)}
-              </Select>
-            </FormControl>
-          </div>
+                  {this.renderCC(staff, ccdAssociates)}
+                </Select>
+              </FormControl>
+            </div>
+            )
+          }
           <div>
             {this.renderCCdImage()}
           </div>
