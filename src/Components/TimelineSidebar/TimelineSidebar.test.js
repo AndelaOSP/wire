@@ -50,7 +50,12 @@ describe('Timeline Sidebar component', () => {
   });
 
   it('should change the reportDialogOpen and resolveValue states when handleStatusChange is called 3 as the value parameter', () => {
-    wrapperInstance.handleStatusChange({ preventDefault: jest.fn() }, 1, 3);
+    wrapperInstance.handleStatusChange({
+      preventDefault: jest.fn(),
+      target: {
+        value: 3,
+      },
+    });
     expect(wrapperInstance.state.reportDialogOpen).toBeTruthy();
     expect(wrapperInstance.state.resolveValue).toEqual(3);
   });
@@ -62,7 +67,12 @@ describe('Timeline Sidebar component', () => {
   });
 
   it('should initiate the changeStatus action when the value parameter passed to handleStatusChange is not 3', () => {
-    wrapperInstance.handleStatusChange({ preventDefault: jest.fn() }, 1, 4);
+    wrapperInstance.handleStatusChange({
+      preventDefault: jest.fn(),
+      target: {
+        value: 2,
+      },
+    });
     expect(props.changeStatus).toHaveBeenCalled();
   });
 
