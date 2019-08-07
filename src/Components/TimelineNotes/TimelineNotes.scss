@@ -38,7 +38,7 @@
 }
 
 .notes-container {
-  height: 65vh !important;
+  height: 75vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -48,6 +48,7 @@
     width: 70vw;
     margin: 8rem auto;
     max-width: 980px;
+    margin-bottom: 7rem;
     .subheader {
       padding-left: 0 !important;
       font-weight: 900 !important;
