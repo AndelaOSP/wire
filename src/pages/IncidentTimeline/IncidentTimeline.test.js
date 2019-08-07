@@ -1,7 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
+<<<<<<< HEAD
 import { testIncidents,testArrayIncidents, users } from '../../../mock_endpoints/mockData';
+=======
+import { testIncidents, users } from '../../../mock_endpoints/mockData';
+>>>>>>> develop
 import { IncidentTimeline, mapStateToProps, mapDispatchToProps } from './IncidentTimeline.Component';
 
 describe('IncidentTimeline component', () => {
@@ -54,6 +58,7 @@ describe('IncidentTimeline component', () => {
       expect(dateString).toEqual('Yesterday');
     });
 
+<<<<<<< HEAD
 
     it('should handle array reporter details',()=>{
       const incident=testArrayIncidents[0];
@@ -69,6 +74,8 @@ describe('IncidentTimeline component', () => {
       expect(response).toEqual('Caroline Nkirote');
     });
 
+=======
+>>>>>>> develop
     it('should display circular progress indicator when isLoading is true', () => {
       wrapper.setProps({
         isLoading: true,

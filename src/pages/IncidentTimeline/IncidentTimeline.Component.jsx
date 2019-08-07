@@ -109,6 +109,7 @@ export class IncidentTimeline extends Component {
                       <b>
                         { this.renderUsername(incident.reporter) }
                       </b>
+
                       {' '}
 on
                       {' '}
