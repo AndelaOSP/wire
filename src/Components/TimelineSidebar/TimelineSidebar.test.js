@@ -55,6 +55,12 @@ describe('Timeline Sidebar component', () => {
     expect(wrapperInstance.state.resolveValue).toEqual(3);
   });
 
+  it('should handle date string', () => {
+    // it might fail locally since it only works with GMT timezone
+    const dateString = wrapperInstance.handleDateString(new Date('2019-06-06T13:00:38.335Z'));
+    expect(dateString).toEqual('Jun 6th 2019 at 1:00 pm');
+  });
+
   it('should initiate the changeStatus action when the value parameter passed to handleStatusChange is not 3', () => {
     wrapperInstance.handleStatusChange({ preventDefault: jest.fn() }, 1, 4);
     expect(props.changeStatus).toHaveBeenCalled();
@@ -108,21 +114,20 @@ describe('Timeline Sidebar component', () => {
   });
 
   it('should set the selectedValues state when handleSelectCCd is called', () => {
-    wrapperInstance.handleSelectCCd({}, 1, '01');
-    expect(wrapperInstance.state.selectedValues).toEqual('01');
+    const event = {
+      target: {
+        value: ['1', '2', '3'],
+      },
+    };
+
+    wrapperInstance.handleSelectCCd(event, 1, '01');
+    expect(wrapperInstance.state.selectedValues).toEqual(['1', '2', '3']);
   });
 
   it('should initiate the handleCC action when onSelectClose method is called', () => {
-    wrapperInstance.onSelectClose();
+    const value = ['1', '2', '3'];
+    wrapperInstance.onSelectClose(value);
     expect(props.handleCC).toHaveBeenCalled();
-  });
-
-  it('should return Green flag image when renderFlag method is called with Green parameter', () => {
-    expect(wrapperInstance.renderFlag('Green').props.alt).toEqual('green');
-  });
-
-  it('should return yellow flag image when renderFlag method is called with yellow keyword parameter', () => {
-    expect(wrapperInstance.renderFlag('yellow').props.alt).toEqual('yellow');
   });
 
   it('should display witnesses', () => {

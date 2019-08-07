@@ -8,7 +8,7 @@ export default class Socket {
     // Connects to the server at teh url.
     this.socket = io(url);
 
-    // Display a message when server is connected to
+    // Display a message when server is connected to  
     this.socket.on('connect', () => {
       this.emitNewConnection();
     });

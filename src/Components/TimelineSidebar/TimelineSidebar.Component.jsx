@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,6 +10,7 @@ import moment from 'moment';
 import './TimelineSidebar.scss';
 
 // components
+import { FormControl, Input } from '@material-ui/core';
 import CustomButton from '../Button/Button.Component';
 
 class TimelineSidebar extends Component {
@@ -120,53 +120,74 @@ class TimelineSidebar extends Component {
     });
   };
 
-  handleSelectCCd = (event, index, values) => {
-    this.setState({ selectedValues: values });
+  /**
+   * method handles selected user to cc
+   * updates the selectedValues in the state
+   * makes a call to update the backend
+   * @param event
+   * 
+   * @return {void}
+   */
+  handleSelectCCd = (event) => {
+    const { value } = event.target;
+    this.setState({
+      selectedValues: value,
+    });
+    this.onSelectClose(value);
   };
 
   generateInitials = (witness) => {
     const names = witness.split(' ');
+    // const initials = names.map(e => e[0].toUpperCase()).join('');
+    // console.log(initials);
+    // return initials;
     const firstInitial = names[0][0].toUpperCase();
     const secondInitial = names[1][0].toUpperCase();
     return firstInitial + secondInitial;
   };
 
+  /**
+   * method renders users in the dropdown menu of the select component
+   * @param staff
+   * 
+   * @return {MenuItem}
+   */
   renderCC = staff => staff.map(staffMember => (
     <MenuItem
         key={staffMember.id}
-        insetChildren
         value={staffMember.id}
-        checked={
-          this.state.selectedValues && this.state.selectedValues
-            .indexOf(staffMember.id) > -1}
-        primaryText={staffMember.username}
-      />
+    >
+      {staffMember.username}
+    </MenuItem>
   ));
 
-  onSelectClose = () => {
-    const ccdUsers = this.state.selectedValues.map(
+  /**
+   * method renders avatar of cc'd user
+   * 
+   * @return {<img/>}
+   */
+  renderCCdImage =() => {
+    const { incident } = this.props;
+    const ccdAssociates = incident.assignees.filter(user => user.assignedRole || user.assigneeIncidents.assignedRole === 'ccd');
+    return ccdAssociates.map(imageUrl => (
+      <img
+       className="ccd-avatar" 
+       src={imageUrl.imageUrl}
+       alt="Avatar"
+      />
+    ));
+  }
+
+  onSelectClose = (values) => {
+    const ccdUsers = values.map(
       selected => ({ incidentId: this.props.incident.id, userId: selected }),
     );
     this.props.handleCC({ incidentId: this.props.incident.id, ccdUsers });
   };
 
-  renderFlag = (flagLevel) => {
-    if (flagLevel === 'Red') {
-      return <img className="flag-image" src="/assets/images/red_flag.svg" alt="red" />;
-    } if (flagLevel === 'Green') {
-      return <img className="flag-image" src="/assets/images/green_flag.svg" alt="green" />;
-    }
-    return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;
-  };
-
   render() {
-    const { styles } = {
-      width: '',
-      marginLeft: '0',
-      fontSize: '30px',
-    };
     const { incident, staff } = this.props;
-    const { assignee } = this.state;
+    const { assignee, selectedValues } = this.state;
     const ccdAssociates = incident.assignees.filter(user => user.assignedRole === 'ccd');
     const resolveActions = [
       <CustomButton key={1} label="Cancel" onClick={this.handleCloseReportDialog} />,
@@ -174,35 +195,6 @@ class TimelineSidebar extends Component {
     ];
     return (
       <div className="sidebar-container">
-        <div className="incident-details">
-          <span className="incident-subject">
-            {' '}
-            {incident.subject || 'No subject provided.'}
-            {' '}
-          </span>
-          <span className="incident-flag">{this.renderFlag(incident.Level.name)}</span>
-          <div className="underline" />
-          <div className="incident-description">
-            <div className="description-details">
-              <p>
-                {' '}
-                {incident.description || 'No description provided.'}
-                {' '}
-              </p>
-              <p className="incident-extra">
-                reported by
-                {' '}
-                <b>{incident.reporter.username}</b>
-                {' '}
-on
-                {' '}
-                <b>{this.handleDateString(incident.dateOccurred)}</b>
-                {' '}
-              </p>
-            </div>
-          </div>
-        </div>
-
         <div className="incident-status">
           <span> Witnesses: </span>
           <div className="list">
@@ -270,20 +262,20 @@ on
 
           <span> CC: </span>
           <div>
-            <SelectField
-              multiple
-              hintText="Select a name"
-              value={this.state.selectedValues}
-              onChange={this.handleSelectCCd}
-              styles={styles}
-              dropDownMenuProps={{
-                onClose: this.onSelectClose,
-              }}
-            >
-              {this.renderCC(staff, ccdAssociates)}
-            </SelectField>
+            <FormControl className="ccd-dropdown">
+              <Select
+                multiple
+                value={selectedValues}
+                onChange={this.handleSelectCCd}
+                input={<Input id="select-multiple" />}
+              >
+                {this.renderCC(staff, ccdAssociates)}
+              </Select>
+            </FormControl>
           </div>
-
+          <div>
+            {this.renderCCdImage()}
+          </div>
           <span> Location: </span>
           <div className="location-list">
             {incident.Location ? (
@@ -310,7 +302,6 @@ on
             fullWidth
             multiLine
             rows={3}
-            // ref="reportTextField"
             value={this.state.reportText}
             onChange={this.handleReportTextChange}
           />
