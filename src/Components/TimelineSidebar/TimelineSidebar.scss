@@ -81,6 +81,16 @@
       box-shadow: 0.1rem 0.1rem 0.5rem map_get($grey, 500);
     }
   }
+
+  .ccd__header {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 25% auto;
+    align-items: center;
+    .ccd__header__image {
+      width: 25%;
+    }
+  }
   .ccd-dropdown {
     width: 80%;
     margin-bottom: 10px;
