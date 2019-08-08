@@ -1,11 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
-<<<<<<< HEAD
-import { testIncidents,testArrayIncidents, users } from '../../../mock_endpoints/mockData';
-=======
-import { testIncidents, users } from '../../../mock_endpoints/mockData';
->>>>>>> develop
+import { testIncidents, testArrayIncidents, users } from '../../../mock_endpoints/mockData';
 import { IncidentTimeline, mapStateToProps, mapDispatchToProps } from './IncidentTimeline.Component';
 
 describe('IncidentTimeline component', () => {
@@ -58,24 +54,20 @@ describe('IncidentTimeline component', () => {
       expect(dateString).toEqual('Yesterday');
     });
 
-<<<<<<< HEAD
-
-    it('should handle array reporter details',()=>{
-      const incident=testArrayIncidents[0];
-      wrapper.setProps({incident});
-      const response=wrapperInstance.renderUsername(incident.reporter);
+    it('should handle array reporter details', ()=>{
+      const incident = testArrayIncidents[0];
+      wrapper.setProps({ incident });
+      const response = wrapperInstance.renderUsername(incident.reporter);
       expect(response).toEqual('Caroline Nkirote');
     });
 
-    it('should handle non-array reporter as well',()=>{
-      const incident=testIncidents[0];
-      wrapper.setProps({incident});
-      const response=wrapperInstance.renderUsername(incident.reporter);
+    it('should handle non-array reporter as well', ()=>{
+      const incident = testIncidents[0];
+      wrapper.setProps({ incident });
+      const response = wrapperInstance.renderUsername(incident.reporter);
       expect(response).toEqual('Caroline Nkirote');
     });
 
-=======
->>>>>>> develop
     it('should display circular progress indicator when isLoading is true', () => {
       wrapper.setProps({
         isLoading: true,
