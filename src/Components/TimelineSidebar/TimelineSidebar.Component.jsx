@@ -73,9 +73,13 @@ class TimelineSidebar extends Component {
 
   /**
    * Method to handle status change for an incident
+   * @param {event}
+   * 
+   * @returns {void}
    */
-  handleStatusChange = (e, index, value) => {
-    e.preventDefault();
+  handleStatusChange = (event) => {
+    event.preventDefault();
+    const { target: { value } } = event;
     if (value === 3) {
       this.setState({ reportDialogOpen: !this.state.reportDialogOpen, resolveValue: value });
     } else {
