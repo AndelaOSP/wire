@@ -11,6 +11,7 @@ import {
   ADD_CHAT,
   CHANGE_ASSIGNEE,
   ARCHIVE_NOTE,
+  GET_SLACKCHATS,
 } from './actionTypes';
 
 const loadIncident = incidentId => http().get(`/incidents/${incidentId}`);
@@ -135,4 +136,16 @@ export const sendMessage = (incidentId, message) => dispatch => http()
   .then((res) => {
     dispatch(sendMessageSuccess(res.data.data));
   })
+  .catch(error => dispatch(errorAction(error)));
+
+export const getSlackchatSuccess = chats => ({
+  type: GET_SLACKCHATS,
+  chats,
+  isLoading: false,
+  isError: false,
+});
+
+export const getSlackchat = () => dispatch => http()
+  .get('/slack/chats')
+  .then(res => dispatch(getSlackchatSuccess(res.data.data.chats)))
   .catch(error => dispatch(errorAction(error)));

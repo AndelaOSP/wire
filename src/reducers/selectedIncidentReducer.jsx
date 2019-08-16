@@ -7,6 +7,7 @@ import {
   ARCHIVE_NOTE,
   CHANGE_STATUS,
   CHANGE_ASSIGNEE,
+  GET_SLACKCHATS,
 } from '../actions/actionTypes';
 
 const selectedIncidentReducer = (state = initialState.selectedIncident, action) => {
@@ -32,6 +33,8 @@ const selectedIncidentReducer = (state = initialState.selectedIncident, action) 
       };
     case ADD_CHAT:
       return { ...state, chats: [...state.chats, action.chat] };
+    case GET_SLACKCHATS:
+      return { ...state, chats: [...action.chats] };
 
     default:
       return state;

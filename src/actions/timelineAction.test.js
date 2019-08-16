@@ -72,6 +72,12 @@ describe('async actions', () => {
         statusCode: 401,
       },
     },
+    {
+      type: types.GET_SLACKCHATS,
+      chats: allChats,
+      isLoading: false,
+      isError: false,
+    },
   ];
 
   it('creates all appropriate actions when loading incident details', (done) => {
@@ -221,5 +227,14 @@ describe('async actions', () => {
 
     return mockDispatchAction(store, actions.sendMessage(incidentId, userId, message),
       [expectedActions[8]]);
+  });
+
+  it('dispatches action to fetch all chats', () => {
+    const mockResponse = httpResponse(200, { data: { chats: allChats } });
+    const store = mockStore();
+    moxios.wait(() => mockAxios(mockResponse, moxios, true));
+
+    return mockDispatchAction(store, actions.getSlackchat(),
+      [expectedActions[9]]);
   });
 });
