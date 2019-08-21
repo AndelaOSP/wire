@@ -62,11 +62,20 @@ export class IncidentTimeline extends Component {
     return <img className="flag-image" src="/assets/images/yellow_flag.svg" alt="yellow" />;
   };
 
+  renderSingleReporter=(reporter) => {
+    if (Array.isArray(reporter)) {
+      return reporter[0];
+    }
+    return reporter;
+  }
+
 
   render() {
     const {
       incident, isLoading, isError, errorMessage, 
     } = this.props;
+
+    const reporter = this.renderSingleReporter(incident.reporter);
 
 
     return (
@@ -102,7 +111,7 @@ export class IncidentTimeline extends Component {
                     <p className="incident-extra">
                 reported by
                       {' '}
-                      <b>{incident.reporter.username}</b>
+                      <b>{ reporter.username }</b>
                       {' '}
 on
                       {' '}

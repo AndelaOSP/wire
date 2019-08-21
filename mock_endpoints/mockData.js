@@ -808,15 +808,17 @@ module.exports = {
       assignedRole: 'assignee',
     },
     ],
-    reporter: {
-      id: '-KhLsLqucbC1WAMylcFt',
-      email: 'caroline.nkirote@andela.com',
-      username: 'Caroline Nkirote',
-      imageUrl: 'https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg',
-      createdAt: '2018-03-20T15:45:48.778Z',
-      updatedAt: '2018-03-20T15:45:48.778Z',
-      roleId: 2,
-    },
+    reporter: [
+      {
+        id: '-KhLsLqucbC1WAMylcFt',
+        email: 'caroline.nkirote@andela.com',
+        username: 'Caroline Nkirote',
+        imageUrl: 'https://lh4.googleusercontent.com/-rVipu2W1sBk/AAAAAAAAAAI/AAAAAAAAACQ/rOgW25IUgb8/photo.jpg',
+        createdAt: '2018-03-20T15:45:48.778Z',
+        updatedAt: '2018-03-20T15:45:48.778Z',
+        roleId: 2,
+      },
+    ],
   },
   ],
   allChats: [
