@@ -173,8 +173,11 @@ class TimelineSidebar extends Component {
     const ccdAssociates = incident.assignees.filter(
       user => user.assignedRole || user.assigneeIncidents.assignedRole,
     );
-    return ccdAssociates.map(imageUrl => (
-      <img className="ccd-avatar" src={imageUrl.imageUrl} alt="Avatar" />
+    return ccdAssociates.map(user => (
+      <React.Fragment>
+        <img className="ccd-avatar" src={user.imageUrl} alt="Avatar" />
+        <span className="ccd-username">{user.username}</span>
+      </React.Fragment>
     ));
   };
 
