@@ -13,7 +13,7 @@ describe('IncidentTimeline component', () => {
       },
     },
     history: {},
-    incident: testIncidents[1],
+    incident: testIncidents[0],
     fetchStaff: jest.fn(),
     addNote: jest.fn(),
     editNote: jest.fn(),
@@ -49,9 +49,20 @@ describe('IncidentTimeline component', () => {
 
     it('should handle yestadays date', () => {
       const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1)
+      yesterday.setDate(yesterday.getDate() - 1);
       const dateString = wrapperInstance.handleDateString(yesterday);
       expect(dateString).toEqual('Yesterday');
+    });
+
+    it('should display the reporter details if reporter is a single object', () => {
+      const reporter = wrapperInstance.renderSingleReporter(props.incident.reporter);
+      expect(reporter.username).toEqual('Caroline Nkirote');
+    });
+
+    it('should display the reporter details if reporter is an array', () => {
+      const arrIncident = testIncidents[1];
+      const reporter = wrapperInstance.renderSingleReporter(arrIncident.reporter);
+      expect(reporter.username).toEqual('Caroline Nkirote');
     });
 
     it('should display circular progress indicator when isLoading is true', () => {
