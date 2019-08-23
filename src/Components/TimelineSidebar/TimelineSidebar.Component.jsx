@@ -167,17 +167,16 @@ class TimelineSidebar extends Component {
    * 
    * @return {<img/>}
    */
-  renderCCdImage =() => {
+  renderCCdImage = () => {
     const { incident } = this.props;
-    const ccdAssociates = incident.assignees.filter(user => user.assignedRole || user.assigneeIncidents.assignedRole === 'ccd');
+
+    const ccdAssociates = incident.assignees.filter(
+      user => user.assignedRole || user.assigneeIncidents.assignedRole,
+    );
     return ccdAssociates.map(imageUrl => (
-      <img
-       className="ccd-avatar" 
-       src={imageUrl.imageUrl}
-       alt="Avatar"
-      />
+      <img className="ccd-avatar" src={imageUrl.imageUrl} alt="Avatar" />
     ));
-  }
+  };
 
   onSelectClose = (values) => {
     const ccdUsers = values.map(

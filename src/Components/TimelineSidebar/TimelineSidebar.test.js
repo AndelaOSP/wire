@@ -164,4 +164,18 @@ describe('Timeline Sidebar component', () => {
 
     expect(wrapper.find('WithStyles(MenuItem)').at(3).length).toEqual(1);
   });
+
+  it('should display associated users avatars', () => {
+    expect(wrapper.find('.ccd-avatar').length).toEqual(2);
+  });
+
+  it('should not display any avatar if assignee list is empty', () => {
+    wrapper.setProps({
+      incident: {
+        ...props.incident,
+        assignees: [],
+      },
+    });
+    expect(wrapper.find('.ccd-avatar').length).toEqual(0);
+  });
 });
