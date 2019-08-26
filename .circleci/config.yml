@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: circleci/node:9.10.0
+    - image: circleci/node
 
 version: 2
 jobs:
@@ -49,7 +49,7 @@ jobs:
             bash ./.circleci/deploy.sh
     build:
       docker:
-        - image: circleci/node:9.10.0
+        - image: circleci/node
 
       steps:
         - checkout
@@ -73,7 +73,7 @@ jobs:
             command: yarn coveralls
     deploy:
         docker:
-            - image: circleci/node:9.10.0
+            - image: circleci/node
         environment:
             CC_TEST_REPORTER_ID: 9576c3ea871b02d0acec567f2cdad644ecae01c81c723da4c986ae2dcc81a04c
             GOOGLE_PROJECT_ID: bench-projects
