@@ -8,8 +8,12 @@ const decodeToken = () => {
   const rawToken = document.cookie.split('jwt-token=');
 
   if (rawToken.length === 2) {
-    const userInfo = jwtDecode(rawToken[1]).UserInfo;
-    return userInfo;
+    try {
+      const userInfo = jwtDecode(rawToken[1]).UserInfo;
+      return userInfo;
+    } catch (InvalidTokenError) {
+      return { error: 'Unknown user' };
+    }
   }
   return { error: 'Unknown user' };
 };
