@@ -132,6 +132,7 @@ export const sendMessage = (incidentId, message) => dispatch => http()
   .post(`/incidents/${incidentId}/chats`, {
     chat: message,
     userEmail: localStorage.getItem('email'),
+    incidentId,
   })
   .then((res) => {
     dispatch(sendMessageSuccess(res.data.data));
