@@ -46,7 +46,7 @@ class TimelineChat extends Component {
 
     return dateString;
   }
-  
+
   // moment(date).format('MMMM Do YYYY');
 
   groupChatByDate = (chats) => {
@@ -76,25 +76,27 @@ class TimelineChat extends Component {
     const dayChats = this.sortGroupedChats(this.groupChatByDate(this.props.incident.chats));
     return (
       <div className="chat-container">
-        {Object.entries(dayChats).map(([, { date, chats }]) => (
-          <List className="chat-list" key={date}>
-            <div className="chat-date">{this.groupedChatsDate(date)}</div>
-            {chats.length > 0 ? (
-              chats.map((chat, i) => (
-                <ListItem key={i}>
-                  <Chat chat={chat} handleDateString={this.handleDateString} />
-                </ListItem>
-                
-              ))
-            ) : (
-              <div className="no-message">
-                <p>No Messages</p>
-              </div>
-            )}
-            <div className="chat-divider" />
-          </List>
-        ))}
-        <InputBox 
+        <div className="chat-messages">
+          {Object.entries(dayChats).map(([, { date, chats }]) => (
+            <List className="chat-list" key={date}>
+              <div className="chat-date">{this.groupedChatsDate(date)}</div>
+              {chats.length > 0 ? (
+                chats.map((chat, i) => (
+                  <ListItem key={i}>
+                    <Chat chat={chat} handleDateString={this.handleDateString} />
+                  </ListItem>
+
+                ))
+              ) : (
+                <div className="no-message">
+                  <p>No Messages</p>
+                </div>
+              )}
+              <div className="chat-divider" />
+            </List>
+          ))}
+        </div>
+        <InputBox
           onSubmit={this.handlePostMessage}
           value={this.state.message}
           onChange={this.handleChange}
