@@ -169,7 +169,7 @@ export default class TimelineNotes extends Component {
           <span className={!this.state.myNotes ? 'toggle-label' : 'toggle-label all'}>All Notes</span>
         </div>
         <div className="notes-container">
-          <List>
+          <List className="notes-messages">
             {/* Iterate through the each day entry */}
             {Object.entries(dayNotes).map(([, { date, notes }]) => (
               <List className="notes-list" key={date}>
@@ -213,8 +213,8 @@ export default class TimelineNotes extends Component {
             }
           </List>
           <div className="message-border" />
-          
-          <InputBox 
+
+          <InputBox
             onSubmit={this.handleAddNote}
             value={this.state.content}
             onChange={this.handleChange}
