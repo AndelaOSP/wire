@@ -121,7 +121,7 @@
         "postcss-loader": "^2.0.8",
         "prettier": "^1.11.0",
         "react-addons-test-utils": "^15.6.2",
-        "react-dev-utils": "^6.1.1",
+        "react-dev-utils": "^11.0.4",
         "react-router-test-context": "^0.1.0",
         "react-test-renderer": "^16.2.0",
         "redux-test-utils": "^0.2.2",
